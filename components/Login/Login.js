@@ -1,15 +1,21 @@
 import React, { Component }  from 'react';
-import { View,Text,StyleSheet,Image } from 'react-native';
+import { View,Text,StyleSheet,Image,StatusBar } from 'react-native';
 import LoginForm from './LoginForm';
 import { LinearGradient } from 'expo';
+
 
 
 export default class Login extends Component{
     render(){
         return (
-
+            <LinearGradient
+            colors={['#ff6600','#ff6699']}
+            style={styles.container}>
+            <StatusBar backgroundColor= 'blue' barStyle="light-content"/>
+          
             <View style={styles.container}>
-        
+            
+
             <View style={styles.loginContainer}> 
           
          
@@ -21,13 +27,14 @@ export default class Login extends Component{
                 </View> 
                 
            </View>
+           </LinearGradient>
         )
     }
 } 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor : '#ff6347'
+        
   
     },
     loginContainer:{

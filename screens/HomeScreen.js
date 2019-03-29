@@ -1,9 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Button} from 'react-native';
-import Login from '../components/Login/Login';
+import { StyleSheet,AsyncStorage, Text, View ,Button} from 'react-native';
+
 export default class HomeScreen extends React.Component {
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Auth');
+  };
+
   render() {
-    return < Login/>
+    
+    return (
+      <View>
+        <Text> Hello world....</Text>
+        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+      </View>
+    )
       
   }
 }

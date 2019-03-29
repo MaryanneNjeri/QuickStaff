@@ -1,15 +1,15 @@
 // import the libraries 
 
 import React  from 'react';
-import { View, Text, TextInput, TouchableOpacity,StyleSheet,Alert,StatusBar} from 'react-native';
+import { View, Text, TextInput,AsyncStorage, TouchableOpacity,StyleSheet,Alert,StatusBar} from 'react-native';
 
-class UserInput{
-  handleSubmit =()=>{
-    console.log('submitted')
-  }
-}
+
 // we create a component 
 export default class LoginForm extends React.Component {
+  _signInAsyc = async()=>{
+    await AsyncStorage.setItem('userToken','abc');
+    this.props.navigation.navigate('App')
+  }
   render(){
      return (
     <View style={styles.container}>
@@ -18,8 +18,8 @@ export default class LoginForm extends React.Component {
                 onSubmitEditing={() => this.passwordInput.focus()} 
                 autoCorrect={false} 
                 keyboardType='email-address' 
-                returnKeyType="next" 
-                value={this}
+                returnKeyType="done" 
+                
                 placeholder='Email or Mobile Num' 
                 placeholderTextColor='rgba(225,225,225,0.7)'
      />
@@ -29,10 +29,7 @@ export default class LoginForm extends React.Component {
               placeholder='Password' 
               placeholderTextColor='rgba(225,225,225,0.7)' 
               secureTextEntry/> 
-              <TouchableOpacity style={styles.buttonContainer} 
-                    >
-             <Text  style={styles.buttonText}>Sign in</Text>
-</TouchableOpacity>   
+                 
      
     
      </View>
@@ -43,7 +40,7 @@ export default class LoginForm extends React.Component {
  
 const styles = StyleSheet.create({
   container:{
-    padding:20
+    
   },
   input:{
     height:40,
