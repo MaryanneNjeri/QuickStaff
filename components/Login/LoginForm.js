@@ -5,37 +5,34 @@ import { View, Text, TextInput,AsyncStorage, TouchableOpacity,StyleSheet,Alert,S
 
 
 // we create a component 
-export default class LoginForm extends React.Component {
-  _signInAsyc = async()=>{
-    await AsyncStorage.setItem('userToken','abc');
-    this.props.navigation.navigate('App')
-  }
-  render(){
-     return (
-    <View style={styles.container}>
+
+const LoginForm =({ email,password })=> (
+
+   
+  
+<View style={styles.container}>
      <TextInput style = {styles.input} 
                 autoCapitalize="none" 
                 onSubmitEditing={() => this.passwordInput.focus()} 
                 autoCorrect={false} 
                 keyboardType='email-address' 
-                returnKeyType="done" 
-                
                 placeholder='Email or Mobile Num' 
                 placeholderTextColor='rgba(225,225,225,0.7)'
+                value={email}
      />
      <TextInput style= {styles.input}
-              returnKeyType="go" 
+              returnKeyType="done" 
               ref={(input)=> this.passwordInput = input} 
               placeholder='Password' 
               placeholderTextColor='rgba(225,225,225,0.7)' 
+              value={password}
               secureTextEntry/> 
                  
      
     
      </View>
-     )
-  } 
-} 
+     );
+  
 // define styles
  
 const styles = StyleSheet.create({
@@ -60,4 +57,5 @@ buttonText:{
     textAlign: 'center',
     fontWeight: '700',
 }
-})
+}) 
+export default LoginForm
