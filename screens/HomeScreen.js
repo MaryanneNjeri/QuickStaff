@@ -3,7 +3,7 @@ import { StyleSheet,AsyncStorage, Text, View ,Button} from 'react-native';
 
 export default class HomeScreen extends React.Component {
   _signOutAsync = async () => {
-    await AsyncStorage.clear();
+    // await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };
 

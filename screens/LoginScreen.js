@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
-import { View,Text,TextInput,StyleSheet,Image,StatusBar ,TouchableOpacity,AsyncStorage} from 'react-native';
-import LoginForm from '../components/Login/LoginForm';
+import { View,Text,TextInput,StyleSheet,Image,StatusBar ,TouchableOpacity,TouchableHighlight,AsyncStorage,Button} from 'react-native';
 import { LinearGradient } from 'expo';
 
 
@@ -17,11 +16,14 @@ export default class Login extends Component{
             password: value
         })
     } 
+    onRedirect = () =>{
+        this.props.navigation.navigate('PasswordReset')
+    } 
    
     signInAsyc = async(email)=>{ 
-       alert('email' + email)
-        // await AsyncStorage.setItem('userToken','abc');
-        // this.props.navigation.navigate('App')
+       
+        await AsyncStorage.setItem('userToken','abc');
+        this.props.navigation.navigate('App')
       }
     render(){ 
         const {email,password } = this.state;
@@ -41,6 +43,7 @@ export default class Login extends Component{
              </View>
     
                 <View style={styles.formContainer}>
+
                 <TextInput style = {styles.input} 
                 autoCapitalize="none" 
                 onSubmitEditing={() => this.passwordInput.focus()} 
@@ -58,10 +61,15 @@ export default class Login extends Component{
               onChangeText={(password) => this.setState({password})}
               secureTextEntry/> 
         
-                       <TouchableOpacity style={styles.buttonContainer} 
+                       <TouchableHighlight style={styles.buttonContainer} 
                   onPress ={ () => this.signInAsyc(this.state.email,this.state.password)}>
-             <Text  style={styles.buttonText}>Sign in</Text>
-</TouchableOpacity>   
+             <Text  style={styles.buttonText}>Log in</Text>
+</TouchableHighlight> 
+    <TouchableOpacity style={styles.reset}
+        onPress={this.onRedirect}>
+            <Text style ={{color: 'white'}}>Password Reset </Text>
+        </TouchableOpacity>
+
      
                 </View> 
                 
@@ -77,23 +85,26 @@ const styles = StyleSheet.create({
         
   
     },
+
+    reset:{
+       alignItems: 'center',
+      
+  
+       
+    },
     input:{
+        borderRadius:30,
         height:40,
         backgroundColor: 'rgba(225,225,225,0.2)', 
         marginBottom:20,
         padding:10,
         color: '#fff'
       },
-      buttonContainer:{
-        backgroundColor: '#9ACD32',
-        paddingVertical: 15 ,
-       
-       
-    },
+
     buttonText:{
         color: '#fff',
         textAlign: 'center',
-        fontWeight: '700',
+       
     },
     loginContainer:{
         alignItems: 'center',
@@ -106,16 +117,17 @@ const styles = StyleSheet.create({
         height: 100
     },
     buttonContainer:{
+        height:45,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        borderRadius: 30 ,
+        marginBottom: 20,
         backgroundColor: '#9ACD32',
         paddingVertical: 15 ,
        
        
     },
-    buttonText:{
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: '700',
-    } 
+   
 
 })
 

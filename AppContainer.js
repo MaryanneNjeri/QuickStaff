@@ -1,6 +1,6 @@
 import { createAppContainer,createSwitchNavigator,createStackNavigator } from 'react-navigation';
 import HomeScreen from './screens/HomeScreen';
-import Friends from './screens/Friends';
+import PasswordResetScreen from './screens/PasswordResetScreen';
 import LoginScreen from './screens/LoginScreen';
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 /*
@@ -11,7 +11,8 @@ the screen pop off the top of the stack.
 
 // The switch navigator is meant to show one screen at a time 
 const AppStack = createStackNavigator({
-    HomeScreen:HomeScreen
+    HomeScreen:HomeScreen,
+    PasswordReset: PasswordResetScreen
 })
  const AuthStack = createStackNavigator({
      Login:{screen:LoginScreen,
