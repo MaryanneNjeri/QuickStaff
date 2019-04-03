@@ -112,7 +112,9 @@ export default class EventScreen extends React.Component {
     return (
       <View> 
         <View style={styles.centered}>
-          <Header />
+          <Header 
+          leftComponent={{ icon: 'menu', color: '#fff' }}
+          />
         </View>
        {
           events.map((event, key) => {
@@ -123,7 +125,7 @@ export default class EventScreen extends React.Component {
             <Text style={styles.card_text}>{event.event}</Text>
             <View style={styles.row}>
             <Image resizeMode="contain" source={icon} style={styles.logo}/>
-            <Text style={{fontSize: 10,textAlign: 'left',}}> {event.Time}</Text>
+            <Text style={{fontSize: 10,textAlign: 'center',}}> {event.Time}</Text>
           </View>
             </Card>
            );
@@ -161,12 +163,14 @@ const styles = StyleSheet.create({
    },
    logo: {
     width: 40,
-    height: 13
+    height: 13,
+    marginRight:0
   },
   row:{ 
     alignItems: 'center',
     paddingTop: 5,
     flexDirection: 'row',
+    
     
   },
   centered: {
