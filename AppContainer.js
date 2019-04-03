@@ -11,7 +11,12 @@ the screen pop off the top of the stack.
 
 // The switch navigator is meant to show one screen at a time 
 const AppStack = createStackNavigator({
-    EventScreen:EventScreen,
+    EventScreen:{screen:EventScreen,
+        navigationOptions:{
+            title: 'Events'
+        }
+    
+    },
     PasswordReset: {screen:PasswordResetScreen,
         navigationOptions :{
          title: 'Password Reset'
