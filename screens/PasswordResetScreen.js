@@ -13,13 +13,13 @@ export default class HomeScreen extends React.Component {
       state = {
         fontLoaded: false,
       };
-      
+
       // reauthenticate = () =>{
 
       // }
       resetPassword = () =>{
         // this.reauthenticate
-        this.props.navigation.navigate('HomeScreen')
+        this.props.navigation.navigate('EventScreen')
     } 
 
       async componentDidMount(){
