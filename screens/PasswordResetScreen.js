@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TextInput,Dimensions,Image,TouchableHighlight,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View ,TextInput,Dimensions,Image,TouchableHighlight} from 'react-native';
 import { LinearGradient,Font } from 'expo';
 
 const { height, width } = Dimensions.get('window');

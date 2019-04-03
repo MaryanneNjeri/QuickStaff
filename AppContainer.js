@@ -1,7 +1,8 @@
-import { createAppContainer,createSwitchNavigator,createStackNavigator } from 'react-navigation';
+import { createAppContainer,createSwitchNavigator,createStackNavigator,createBottomTabNavigator } from 'react-navigation';
 import EventScreen from './screens/EventScreen';
 import PasswordResetScreen from './screens/PasswordResetScreen';
-import LoginScreen from './screens/LoginScreen';
+import LoginScreen from './screens/LoginScreen'; 
+import Friends from './screens/Friends';
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
@@ -22,17 +23,21 @@ const AppStack = createStackNavigator({
          title: 'Password Reset'
         }
     }
-})
- const AuthStack = createStackNavigator({
-     Login:{screen:LoginScreen,
-       navigationOptions:{ header: null }
+}) 
+const TabNavigator = createBottomTabNavigator ({
+    Event:EventScreen,
+    Friends:Friends
+});
+const AuthStack = createStackNavigator({
+    Login:{screen:LoginScreen,
+    navigationOptions:{ header: null }
     
     },
 
      
  });
  
-export default  createAppContainer (createSwitchNavigator (
+export default  createAppContainer ( TabNavigator ,createSwitchNavigator (
 {  
    
     AuthLoading:AuthLoadingScreen,
@@ -42,7 +47,8 @@ export default  createAppContainer (createSwitchNavigator (
     },
     {
       initialRouteName: 'AuthLoading'  
-    }
+    },
+ 
     
  
 ));
