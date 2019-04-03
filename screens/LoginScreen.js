@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { View,Text,TextInput,StyleSheet,Image,StatusBar ,TouchableOpacity,TouchableHighlight,AsyncStorage,Button} from 'react-native';
+import { View,Text,TextInput,StyleSheet,Image,StatusBar ,TouchableOpacity,TouchableHighlight,AsyncStorage} from 'react-native';
 import { LinearGradient } from 'expo';
 
 
@@ -10,17 +10,12 @@ export default class Login extends Component{
         this.state = {email: ''};
         this.state = {password:''};
       }
-    newUserValue = (value)  =>{
-        this.setState({
-            email: value ,
-            password: value
-        })
-    } 
+   
     onRedirect = () =>{
         this.props.navigation.navigate('PasswordReset')
     } 
    
-    signInAsyc = async(email)=>{ 
+    signInAsyc = async()=>{ 
        
         await AsyncStorage.setItem('userToken','abc');
         this.props.navigation.navigate('App')
@@ -61,7 +56,7 @@ export default class Login extends Component{
               onChangeText={(password) => this.setState({password})}
               secureTextEntry/> 
         
-                       <TouchableHighlight style={styles.buttonContainer} 
+        <TouchableHighlight style={styles.buttonContainer} 
                   onPress ={ () => this.signInAsyc(this.state.email,this.state.password)}>
              <Text  style={styles.buttonText}>Log in</Text>
 </TouchableHighlight> 
@@ -85,13 +80,10 @@ const styles = StyleSheet.create({
         
   
     },
-
-    reset:{
+  reset:{
        alignItems: 'center',
       
-  
-       
-    },
+},
     input:{
         borderRadius:30,
         height:40,
