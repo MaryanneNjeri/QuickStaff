@@ -19,7 +19,7 @@ export default class HomeScreen extends React.Component {
       // }
       resetPassword = () =>{
         // this.reauthenticate
-        this.props.navigation.navigate('EventScreen')
+        this.props.navigation.navigate('Event')
     } 
 
       async componentDidMount(){
