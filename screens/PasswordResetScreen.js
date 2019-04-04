@@ -3,7 +3,7 @@ import { StyleSheet, Text, View ,TextInput,Dimensions,Image,TouchableHighlight} 
 import { LinearGradient,Font } from 'expo';
 
 const { height, width } = Dimensions.get('window');
-export default class HomeScreen extends React.Component {
+export default class PasswordResetScreen extends React.Component {
  
     constructor(props) {
         super(props);

@@ -92,11 +92,14 @@ import React from 'react';
 import { StyleSheet, Text, View ,Button,Image} from 'react-native';
 import { Card,Icon } from 'react-native-elements';
 import { Font } from 'expo'; 
-import Header from '../components/Header';
+import Header from '../components/Header'; 
+
 
 
 export default class EventScreen extends React.Component {
-  
+  static navigationOptions = {
+    header: {visible:false}
+  }
   _signOutAsync = async () => {
     // await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
@@ -112,9 +115,9 @@ export default class EventScreen extends React.Component {
     return (
       <View> 
         <View style={styles.centered}>
-          <Header 
+          {/* <Header 
           leftComponent={{ icon: 'menu', color: '#fff' }}
-          />
+          /> */}
         </View>
        {
           events.map((event, key) => {

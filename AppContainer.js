@@ -5,11 +5,10 @@ import LoginScreen from './screens/LoginScreen';
 import InviteScreen from './screens/InviteScreen'; 
 import Settings from './screens/Settings'; 
 import ScheduleScreen from './screens/ScheduleScreen'; 
-import Friends from './screens/Friends';
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import React from 'react';
-import HomeScreen from './screens/PasswordResetScreen';
+import CustomHeader from './components/Header'; 
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
 the screen  and when we hit the back button 
@@ -59,7 +58,9 @@ const AppStack = createStackNavigator({
           }
 
 ),
-    navigationOptions:{ header: null }
+    navigationOptions:{ 
+        header: <CustomHeader/>
+    }
     
     },
     PasswordReset: {screen:PasswordResetScreen,
@@ -68,13 +69,6 @@ const AppStack = createStackNavigator({
         }
     }
 })  
-const HomeStack = createStackNavigator ({
-    EventScreen:EventScreen,
-    Settings:Settings
-})
-
-
-
 const AuthStack = createStackNavigator({
     Login:{screen:LoginScreen,
     navigationOptions:{ header: null }
