@@ -89,7 +89,7 @@ const events = [
 ]
 
 import React from 'react';
-import { StyleSheet, Text, View ,Button,Image} from 'react-native';
+import { StyleSheet, Text, View ,Button,Image,ScrollView} from 'react-native';
 import { Card,Icon } from 'react-native-elements';
 import { Font } from 'expo'; 
 import Header from '../components/Header'; 
@@ -113,7 +113,7 @@ export default class EventScreen extends React.Component {
   }
    
     return (
-      <View> 
+      <ScrollView> 
         <View style={styles.centered}>
           {/* <Header 
           leftComponent={{ icon: 'menu', color: '#fff' }}
@@ -136,7 +136,7 @@ export default class EventScreen extends React.Component {
         }
       
         <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-      </View>
+      </ScrollView>
     )
       
   }

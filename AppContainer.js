@@ -13,7 +13,7 @@ import { LinearGradient,Font } from 'expo';
 import { Icon} from 'react-native-elements';
 import { Platform } from 'react-native';
 import ActionSheet from 'react-native-action-sheet'; 
-
+ 
 
 openActionSheet=()=>{
 ActionSheet.showActionSheetWithOptions({
@@ -26,7 +26,7 @@ ActionSheet.showActionSheetWithOptions({
     (buttonIndex) => {  
         if(buttonIndex == 1){
         
-    console.log('button clicked :', buttonIndex); 
+           NavigationActions.navigate({ routeName: 'Login' })
         }
 });
 }
