@@ -1,4 +1,4 @@
-import { createAppContainer,createSwitchNavigator,createStackNavigator,createBottomTabNavigator } from 'react-navigation';
+import { createAppContainer,createSwitchNavigator,createStackNavigator,createBottomTabNavigator, NavigationActions } from 'react-navigation';
 import EventScreen from './screens/EventScreen';
 import PasswordResetScreen from './screens/PasswordResetScreen';
 import LoginScreen from './screens/LoginScreen'; 
@@ -8,7 +8,28 @@ import ScheduleScreen from './screens/ScheduleScreen';
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import React from 'react';
-import CustomHeader from './components/Header'; 
+import CustomHeader from './components/Header';  
+import { LinearGradient,Font } from 'expo';  
+import { Icon} from 'react-native-elements';
+import { Platform } from 'react-native';
+import ActionSheet from 'react-native-action-sheet'; 
+
+
+openActionSheet=()=>{
+ActionSheet.showActionSheetWithOptions({
+    options: ['Cancel', 'Logout'],
+    destructiveButtonIndex: 1,
+    cancelButtonIndex: 0,
+    tintColor: 'blue',
+    message:'Account Settings'
+    },
+    (buttonIndex) => {  
+        if(buttonIndex == 1){
+        
+    console.log('button clicked :', buttonIndex); 
+        }
+});
+}
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
 the screen  and when we hit the back button 
@@ -58,8 +79,29 @@ const AppStack = createStackNavigator({
           }
 
 ),
-    navigationOptions:{ 
-        header: <CustomHeader/>
+    navigationOptions:{  
+
+        title: 'Events',
+        headerBackground:(
+        <LinearGradient
+       colors={['#0066ff','#0033cc']} 
+       style={{flex:1}}
+        /> 
+        ),
+        headerTintColor: '#fff',
+        headerTitleStyle:{
+           },
+        
+        headerRight:(
+            <Icon 
+            name= 'person'
+            size={30}
+            color='white'
+            onPress={this.openActionSheet}
+        /> 
+        )  
+          
+       
     }
     
     },
