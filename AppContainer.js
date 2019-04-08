@@ -5,6 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import InviteScreen from './screens/InviteScreen'; 
 import Settings from './screens/Settings'; 
 import ScheduleScreen from './screens/ScheduleScreen'; 
+import EventDetailsScreen from './screens/EventDetailsScreen'; 
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import React from 'react';
@@ -106,11 +107,18 @@ const AppStack = createStackNavigator({
     }
     
     },
+    EventDetails:{screen:EventDetailsScreen,
+        navigationOptions:{
+            title: 'Event Details'
+        }
+    }
+    ,
     PasswordReset: {screen:PasswordResetScreen,
         navigationOptions :{
          title: 'Password Reset'
         }
-    }
+    },
+    
 })  
 const AuthStack = createStackNavigator({
     Login:{screen:LoginScreen,

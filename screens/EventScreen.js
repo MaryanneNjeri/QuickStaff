@@ -89,7 +89,7 @@ const events = [
 ]
 
 import React from 'react';
-import { StyleSheet, Text, View ,Button,Image,ScrollView} from 'react-native';
+import { StyleSheet, Text, View ,Button,Image,ScrollView,TouchableOpacity } from 'react-native';
 import { Card,Icon } from 'react-native-elements';
 import { Font } from 'expo'; 
 import Header from '../components/Header'; 
@@ -105,15 +105,17 @@ export default class EventScreen extends React.Component {
     this.props.navigation.navigate('Auth');
   }
  
-
- 
+_eventDetails=()=>{
+  this.props.navigation.navigate('EventDetails');
+} 
   render() { 
     let icon = {
-      url:"https://img.icons8.com/ultraviolet/40/000000/tear-off-calendar.png"
+      url:"https://img.icons8.com/ultraviolet/80/000000/overtime.png"
   }
    
     return (
       <ScrollView> 
+        <TouchableOpacity onPress={this._eventDetails}>
         <View style={styles.centered}>
           {/* <Header 
           leftComponent={{ icon: 'menu', color: '#fff' }}
@@ -124,18 +126,23 @@ export default class EventScreen extends React.Component {
            return ( 
             
             <Card containerStyle={styles.containerStyle} key={key}>
-            
-            <Text style={styles.card_text}>{event.event}</Text>
             <View style={styles.row}>
             <Image resizeMode="contain" source={icon} style={styles.logo}/>
-            <Text style={{fontSize: 10,textAlign: 'center',}}> {event.Time}</Text>
-          </View>
+            <Text style={styles.card_text}>{event.event}</Text>
+            
+            
+            </View> 
+            <View style={styles.direction}>
+            <Text style={{fontSize: 10,textAlign: 'center',}}> {event.Time}</Text> 
+            <Text style={{fontSize: 10,textAlign: 'center',}}> {event.venue}</Text>
+           </View>
             </Card>
            );
           })
         }
       
-        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} /> 
+        </TouchableOpacity>
       </ScrollView>
     )
       
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerStyle:{
-    padding: 10, 
+    padding: 0, 
     height: 80,
     shadowColor: "#000",
     shadowOffset: {
@@ -165,8 +172,8 @@ const styles = StyleSheet.create({
     elevation: 6,
    },
    logo: {
-    width: 40,
-    height: 13,
+    width: 90,
+    height: 40,
     marginRight:0
   },
   row:{ 
@@ -175,6 +182,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     
     
+  }, 
+  direction:{
+  flexDirection: 'row',
+  flex:1,
+  flexWrap: 'wrap',
+  
+  
   },
   centered: {
     alignItems: 'center'
