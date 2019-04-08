@@ -41,12 +41,13 @@ the screen pop off the top of the stack.
 
 
 const AppStack = createStackNavigator({
-    Event:{ screen: createBottomTabNavigator ({
-        Home: EventScreen, 
+    Event:{ screen:createBottomTabNavigator ({
+        Home:EventScreen, 
         Schedule:ScheduleScreen,
         Invite:InviteScreen,
         Settings:Settings,
     },
+    
     {
             defaultNavigationOptions: ({ navigation }) => ({
               tabBarIcon: ({ focused, horizontal, tintColor }) => {

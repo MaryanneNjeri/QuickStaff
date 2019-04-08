@@ -17,6 +17,7 @@
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-action-sheet": "^2.2.0",
+    "react-native-calendars": "^1.27.0",
     "react-native-elements": "^1.1.0",
     "react-navigation": "^3.5.1"
   },
@@ -24,5 +25,8 @@
     "babel-preset-expo": "^5.0.0",
     "jest-expo": "^32.0.0"
   },
+  "rnpm": {
+    "assets": ["assets/fonts/ShadowsIntoLight"]
+   },
   "private": true
 }

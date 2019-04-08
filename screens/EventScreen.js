@@ -79,7 +79,7 @@ const events = [
         venue: ' Bobbie Volkman',
         address:'163 Cullen Isle Suite 244 South Montanatown, ',
         client:'Kozey, Kulas and Botsford',
-        Time:' April 10th 2019',
+        Time:' May 10th 2019',
         first_date: 'Wednesday April 10th 2019 at 8:27 am',
         second_date:'Saturday April 13th 2019 at 11:27 am',
         events_notes: 'Sit ad adipisci ab et nihil. Et architecto itaque consequatur eos odio dolorum odit. ',
