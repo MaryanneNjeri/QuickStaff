@@ -89,43 +89,77 @@ const events = [
 ]
 
 import React from 'react';
-import { StyleSheet, Text, View ,Button,Image,ScrollView,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View ,Button,Image,ScrollView,TouchableWithoutFeedback,Animated,Easing } from 'react-native';
 import { Card,Icon } from 'react-native-elements';
 import { Font } from 'expo'; 
 import Header from '../components/Header'; 
 
+let scaleValue = new Animated.Value(0)
+const cardScale = scaleValue.interpolate({
+  inputRange: [0, 0.5, 1],
+  outputRange: [1, 1.1, 1.2]
+});
 
 
 export default class EventScreen extends React.Component {
   static navigationOptions = {
     header: {visible:false}
-  }
+  } 
   _signOutAsync = async () => {
     // await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   }
  
-_eventDetails=()=>{
-  this.props.navigation.navigate('EventDetails');
+_eventDetails=()=>{ 
+  scaleValue.setValue(0);
+  Animated.timing(scaleValue,{
+    toValue:1,
+    duration:250,
+    easing:Easing.linear,
+    useNativeDriver: true
+  }).start()
+  cardAction();
+  
 } 
-  render() { 
+  render() {   
+  
+ 
+    let transformStyle =  { ...styles.card, transform: [{ scale: cardScale }] };
     let icon = {
       url:"https://img.icons8.com/ultraviolet/80/000000/overtime.png"
   }
    
     return (
       <ScrollView> 
-        <TouchableOpacity onPress={this._eventDetails}>
-        <View style={styles.centered}>
-          {/* <Header 
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          /> */}
-        </View>
-       {
+        <TouchableWithoutFeedback 
+        onPressIn={()=>{
+          scaleValue.setValue(0);
+          Animated.timing(scaleValue, {
+            toValue: 1,
+            duration: 250,
+            easing: Easing.linear,
+            useNativeDriver: true
+          }).start(); 
+          this.props.navigation.navigate('EventDetails',{data:events});
+          
+        }} 
+        onPressOut={() => {
+          Animated.timing(scaleValue, {
+            toValue: 0,
+            duration: 100,
+            easing: Easing.linear,
+            useNativeDriver: true
+          }).start();
+        }}> 
+        
+       
+       
+            <Animated.View style={transformStyle}>
+            {
           events.map((event, key) => {
            return ( 
-            
             <Card containerStyle={styles.containerStyle} key={key}>
+            
             <View style={styles.row}>
             <Image resizeMode="contain" source={icon} style={styles.logo}/>
             <Text style={styles.card_text}>{event.event}</Text>
@@ -136,13 +170,18 @@ _eventDetails=()=>{
             <Text style={{fontSize: 10,textAlign: 'center',}}> {event.Time}</Text> 
             <Text style={{fontSize: 10,textAlign: 'center',}}> {event.venue}</Text>
            </View>
+          
             </Card>
-           );
-          })
-        }
-      
+              );
+            })
+          }
+            </Animated.View>
+          
+     
+        
+       </TouchableWithoutFeedback>
         <Button title="Actually, sign me out :)" onPress={this._signOutAsync} /> 
-        </TouchableOpacity>
+       
       </ScrollView>
     )
       
