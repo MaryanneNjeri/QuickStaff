@@ -30,6 +30,21 @@ ActionSheet.showActionSheetWithOptions({
            NavigationActions.navigate({ routeName: 'Login' })
         }
 });
+} 
+openAction=()=>{
+    ActionSheet.showActionSheetWithOptions({
+        options: ['Cancel', 'Add to Calendar','Contact Organiser'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0,
+        tintColor: 'blue',
+        message:'Account Settings'
+        },
+        (buttonIndex) => {  
+            if(buttonIndex == 1){
+            
+               NavigationActions.navigate({ routeName: 'Login' })
+            }
+    });  
 }
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
@@ -101,7 +116,26 @@ const AppStack = createStackNavigator({
     },
     EventDetails:{screen:EventDetailsScreen,
         navigationOptions:{
-            title: 'Event Details'
+            title: 'Event Details',
+            headerBackground:(
+                <LinearGradient
+               colors={['#0066ff','#0033cc']} 
+               style={{flex:1}}
+                /> 
+                ),
+                headerTintColor: '#fff',
+                headerTitleStyle:{
+                   },
+                
+                headerRight:(
+                    <Icon 
+                    type='simple-line-icon'
+                    name= 'options-vertical'
+                    size={30}
+                    color='white'
+                    onPress={this.openAction}
+                /> 
+                )  
         }
     }
     ,
