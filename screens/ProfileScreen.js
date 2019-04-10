@@ -2,7 +2,7 @@ import React from  'react';
 import { StyleSheet,Text } from 'react-native';
 import {Container,List,Button,Icon,Body, ListItem,Content,Left,Right,Switch} from 'native-base'
 
-export default class Friends extends  React.Component {
+export default class ProfileScreen extends  React.Component {
     logout=()=>{
         this.props.navigation.navigate('Auth');
     }

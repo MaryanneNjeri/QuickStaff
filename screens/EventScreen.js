@@ -107,6 +107,9 @@ export default class EventScreen extends React.Component {
     // await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   }
+  event_details=()=>{
+    this.props.navigation.navigate('EventDetails')
+  }
  render() {   
   let icon = {
       url:"https://img.icons8.com/bubbles/50/000000/calendar.png"
@@ -131,7 +134,7 @@ export default class EventScreen extends React.Component {
          events.map((event,i) => {
            return (
           <List key={i}> 
-          <ListItem thumbnail>
+          <ListItem thumbnail onPress={this.event_details}>
         <Left>
         <Thumbnail square source={{uri:event.url}} />
         </Left>

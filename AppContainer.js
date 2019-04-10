@@ -3,7 +3,7 @@ import EventScreen from './screens/EventScreen';
 import PasswordResetScreen from './screens/PasswordResetScreen';
 import LoginScreen from './screens/LoginScreen'; 
 import InviteScreen from './screens/InviteScreen'; 
-import Settings from './screens/Settings'; 
+import ProfileScreen from './screens/ProfileScreen'; 
 import ScheduleScreen from './screens/ScheduleScreen'; 
 import EventDetailsScreen from './screens/EventDetailsScreen'; 
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
@@ -43,10 +43,9 @@ the screen pop off the top of the stack.
 
 const AppStack = createStackNavigator({
     Event:{ screen:createBottomTabNavigator ({
-        Home:EventScreen, 
-        Schedule:ScheduleScreen,
-        Invite:InviteScreen,
-        Settings:Settings,
+        Events:EventScreen, 
+        Calendar:ScheduleScreen,
+        Profile:ProfileScreen,
     },
     
     {
@@ -55,22 +54,15 @@ const AppStack = createStackNavigator({
                 const { routeName } = navigation.state;
                 let IconComponent = Ionicons;
                 let iconName;
-                if (routeName === 'Home') {
-                  iconName = `ios-home`;
-                  // Sometimes we want to add badges to some icons. 
-                  // You can check the implementation below.
-                  
-                } else if (routeName === 'Settings') {
-                  iconName = `ios-options`;
+                if (routeName === 'Events') {
+                  iconName = `ios-albums`;
+                  } else if (routeName === 'Profile') {
+                  iconName = `ios-person`;
                 } 
-                else if(routeName ==='Schedule') {
+                else if(routeName ==='Calendar') {
                     iconName = `ios-calendar`
                 }  
-                else if(routeName ==='Invite') {
-                    iconName = `ios-document`
-                } 
-        
-                // You can return any component that you like here!
+                 // You can return any component that you like here!
                 return <IconComponent name={iconName} size={25} color={tintColor} />;
               },
             }),
