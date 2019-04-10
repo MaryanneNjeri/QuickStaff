@@ -17,9 +17,10 @@ icon:"https://img.icons8.com/ultraviolet/40/000000/overtime.png"
 
 import React from  'react'; 
 import { StyleSheet,Dimensions} from 'react-native';
-import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body} from 'native-base';
+import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body, Thumbnail,Segment, Button} from 'native-base';
 import MapView ,{PROVIDER_GOOGLE,Marker} from 'react-native-maps'
 const { width } = Dimensions.get('window');
+
 export default class EventDetailsScreen extends  React.Component { 
 
 render() {
@@ -102,7 +103,23 @@ render() {
          />
              </MapView>
               </CardItem>
-              </Card>
+              </Card> 
+               <Text>{" "}</Text> 
+               <Body>
+              <Text>{event_details.venue}</Text> 
+              <Text note>{event_details.address}</Text>
+              </Body> 
+              <Body>
+                <Icon  type="Ionicons" name="car"/>
+              </Body> 
+              <Segment>
+                <Button first active warning > 
+                <Text>Accept Invite</Text>
+                </Button> 
+                <Button last> 
+                <Text>Decline Invite</Text>
+                </Button>
+                </Segment>
           </Content>
          </Container>
       
@@ -140,5 +157,9 @@ const styles = StyleSheet.create({
   alignItems: 'center',
   flexDirection: 'row',
   
+  }, 
+  Thumb:{
+    height: 10,
+    width:20
   }
   });
