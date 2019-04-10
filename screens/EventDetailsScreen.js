@@ -16,9 +16,10 @@ icon:"https://img.icons8.com/ultraviolet/40/000000/overtime.png"
 }
 
 import React from  'react'; 
-import { StyleSheet} from 'react-native';
+import { StyleSheet,Dimensions} from 'react-native';
 import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body} from 'native-base';
-
+import MapView ,{PROVIDER_GOOGLE,Marker} from 'react-native-maps'
+const { width } = Dimensions.get('window');
 export default class EventDetailsScreen extends  React.Component { 
 
 render() {
@@ -77,7 +78,31 @@ render() {
           <Text style={{fontSize: 10, color:'#00adf5'}}>Read More...</Text> 
           </Body>
           </CardItem>
-            </Card>
+            </Card> 
+            <Text>{" "}</Text> 
+            <Text>Location</Text>
+            <Card>
+              <CardItem cardBody>
+              <MapView
+              provider={PROVIDER_GOOGLE}
+              style={{height:width/2, width:width}}
+              region={{
+                latitude: 42.726200,
+                longitude: -71.19089,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421 
+                
+              }}
+             >
+              <MapView.Marker
+            coordinate={{latitude: 42.726200,
+            longitude: -71.19089}}
+            title={"Bobbie Volkman"}
+            description={"Event Venue"}
+         />
+             </MapView>
+              </CardItem>
+              </Card>
           </Content>
          </Container>
       
