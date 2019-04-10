@@ -113,7 +113,7 @@ render() {
                 <Icon  type="Ionicons" name="car"/>
               </Body> 
               <Segment>
-                <Button first active warning > 
+                <Button first active> 
                 <Text>Accept Invite</Text>
                 </Button> 
                 <Button last> 
