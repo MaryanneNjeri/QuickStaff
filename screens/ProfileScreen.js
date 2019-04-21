@@ -1,7 +1,10 @@
 import React from  'react'; 
-import { StyleSheet,Text } from 'react-native';
-import {Container,List,Button,Icon,Body, ListItem,Content,Left,Right,Switch} from 'native-base'
-
+import { StyleSheet,Text,Dimensions } from 'react-native';
+import {Container,Header,Icon,Body, ListItem,Content,Left,Right,Switch, Thumbnail, Title, Subtitle} from 'native-base'
+const { width } = Dimensions.get('window');
+let icon={
+    url:"https://images.unsplash.com/photo-1541713970063-ca9613c37dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80"
+}
 export default class ProfileScreen extends  React.Component {
     logout=()=>{
         this.props.navigation.navigate('Auth');
@@ -9,7 +12,20 @@ export default class ProfileScreen extends  React.Component {
 render() {
     return(
         <Container>
-            <Content>
+            <Content> 
+                <Header style={styles.header}> 
+                
+                <Left />
+                    
+                <Body>
+                   
+                    <Thumbnail large source={icon}/>
+                    <Title>Domingo Streich</Title>
+                    <Subtitle>Event Organiser</Subtitle>
+                </Body>
+                <Right />
+                    
+                 </Header>
    
                <ListItem icon> 
                <Left>
@@ -105,4 +121,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    header:{
+       height: width / 3
+    }
+    
   });
