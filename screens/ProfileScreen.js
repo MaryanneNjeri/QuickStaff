@@ -1,9 +1,16 @@
 import React from  'react'; 
-import { StyleSheet,Text,Dimensions } from 'react-native';
-import {Container,Header,Icon,Body, ListItem,Content,Left,Right,Switch, Thumbnail, Title, Subtitle} from 'native-base'
+import { StyleSheet,Dimensions } from 'react-native';
+import {Container,Header,Icon,Body, ListItem,Content,Left,Right,Switch, Thumbnail, Title, Subtitle,List,Text,Card,CardItem} from 'native-base'
+
 const { width } = Dimensions.get('window');
 let icon={
     url:"https://images.unsplash.com/photo-1541713970063-ca9613c37dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80"
+}
+let photo={
+    url: "https://img.icons8.com/color/48/000000/facebook.png"
+} 
+let icon_2={
+    url: "https://img.icons8.com/bubbles/100/000000/overtime.png"
 }
 export default class ProfileScreen extends  React.Component {
     logout=()=>{
@@ -25,9 +32,40 @@ render() {
                 </Body>
                 <Right />
                     
-                 </Header>
-   
-               <ListItem icon> 
+                 </Header> 
+                
+                 <Card style={styles.card}>
+                    <CardItem>
+                    
+                         <Left>
+                         <Thumbnail small source={photo}/>
+                         <Text style={{fontSize:14}}>Add Facebook Link</Text>
+                        </Left>
+                       
+                        <Right>
+                            <Icon name="plus" type="Feather"  />
+                        </Right>
+                    </CardItem>
+                </Card> 
+                <Card style={styles.cardTwo}>
+                     <CardItem style={styles.cardItem}>
+                    
+                         <Left>
+                         <Thumbnail small source={icon_2}/>
+                         <Text style={{fontSize:15}}>Available Events</Text>
+                        
+                        </Left>
+                             
+                             <Right>
+                                 <Icon type="FontAwesome" name="eye"/>
+                                 </Right>
+                         </CardItem>
+                </Card>
+                <List>
+               <ListItem  itemHeader> 
+               <Text>Settings</Text>
+               </ListItem>
+               <ListItem icon>
                <Left>
                    <Icon name="ios-notifications" />
                    </Left> 
@@ -72,6 +110,9 @@ render() {
                    <Icon active name="arrow-forward" />
                     </Right>
                    </ListItem>
+                   <ListItem  itemHeader> 
+                   <Text>Support</Text>
+                   </ListItem>
                    <ListItem icon> 
                   <Left>
                    <Icon type="Entypo" name="location-pin" />
@@ -105,7 +146,7 @@ render() {
                    <Icon active name="arrow-forward" />
                     </Right>
                    </ListItem> 
-                   
+                   </List>
                
                </Content>
         </Container>
@@ -122,7 +163,32 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     header:{
+       
        height: width / 3
+    },
+    card:{
+        marginLeft: 10,
+        marginRight:10,
+        marginTop: 15,
+        borderRadius: 3,
+        height: width / 6 ,
+        borderLeftWidth: 70,
+        borderLeftColor: '#0052cc',
+        borderRightWidth: 5,
+        borderRightColor: '#0052cc',
+        
+    },
+    cardTwo:{
+        marginLeft: 10,
+        marginRight:10,
+        marginTop: 15,
+        borderRadius: 3,
+        height: width / 6 ,
+        borderRightWidth: 70,
+        borderRightColor: '#0052cc',
+        borderLeftWidth: 5,
+        borderLeftColor: '#0052cc'
+        
     }
     
   });
