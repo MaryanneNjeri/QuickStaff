@@ -2,7 +2,7 @@ import { createAppContainer,createSwitchNavigator,createStackNavigator,createBot
 import EventScreen from './screens/EventScreen';
 import PasswordResetScreen from './screens/PasswordResetScreen';
 import LoginScreen from './screens/LoginScreen'; 
-import InviteScreen from './screens/InviteScreen'; 
+import NotificationScreen from './screens/NotificationScreen'; 
 import ProfileScreen from './screens/ProfileScreen'; 
 import ScheduleScreen from './screens/ScheduleScreen'; 
 import EventDetailsScreen from './screens/EventDetailsScreen'; 
@@ -144,6 +144,11 @@ const AppStack = createStackNavigator({
          title: 'Password Reset'
         }
     },
+    Notifications: {screen:NotificationScreen,
+        navigationOptions :{
+         title: 'Notification'
+        }
+    }
     
 })  
 const AuthStack = createStackNavigator({
