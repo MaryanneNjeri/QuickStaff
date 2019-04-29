@@ -1,28 +1,79 @@
+const event_details={
+   
+  id: 2,
+  event: 'Domingo Streich',
+  event_owner:'Domingo Streich',
+  venue: ' Bobbie Volkman',
+  address:'163 Cullen Isle Suite 244 South Montanatown, ',
+  client:'Kozey, Kulas and Botsford',
+  Time:' April 10th 2019',
+  first_date: 'Wednesday April 10th 2019 at 8:27 am',
+  second_date:'Saturday April 13th 2019 at 11:27 am',
+  events_notes: 'Sit ad adipisci ab et nihil. Et architecto itaque consequatur eos odio dolorum odit. ',
+  Team_manager_notes:'Sit sint et doloribus magni sed neque voluptatem excepturi. ',
+  staff:'Lauren Jaskolski',
+  url:'https://images.unsplash.com/photo-1554631492-a054feeae929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80'
+}
+
 import React from  'react'; 
-import { StyleSheet, Dimensions,View ,Text} from 'react-native';
-import { Card,Icon } from 'react-native-elements';
+import { StyleSheet, Dimensions,View} from 'react-native';
+import { Card,CardItem,Container,Content,Text,Body,Left,Right ,Icon, ListItem} from 'native-base';
 import { Agenda } from 'react-native-calendars';
 const { width } = Dimensions.get('window');
-// const data = this.props.screenProps.params
+
 class Details extends React.Component{
+  event_details=()=>{
+   alert('hello')
+  }
     render(){
         return (
-            <View style={styles.container}> 
-           <Card containerStyle={styles.containerStyle}> 
-             <Text >Events Available</Text>
+            <Container> 
+            <Content>
+              <Body>
+                <Text note style={{fontSize:10}}>Events Available</Text>
+                </Body>
+           <Card style={styles.containerStyle} onPress={this.event_details}> 
+           <CardItem>
+           <Left>
+              <Body>
+              <Text style={{fontSize:18}}>{event_details.event}</Text>
+              <Text note style={{fontSize:10}}> by {event_details.client}</Text>
+              <Text>{" "}</Text>
+              <ListItem icon noBorder>
+            <Left>
+            <Icon type="EvilIcons" name="calendar"/>
+              </Left>
+              <Body>
+                
+                <Text note style={{fontSize:8}}>{event_details.Time}</Text>
+              </Body> 
+             </ListItem>
+              </Body>
+            </Left> 
+        
+                <Right>
+                <Icon type="EvilIcons" name="location"/>
+                <Text note style={{fontSize: 10}}>{event_details.venue}</Text>
+                    
+                    </Right>
+             </CardItem>
             </Card>
-            </View>
+            </Content>
+            </Container>
         )
     }
 } 
 class Empty extends React.Component{
   render(){
     return (
-      <View style={styles.container}>
-      <Card containerStyle={styles.containerStyle}> 
-      <Text style={styles.text}> No Events Available</Text>
-      </Card>
-        </View>
+     <Container>
+       <Content>
+          <Body>
+          
+         <Text>No Events Available</Text>
+         </Body>
+         </Content>
+       </Container>
     )
   }
 }
@@ -158,9 +209,13 @@ const styles = StyleSheet.create({
         paddingTop: 30
       },
       containerStyle:{ 
-        padding: 10, 
-        height: 80,
-        width: width -50,
+        marginLeft: 10,
+        marginRight:10,
+        marginTop: 15,
+        
+        height: width / 3.5 ,
+        borderRightWidth: 5,
+        borderRightColor: 'tomato',
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -168,7 +223,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
-        elevation: 6,
+        elevation: 6
        },
        text:{ 
          alignItems:'center'
