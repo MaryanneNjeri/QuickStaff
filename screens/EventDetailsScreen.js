@@ -17,7 +17,8 @@ icon:"https://img.icons8.com/ultraviolet/40/000000/overtime.png"
 
 import React from  'react'; 
 import { StyleSheet,Dimensions} from 'react-native';
-import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body, Thumbnail,Segment, Button} from 'native-base';
+import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body,Segment, Button} from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import MapView ,{PROVIDER_GOOGLE,Marker} from 'react-native-maps'
 const { width } = Dimensions.get('window');
 
@@ -27,7 +28,7 @@ render() {
     return(
        <Container style={styles.container}>
          <Content>
-           <Text style={styles.font}>Stand Up Comedy Show -Free</Text> 
+           <Text style={styles.font}>Stand Up Comedy Show</Text> 
 
            <Text style={styles.text}>by {event_details.event}</Text>
            <Text>{" "}</Text>
@@ -52,20 +53,7 @@ render() {
               </Body> 
              </ListItem>
              <Text>{" "}</Text>
-             <Card>
-            <CardItem>
-            <Left> 
-            <Icon type="FontAwesome" name="sticky-note" />
-            <Text>Team Manager Notes</Text> 
-            </Left>
-            </CardItem> 
-            <CardItem>
-              <Body>
-          <Text style={{fontSize:15}}>{event_details.Team_manager_notes}</Text> 
-          <Text style={{fontSize: 10, color:'#00adf5'}}>Read More...</Text>
-          </Body>
-          </CardItem>
-            </Card> 
+             
             <Card>
             <CardItem>
             <Left> 
@@ -80,6 +68,43 @@ render() {
           </Body>
           </CardItem>
             </Card> 
+            <Text>{" "}</Text>
+            <Grid>
+             <Row>
+               <Card style={styles.call}>
+                  <Body>
+                   <Text note>April</Text> 
+                     <Text>
+                       Friday 20th
+                       </Text> 
+                       <Text note>7:00pm to 8:00pm</Text>
+                     </Body>
+                  
+                 </Card> 
+                 <Card style={styles.call}>
+                 <Body>
+                   <Text note>April</Text>
+                     <Text>
+                       Sat 22nd
+                       </Text> 
+                       <Text note>7:00pm to 8:00pm</Text>
+                     </Body>
+                  
+                 </Card> 
+                 <Card style={styles.call}>
+                 <Body>
+                 <Text note>May</Text>
+                     <Text>
+                       Friday 20th
+                       </Text> 
+                       <Text note>7:00pm to 8:00pm</Text>
+                     </Body>
+                  
+                 </Card> 
+                 
+               </Row>
+              </Grid>
+
             <Text>{" "}</Text> 
             <Text>Location</Text>
             <Card>
@@ -104,7 +129,21 @@ render() {
              </MapView>
               </CardItem>
               </Card> 
-               <Text>{" "}</Text> 
+               <Text>{" "}</Text>  
+               <Card>
+            <CardItem>
+            <Left> 
+            <Icon type="FontAwesome" name="sticky-note" />
+            <Text>Venue Notes</Text> 
+            </Left>
+            </CardItem> 
+            <CardItem><Text>{" "}</Text>
+              <Body>
+          <Text style={{fontSize:15}}>{event_details.Team_manager_notes}</Text> 
+          <Text style={{fontSize: 10, color:'#00adf5'}}>Read More...</Text>
+          </Body>
+          </CardItem>
+            </Card> 
                <Body>
               <Text>{event_details.venue}</Text> 
               <Text note>{event_details.address}</Text>
@@ -161,5 +200,9 @@ const styles = StyleSheet.create({
   Thumb:{
     height: 10,
     width:20
+  },
+  call:{
+    padding:10,
+    borderRadius :5,
   }
   });
