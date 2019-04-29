@@ -1,6 +1,6 @@
 import React from  'react'; 
 import { StyleSheet,Dimensions } from 'react-native';
-import {Container,Header,Icon,Body, ListItem,Content,Left,Right,Switch, Thumbnail, Title, Subtitle,List,Text,Card,CardItem} from 'native-base'
+import {Container,Header,Icon,Body, ListItem,Content,Left,Right, Thumbnail, Title, Subtitle,List,Text,Card,CardItem} from 'native-base'
 
 const { width } = Dimensions.get('window');
 let icon={

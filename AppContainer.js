@@ -10,7 +10,7 @@ import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import React from 'react';
 import CustomHeader from './components/Header';  
-import { LinearGradient,Font } from 'expo';  
+import { LinearGradient} from 'expo';  
 import { Icon} from 'react-native-elements';
 import { Platform } from 'react-native';
 import ActionSheet from 'react-native-action-sheet'; 
