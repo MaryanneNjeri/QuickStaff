@@ -16,6 +16,9 @@ export default class ProfileScreen extends  React.Component {
     logout=()=>{
         this.props.navigation.navigate('Auth');
     }
+    view_notification=()=>{
+        this.props.navigation.navigate('Notifications')
+      }
 render() {
     return(
         <Container>
@@ -65,7 +68,7 @@ render() {
                <ListItem  itemHeader> 
                <Text>Settings</Text>
                </ListItem>
-               <ListItem icon>
+               <ListItem icon onPress={this.view_notification}>
                <Left>
                    <Icon name="ios-notifications" />
                    </Left> 
@@ -73,7 +76,7 @@ render() {
                    <Text>Notifications</Text>
                    </Body> 
                    <Right>
-                       <Switch value={true}/>
+                   <Icon active name="arrow-forward" /> 
                     </Right>
                    </ListItem> 
 
