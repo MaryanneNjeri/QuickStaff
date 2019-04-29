@@ -16,14 +16,14 @@ const event_details={
 }
 
 import React from  'react'; 
-import { StyleSheet, Dimensions,View} from 'react-native';
+import { StyleSheet, Dimensions,View,TouchableOpacity} from 'react-native';
 import { Card,CardItem,Container,Content,Text,Body,Left,Right ,Icon, ListItem} from 'native-base';
 import { Agenda } from 'react-native-calendars';
 const { width } = Dimensions.get('window');
 
 class Details extends React.Component{
   event_details=()=>{
-   alert('hello')
+    this.props.navigation.navigate('EventDetails')
   }
     render(){
         return (
@@ -31,9 +31,10 @@ class Details extends React.Component{
             <Content>
               <Body>
                 <Text note style={{fontSize:10}}>Events Available</Text>
-                </Body>
-           <Card style={styles.containerStyle} onPress={this.event_details}> 
-           <CardItem>
+                </Body> 
+                <TouchableOpacity onPress={this.event_details}>
+           <Card  style={styles.containerStyle}> 
+           <CardItem onPress={this.event_details}>
            <Left>
               <Body>
               <Text style={{fontSize:18}}>{event_details.event}</Text>
@@ -58,6 +59,7 @@ class Details extends React.Component{
                     </Right>
              </CardItem>
             </Card>
+            </TouchableOpacity>
             </Content>
             </Container>
         )
