@@ -23,7 +23,7 @@ const { width } = Dimensions.get('window');
 
 class Details extends React.Component{
   event_details=()=>{
-    this.props.navigation.navigate('EventDetails')
+    this.props.navigation.dispatch('EventDetails')
   }
     render(){
         return (

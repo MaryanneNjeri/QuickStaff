@@ -146,7 +146,8 @@ const AppStack = createStackNavigator({
     },
     Notifications: {screen:NotificationScreen,
         navigationOptions :{
-         title: 'Notification'
+         title: 'Notification',
+         
         }
     }
     
