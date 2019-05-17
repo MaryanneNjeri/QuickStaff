@@ -18,6 +18,7 @@ import {
     Spinner
 } from 'native-base';
 import {fetchEvents} from '../Redux/eventAction';
+import {fetchEventDetail} from "../Redux/eventDetailsAction";
 import {connect} from 'react-redux';
 
 
@@ -37,12 +38,13 @@ class EventScreen extends React.Component {
         // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
     };
-    event_details = () => {
+    event_details = (id) => {
+        this.props.dispatch(fetchEventDetail(id));
         this.props.navigation.navigate('EventDetails')
     };
 
 
-    getContent  (i, shift) {
+    getContent =(i, shift)=> {
         return <Content key={i}>
             {_.map(shift, (detail, i) => (
                 this.getList(i, detail)
@@ -53,10 +55,10 @@ class EventScreen extends React.Component {
         </Content>;
     }
     
-    getList(i, detail) {
+    getList=(i, detail)=> {
         if (detail.name) {
             return <List key={i}>
-                <ListItem key={i} onPress={this.event_details}>
+                <ListItem key={i} onPress={this.event_details(detail.id)}>
 
                     <Body>
                         <Text style={{fontWeight: '200'}}>{detail.name}</Text>
