@@ -7,11 +7,11 @@ export function fetchEvents() {
         return fetch(API_URL + "/Assignments")
             .then(handleErrors)
             .then(response => response.json())
-            .then(json => {
+            .then(body => {
 
-                dispatch(fetchEventsSuccess(json));
+                dispatch(fetchEventsSuccess(body));
                  // console.log(json);
-                return json;
+                return body;
             })
             .catch(error =>
                 dispatch(fetchEventsFailure(error))

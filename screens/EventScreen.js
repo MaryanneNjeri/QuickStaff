@@ -17,11 +17,11 @@ import {
     View,
     Spinner
 } from 'native-base';
-import { fetchEvents } from '../Redux/eventAction';
-import { connect } from 'react-redux';
+import {fetchEvents} from '../Redux/eventAction';
+import {connect} from 'react-redux';
 
 
-
+const _ = require('lodash');
 
 
 class EventScreen extends React.Component {
@@ -32,13 +32,44 @@ class EventScreen extends React.Component {
 
     }
 
+
     _signOutAsync = async () => {
         // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
-    }
+    };
     event_details = () => {
         this.props.navigation.navigate('EventDetails')
+    };
+
+
+    getContent  (i, shift) {
+        return <Content key={i}>
+            {_.map(shift, (detail, i) => (
+                this.getList(i, detail)
+            ))
+
+            }
+
+        </Content>;
     }
+    
+    getList(i, detail) {
+        if (detail.name) {
+            return <List key={i}>
+                <ListItem key={i} onPress={this.event_details}>
+
+                    <Body>
+                        <Text style={{fontWeight: '200'}}>{detail.name}</Text>
+                        <Text note>{detail.starts_at}</Text>
+                    </Body>
+                    <Right>
+                        <Icon active name="arrow-forward"/>
+                    </Right>
+                </ListItem>
+            </List>;
+        }
+    }
+
 
     render() {
         const {error, loading, events} = this.props;
@@ -51,7 +82,9 @@ class EventScreen extends React.Component {
             )
         }
         if (loading) {
-            {console.log(loading)}
+            {
+                console.log(loading)
+            }
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -62,7 +95,7 @@ class EventScreen extends React.Component {
             )
         }
 
-            //
+        //
 
 
         return (
@@ -70,42 +103,37 @@ class EventScreen extends React.Component {
 
             <Container>
                 <Content>
-                    {console.log(loading)}
-                    {console.log(events)}
-                    {/* <Tabs>*/}
-                    {/*   <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>*/}
-                    {/*   </Tab> */}
-                    {/*   <Tab heading={<TabHeading><Text>Today</Text></TabHeading>}>*/}
-                    {/*   </Tab>*/}
-                    {/*   <Tab heading={<TabHeading><Text>Tomorrow</Text></TabHeading>}>*/}
-                    {/*   </Tab> */}
-                    {/*   <Tab heading={<TabHeading><Text>This Week</Text></TabHeading>}>*/}
-                    {/*   </Tab>*/}
-                    {/*   </Tabs>*/}
-                    {/* {*/}
-                    {/* events.map((event,i) => {*/}
-                    {/*   return (*/}
-                    {/*  <List key={i}> */}
-                    {/*  <ListItem thumbnail onPress={this.event_details}>*/}
-                    {/*<Left>*/}
-                    {/*<Thumbnail square source={{uri:event.url}} />*/}
-                    {/*</Left>*/}
-                    {/*<Body>*/}
-                    {/*  <Text>{event.event}</Text>*/}
-                    {/*  <Text note>{event.first_date} GMT+</Text>*/}
-                    {/*  <Text note>{event.venue}</Text> */}
 
 
-                    {/*  </Body>*/}
-                    {/*<Right>*/}
-                    {/*<Icon active name="arrow-forward" />*/}
-                    {/*  */}
-                    {/*</Right>*/}
-                    {/*</ListItem>*/}
-                    {/*</List>*/}
-                    {/*   );*/}
-                    {/* })*/}
-                    {/*}*/}
+                    <Tabs>
+                        <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
+                            {
+                                events.map((assignment, i) => {
+                                    return (
+                                        <View key={i}>
+                                            {_.map(assignment.task, (shift, i) => (
+
+                                                this.getContent(i, shift)
+
+                                            ))
+
+
+                                            }
+                                        </View>
+                                    );
+
+
+                                })
+                            }
+                        </Tab>
+                        <Tab heading={<TabHeading><Text>Today</Text></TabHeading>}>
+                        </Tab>
+                        <Tab heading={<TabHeading><Text>Tomorrow</Text></TabHeading>}>
+                        </Tab>
+                        <Tab heading={<TabHeading><Text>This Week</Text></TabHeading>}>
+                        </Tab>
+                    </Tabs>
+
                 </Content>
             </Container>
 
@@ -121,21 +149,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    card_text: {
-        fontSize: 15,
-    },
-    containerStyle: {
-        padding: 0,
-        height: 80,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
-    },
+
+
     logo: {
         width: 70,
         height: 40,

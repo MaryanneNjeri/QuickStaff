@@ -10,6 +10,7 @@ const initialState = {
 };
 // remember reducers take two argue  the action and the state and then returns new state or an initial state
 
+// reducers are used to alter the state thus in the screen there is no state to alter..
 export default function eventsReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_EVENTS_BEGIN:

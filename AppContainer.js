@@ -99,6 +99,7 @@ const AppStack = createStackNavigator({
         ),
         headerTintColor: '#fff',
         headerTitleStyle:{
+            fontWeight: '200'
            },
         
         headerRight:(
@@ -125,6 +126,7 @@ const AppStack = createStackNavigator({
                 ),
                 headerTintColor: '#fff',
                 headerTitleStyle:{
+                    fontWeight: '200'
                    },
                 
                 headerRight:(
