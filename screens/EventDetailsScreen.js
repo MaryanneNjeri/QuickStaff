@@ -16,9 +16,9 @@ const event_details =
     }
 
 import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, View} from 'react-native';
 import {Container, Content, Text, Card, CardItem, ListItem, Left, Icon, Body, Segment, Button} from 'native-base';
-import {Col, Row, Grid} from 'react-native-easy-grid';
+import {Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';
 
@@ -29,38 +29,192 @@ export default class EventDetailsScreen extends React.Component {
         super();
         this.state = {
             event: {},
+            details: {},
+
 
         }
     }
 
     componentDidMount() {
-        
-       this.getEventDetails()
+
+        this.getEventDetails()
     }
 
-    getEventDetails=()=> {
+    getEventDetails = () => {
         let ids = this.props.navigation.state.params.id;
         let events = store.getState().events.items.find(x => x.id === ids);
 
-        this.setState({
-                event: events
-            }
-        );
-        
-        
-        
+        {
+            _.map(events, (shift, i) => (
+                this.setState({
+                        event: shift,
+                        details: events,
+
+                    }
+                )
+
+            ))
+        }
+
+    };
+
+    getList=(item, i)=> {
+        if (item.id) {
+            return <View key={i}>
+
+                <Card>
+                    <CardItem>
+                        <Left>
+                            <Icon type="FontAwesome" name="sticky-note"/>
+                            <Text>Event notes</Text>
+                        </Left>
+                    </CardItem>
+                    <CardItem>
+                        <Body>
+                            <Text style={{fontSize: 15}}>{item.event_notes}</Text>
+                            <Text style={{fontSize: 10, color: '#00adf5'}}>Read More...</Text>
+                        </Body>
+                    </CardItem>
+                </Card>
+                <Text>{" "}</Text>
+                <Grid>
+                    <Row>
+                        <Card style={styles.call}>
+                            <Body>
+                                <Text note>Starts at</Text>
+                                <Text>{""}</Text>
+                                <Text style={{fontWeight: '200', fontSize: 15}}>
+                                    {item.ends_at}
+                                </Text>
+
+                            </Body>
+
+                        </Card>
+                        <Card style={styles.call}>
+                            <Body>
+                                <Text note>Ends at</Text>
+
+                                <Text>{""}</Text>
+                                <Text style={{fontWeight: '200', fontSize: 15}}>
+                                    {item.starts_at}
+                                </Text>
+
+                            </Body>
+
+                        </Card>
+
+                    </Row>
+                </Grid>
+                {_.map(item, (venue, i) => (
+                    this.getVenue(venue, i)
+                ))}
+            </View>
+
+        }
+
+
+    }
+
+    getVenue=(venue, i)=> {
+
+        if(venue.email){
+            return <View key={i}>
+                <Text>{" "}</Text>
+                <Text>Client Info</Text>
+                <ListItem icon noBorder>
+                    <Left>
+                        <Icon type="Ionicons" name="ios-people"/>
+                    </Left>
+                    <Body>
+                        <Text style={{fontWeight:'200'}}>{venue.name}</Text>
+                        <Text note>{venue.email}</Text>
+                        <Text note>{venue.phone}</Text>
+
+                    </Body>
+                    
+                </ListItem>
+                <Text>{" "}</Text>
+            </View>
+        }
+        if (venue.lat) {
+            return <View key={i}>
+
+                <Text>{" "}</Text>
+                <Text>Location</Text>
+                <Card>
+
+                    <CardItem cardBody>
+                        <MapView
+                            provider={PROVIDER_GOOGLE}
+                            style={{height: width / 2, width: width}}
+                            region={{
+                                latitude: venue.lat,
+                                longitude: venue.lng,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421
+
+                            }}
+                        >
+                            <MapView.Marker
+                                coordinate={{
+                                    latitude: venue.lat,
+                                    longitude: venue.lng
+                                }}
+                                title={venue.city}
+                                description={"Event Venue"}
+                            />
+                        </MapView>
+                    </CardItem>
+                </Card>
+                <Text>{" "}</Text>
+                <Card>
+                    <CardItem>
+                        <Left>
+                            <Icon type="FontAwesome" name="sticky-note"/>
+                            <Text>Venue Notes</Text>
+                        </Left>
+                    </CardItem>
+                    <CardItem><Text>{" "}</Text>
+                        <Body>
+                            <Text style={{fontSize: 15}}>{venue.venue_notes}</Text>
+                            <Text style={{fontSize: 10, color: '#00adf5'}}>Read More...</Text>
+                        </Body>
+                    </CardItem>
+                </Card>
+                <Text>{""}</Text>
+                <Body>
+                    <Text style={{fontWeight:'200'}}>{venue.name} {venue.state}</Text>
+                    <Text note>{venue.address}</Text>
+                </Body>
+                <Body>
+                    <Icon type="Ionicons" name="car"/>
+                </Body>
+                <Segment>
+                    <Button first active>
+                        <Text>Accept Invite</Text>
+                    </Button>
+                    <Button last>
+                        <Text>Decline Invite</Text>
+                    </Button>
+                </Segment>
+            </View>
+        }
 
 
     };
 
 
     render() {
-        {console.log(this.state.event)}
+        // {
+        //     console.log(this.state.event.shift.id)
+        // }
         return (
             <Container style={styles.container}>
                 <Content>
-                    <Text style={styles.font}>Stand Up Comedy Show</Text>
 
+                    <Text style={styles.font}>
+                        Stand up comedy
+                    </Text>
                     <Text style={styles.text}>by {event_details.event}</Text>
                     <Text>{" "}</Text>
                     <ListItem icon noBorder>
@@ -68,7 +222,7 @@ export default class EventDetailsScreen extends React.Component {
                             <Icon type="EvilIcons" name="calendar"/>
                         </Left>
                         <Body>
-                            <Text>{this.state.event.invited_at}</Text>
+                            <Text>{this.state.details.invited_at}</Text>
                             <Text note>{event_details.first_date} - {event_details.second_date} GMT+</Text>
                             <Text style={styles.text}>Add to calendar</Text>
                         </Body>
@@ -89,118 +243,16 @@ export default class EventDetailsScreen extends React.Component {
                         </Left>
                         <Body>
                             <Text>Status</Text>
-                            <Text note>{this.state.event.status}</Text>
+                            <Text note>{this.state.details.status}</Text>
                         </Body>
                     </ListItem>
-                    <Text>{" "}</Text>
+                    <Text>{""}</Text>
+                    {_.map(this.state.event.shift, (item, i) => (
+                        this.getList(item, i)
+                    ))}
 
-                    <Card>
-                        <CardItem>
-                            <Left>
-                                <Icon type="FontAwesome" name="sticky-note"/>
-                                <Text>Event notes</Text>
-                            </Left>
-                        </CardItem>
-                        <CardItem>
-                            <Body>
-                                <Text style={{fontSize: 15}}>{event_details.events_notes}</Text>
-                                <Text style={{fontSize: 10, color: '#00adf5'}}>Read More...</Text>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Text>{" "}</Text>
-                    <Grid>
-                        <Row>
-                            <Card style={styles.call}>
-                                <Body>
-                                    <Text note>April</Text>
-                                    <Text>
-                                        Friday 20th
-                                    </Text>
-                                    <Text note>7:00pm to 8:00pm</Text>
-                                </Body>
 
-                            </Card>
-                            <Card style={styles.call}>
-                                <Body>
-                                    <Text note>April</Text>
-                                    <Text>
-                                        Sat 22nd
-                                    </Text>
-                                    <Text note>7:00pm to 8:00pm</Text>
-                                </Body>
-
-                            </Card>
-                            <Card style={styles.call}>
-                                <Body>
-                                    <Text note>May</Text>
-                                    <Text>
-                                        Friday 20th
-                                    </Text>
-                                    <Text note>7:00pm to 8:00pm</Text>
-                                </Body>
-
-                            </Card>
-
-                        </Row>
-                    </Grid>
-
-                    <Text>{" "}</Text>
-                    <Text>Location</Text>
-                    <Card>
-                        <CardItem cardBody>
-                            <MapView
-                                provider={PROVIDER_GOOGLE}
-                                style={{height: width / 2, width: width}}
-                                region={{
-                                    latitude: 42.726200,
-                                    longitude: -71.19089,
-                                    latitudeDelta: 0.0922,
-                                    longitudeDelta: 0.0421
-
-                                }}
-                            >
-                                <MapView.Marker
-                                    coordinate={{
-                                        latitude: 42.726200,
-                                        longitude: -71.19089
-                                    }}
-                                    title={"Bobbie Volkman"}
-                                    description={"Event Venue"}
-                                />
-                            </MapView>
-                        </CardItem>
-                    </Card>
-                    <Text>{" "}</Text>
-                    <Card>
-                        <CardItem>
-                            <Left>
-                                <Icon type="FontAwesome" name="sticky-note"/>
-                                <Text>Venue Notes</Text>
-                            </Left>
-                        </CardItem>
-                        <CardItem><Text>{" "}</Text>
-                            <Body>
-                                <Text style={{fontSize: 15}}>{event_details.Team_manager_notes}</Text>
-                                <Text style={{fontSize: 10, color: '#00adf5'}}>Read More...</Text>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Body>
-                        <Text>{event_details.venue}</Text>
-                        <Text note>{event_details.address}</Text>
-                    </Body>
-                    <Body>
-                        <Icon type="Ionicons" name="car"/>
-                    </Body>
-                    <Segment>
-                        <Button first active>
-                            <Text>Accept Invite</Text>
-                        </Button>
-                        <Button last>
-                            <Text>Decline Invite</Text>
-                        </Button>
-                    </Segment>
+                    
                 </Content>
             </Container>
 

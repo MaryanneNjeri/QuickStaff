@@ -39,8 +39,8 @@ class EventScreen extends React.Component {
         this.props.navigation.navigate('Auth');
     };
     eventDetails = (id) => {
-        
-        
+
+
         // this.props.dispatch(fetchEventDetail(id));
         // const { eventDetail } = this.props;
         // console.log(eventDetail);
@@ -48,7 +48,7 @@ class EventScreen extends React.Component {
     };
 
 
-    getContent =(i, shift)=> {
+    getContent = (i, shift) => {
         return <Content key={i}>
             {_.map(shift, (detail, i) => (
                 this.getList(i, detail)
@@ -58,8 +58,8 @@ class EventScreen extends React.Component {
 
         </Content>;
     }
-    
-    getList=(i, detail)=> {
+
+    getList = (i, detail) => {
         if (detail.name) {
             return <List key={i}>
                 <ListItem key={i} onPress={() => this.eventDetails(detail.id)}>
