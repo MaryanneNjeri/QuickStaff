@@ -21,25 +21,41 @@ import {Container, Content, Text, Card, CardItem, ListItem, Left, Icon, Body, Se
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';
+
 const _ = require('lodash');
 const {width} = Dimensions.get('window');
 export default class EventDetailsScreen extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            event: {},
 
-    componentWillMount() {
-
-        this.getEventDetails()
+        }
     }
 
-    getEventDetails() {
+    componentDidMount() {
+        
+       this.getEventDetails()
+    }
+
+    getEventDetails=()=> {
         let ids = this.props.navigation.state.params.id;
-        let events= store.getState().events.items
-        console.log(events.find(x=>x.id===ids));
+        let events = store.getState().events.items.find(x => x.id === ids);
 
-    }
+        this.setState({
+                event: events
+            }
+        );
+        
+        
+        
+
+
+    };
 
 
     render() {
-
+        {console.log(this.state.event)}
         return (
             <Container style={styles.container}>
                 <Content>
@@ -52,7 +68,7 @@ export default class EventDetailsScreen extends React.Component {
                             <Icon type="EvilIcons" name="calendar"/>
                         </Left>
                         <Body>
-                            <Text>{event_details.Time}</Text>
+                            <Text>{this.state.event.invited_at}</Text>
                             <Text note>{event_details.first_date} - {event_details.second_date} GMT+</Text>
                             <Text style={styles.text}>Add to calendar</Text>
                         </Body>
@@ -65,6 +81,15 @@ export default class EventDetailsScreen extends React.Component {
                         <Body>
                             <Text>Venue</Text>
                             <Text note>{event_details.venue}</Text>
+                        </Body>
+                    </ListItem>
+                    <ListItem icon noBorder>
+                        <Left>
+                            <Icon type="EvilIcons" name="comment"/>
+                        </Left>
+                        <Body>
+                            <Text>Status</Text>
+                            <Text note>{this.state.event.status}</Text>
                         </Body>
                     </ListItem>
                     <Text>{" "}</Text>
