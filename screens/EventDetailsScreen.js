@@ -58,9 +58,36 @@ export default class EventDetailsScreen extends React.Component {
 
     };
 
-    getList=(item, i)=> {
+    getList = (item, i) => {
+
         if (item.id) {
             return <View key={i}>
+                <Text style={styles.font}>
+                    {item.name}
+                </Text>
+                
+                <Text>{" "}</Text>
+                <ListItem icon noBorder>
+                    <Left>
+                        <Icon type="EvilIcons" name="calendar"/>
+                    </Left>
+                    <Body>
+                        <Text>{this.state.details.invited_at}</Text>
+                        <Text style={styles.text}>Add to calendar</Text>
+                    </Body>
+                </ListItem>
+                <Text>{" "}</Text>
+
+
+                <ListItem icon noBorder>
+                    <Left>
+                        <Icon type="EvilIcons" name="comment"/>
+                    </Left>
+                    <Body>
+                        <Text>Status</Text>
+                        <Text note>{this.state.details.status}</Text>
+                    </Body>
+                </ListItem>
 
                 <Card>
                     <CardItem>
@@ -106,6 +133,7 @@ export default class EventDetailsScreen extends React.Component {
                     </Row>
                 </Grid>
                 {_.map(item, (venue, i) => (
+
                     this.getVenue(venue, i)
                 ))}
             </View>
@@ -115,27 +143,28 @@ export default class EventDetailsScreen extends React.Component {
 
     }
 
-    getVenue=(venue, i)=> {
-
-        if(venue.email){
+    getVenue = (venue, i) => {
+        if (venue.email) {
             return <View key={i}>
                 <Text>{" "}</Text>
                 <Text>Client Info</Text>
+                <Text>{" "}</Text>
                 <ListItem icon noBorder>
                     <Left>
                         <Icon type="Ionicons" name="ios-people"/>
                     </Left>
                     <Body>
-                        <Text style={{fontWeight:'200'}}>{venue.name}</Text>
+                        <Text style={{fontWeight: '200'}}>{venue.name}</Text>
                         <Text note>{venue.email}</Text>
                         <Text note>{venue.phone}</Text>
 
                     </Body>
-                    
+
                 </ListItem>
                 <Text>{" "}</Text>
             </View>
         }
+
         if (venue.lat) {
             return <View key={i}>
 
@@ -183,7 +212,7 @@ export default class EventDetailsScreen extends React.Component {
                 </Card>
                 <Text>{""}</Text>
                 <Body>
-                    <Text style={{fontWeight:'200'}}>{venue.name} {venue.state}</Text>
+                    <Text style={{fontWeight: '200'}}>{venue.name} {venue.state}</Text>
                     <Text note>{venue.address}</Text>
                 </Body>
                 <Body>
@@ -206,53 +235,18 @@ export default class EventDetailsScreen extends React.Component {
 
     render() {
         // {
-        //     console.log(this.state.event.shift.id)
+        //     console.log(this.state.event.notes)
         // }
         return (
             <Container style={styles.container}>
                 <Content>
-
-                    <Text style={styles.font}>
-                        Stand up comedy
-                    </Text>
-                    <Text style={styles.text}>by {event_details.event}</Text>
-                    <Text>{" "}</Text>
-                    <ListItem icon noBorder>
-                        <Left>
-                            <Icon type="EvilIcons" name="calendar"/>
-                        </Left>
-                        <Body>
-                            <Text>{this.state.details.invited_at}</Text>
-                            <Text note>{event_details.first_date} - {event_details.second_date} GMT+</Text>
-                            <Text style={styles.text}>Add to calendar</Text>
-                        </Body>
-                    </ListItem>
-                    <Text>{" "}</Text>
-                    <ListItem icon noBorder>
-                        <Left>
-                            <Icon type="EvilIcons" name="location"/>
-                        </Left>
-                        <Body>
-                            <Text>Venue</Text>
-                            <Text note>{event_details.venue}</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem icon noBorder>
-                        <Left>
-                            <Icon type="EvilIcons" name="comment"/>
-                        </Left>
-                        <Body>
-                            <Text>Status</Text>
-                            <Text note>{this.state.details.status}</Text>
-                        </Body>
-                    </ListItem>
                     <Text>{""}</Text>
                     {_.map(this.state.event.shift, (item, i) => (
                         this.getList(item, i)
                     ))}
 
-
                     
+
                 </Content>
             </Container>
 
