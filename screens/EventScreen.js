@@ -38,11 +38,6 @@ class EventScreen extends React.Component {
         this.props.navigation.navigate('Auth');
     };
     eventDetails = (id) => {
-
-
-        // this.props.dispatch(fetchEventDetail(id));
-        // const { eventDetail } = this.props;
-        // console.log(eventDetail);
         this.props.navigation.navigate('EventDetails', {id: id})
     };
 
@@ -79,7 +74,7 @@ class EventScreen extends React.Component {
     render() {
         const {error, loading, events} = this.props;
         if (error) {
-              console.log(error)
+            console.log(error)
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -94,7 +89,7 @@ class EventScreen extends React.Component {
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Spinner style={{height: 80}} size="large" color='#58D68D'/>
+                    <Spinner style={{height: 80}} size="large" color='tomato'/>
 
                 </View>
 
