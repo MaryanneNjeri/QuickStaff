@@ -40,7 +40,7 @@ class EventScreen extends React.Component {
     };
     eventDetails = (id) => {
         
-        console.log(id)
+        
         // this.props.dispatch(fetchEventDetail(id));
         // const { eventDetail } = this.props;
         // console.log(eventDetail);
