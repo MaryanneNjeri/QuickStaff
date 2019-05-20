@@ -15,7 +15,7 @@ staff:'Lauren Jaskolski',
 icon:"https://img.icons8.com/ultraviolet/40/000000/overtime.png"
 }
 
-import React from  'react'; 
+import React from  'react';
 import { StyleSheet,Dimensions} from 'react-native';
 import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body,Segment, Button} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -24,7 +24,12 @@ const { width } = Dimensions.get('window');
 
 export default class EventDetailsScreen extends  React.Component { 
 
-render() {
+    componentWillMount() {
+
+        console.log(this.props.navigation.state.params)
+    }
+
+    render() {
     return(
        <Container style={styles.container}>
          <Content>

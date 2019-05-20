@@ -38,9 +38,13 @@ class EventScreen extends React.Component {
         // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
     };
-    event_details = (id) => {
-        this.props.dispatch(fetchEventDetail(id));
-        this.props.navigation.navigate('EventDetails')
+    eventDetails = (id) => {
+        
+        console.log(id)
+        // this.props.dispatch(fetchEventDetail(id));
+        // const { eventDetail } = this.props;
+        // console.log(eventDetail);
+        this.props.navigation.navigate('EventDetails', {id: id})
     };
 
 
@@ -58,7 +62,7 @@ class EventScreen extends React.Component {
     getList=(i, detail)=> {
         if (detail.name) {
             return <List key={i}>
-                <ListItem key={i} onPress={this.event_details(detail.id)}>
+                <ListItem key={i} onPress={() => this.eventDetails(detail.id)}>
 
                     <Body>
                         <Text style={{fontWeight: '200'}}>{detail.name}</Text>
@@ -76,6 +80,7 @@ class EventScreen extends React.Component {
     render() {
         const {error, loading, events} = this.props;
         if (error) {
+            console.log(error)
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -85,7 +90,7 @@ class EventScreen extends React.Component {
         }
         if (loading) {
             {
-                console.log(loading)
+
             }
             return (
 
@@ -109,24 +114,7 @@ class EventScreen extends React.Component {
 
                     <Tabs>
                         <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
-                            {
-                                events.map((assignment, i) => {
-                                    return (
-                                        <View key={i}>
-                                            {_.map(assignment.task, (shift, i) => (
 
-                                                this.getContent(i, shift)
-
-                                            ))
-
-
-                                            }
-                                        </View>
-                                    );
-
-
-                                })
-                            }
                         </Tab>
                         <Tab heading={<TabHeading><Text>Today</Text></TabHeading>}>
                         </Tab>
@@ -135,7 +123,24 @@ class EventScreen extends React.Component {
                         <Tab heading={<TabHeading><Text>This Week</Text></TabHeading>}>
                         </Tab>
                     </Tabs>
+                    {
+                        events.map((assignment, i) => {
+                            return (
+                                <View key={i}>
+                                    {_.map(assignment.task, (shift, i) => (
 
+                                        this.getContent(i, shift)
+
+                                    ))
+
+
+                                    }
+                                </View>
+                            );
+
+
+                        })
+                    }
                 </Content>
             </Container>
 
@@ -181,7 +186,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     events: state.events.items,
     loading: state.events.loading,
-    error: state.events.error
+    error: state.events.error,
+    // eventDetail:state.eventDetail.detail,
 });
 
 // the connect is used to connect  to our redux store
