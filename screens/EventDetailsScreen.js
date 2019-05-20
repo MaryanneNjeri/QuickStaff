@@ -19,14 +19,16 @@ import React from  'react';
 import { StyleSheet,Dimensions} from 'react-native';
 import { Container,Content,Text,Card,CardItem,ListItem, Left,Icon,Body,Segment, Button} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import MapView ,{PROVIDER_GOOGLE,Marker} from 'react-native-maps'
+import MapView ,{PROVIDER_GOOGLE,Marker} from 'react-native-maps';
+import {store} from '../Redux/store';
 const { width } = Dimensions.get('window');
 
 export default class EventDetailsScreen extends  React.Component { 
 
     componentWillMount() {
-
+        console.log(store.getState());
         console.log(this.props.navigation.state.params)
+
     }
 
     render() {
