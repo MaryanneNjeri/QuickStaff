@@ -3,10 +3,8 @@ import {StyleSheet} from 'react-native';
 import {
     Container,
     Content,
-    Thumbnail,
     List,
     ListItem,
-    Left,
     Body,
     Right,
     Text,
@@ -28,15 +26,8 @@ class EventScreen extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchEvents())
-
-
     }
 
-
-    _signOutAsync = async () => {
-        // await AsyncStorage.clear();
-        this.props.navigation.navigate('Auth');
-    };
     eventDetails = (id) => {
         this.props.navigation.navigate('EventDetails', {id: id})
     };
@@ -74,7 +65,7 @@ class EventScreen extends React.Component {
     render() {
         const {error, loading, events} = this.props;
         if (error) {
-            console.log(error)
+            console.log(error);
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -181,7 +172,6 @@ const mapStateToProps = state => ({
     events: state.events.items,
     loading: state.events.loading,
     error: state.events.error,
-    // eventDetail:state.eventDetail.detail,
 });
 
 // the connect is used to connect  to our redux store

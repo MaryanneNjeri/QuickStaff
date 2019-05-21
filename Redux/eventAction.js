@@ -10,7 +10,7 @@ export function fetchEvents() {
             .then(body => {
 
                 dispatch(fetchEventsSuccess(body));
-                 console.log(body);
+                 
                 return body;
             })
             .catch(error =>
@@ -21,7 +21,7 @@ export function fetchEvents() {
     function handleErrors(response) {
         if (!response.ok) {
             throw Error(response.statusText);
-            console.log(response)
+            
         }
         return response;
     }

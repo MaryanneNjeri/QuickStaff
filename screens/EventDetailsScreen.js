@@ -1,20 +1,3 @@
-const event_details =
-    {
-        id: 6,
-        event: 'Domingo Streich',
-        event_owner: 'Domingo Streich',
-        venue: ' Bobbie Volkman',
-        address: '163 Cullen Isle Suite 244 South Montanatown, ',
-        client: 'Kozey, Kulas and Botsford',
-        Time: ' May 10th 2019',
-        first_date: '10th 2019 at 8:27 am',
-        second_date: '13th 2019 at 11:27 am',
-        events_notes: 'Sit ad adipisci ab et nihil. Et architecto itaque consequatur eos odio dolorum odit. ',
-        Team_manager_notes: 'Sit sint et doloribus magni sed neque voluptatem excepturi. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque',
-        staff: 'Lauren Jaskolski',
-        icon: "https://img.icons8.com/ultraviolet/40/000000/overtime.png"
-    }
-
 import React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import {Container, Content, Text, Card, CardItem, ListItem, Left, Icon, Body, Segment, Button} from 'native-base';
@@ -38,6 +21,7 @@ export default class EventDetailsScreen extends React.Component {
     componentDidMount() {
 
         this.getEventDetails()
+
     }
 
     getEventDetails = () => {

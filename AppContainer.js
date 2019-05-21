@@ -9,14 +9,12 @@ import EventDetailsScreen from './screens/EventDetailsScreen';
 import AuthLoadingScreen  from './screens/AuthLoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import React from 'react';
-import CustomHeader from './components/Header';  
-import { LinearGradient} from 'expo';  
+import { LinearGradient} from 'expo';
 import { Icon} from 'react-native-elements';
-import { Platform } from 'react-native';
-import ActionSheet from 'react-native-action-sheet'; 
+import ActionSheet from 'react-native-action-sheet';
  
 
-openActionSheet=()=>{
+function openActionSheet(){
 ActionSheet.showActionSheetWithOptions({
     options: ['Cancel', 'Logout'],
     destructiveButtonIndex: 1,
@@ -30,8 +28,8 @@ ActionSheet.showActionSheetWithOptions({
            NavigationActions.navigate({ routeName: 'Login' })
         }
 });
-} 
-openAction=()=>{
+};
+function openAction(){
     ActionSheet.showActionSheetWithOptions({
         options: ['Cancel', 'Add to Calendar','Contact Organiser'],
         destructiveButtonIndex: 1,
@@ -45,7 +43,7 @@ openAction=()=>{
                NavigationActions.navigate({ routeName: 'Login' })
             }
     });  
-}
+};
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
 the screen  and when we hit the back button 
@@ -107,7 +105,7 @@ const AppStack = createStackNavigator({
             name= 'person'
             size={30}
             color='white'
-            onPress={this.openActionSheet}
+            onPress={()=>this.openActionSheet}
         /> 
         )  
           
@@ -135,7 +133,7 @@ const AppStack = createStackNavigator({
                     name= 'options-vertical'
                     size={30}
                     color='white'
-                    onPress={this.openAction}
+                    onPress={()=>this.openAction}
                 /> 
                 )  
         }
