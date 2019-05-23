@@ -18,12 +18,9 @@ import {
 import {fetchEvents} from '../Redux/eventAction';
 import {connect} from 'react-redux';
 
-
 const _ = require('lodash');
 
-
 class EventScreen extends React.Component {
-
     componentDidMount() {
         this.props.dispatch(fetchEvents())
     }
@@ -31,35 +28,37 @@ class EventScreen extends React.Component {
     eventDetails = (id) => {
         this.props.navigation.navigate('EventDetails', {id: id})
     };
+    getTask = (assignment, i) => {
 
+        return (<Content key={i}>
+                {
+                    _.map(assignment, (assign, i) => (
+                        this.getContent(i, assign)
+                    ))
+                }
+            </Content>
+        )
 
-    getContent = (i, shift) => {
-        return <Content key={i}>
-            {_.map(shift, (detail, i) => (
-                this.getList(i, detail)
-            ))
+    };
+    getContent = (i, assign) => {
 
-            }
+        if (!assign.length) {
 
-        </Content>;
-    }
-
-    getList = (i, detail) => {
-        if (detail.name) {
             return <List key={i}>
+                {console.log(assign['task']['shift']['event'].name)}
                 <ListItem key={i} onPress={() => this.eventDetails(detail.id)}>
 
                     <Body>
-                        <Text style={{fontWeight: '200'}}>{detail.name}</Text>
-                        <Text note>{detail.starts_at}</Text>
+                        <Text style={{fontWeight: '200'}}>{assign['task']['shift']['event'].name}</Text>
+                        <Text note>{assign['task']['shift']['event'].starts_at}</Text>
                     </Body>
                     <Right>
                         <Icon active name="arrow-forward"/>
                     </Right>
                 </ListItem>
-            </List>;
+            </List>
         }
-    }
+    };
 
 
     render() {
@@ -74,29 +73,16 @@ class EventScreen extends React.Component {
             )
         }
         if (loading) {
-            {
-
-            }
             return (
-
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
                     <Spinner style={{height: 80}} size="large" color='tomato'/>
 
                 </View>
-
             )
         }
-
-        //
-
-
         return (
-
-
             <Container>
                 <Content>
-
-
                     <Tabs>
                         <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
 
@@ -108,23 +94,12 @@ class EventScreen extends React.Component {
                         <Tab heading={<TabHeading><Text>This Week</Text></TabHeading>}>
                         </Tab>
                     </Tabs>
+
                     {
-                        events.map((assignment, i) => {
-                            return (
-                                <View key={i}>
-                                    {_.map(assignment.task, (shift, i) => (
+                        _.map(events, (assignment, i) => (
+                            this.getTask(assignment, i)
 
-                                        this.getContent(i, shift)
-
-                                    ))
-
-
-                                    }
-                                </View>
-                            );
-
-
-                        })
+                        ))
                     }
                 </Content>
             </Container>
@@ -141,8 +116,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-
     logo: {
         width: 70,
         height: 40,

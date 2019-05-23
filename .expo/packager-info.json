@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19003,
+  "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 3178,
+  "packagerPid": 11112,
   "expoServerNgrokUrl": "https://bp-twu.anonymous.staff-app.exp.direct",
   "packagerNgrokUrl": "https://packager.bp-twu.anonymous.staff-app.exp.direct",
-  "ngrokPid": 3283,
+  "ngrokPid": 11156,
   "webpackServerPort": null
 }

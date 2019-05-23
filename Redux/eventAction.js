@@ -4,7 +4,7 @@ export function fetchEvents() {
     return dispatch => {
         // first function  which is dispatched then fetch data from the api
         dispatch(fetchEventsBegin());
-        return fetch(API_URL + "/Assignments")
+        return fetch(API_URL + "/staff/events/3")
             .then(handleErrors)
             .then(response => response.json())
             .then(body => {
