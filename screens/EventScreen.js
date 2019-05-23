@@ -45,16 +45,16 @@ class EventScreen extends React.Component {
         if (!assign.length) {
 
             return <List key={i}>
-                {console.log(assign['task']['shift']['event'].name)}
-                <ListItem key={i} onPress={() => this.eventDetails(detail.id)}>
+                <ListItem key={i} onPress={() => this.eventDetails(assign['task']['shift']['event'].id)}>
 
                     <Body>
                         <Text style={{fontWeight: '200'}}>{assign['task']['shift']['event'].name}</Text>
-                        <Text note>{assign['task']['shift']['event'].starts_at}</Text>
+                        <Text note>starts at {assign['task']['shift']['event'].starts_at}</Text>
                     </Body>
                     <Right>
                         <Icon active name="arrow-forward"/>
                     </Right>
+
                 </ListItem>
             </List>
         }
