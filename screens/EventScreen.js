@@ -49,7 +49,7 @@ class EventScreen extends React.Component {
 
                     <Body>
                         <Text style={{fontWeight: '200'}}>{assign['task']['shift']['event'].name}</Text>
-                        <Text note>starts at {assign['task']['shift']['event'].starts_at}</Text>
+                        <Text note>{Date(assign['task']['shift']['event'].starts_at)}</Text>
                     </Body>
                     <Right>
                         <Icon active name="arrow-forward"/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View, Linking} from 'react-native';
+import {StyleSheet, Dimensions, View, Linking,Modal} from 'react-native';
 import {
     Container,
     Content,
@@ -10,8 +10,6 @@ import {
     Left,
     Icon,
     Body,
-    Segment,
-    Button,
     Tabs,
     Tab, TabHeading
 } from 'native-base';
@@ -19,11 +17,12 @@ import {Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';
 import Geocoder from 'react-native-geocoding';
+import moment from 'moment';
 
 const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
-Geocoder.init('AIzaSyCh-_xRXkkapFzO8Pd6Pr9qNLuL4zJrhMY');
+Geocoder.init('AIzaSyCdVa2UXT01DVIFQXof0bb2u2jjK1qJZvw');
 export default class EventDetailsScreen extends React.Component {
     constructor() {
         super();
@@ -32,7 +31,8 @@ export default class EventDetailsScreen extends React.Component {
             client: {},
             venue: {},
             coords: {},
-            detail: {}
+            detail: {},
+            modalVisible:false
         };
     }
 
@@ -68,6 +68,7 @@ export default class EventDetailsScreen extends React.Component {
             let found = _.find([task['task']['shift']['event']], ['id', ids]);
 
             if (found) {
+                console.log(moment(found.starts_at).format('LL'));
                 Geocoder.from(found['venue'].address).then(json => {
                     var location = json.results[0].geometry.location
                     this.setState({
@@ -85,12 +86,11 @@ export default class EventDetailsScreen extends React.Component {
             }
         }
     };
+    setModal(visible){
+        this.setState({modalVisible:visible})
+    }
 
     render() {
-        if (!_.isEmpty(this.state.coords)) {
-            console.log(this.state.coords)
-        }
-
         return (
             <Container style={styles.container}>
                 <Content>
@@ -110,7 +110,7 @@ export default class EventDetailsScreen extends React.Component {
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}}>Event date</Text>
 
-                                        <Text>{this.state.event.starts_at}</Text>
+                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{Date(this.state.event.starts_at)}</Text>
                                         <Text style={styles.text}>Add to calendar</Text>
                                     </Body>
                                 </ListItem>
@@ -122,11 +122,11 @@ export default class EventDetailsScreen extends React.Component {
                                         <Icon type="EvilIcons" name="comment"/>
                                     </Left>
                                     <Body>
-                                        <Text style={{fontWeight: '200', fontSize: 12}}>Status</Text>
-                                        <Text note></Text>
+                                        <Text style={{fontSize: 12}} note>Staff Invited</Text>
+                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{this.state.event.staff_invited}</Text>
                                     </Body>
                                 </ListItem>
-
+                                <Text>{" "}</Text>
                                 <ListItem icon noBorder>
                                     <Left>
                                         <Icon type="MaterialIcons" name="event-note"
@@ -136,21 +136,22 @@ export default class EventDetailsScreen extends React.Component {
                                     </Left>
                                     <Body>
                                         <Text style={{ fontSize: 12}} note>Event Notes</Text>
-                                        <Text style={{fontSize: 13, fontWeight: '200'}}>{this.state.event.event_notes}</Text>
+                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{this.state.event.event_notes}</Text>
                                         <Text style={{fontSize: 12, color: '#00adf5'}}>Read More...</Text>
 
                                     </Body>
                                 </ListItem>
                                 <Text>{" "}</Text>
                                 <Grid>
-                                    <Row>
+                                    <Row style={{paddingRight:7}}>
                                         <Card style={styles.call}>
                                             <Body>
                                                 <Text note>Starts at</Text>
                                                 <Text>{""}</Text>
                                                 <Text style={{fontWeight: '200', fontSize: 15}}>
-                                                    {this.state.event.starts_at}
+                                                    {moment(this.state.event.starts_at).format('LL')}
                                                 </Text>
+                                                <Text note>{moment(this.state.event.starts_at).format('LTS')}</Text>
 
                                             </Body>
 
@@ -160,10 +161,11 @@ export default class EventDetailsScreen extends React.Component {
                                                 <Text note>Ends at</Text>
 
                                                 <Text>{""}</Text>
-                                                <Text style={{fontWeight: '200', fontSize: 15}}>
-                                                    {this.state.event.ends_at}
-                                                </Text>
 
+                                                <Text style={{fontWeight: '200', fontSize: 15}}>
+                                                    {moment(this.state.event.ends_at).format('LL')}
+                                                </Text>
+                                                <Text note>{moment(this.state.event.ends_at).format('LTS')}</Text>
                                             </Body>
 
                                         </Card>
@@ -348,12 +350,12 @@ const styles = StyleSheet.create({
             fontSize: 30,
         },
     card: {
-        width: 200,
+        width: 300,
         height: 100,
     },
     text: {
         color: '#00adf5',
-        fontSize: 15,
+        fontSize: 13,
 
     },
     logo: {
@@ -371,6 +373,7 @@ const styles = StyleSheet.create({
         width: 20
     },
     call: {
+        width:190,
         padding: 10,
         borderRadius: 5,
     }
