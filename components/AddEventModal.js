@@ -1,43 +1,41 @@
 import React from 'react';
 import {Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button} from "native-base";
-import {StyleSheet, Modal, View, TouchableHighlight,AsyncStorage} from 'react-native';
+import {StyleSheet, Modal, View, TouchableHighlight, AsyncStorage} from 'react-native';
 
 class AddEventModal extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state={
-           event_details:{
-
-           }
+        this.state = {
+            event_details: {}
         }
     }
 
-confirm_event=()=>{
-        console.log(this.state.event_details)
-        // try{
-        //  await AsyncStorage.setItem('event_details',this.state.eve)
-        // } catch (error){
-        //     console.log(error)
-        // }
-
-};
+    confirm_event = async () => {
+        // console.log(this.state.event_details)
+        try {
+            await AsyncStorage.setItem('event',JSON.stringify(this.state.event_details))
+            alert('Event has been saved')
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     componentDidMount() {
         this.setState({
             event_details: {
-                id:this.props.event.id,
-                event_name:this.props.event.name,
-                client_name:this.props.client.name,
-                starts_at:this.props.event.starts_at,
-                address:this.props.venue.address
+                id: this.props.event.id,
+                event_name: this.props.event.name,
+                client_name: this.props.client.name,
+                starts_at: this.props.event.starts_at,
+                address: this.props.venue.address
 
             }
         })
 
     }
 
-    render(){
+    render() {
         return (
             <Container>
 
@@ -74,7 +72,11 @@ confirm_event=()=>{
                                             style={{fontSize: 15}}
                                             value={this.state.event_details.event_name}
 
-                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.event_name=e;this.setState({event_details:eve})}}
+                                            onChangeText={(e) => {
+                                                let eve = this.state.event_details;
+                                                eve.event_name = e;
+                                                this.setState({event_details: eve})
+                                            }}
                                         />
                                     </Item>
                                     <Item floatingLabel>
@@ -84,7 +86,11 @@ confirm_event=()=>{
                                         <Input
                                             style={{fontSize: 15}}
                                             value={this.state.event_details.client_name}
-                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.client_name=e;this.setState({event_details:eve})}}
+                                            onChangeText={(e) => {
+                                                let eve = this.state.event_details;
+                                                eve.client_name = e;
+                                                this.setState({event_details: eve})
+                                            }}
                                         />
                                     </Item>
 
@@ -96,7 +102,11 @@ confirm_event=()=>{
                                         <Input
                                             style={{fontSize: 15}}
                                             value={this.state.event_details.starts_at}
-                                            onChangeText={(e) =>{let eve = this.state.event_details;eve.starts_at=e;this.setState({event_details:eve})}}
+                                            onChangeText={(e) => {
+                                                let eve = this.state.event_details;
+                                                eve.starts_at = e;
+                                                this.setState({event_details: eve})
+                                            }}
                                         />
                                     </Item>
 
@@ -107,7 +117,11 @@ confirm_event=()=>{
                                         <Input
                                             style={{fontSize: 15}}
                                             value={this.state.event_details.address}
-                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.address=e;this.setState({event_details:eve})}}
+                                            onChangeText={(e) => {
+                                                let eve = this.state.event_details;
+                                                eve.address = e;
+                                                this.setState({event_details: eve})
+                                            }}
 
                                         />
                                     </Item>
@@ -139,13 +153,13 @@ confirm_event=()=>{
         )
     }
 }
-const styles= StyleSheet.create({
-    modalButton:{
+
+const styles = StyleSheet.create({
+    modalButton: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
         width: 100
-
 
 
     }

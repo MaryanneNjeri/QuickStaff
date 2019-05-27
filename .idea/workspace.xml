@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/components/AddEventModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AddEventModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/EventDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EventDetailsScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+            <state relative-caret-position="264">
+              <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -206,12 +205,12 @@
       <workItem from="1558605225366" duration="19976000" />
       <workItem from="1558683664262" duration="20089000" />
       <workItem from="1558944124640" duration="4851000" />
-      <workItem from="1558950500646" duration="14162000" />
+      <workItem from="1558950500646" duration="14995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63728000" />
+    <option name="totallyTimeSpent" value="64561000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="989" y="35" width="931" height="1045" extended-state="0" />
@@ -333,8 +332,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="264">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
