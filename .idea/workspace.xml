@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/AddEventModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AddEventModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ScheduleScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/ScheduleScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,21 +45,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-184">
-              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+            <state relative-caret-position="223">
+              <caret line="310" column="32" lean-forward="true" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="62" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#1064#1247#0" />
                 <element signature="e#1280#1406#0" />
-                <element signature="e#2671#16739#0" />
                 <element signature="e#12104#15067#0" />
-                <element signature="e#15123#20146#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
@@ -92,13 +90,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="29" selection-start-line="29" selection-end-line="30" />
+            <state relative-caret-position="313">
+              <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
               <folding>
                 <element signature="e#751#777#0" expanded="true" />
+                <element signature="e#3214#3414#0" />
+                <element signature="e#3778#4173#0" />
               </folding>
             </state>
           </provider>
@@ -118,12 +118,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
         <option value="$PROJECT_DIR$/Redux/eventAction.js" />
         <option value="$PROJECT_DIR$/screens/EventScreen.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/screens/EventDetailsScreen.js" />
         <option value="$PROJECT_DIR$/components/AddEventModal.js" />
+        <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
       </list>
     </option>
   </component>
@@ -205,12 +205,12 @@
       <workItem from="1558605225366" duration="19976000" />
       <workItem from="1558683664262" duration="20089000" />
       <workItem from="1558944124640" duration="4851000" />
-      <workItem from="1558950500646" duration="14995000" />
+      <workItem from="1558950500646" duration="19061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64561000" />
+    <option name="totallyTimeSpent" value="68627000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="989" y="35" width="931" height="1045" extended-state="0" />
@@ -278,16 +278,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="29" selection-start-line="29" selection-end-line="30" />
-          <folding>
-            <element signature="e#751#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -317,15 +307,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+        <state relative-caret-position="223">
+          <caret line="310" column="32" lean-forward="true" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="62" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1064#1247#0" />
             <element signature="e#1280#1406#0" />
-            <element signature="e#2671#16739#0" />
             <element signature="e#12104#15067#0" />
-            <element signature="e#15123#20146#0" />
           </folding>
         </state>
       </provider>
@@ -336,6 +324,18 @@
           <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
+          <folding>
+            <element signature="e#751#777#0" expanded="true" />
+            <element signature="e#3214#3414#0" />
+            <element signature="e#3778#4173#0" />
           </folding>
         </state>
       </provider>

@@ -16,7 +16,7 @@ const event_details = {
 };
 
 import React from 'react';
-import {StyleSheet, Dimensions, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Dimensions, View, TouchableOpacity, AsyncStorage} from 'react-native';
 import {Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem, Spinner} from 'native-base';
 import {Agenda} from 'react-native-calendars';
 import {connect} from 'react-redux';
@@ -35,8 +35,8 @@ const Details = ({}) => (
                     <CardItem onPress={this.event_details}>
                         <Left>
                             <Body>
-                                <Text style={{fontSize: 18}}>{event_details.event}</Text>
-                                <Text note style={{fontSize: 10}}> by {event_details.client}</Text>
+                                <Text style={{fontSize: 18}}>{this.state.event.event_name}</Text>
+                                <Text note style={{fontSize: 10}}> by {this.state.event.client_name}</Text>
                                 <Text>{" "}</Text>
                                 <ListItem icon noBorder>
                                     <Left>
@@ -44,7 +44,7 @@ const Details = ({}) => (
                                     </Left>
                                     <Body>
 
-                                        <Text note style={{fontSize: 8}}>{event_details.Time}</Text>
+                                        <Text note style={{fontSize: 8}}>{this.state.event.starts_at}</Text>
                                     </Body>
                                 </ListItem>
                             </Body>
@@ -52,7 +52,7 @@ const Details = ({}) => (
 
                         <Right>
                             <Icon type="EvilIcons" name="location"/>
-                            <Text note style={{fontSize: 10}}>{event_details.venue}</Text>
+                            <Text note style={{fontSize: 10}}>{this.state.event.address}</Text>
 
                         </Right>
                     </CardItem>
@@ -81,50 +81,45 @@ class ScheduleScreen extends React.Component {
         this.state = {
 
             marked: null,
-            item:null,
-
+            item: null,
+            event: {}
 
         }
     }
 
 
     componentDidMount() {
-
+        this.retrieveEvent();
         this.getMarkedDates();
         this.getSchedule()
 
     }
 
+    retrieveEvent = async () => {
+
+        const event = await AsyncStorage.getItem('event');
+
+        this.setState({
+            event: JSON.parse(event)
+        })
+
+
+    }
     getMarkedDates = () => {
         const {events} = this.props;
         let invited_at = [];
-
         {
             _.map(events, (detail, i) => (
 
                 invited_at.push(detail.invited_at)
 
             ));
-
         }
-        let obj = invited_at.reduce((c, v) => Object.assign(c, {
-            [v]: {
-                customStyles: {
-                    container: {
-                        backgroundColor: '#00adf5',
-                    },
 
-                    text: {
-                        color: 'white',
-
-                    },
-
-                },
-            }
-        }), {});
         this.setState({marked: obj})
+
     };
-    getSchedule=()=>{
+    getSchedule = () => {
         const {events} = this.props;
         let invited_at = [];
 
@@ -138,10 +133,10 @@ class ScheduleScreen extends React.Component {
         }
         let item = invited_at.reduce((c, v) => Object.assign(c, {
             [v]: [{
-                text:'date_object'
+                text: 'date_object'
             }]
         }), {});
-        this.setState({item:item})
+        this.setState({item: item})
     };
 
 
@@ -171,6 +166,7 @@ class ScheduleScreen extends React.Component {
 
 
         return (
+
 
             <Agenda
                 current={Date()}
@@ -207,9 +203,25 @@ class ScheduleScreen extends React.Component {
                     return r1.text !== r2.text
                 }}
 
-                markedDates={this.state.marked}
 
-               items={this.state.item}
+                markedDates={{
+                    [this.state.event.starts_at]: {
+                        customStyles: {
+                            container: {
+                                backgroundColor: '#00adf5',
+                            },
+
+                            text: {
+                                color: 'white',
+
+                            },
+
+                        },
+                    }
+                }}
+
+
+                items={this.state.item}
                 theme={{
                     backgroundColor: 'white',
                     calendarBackground: 'white',
