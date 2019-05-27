@@ -4,9 +4,8 @@
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Login/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Login/LoginForm.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/EventDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EventDetailsScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -38,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
+            <state relative-caret-position="396">
               <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -47,11 +46,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="499" column="18" selection-start-line="499" selection-start-column="18" selection-end-line="499" selection-end-column="18" />
+            <state relative-caret-position="462">
+              <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#1064#1247#0" />
+                <element signature="e#1280#1406#0" />
+                <element signature="e#1438#2218#0" />
+                <element signature="e#2671#16739#0" />
+                <element signature="e#12104#15067#0" />
+                <element signature="e#15123#20146#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -111,6 +128,7 @@
         <option value="$PROJECT_DIR$/screens/EventScreen.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/screens/EventDetailsScreen.js" />
+        <option value="$PROJECT_DIR$/components/AddEventModal.js" />
       </list>
     </option>
   </component>
@@ -135,7 +153,7 @@
             <path>
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="staff-app" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
@@ -192,18 +210,18 @@
       <workItem from="1558605225366" duration="19976000" />
       <workItem from="1558683664262" duration="20089000" />
       <workItem from="1558944124640" duration="4851000" />
-      <workItem from="1558950500646" duration="1443000" />
+      <workItem from="1558950500646" duration="8471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51009000" />
+    <option name="totallyTimeSpent" value="58037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="989" y="35" width="931" height="1045" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.37032843" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.36693093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -253,16 +271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/EventScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -290,10 +298,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/screens/EventScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="499" column="18" selection-start-line="499" selection-start-column="18" selection-end-line="499" selection-end-column="18" />
+        <state relative-caret-position="462">
+          <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#1064#1247#0" />
+            <element signature="e#1280#1406#0" />
+            <element signature="e#1438#2218#0" />
+            <element signature="e#2671#16739#0" />
+            <element signature="e#12104#15067#0" />
+            <element signature="e#15123#20146#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
