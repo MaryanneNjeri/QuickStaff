@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Login/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Login/LoginForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AddEventModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AddEventModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/EventDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EventDetailsScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -49,13 +46,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+            <state relative-caret-position="-184">
+              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#1064#1247#0" />
                 <element signature="e#1280#1406#0" />
-                <element signature="e#1438#2218#0" />
                 <element signature="e#2671#16739#0" />
                 <element signature="e#12104#15067#0" />
                 <element signature="e#15123#20146#0" />
@@ -67,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="418">
+              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -210,12 +206,12 @@
       <workItem from="1558605225366" duration="19976000" />
       <workItem from="1558683664262" duration="20089000" />
       <workItem from="1558944124640" duration="4851000" />
-      <workItem from="1558950500646" duration="8471000" />
+      <workItem from="1558950500646" duration="14162000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58037000" />
+    <option name="totallyTimeSpent" value="63728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="989" y="35" width="931" height="1045" extended-state="0" />
@@ -245,6 +241,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/screens/EventDetailsScreen.js</url>
+          <line>91</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Redux/eventAction.js">
@@ -310,13 +318,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+        <state relative-caret-position="-184">
+          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1064#1247#0" />
             <element signature="e#1280#1406#0" />
-            <element signature="e#1438#2218#0" />
             <element signature="e#2671#16739#0" />
             <element signature="e#12104#15067#0" />
             <element signature="e#15123#20146#0" />
@@ -326,8 +333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="418">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

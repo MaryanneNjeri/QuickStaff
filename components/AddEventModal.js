@@ -1,8 +1,41 @@
 import React from 'react';
 import {Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button} from "native-base";
-import {StyleSheet, Modal, View, TouchableHighlight} from 'react-native';
+import {StyleSheet, Modal, View, TouchableHighlight,AsyncStorage} from 'react-native';
 
 class AddEventModal extends React.Component {
+
+    constructor(){
+        super();
+        this.state={
+           event_details:{
+
+           }
+        }
+    }
+
+confirm_event=()=>{
+        console.log(this.state.event_details)
+        // try{
+        //  await AsyncStorage.setItem('event_details',this.state.eve)
+        // } catch (error){
+        //     console.log(error)
+        // }
+
+};
+
+    componentDidMount() {
+        this.setState({
+            event_details: {
+                id:this.props.event.id,
+                event_name:this.props.event.name,
+                client_name:this.props.client.name,
+                starts_at:this.props.event.starts_at,
+                address:this.props.venue.address
+
+            }
+        })
+
+    }
 
     render(){
         return (
@@ -29,8 +62,7 @@ class AddEventModal extends React.Component {
 
                                 <Icon type="AntDesign" name="exclamationcircle"
                                       style={{fontSize: 100, color: '#0052cc', textAlign: "center"}}/>
-                                <Text style={{fontSize: 20, fontWeight: "200", color: '#303B43'}}>Add Event to
-                                    Calendar</Text>
+                                <Text style={{fontSize: 20, fontWeight: "200", color: '#303B43'}}>Confirm Event</Text>
                             </Body>
                             <View style={{padding: 18}}>
                                 <Form>
@@ -40,9 +72,9 @@ class AddEventModal extends React.Component {
                                         <Label style={{color: '#303B43', fontSize: 10}}>Event Name</Label>
                                         <Input
                                             style={{fontSize: 15}}
+                                            value={this.state.event_details.event_name}
 
-
-                                            onChangeText={(event_name) => this.setState({event_name})}
+                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.event_name=e;this.setState({event_details:eve})}}
                                         />
                                     </Item>
                                     <Item floatingLabel>
@@ -51,7 +83,8 @@ class AddEventModal extends React.Component {
                                         <Label style={{color: '#303B43', fontSize: 10}}>Client</Label>
                                         <Input
                                             style={{fontSize: 15}}
-                                            onChangeText={(client) => this.setState({client})}
+                                            value={this.state.event_details.client_name}
+                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.client_name=e;this.setState({event_details:eve})}}
                                         />
                                     </Item>
 
@@ -62,7 +95,8 @@ class AddEventModal extends React.Component {
                                         <Label style={{color: '#303B43', fontSize: 10}}>Starts at </Label>
                                         <Input
                                             style={{fontSize: 15}}
-                                            onChangeText={(starts_at) => this.setState({starts_at})}
+                                            value={this.state.event_details.starts_at}
+                                            onChangeText={(e) =>{let eve = this.state.event_details;eve.starts_at=e;this.setState({event_details:eve})}}
                                         />
                                     </Item>
 
@@ -72,7 +106,8 @@ class AddEventModal extends React.Component {
                                         <Label style={{color: '#303B43', fontSize: 10}}>Venue</Label>
                                         <Input
                                             style={{fontSize: 15}}
-                                            onChangeText={(venue) => this.setState({venue})}
+                                            value={this.state.event_details.address}
+                                            onChangeText={(e) =>{let eve= this.state.event_details;eve.address=e;this.setState({event_details:eve})}}
 
                                         />
                                     </Item>
@@ -81,7 +116,7 @@ class AddEventModal extends React.Component {
                                 </Form>
 
                                 <View style={styles.modalButton}>
-                                    <Button rounded style={styles.button} onPress={this.confirm_order}>
+                                    <Button rounded style={styles.button} onPress={this.confirm_event}>
                                         <Text style={{
                                             textAlign: 'center',
                                             fontWeight: '200',

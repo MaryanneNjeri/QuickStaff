@@ -22,7 +22,7 @@ import AddEventModal from '../components/AddEventModal';
 const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
-Geocoder.init('AIzaSyCdVa2UXT01DVIFQXof0bb2u2jjK1qJZvw');
+Geocoder.init('AIzaSyBFZ6UNQGy4pNkPo3RMV1zAl3t5H7oEnrU');
 
 export default class EventDetailsScreen extends React.Component {
     constructor() {
@@ -107,7 +107,7 @@ export default class EventDetailsScreen extends React.Component {
             <Container style={styles.container}>
                 <Content>
                     {/*    we only render this component if  the isModalVisible has been set to true */}
-                    {this.state.isModalVisible ? <AddEventModal {...this.state} closeModal={this.closeModal}/>:null}
+                    {this.state.isModalVisible ? <AddEventModal data={this.state.event} {...this.state} closeModal={this.closeModal}/>:null}
 
 
                     <Tabs>
