@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View, Linking,Modal} from 'react-native';
+import {StyleSheet, Dimensions, View, Linking, TouchableHighlight, Modal} from 'react-native';
 import {
     Container,
     Content,
@@ -11,7 +11,7 @@ import {
     Icon,
     Body,
     Tabs,
-    Tab, TabHeading
+    Tab, TabHeading, Form, Item, Label, Input, Button
 } from 'native-base';
 import {Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -23,6 +23,7 @@ const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
 Geocoder.init('AIzaSyCdVa2UXT01DVIFQXof0bb2u2jjK1qJZvw');
+
 export default class EventDetailsScreen extends React.Component {
     constructor() {
         super();
@@ -32,7 +33,7 @@ export default class EventDetailsScreen extends React.Component {
             venue: {},
             coords: {},
             detail: {},
-            modalVisible:false
+            isModalVisible: false
         };
     }
 
@@ -86,14 +87,110 @@ export default class EventDetailsScreen extends React.Component {
             }
         }
     };
-    setModal(visible){
-        this.setState({modalVisible:visible})
+
+    setModalVisible = (visible) => {
+        this.setState({
+            isModalVisible: visible
+        })
     }
 
     render() {
         return (
             <Container style={styles.container}>
                 <Content>
+
+                    <Modal visible={this.state.isModalVisible}
+                           animationType="slide"
+                           transparent={false}>
+
+                        <Content>
+
+                            <View style={{marginTop: 22}}>
+                                <TouchableHighlight
+                                    style={{alignSelf: "flex-end"}}
+                                    onPress={() => {
+                                        this.setModalVisible(!this.state.isModalVisible)
+                                    }}
+                                >
+                                    <Text style={{fontWeight: '200', color: '#303B43', fontSize: 13}}> Close<Icon
+                                        name="close" type="EvilIcons" style={{fontSize: 20, color: '#303B43'}}/></Text>
+                                </TouchableHighlight>
+                                <Body>
+
+                                    <Icon type="AntDesign" name="exclamationcircle"
+                                          style={{fontSize: 100, color: '#0052cc', textAlign: "center"}}/>
+                                    <Text style={{fontSize: 20, fontWeight: "200", color: '#303B43'}}>Add Event to
+                                        Calendar</Text>
+                                </Body>
+                                <View style={{padding: 18}}>
+                                    <Form>
+                                        <Item floatingLabel>
+                                            <Icon type="SimpleLineIcons" name="event"
+                                                  style={{fontSize: 15, color: '#303B43'}}/>
+                                            <Label style={{color: '#303B43', fontSize: 10}}>Event Name</Label>
+                                            <Input
+                                                style={{fontSize: 15}}
+
+
+                                                onChangeText={(event_name) => this.setState({event_name})}
+                                            />
+                                        </Item>
+                                        <Item floatingLabel>
+                                            <Icon type="Ionicons" name="md-people"
+                                                  style={{fontSize: 15, color: '#303B43'}}/>
+                                            <Label style={{color: '#303B43', fontSize: 10}}>Client</Label>
+                                            <Input
+                                                style={{fontSize: 15}}
+                                                onChangeText={(client) => this.setState({client})}
+                                            />
+                                        </Item>
+
+
+                                        <Item floatingLabel>
+                                            <Icon name="clock" type="EvilIcons"
+                                                  style={{fontSize: 15, color: '#303B43'}}/>
+                                            <Label style={{color: '#303B43', fontSize: 10}}>Starts at </Label>
+                                            <Input
+                                                style={{fontSize: 15}}
+                                                onChangeText={(starts_at) => this.setState({starts_at})}
+                                            />
+                                        </Item>
+
+                                        <Item floatingLabel>
+                                            <Icon type="Entypo" name="location-pin"
+                                                  style={{fontSize: 15, color: '#303B43'}}/>
+                                            <Label style={{color: '#303B43', fontSize: 10}}>Venue</Label>
+                                            <Input
+                                                style={{fontSize: 15}}
+                                                onChangeText={(venue) => this.setState({venue})}
+
+                                            />
+                                        </Item>
+
+
+                                    </Form>
+
+                                    <View style={styles.modalButton}>
+                                        <Button rounded style={styles.button} onPress={this.confirm_order}>
+                                            <Text style={{
+                                                textAlign: 'center',
+                                                fontWeight: '200',
+                                                color: 'white',
+                                                fontSize: 13
+                                            }}>Add Event</Text>
+
+                                        </Button>
+                                    </View>
+
+                                </View>
+
+
+                            </View>
+
+                        </Content>
+
+                    </Modal>
+
                     <Tabs>
                         <Tab heading={<TabHeading><Text>Event</Text></TabHeading>}>
                             <View style={{paddingRight: 10, paddingLeft: 10}}>
@@ -110,8 +207,15 @@ export default class EventDetailsScreen extends React.Component {
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}}>Event date</Text>
 
-                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{Date(this.state.event.starts_at)}</Text>
-                                        <Text style={styles.text}>Add to calendar</Text>
+                                        <Text style={{
+                                            fontSize: 14,
+                                            fontWeight: '200'
+                                        }}>{Date(this.state.event.starts_at)}</Text>
+                                        <TouchableHighlight onPress={() => {
+                                            this.setModalVisible(true)
+                                        }}>
+                                            <Text style={styles.text}>Add to calendar</Text>
+                                        </TouchableHighlight>
                                     </Body>
                                 </ListItem>
                                 <Text>{" "}</Text>
@@ -123,7 +227,10 @@ export default class EventDetailsScreen extends React.Component {
                                     </Left>
                                     <Body>
                                         <Text style={{fontSize: 12}} note>Staff Invited</Text>
-                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{this.state.event.staff_invited}</Text>
+                                        <Text style={{
+                                            fontSize: 14,
+                                            fontWeight: '200'
+                                        }}>{this.state.event.staff_invited}</Text>
                                     </Body>
                                 </ListItem>
                                 <Text>{" "}</Text>
@@ -135,15 +242,18 @@ export default class EventDetailsScreen extends React.Component {
 
                                     </Left>
                                     <Body>
-                                        <Text style={{ fontSize: 12}} note>Event Notes</Text>
-                                        <Text style={{fontSize: 14, fontWeight: '200'}}>{this.state.event.event_notes}</Text>
+                                        <Text style={{fontSize: 12}} note>Event Notes</Text>
+                                        <Text style={{
+                                            fontSize: 14,
+                                            fontWeight: '200'
+                                        }}>{this.state.event.event_notes}</Text>
                                         <Text style={{fontSize: 12, color: '#00adf5'}}>Read More...</Text>
 
                                     </Body>
                                 </ListItem>
                                 <Text>{" "}</Text>
                                 <Grid>
-                                    <Row style={{paddingRight:7}}>
+                                    <Row style={{paddingRight: 7}}>
                                         <Card style={styles.call}>
                                             <Body>
                                                 <Text note>Starts at</Text>
@@ -176,13 +286,16 @@ export default class EventDetailsScreen extends React.Component {
 
                                 <ListItem icon noBorder>
                                     <Left>
-                                        <Icon type="MaterialIcons" name="event-note" style={{ color: '#303B43'}}/>
+                                        <Icon type="MaterialIcons" name="event-note" style={{color: '#303B43'}}/>
 
 
                                     </Left>
                                     <Body>
                                         <Text style={{fontSize: 12}} note>Manager Notes</Text>
-                                        <Text style={{fontSize: 13,fontWeight:'200'}}>{this.state.event.manager_notes}</Text>
+                                        <Text style={{
+                                            fontSize: 13,
+                                            fontWeight: '200'
+                                        }}>{this.state.event.manager_notes}</Text>
                                         <Text style={{fontSize: 13, color: '#00adf5'}}>Read More...</Text>
 
                                     </Body>
@@ -217,7 +330,7 @@ export default class EventDetailsScreen extends React.Component {
                                 <ListItem icon noBorder>
                                     <Left>
                                         <Icon type="MaterialIcons" name="event-note"
-                                              style={{ color: '#303B43'}}/>
+                                              style={{color: '#303B43'}}/>
                                     </Left>
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}} note>Client Notes</Text>
@@ -230,7 +343,7 @@ export default class EventDetailsScreen extends React.Component {
                                 <ListItem icon noBorder>
                                     <Left>
                                         <Icon type="MaterialCommunityIcons" name="web"
-                                              style={{ color: '#303B43'}}/>
+                                              style={{color: '#303B43'}}/>
                                     </Left>
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}} note>Web site</Text>
@@ -253,7 +366,7 @@ export default class EventDetailsScreen extends React.Component {
                                 <ListItem icon noBorder>
                                     <Left>
                                         <Icon type="Entypo" name="location-pin"
-                                              style={{ color: '#303B43'}}/>
+                                              style={{color: '#303B43'}}/>
                                     </Left>
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}} note>Address</Text>
@@ -276,8 +389,8 @@ export default class EventDetailsScreen extends React.Component {
                                 <Text>{""}</Text>
                                 <Text style={{fontSize: 15, fontWeight: '200'}}>Location</Text>
 
-                                { !_.isEmpty(this.state.coords)
-                                    ?<Card>
+                                {!_.isEmpty(this.state.coords)
+                                    ? <Card>
                                         <CardItem cardBody>
                                             <MapView
                                                 provider={PROVIDER_GOOGLE}
@@ -300,25 +413,28 @@ export default class EventDetailsScreen extends React.Component {
                                                 />
                                             </MapView>
                                         </CardItem>
-                                    </Card>: null
+                                    </Card> : null
                                 }
                                 <Text>{" "}</Text>
                                 <ListItem icon noBorder>
                                     <Left>
                                         <Icon type="MaterialIcons" name="event-note"
-                                              style={{ color: '#303B43'}}/>
+                                              style={{color: '#303B43'}}/>
                                     </Left>
                                     <Body>
                                         <Text style={{fontWeight: '200', fontSize: 12}} note>Venue Notes</Text>
-                                        <Text style={{fontSize: 13, fontWeight: '200'}}>{this.state.venue.venue_notes}</Text>
+                                        <Text style={{
+                                            fontSize: 13,
+                                            fontWeight: '200'
+                                        }}>{this.state.venue.venue_notes}</Text>
                                         <Text style={{fontSize: 12, color: '#00adf5'}}>Read More...</Text>
 
                                     </Body>
                                 </ListItem>
                                 <Text>{""}</Text>
                                 <Body>
-                                    <Text style={{fontWeight: '200',fontSize:13}}>{this.state.venue.name}</Text>
-                                    <Text style={{fontWeight: '200',fontSize:13}}>{this.state.venue.email}</Text>
+                                    <Text style={{fontWeight: '200', fontSize: 13}}>{this.state.venue.name}</Text>
+                                    <Text style={{fontWeight: '200', fontSize: 13}}>{this.state.venue.email}</Text>
                                     <Text note>{this.state.venue.state}</Text>
                                 </Body>
 
@@ -373,8 +489,18 @@ const styles = StyleSheet.create({
         width: 20
     },
     call: {
-        width:190,
+        width: 190,
         padding: 10,
         borderRadius: 5,
+    },
+    modalButton:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+        width: 100
+
+
+
     }
+
 });
