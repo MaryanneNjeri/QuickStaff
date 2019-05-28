@@ -11,8 +11,7 @@ import {
     Icon,
     Body,
     Tabs,
-    Tab, TabHeading, Form, Item, Label, Input, Button
-} from 'native-base';
+    Tab, TabHeading} from 'native-base';
 import {Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';

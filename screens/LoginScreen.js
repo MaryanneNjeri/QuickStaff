@@ -8,7 +8,7 @@ import {
     TouchableHighlight,
     AsyncStorage
 } from 'react-native';
-import {Content, Container, Form, Input, Item,Icon} from "native-base";
+import {Content, Container, Form, Input, Item, Icon, Spinner} from "native-base";
 import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
@@ -32,7 +32,7 @@ class LoginScreen extends Component {
         this.props.navigation.navigate('PasswordReset')
     };
 
-    isValid() {
+   isValid() {
         const {errors, isValid} = validateInput(this.state);
 
         if (!isValid) {
@@ -43,27 +43,58 @@ class LoginScreen extends Component {
         return isValid;
     }
 
-    signIn = () => {
+    signIn = async() => {
 
         const{email,password} = this.state;
         let user={
             email:email,
             password:password
-        }
+        };
 
         if (this.isValid()) {
             this.setState({errors:{},isLoading:true});
             this.props.dispatch(login(user))
+            const { token } = this.props;
+            if(token){
+
+                try {
+                    await AsyncStorage.setItem('token',JSON.stringify(token))
+                    console.log(await AsyncStorage.getItem('token'))
+
+                } catch (error) {
+                    console.log(error)
+                }
+                this.props.navigation.navigate('App')
+            }
 
         }
 
 
-        // this.props.navigation.navigate('App')
+
     };
 
     render() {
         const {errors, isLoading} = this.state;
 
+        const {error, loading,token} = this.props;
+        if (error) {
+            console.log(error);
+            return (
+
+                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+                    <Text> An error occurred! {error.message}</Text>
+                </View>
+            )
+        }
+        if (loading) {
+            return (
+                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+                    <Spinner style={{height: 80}} size="large" color='tomato'/>
+
+                </View>
+            )
+        }
+        console.log(token);
         return (
             <Container>
                 <LinearGradient
@@ -174,9 +205,14 @@ const styles = StyleSheet.create({
 
 });
 // we define the props
+const mapStateToProps = state => ({
+    token: state.token.item,
+    loading: state.token.loading,
+    error: state.token.error,
+});
+
+
 
 // we connect our login form with redux
-// we dont need to have any piece of state in the component thus first parameter is null
-// we also pass our login function that we are going to dispatch with the user data...
-export  default connect (null)(LoginScreen)
+export  default connect (mapStateToProps)(LoginScreen)
 

@@ -1,14 +1,13 @@
 import {API_URL} from '../config/config.js';
 
 
-export function login (user){
+export function login(user) {
 
-    return dispatch =>{
+    return dispatch => {
 
         dispatch(loginBegin());
-        console.log(user.email);
-        return fetch(API_URL + "/login",{
-            method:'POST',body:JSON.stringify(user), headers: {
+        return fetch(API_URL + "/login", {
+            method: 'POST', body: JSON.stringify(user), headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
@@ -18,8 +17,6 @@ export function login (user){
             .then(response => response.json())
 
             .then(body => {
-
-                console.log(body)
                 dispatch(loginSuccess(body));
 
                 return body;
@@ -38,6 +35,7 @@ export function login (user){
     }
 
 }
+
 export const LOGIN_BEGIN = 'LOGIN_BEGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

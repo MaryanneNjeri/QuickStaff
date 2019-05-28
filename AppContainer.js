@@ -52,7 +52,15 @@ the screen pop off the top of the stack.
 
 // The switch navigator is meant to show one screen at a time  
 
+const AuthStack = createStackNavigator({
+    Login:{screen:LoginScreen,
+        navigationOptions:{ header: null }
 
+    },
+
+
+
+});
 
 const AppStack = createStackNavigator({
     Event:{ screen:createBottomTabNavigator ({
@@ -152,28 +160,19 @@ const AppStack = createStackNavigator({
     }
     
 })  
-const AuthStack = createStackNavigator({
-    Login:{screen:LoginScreen,
-    navigationOptions:{ header: null }
-    
-    }, 
-    
 
-     
- });
  
 export default  createAppContainer (createSwitchNavigator (
 {  
    
-    AuthLoading:AuthLoadingScreen,
-    App:AppStack,
-    Auth:AuthStack
+
+    Auth:AuthStack,
+    App:AppStack
+
 
     },
     
-    {
-      initialRouteName: 'AuthLoading'  
-    },
+
  
      
  
