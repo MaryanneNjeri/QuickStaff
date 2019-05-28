@@ -90,35 +90,47 @@ class ScheduleScreen extends React.Component {
 
     componentDidMount() {
         this.retrieveEvent();
-        this.getMarkedDates();
+
         this.getSchedule()
 
     }
 
     retrieveEvent = async () => {
 
-        const event = await AsyncStorage.getItem('event');
+        const event =JSON.parse((await AsyncStorage.getItem('event')));
 
+        let marked_date=[];
+        {
+            _.map(event, (date, i) => (
+
+                marked_date.push(date.starts_at)
+
+            ));
+
+        }
+        let obj = marked_date.reduce((c, v) => Object.assign(c, {
+            [v]:{
+                customStyles: {
+                    container: {
+                        backgroundColor: '#00adf5',
+                    },
+
+                    text: {
+                        color: 'white',
+
+                    },
+
+                },
+            }
+        }), {});
         this.setState({
-            event: JSON.parse(event)
+            marked:obj
         })
 
 
-    }
-    getMarkedDates = () => {
-        const {events} = this.props;
-        let invited_at = [];
-        {
-            _.map(events, (detail, i) => (
-
-                invited_at.push(detail.invited_at)
-
-            ));
-        }
-
-        this.setState({marked: obj})
 
     };
+
     getSchedule = () => {
         const {events} = this.props;
         let invited_at = [];
@@ -141,7 +153,7 @@ class ScheduleScreen extends React.Component {
 
 
     render() {
-        const {error, loading, events} = this.props;
+        const {error, loading} = this.props;
         if (error) {
 
             return (
@@ -163,7 +175,7 @@ class ScheduleScreen extends React.Component {
             )
 
         }
-
+       console.log(this.state.marked);
 
         return (
 
@@ -204,21 +216,7 @@ class ScheduleScreen extends React.Component {
                 }}
 
 
-                markedDates={{
-                    [this.state.event.starts_at]: {
-                        customStyles: {
-                            container: {
-                                backgroundColor: '#00adf5',
-                            },
-
-                            text: {
-                                color: 'white',
-
-                            },
-
-                        },
-                    }
-                }}
+                markedDates={this.state.marked}
 
 
                 items={this.state.item}

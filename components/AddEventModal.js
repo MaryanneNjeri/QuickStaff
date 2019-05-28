@@ -7,14 +7,17 @@ class AddEventModal extends React.Component {
     constructor() {
         super();
         this.state = {
-            event_details: {}
+            event_details: {},
+
         }
     }
 
     confirm_event = async () => {
         // console.log(this.state.event_details)
+        let marked_dates=[]
+        marked_dates.push(this.state.event_details)
         try {
-            await AsyncStorage.setItem('event',JSON.stringify(this.state.event_details))
+            await AsyncStorage.setItem('event',JSON.stringify(marked_dates))
             alert('Event has been saved')
         } catch (error) {
             console.log(error)
