@@ -8,13 +8,13 @@ import {
     TouchableHighlight,
     AsyncStorage
 } from 'react-native';
-import {Content, Container, Form, Input, Item, Icon, Spinner} from "native-base";
+import {Content, Container, Form, Input, Item, Toast, Spinner} from "native-base";
 import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../Redux/loginAction';
-const _ = require('lodash');
 
+const _ = require('lodash');
 
 
 class LoginScreen extends Component {
@@ -32,7 +32,7 @@ class LoginScreen extends Component {
         this.props.navigation.navigate('PasswordReset')
     };
 
-   isValid() {
+    isValid() {
         const {errors, isValid} = validateInput(this.state);
 
         if (!isValid) {
@@ -43,42 +43,53 @@ class LoginScreen extends Component {
         return isValid;
     }
 
-    signIn = async() => {
+    signIn = async () => {
 
-        const{email,password} = this.state;
-        let user={
-            email:email,
-            password:password
+        const {email, password} = this.state;
+        let user = {
+            email: email,
+            password: password
         };
 
         if (this.isValid()) {
-            this.setState({errors:{},isLoading:true});
-            this.props.dispatch(login(user))
-            const { token } = this.props;
-            if(token){
+            this.setState({errors: {}, isLoading: true});
+            this.props.dispatch(login(user));
+            const {token } = this.props;
 
-                try {
-                    await AsyncStorage.setItem('token',JSON.stringify(token))
-                    console.log(await AsyncStorage.getItem('token'))
+            if (token) {
 
-                } catch (error) {
-                    console.log(error)
-                }
+                await AsyncStorage.setItem('token', JSON.stringify(token))
+                Toast.show({
+                    text: " Successfully Log in",
+                    type: "success",
+                    position: "top",
+                    duration: 3000
+
+                });
                 this.props.navigation.navigate('App')
+
+
             }
+            // this.props.navigation.navigate('Auth');
+            //
+            // Toast.show({
+            //     text: "Invalid login",
+            //     type: "danger",
+            //     position: "top",
+            //     duration: 3000
+            //
+            // });
+
 
         }
-
-
-
     };
 
     render() {
         const {errors, isLoading} = this.state;
 
-        const {error, loading,token} = this.props;
+        const {error, loading, token} = this.props;
         if (error) {
-            console.log(error);
+
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -94,7 +105,7 @@ class LoginScreen extends Component {
                 </View>
             )
         }
-        console.log(token);
+       console.log(_.isEmpty(token));
         return (
             <Container>
                 <LinearGradient
@@ -112,19 +123,19 @@ class LoginScreen extends Component {
                         </View>
 
                         <Form>
-                            {errors ? <Text>{errors.email}</Text>:null
+                            {errors ? <Text>{errors.email}</Text> : null
                             }
-                                <Item rounded style={styles.input}>
-                                    <Input
-                                        style={{color: 'white'}}
-                                        placeholder='Email'
+                            <Item rounded style={styles.input}>
+                                <Input
+                                    style={{color: 'white'}}
+                                    placeholder='Email'
 
-                                        placeholderTextColor='rgba(225,225,225,0.7)'
-                                        onChangeText={(email) => this.setState({email})}
-                                    />
+                                    placeholderTextColor='rgba(225,225,225,0.7)'
+                                    onChangeText={(email) => this.setState({email})}
+                                />
 
-                                </Item>
-                            {errors ? <Text>{errors.password}</Text>:null
+                            </Item>
+                            {errors ? <Text>{errors.password}</Text> : null
                             }
                             <Item rounded style={styles.input}>
                                 <Input
@@ -138,7 +149,9 @@ class LoginScreen extends Component {
 
                         </Form>
                         <TouchableHighlight style={styles.buttonContainer}
-                                            onPress={()=>{this.signIn(this.state.email,this.state.password)}}
+                                            onPress={() => {
+                                                this.signIn(this.state.email, this.state.password)
+                                            }}
                                             disabled={isLoading}
                         >
                             <Text style={styles.buttonText}>Log in</Text>
@@ -155,6 +168,7 @@ class LoginScreen extends Component {
         )
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -212,7 +226,6 @@ const mapStateToProps = state => ({
 });
 
 
-
 // we connect our login form with redux
-export  default connect (mapStateToProps)(LoginScreen)
+export default connect(mapStateToProps)(LoginScreen)
 
