@@ -11,7 +11,7 @@ import {
     AsyncStorage
 } from 'react-native';
 import {LinearGradient} from 'expo';
-import ValidationComponent from 'react-native-form-validator';
+
 const _ = require('lodash');
 
 
@@ -31,10 +31,13 @@ export default class Login extends Component {
         this.props.navigation.navigate('PasswordReset')
     }
 
-    signIn = async () => {
+    signIn = () => {
+      this.validtate({
+          email:{required:true},
+          password: {required: true}
+      })
 
-        await AsyncStorage.setItem('userToken', 'abc');
-        this.props.navigation.navigate('App')
+        // this.props.navigation.navigate('App')
     }
 
     render() {
