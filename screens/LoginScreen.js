@@ -2,18 +2,17 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    TextInput,
     StyleSheet,
     Image,
-    StatusBar,
     TouchableOpacity,
     TouchableHighlight,
     AsyncStorage
 } from 'react-native';
+import {Content, Container, Form, Input, Item,Icon} from "native-base";
+import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
 
 const _ = require('lodash');
-
 
 
 export default class Login extends Component {
@@ -29,57 +28,75 @@ export default class Login extends Component {
 
     onRedirect = () => {
         this.props.navigation.navigate('PasswordReset')
+    };
+
+    isValid() {
+        const {errors, isValid} = validateInput(this.state);
+        if (!isValid) {
+            this.setState({
+                errors
+            })
+        }
+        return isValid;
     }
 
     signIn = () => {
-      this.validtate({
-          email:{required:true},
-          password: {required: true}
-      })
+        if (this.isValid()) {
+
+        }
+
 
         // this.props.navigation.navigate('App')
     }
 
     render() {
-
+        const {errors, isLoading} = this.state;
+        console.log(errors)
         return (
-            <LinearGradient
-                colors={['#ff6600', '#ff6699']}
-                style={styles.container}>
-                <StatusBar backgroundColor='blue' barStyle="light-content"/>
-
-                <View style={styles.container}>
+            <Container>
+                <LinearGradient
+                    colors={['#ff6600', '#ff6699']}
+                    style={styles.container}>
 
 
-                    <View style={styles.loginContainer}>
+                    <Content contentContainerStyle={{justifyContent: 'center', flex: 1}}>
 
 
-                        <Image resizeMode="contain" style={styles.logo} source={require('../screens/image.png')}/>
-                    </View>
+                        <View style={styles.loginContainer}>
 
-                    <View style={styles.formContainer}>
 
-                        <TextInput style={styles.input}
-                                   autoCapitalize="none"
-                                   onSubmitEditing={() => this.passwordInput.focus()}
-                                   autoCorrect={false}
-                                   keyboardType='email-address'
-                                   placeholder='Email or Mobile Num'
-                                   placeholderTextColor='rgba(225,225,225,0.7)'
-                                   onChangeText={(email) => this.setState({email})}
-                        />
+                            <Image resizeMode="contain" style={styles.logo} source={require('../screens/image.png')}/>
+                        </View>
 
-                        <TextInput style={styles.input}
-                                   returnKeyType="done"
-                                   ref={(input) => this.passwordInput = input}
-                                   placeholder='Password'
-                                   placeholderTextColor='rgba(225,225,225,0.7)'
-                                   onChangeText={(password) => this.setState({password})}
-                                   secureTextEntry/>
+                        <Form>
+                            {errors ? <Text>{errors.email}</Text>:null
+                            }
+                                <Item rounded style={styles.input}>
+                                    <Input
+                                        style={{color: 'white'}}
+                                        placeholder='Email'
 
+                                        placeholderTextColor='rgba(225,225,225,0.7)'
+                                        onChangeText={(email) => this.setState({email})}
+                                    />
+
+                                </Item>
+                            {errors ? <Text>{errors.password}</Text>:null
+                            }
+                            <Item rounded style={styles.input}>
+                                <Input
+                                    placeholder='Password'
+                                    style={{color: 'white'}}
+                                    placeholderTextColor='rgba(225,225,225,0.7)'
+                                    onChangeText={(password) => this.setState({password})}
+                                    secureTextEntry/>
+
+                            </Item>
+
+                        </Form>
                         <TouchableHighlight style={styles.buttonContainer}
                                             onPress={this.signIn}
-                                            disabled={this.state.isLoading}
+                                            disabled={isLoading}
                         >
                             <Text style={styles.buttonText}>Log in</Text>
                         </TouchableHighlight>
@@ -89,10 +106,9 @@ export default class Login extends Component {
                         </TouchableOpacity>
 
 
-                    </View>
-
-                </View>
-            </LinearGradient>
+                    </Content>
+                </LinearGradient>
+            </Container>
         )
     }
 }
@@ -108,12 +124,12 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        borderRadius: 30,
         height: 40,
         backgroundColor: 'rgba(225,225,225,0.2)',
         marginBottom: 20,
-        padding: 10,
-        color: '#fff'
+        padding: 5,
+        color: '#fff',
+        borderColor: 'rgba(225,225,225,0.2)'
     },
 
     buttonText: {
