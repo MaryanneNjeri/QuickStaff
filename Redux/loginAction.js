@@ -2,26 +2,31 @@ import {API_URL} from '../config/config.js';
 
 
 export function login (user){
-    console.log(user);
+
     return dispatch =>{
+
         dispatch(loginBegin());
-        return fetch(API_URL + "/staff/events/5",{
-            method:'POST',body:JSON.stringify({user})
+        console.log(user.email);
+        return fetch(API_URL + "/login",{
+            method:'POST',body:JSON.stringify(user), headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
 
-        }
-        )
+            .then(handleErrors)
+            .then(response => response.json())
 
-            // .then(handleErrors)
-            // .then(response => response.json())
-            // .then(body => {
-            //
-            //     dispatch(loginSuccess(body));
-            //
-            //     return body;
-            // })
-            // .catch(error =>
-            //     dispatch(loginFailure(error))
-            // );
+            .then(body => {
+
+                console.log(body)
+                dispatch(loginSuccess(body));
+
+                return body;
+            })
+            .catch(error =>
+                dispatch(loginFailure(error))
+            );
     };
 
     function handleErrors(response) {
