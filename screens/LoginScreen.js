@@ -11,11 +11,13 @@ import {
 import {Content, Container, Form, Input, Item,Icon} from "native-base";
 import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
-
+import {connect} from 'react-redux';
+import {login} from '../Redux/loginAction';
 const _ = require('lodash');
 
 
-export default class Login extends Component {
+
+class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,6 +34,7 @@ export default class Login extends Component {
 
     isValid() {
         const {errors, isValid} = validateInput(this.state);
+
         if (!isValid) {
             this.setState({
                 errors
@@ -41,17 +44,26 @@ export default class Login extends Component {
     }
 
     signIn = () => {
+
+        const{email,password} = this.state;
+        let user={
+            email:email,
+            password:password
+        }
+
         if (this.isValid()) {
+            this.setState({errors:{},isLoading:true});
+            this.props.dispatch(login(user))
 
         }
 
 
         // this.props.navigation.navigate('App')
-    }
+    };
 
     render() {
         const {errors, isLoading} = this.state;
-        console.log(errors)
+
         return (
             <Container>
                 <LinearGradient
@@ -95,7 +107,7 @@ export default class Login extends Component {
 
                         </Form>
                         <TouchableHighlight style={styles.buttonContainer}
-                                            onPress={this.signIn}
+                                            onPress={()=>{this.signIn(this.state.email,this.state.password)}}
                                             disabled={isLoading}
                         >
                             <Text style={styles.buttonText}>Log in</Text>
@@ -160,5 +172,11 @@ const styles = StyleSheet.create({
     },
 
 
-})
+});
+// we define the props
+
+// we connect our login form with redux
+// we dont need to have any piece of state in the component thus first parameter is null
+// we also pass our login function that we are going to dispatch with the user data...
+export  default connect (null)(LoginScreen)
 
