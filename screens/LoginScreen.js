@@ -14,6 +14,7 @@ import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../Redux/loginAction';
 
+
 const _ = require('lodash');
 
 
@@ -30,6 +31,7 @@ class LoginScreen extends Component {
 
         }
     }
+
 
     onRedirect = () => {
         this.props.navigation.navigate('PasswordReset')
@@ -60,7 +62,7 @@ class LoginScreen extends Component {
 
 
             const value = await AsyncStorage.getItem('token');
-            console.log(value);
+
             if (value) {
                 Toast.show({
                     text: " Successfully Log in",
