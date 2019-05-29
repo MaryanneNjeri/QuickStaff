@@ -1,27 +1,40 @@
 import {API_URL} from '../config/config.js';
+import {getToken} from "../components/getAuthConfig";
 
 export function fetchEvents() {
     return dispatch => {
         // first function  which is dispatched then fetch data from the api
         dispatch(fetchEventsBegin());
-        return fetch(API_URL + "/staff/events/5")
-            .then(handleErrors)
-            .then(response => response.json())
-            .then(body => {
+        getToken().then(token => {
 
-                dispatch(fetchEventsSuccess(body));
-                 
-                return body;
+
+            console.log(`Bearer ${token}`);
+            return fetch(API_URL + "/staff/events/5", {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
             })
-            .catch(error =>
-                dispatch(fetchEventsFailure(error))
-            );
+                .then(handleErrors)
+                .then(response => response.json())
+                .then(body => {
+
+                    dispatch(fetchEventsSuccess(body));
+
+                    return body;
+                })
+                .catch(error =>
+                    dispatch(fetchEventsFailure(error))
+                );
+        })
     };
 
     function handleErrors(response) {
+        console.log(response.status);
         if (!response.ok) {
             throw Error(response.statusText);
-            
+
         }
         return response;
     }

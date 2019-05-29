@@ -17,14 +17,13 @@ import {
 } from 'native-base';
 import {fetchEvents} from '../Redux/eventAction';
 import {connect} from 'react-redux';
-import {getAuthConfig} from "../components/getAuthConfig";
 
 const _ = require('lodash');
 
 class EventScreen extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(fetchEvents())
-        console.log(getAuthConfig)
+async componentDidMount() {
+
+    this.props.dispatch(fetchEvents())
     }
 
     eventDetails = (id) => {
