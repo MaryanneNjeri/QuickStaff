@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions,AsyncStorage} from 'react-native';
 import {
     Container,
     Header,
@@ -15,7 +15,7 @@ import {
     List,
     Text,
     Card,
-    CardItem
+    CardItem,Toast
 } from 'native-base'
 
 const {width} = Dimensions.get('window');
@@ -24,17 +24,23 @@ let icon = {
 }
 let photo = {
     url: "https://img.icons8.com/color/48/000000/facebook.png"
-}
-let icon_2 = {
-    url: "https://img.icons8.com/bubbles/100/000000/overtime.png"
-}
+};
 export default class ProfileScreen extends React.Component {
-    logout = () => {
+    logout = async() => {
+        await AsyncStorage.removeItem('token');
+        Toast.show({
+            text: "Logged out",
+
+            position: "top",
+            duration: 3000
+
+        });
+
         this.props.navigation.navigate('Auth');
-    }
+    };
     view_notification = () => {
         this.props.navigation.navigate('Notifications')
-    }
+    };
 
     render() {
         return (

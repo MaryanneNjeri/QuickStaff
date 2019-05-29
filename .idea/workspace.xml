@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/AppContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Redux/loginAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/Redux/loginAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/ProfileScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,24 +19,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/screens/EventScreen.js">
+        <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="55" />
+            <state relative-caret-position="299">
+              <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="80" selection-end-column="19" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
+        <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="179" column="6" lean-forward="true" selection-start-line="179" selection-start-column="6" selection-end-line="179" selection-end-column="6" />
+            <state relative-caret-position="484">
+              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -159,6 +154,7 @@
         <option value="$PROJECT_DIR$/AppContainer.js" />
         <option value="$PROJECT_DIR$/Redux/loginAction.js" />
         <option value="$PROJECT_DIR$/screens/LoginScreen.js" />
+        <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
       </list>
     </option>
   </component>
@@ -247,12 +243,12 @@
       <workItem from="1558944124640" duration="4851000" />
       <workItem from="1558950500646" duration="19442000" />
       <workItem from="1559032048079" duration="24377000" />
-      <workItem from="1559116925990" duration="8330000" />
+      <workItem from="1559116925990" duration="8691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101715000" />
+    <option name="totallyTimeSpent" value="102076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="987" y="35" width="933" height="1045" extended-state="0" />
@@ -288,16 +284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
           <caret line="389" column="8" selection-start-line="389" selection-start-column="8" selection-end-line="389" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="197" column="27" selection-start-line="197" selection-start-column="27" selection-end-line="197" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -431,10 +417,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="179" column="6" lean-forward="true" selection-start-line="179" selection-start-column="6" selection-end-line="179" selection-end-column="6" />
+        <state relative-caret-position="299">
+          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="80" selection-end-column="19" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
