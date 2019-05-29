@@ -1,5 +1,5 @@
 import {API_URL} from '../config/config.js';
-
+import {AsyncStorage} from "react-native";
 
 export function login(user) {
 
@@ -18,6 +18,8 @@ export function login(user) {
 
             .then(body => {
                 dispatch(loginSuccess(body));
+
+                AsyncStorage.setItem('token', JSON.stringify(body.token));
 
                 return body;
             })
@@ -46,7 +48,7 @@ export const loginBegin = () => ({
 
 });
 
-export const loginSuccess = token => ({
+export const loginSuccess =token => ({
 
     type: LOGIN_SUCCESS,
     payload: {token}

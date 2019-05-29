@@ -20,11 +20,14 @@ const _ = require('lodash');
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             email: '',
             password: '',
             errors: {},
-            isLoading: false
+            token: '',
+            loading: false
+
         }
     }
 
@@ -52,13 +55,13 @@ class LoginScreen extends Component {
         };
 
         if (this.isValid()) {
-            this.setState({errors: {}, isLoading: true});
+            this.setState({errors: {}, loading: true});
             this.props.dispatch(login(user));
-            const {token } = this.props;
 
-            if (token) {
 
-                await AsyncStorage.setItem('token', JSON.stringify(token))
+            const value = await AsyncStorage.getItem('token');
+            console.log(value);
+            if (value) {
                 Toast.show({
                     text: " Successfully Log in",
                     type: "success",
@@ -67,36 +70,31 @@ class LoginScreen extends Component {
 
                 });
                 this.props.navigation.navigate('App')
-
-
             }
-            // this.props.navigation.navigate('Auth');
-            //
-            // Toast.show({
-            //     text: "Invalid login",
-            //     type: "danger",
-            //     position: "top",
-            //     duration: 3000
-            //
-            // });
+            else {
+                Toast.show({
+                    text: "Invalid login credentials",
+                    type: "danger",
+                    position: "top",
+                    duration: 3000
+
+                });
+                this.props.navigation.navigate('Auth');
+            }
+
+
+
 
 
         }
-    };
+    }
+
 
     render() {
-        const {errors, isLoading} = this.state;
+        const {errors} = this.state;
 
-        const {error, loading, token} = this.props;
-        if (error) {
+        const {loading} = this.props;
 
-            return (
-
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Text> An error occurred! {error.message}</Text>
-                </View>
-            )
-        }
         if (loading) {
             return (
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -105,7 +103,7 @@ class LoginScreen extends Component {
                 </View>
             )
         }
-       console.log(_.isEmpty(token));
+
         return (
             <Container>
                 <LinearGradient
@@ -152,7 +150,7 @@ class LoginScreen extends Component {
                                             onPress={() => {
                                                 this.signIn(this.state.email, this.state.password)
                                             }}
-                                            disabled={isLoading}
+
                         >
                             <Text style={styles.buttonText}>Log in</Text>
                         </TouchableHighlight>
@@ -220,7 +218,6 @@ const styles = StyleSheet.create({
 });
 // we define the props
 const mapStateToProps = state => ({
-    token: state.token.item,
     loading: state.token.loading,
     error: state.token.error,
 });

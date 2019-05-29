@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8833,
+  "packagerPid": 2888,
   "expoServerNgrokUrl": "https://bp-twu.anonymous.staff-app.exp.direct",
   "packagerNgrokUrl": "https://packager.bp-twu.anonymous.staff-app.exp.direct",
-  "ngrokPid": 8878,
+  "ngrokPid": 2964,
   "webpackServerPort": null
 }
