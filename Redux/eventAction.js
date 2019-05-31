@@ -8,12 +8,15 @@ export function fetchEvents() {
         getToken().then(token => {
 
 
-            console.log(`Bearer ${token}`);
+            var toke = token.replace(/^"(.*)"$/, '$1');
+
+
+            var bearer = "Bearer " + toke;
             return fetch(API_URL + "/staff/events/5", {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
+                method: "GET",
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: bearer,
+
                 }
             })
                 .then(handleErrors)
