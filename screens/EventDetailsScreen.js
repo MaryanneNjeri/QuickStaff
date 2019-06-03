@@ -1,25 +1,13 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View, Linking, TouchableHighlight} from 'react-native';
-import {
-    Container,
-    Content,
-    Text,
-    Card,
-    CardItem,
-    ListItem,
-    Left,
-    Icon,
-    Body,
-    Tabs,
-    Tab, TabHeading} from 'native-base';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import {StyleSheet, Dimensions, View} from 'react-native';
+import {Container, Content, Text, Tabs, Tab, TabHeading} from 'native-base';
 import {store} from '../Redux/store';
 import Geocoder from 'react-native-geocoding';
 import ClientDetailsTab from '../components/ClientDetailsTab';
 import EventDetailsTab from '../components/EventDetailsTab';
-
+import VenueDetailsTab from '../components/VenueDetailsTab';
 const _ = require('lodash');
-const {width} = Dimensions.get('window');
+
 
 Geocoder.init('AIzaSyBFZ6UNQGy4pNkPo3RMV1zAl3t5H7oEnrU');
 
@@ -34,13 +22,9 @@ export default class EventDetailsScreen extends React.Component {
             detail: {},
         };
     }
-
     componentDidMount() {
         this.getEventDetails()
-
-
     }
-
     getEventDetails = () => {
 
         let events = store.getState().events;
@@ -50,8 +34,6 @@ export default class EventDetailsScreen extends React.Component {
                 this.getEvents(assign, i)
             ))
         }
-
-
     };
     getEvents = (assign, i) => {
         {
@@ -86,8 +68,6 @@ export default class EventDetailsScreen extends React.Component {
             }
         }
     };
-
-
     render() {
 
         return (
@@ -95,7 +75,6 @@ export default class EventDetailsScreen extends React.Component {
                 <Content>
                     <Tabs>
                         <Tab heading={<TabHeading><Text>Event</Text></TabHeading>}>
-
                             <EventDetailsTab {...this.state}/>
 
                         </Tab>
@@ -103,91 +82,7 @@ export default class EventDetailsScreen extends React.Component {
                             <ClientDetailsTab {...this.state}/>
                         </Tab>
                         <Tab heading={<TabHeading><Text>Venue</Text></TabHeading>}>
-                            <View style={{paddingRight: 10, paddingLeft: 10}}>
-                                <Text style={styles.font}>
-                                    {this.state.venue.name}
-                                </Text>
-
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="Entypo" name="location-pin"
-                                              style={{color: '#303B43'}}/>
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontWeight: '200', fontSize: 12}} note>Address</Text>
-                                        <Text
-                                            style={{fontSize: 12, fontWeight: '200'}}>{this.state.venue.address}</Text>
-
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="Entypo" name="phone" style={{fontSize: 15, color: '#303B43'}}/>
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontWeight: '200', fontSize: 12}} note>Phone</Text>
-                                        <Text style={{fontSize: 12, fontWeight: '200'}}>{this.state.venue.phone}</Text>
-
-                                    </Body>
-                                </ListItem>
-
-                                <Text>{""}</Text>
-                                <Text style={{fontSize: 15, fontWeight: '200'}}>Location</Text>
-
-                                {!_.isEmpty(this.state.coords)
-                                    ? <Card>
-                                        <CardItem cardBody>
-                                            <MapView
-                                                provider={PROVIDER_GOOGLE}
-                                                style={{height: width / 2, width: width}}
-                                                region={{
-                                                    latitude: this.state.coords.lat,
-                                                    longitude: this.state.coords.lng,
-                                                    latitudeDelta: 0.0922,
-                                                    longitudeDelta: 0.0421
-
-                                                }}
-                                            >
-                                                <MapView.Marker
-                                                    coordinate={{
-                                                        latitude: this.state.coords.lat,
-                                                        longitude: this.state.coords.lng
-                                                    }}
-                                                    title={this.state.venue.address}
-                                                    description={"Event Venue"}
-                                                />
-                                            </MapView>
-                                        </CardItem>
-                                    </Card> : null
-                                }
-                                <Text>{" "}</Text>
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="MaterialIcons" name="event-note"
-                                              style={{color: '#303B43'}}/>
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontWeight: '200', fontSize: 12}} note>Venue Notes</Text>
-                                        <Text style={{
-                                            fontSize: 13,
-                                            fontWeight: '200'
-                                        }}>{this.state.venue.venue_notes}</Text>
-                                        <Text style={{fontSize: 12, color: '#00adf5'}}>Read More...</Text>
-
-                                    </Body>
-                                </ListItem>
-                                <Text>{""}</Text>
-                                <Body>
-                                    <Text style={{fontWeight: '200', fontSize: 13}}>{this.state.venue.name}</Text>
-                                    <Text style={{fontWeight: '200', fontSize: 13}}>{this.state.venue.email}</Text>
-                                    <Text note>{this.state.venue.state}</Text>
-                                </Body>
-
-                                <Body>
-                                    <Icon type="Ionicons" name="car"/>
-                                </Body>
-
-                            </View>
+                            <VenueDetailsTab {...this.state}/>
                         </Tab>
 
                     </Tabs>
@@ -205,34 +100,4 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between'
     },
-    card: {
-        width: 300,
-        height: 100,
-    },
-    text: {
-        color: '#00adf5',
-        fontSize: 13,
-
-    },
-    logo: {
-        width: 20,
-        height: 10,
-        marginRight: 0
-    },
-    row: {
-        alignItems: 'center',
-        flexDirection: 'row',
-
-    },
-    Thumb: {
-        height: 10,
-        width: 20
-    },
-    call: {
-        width: 190,
-        padding: 10,
-        borderRadius: 5,
-    },
-
-
 });
