@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react'
 import {Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button} from "native-base";
 import {StyleSheet, Modal, View, TouchableHighlight, AsyncStorage} from 'react-native';
 
-class AddEventModal extends React.Component {
+export class AddEventCalendar extends React.Component {
 
     constructor() {
         super();
@@ -165,7 +165,3 @@ const styles = StyleSheet.create({
 
     }
 });
-
-
-export default AddEventModal
-

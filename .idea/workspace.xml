@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/EventDetailsTab.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/AddEventCalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/addEventModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/addEventModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/EventDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EventDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EventDetailsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/EventDetailsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/addEventModal.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,11 +46,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1980">
-              <caret line="98" column="59" lean-forward="true" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+            <state relative-caret-position="264">
+              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#1314#1440#0" />
+                <element signature="e#2410#5493#0" />
+                <element signature="e#11946#16969#0" />
               </folding>
             </state>
           </provider>
@@ -70,20 +72,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/EventDetailsTab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="110">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/addEventModal.js">
+        <entry file="file://$PROJECT_DIR$/components/AddEventCalendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            <state relative-caret-position="88">
+              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -113,6 +112,7 @@
       <find>login</find>
       <find>authlo</find>
       <find>state</find>
+      <find>Addeve</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,7 +126,6 @@
         <option value="$PROJECT_DIR$/components/validateInput.js" />
         <option value="$PROJECT_DIR$/Redux/rootReducer.js" />
         <option value="$PROJECT_DIR$/Redux/loginReducer.js" />
-        <option value="$PROJECT_DIR$/components/AddEventModal.js" />
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/AppContainer.js" />
         <option value="$PROJECT_DIR$/screens/AuthLoadingScreen.js" />
@@ -138,9 +137,11 @@
         <option value="$PROJECT_DIR$/screens/LoginScreen.js" />
         <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
         <option value="$PROJECT_DIR$/components/logout.js" />
-        <option value="$PROJECT_DIR$/components/addEventModal.js" />
         <option value="$PROJECT_DIR$/components/eventDetailsTab.js" />
         <option value="$PROJECT_DIR$/screens/EventDetailsScreen.js" />
+        <option value="$PROJECT_DIR$/components/addEventModal.js" />
+        <option value="$PROJECT_DIR$/components/AddEventModal.js" />
+        <option value="$PROJECT_DIR$/components/AddEventCalendar.js" />
         <option value="$PROJECT_DIR$/components/EventDetailsTab.js" />
       </list>
     </option>
@@ -167,11 +168,6 @@
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="staff-app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="staff-app" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
@@ -235,18 +231,18 @@
       <workItem from="1559137615990" duration="27000" />
       <workItem from="1559297384003" duration="5932000" />
       <workItem from="1559306927355" duration="21000" />
-      <workItem from="1559552682490" duration="10789000" />
+      <workItem from="1559552682490" duration="14249000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128772000" />
+    <option name="totallyTimeSpent" value="132232000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="987" y="27" width="933" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.5096045" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.30847457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -261,7 +257,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3136612" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.31310943" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -446,10 +442,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/addEventModal.js">
+    <entry file="file://$PROJECT_DIR$/components/AddEventModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        <state>
+          <caret selection-end-line="166" selection-end-column="3" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -458,22 +454,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="98" column="59" lean-forward="true" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        <state relative-caret-position="264">
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding>
+            <element signature="e#1314#1440#0" />
+            <element signature="e#2410#5493#0" />
+            <element signature="e#11946#16969#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AddEventCalendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#1314#1440#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/EventDetailsTab.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="110">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
         </state>
       </provider>
     </entry>

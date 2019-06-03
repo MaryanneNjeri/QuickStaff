@@ -1,41 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {StyleSheet, TouchableHighlight, View} from "react-native";
-import {Body, Card, Container, Content, Icon, Left, ListItem, Tab, Text} from "native-base";
-import addEventModal from '../components/addEventModal';
+import {Body, Card, Container, Content, Icon, Left, ListItem, Text} from "native-base";
 import {Row, Grid} from 'react-native-easy-grid';
-import moment  from 'moment';
-export default class EventDetailsTab extends React.Component {
+import moment from 'moment';
+import {AddEventCalendar}  from './AddEventCalendar';
 
-   constructor(props){
-    super(props);
+export default class EventDetailsTab extends Component {
 
-       this.state={
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalVisible: false
+        };
+    }
 
-        isModalVisible:false
-       };
+    setModalVisible = (visible) => {
+        this.setState({
+            isModalVisible: visible
+        })
+    };
+    // we use a call back function to pass he props from child to the parent function
+    closeModal = () => {
+        this.setState({
+            isModalVisible: false
+        })
 
+    };
 
-   }
-
-    // setModalVisible = (visible) => {
-    //     this.setState({
-    //         isModalVisible: visible
-    //     })
-    // };
-    // // we use a call back function to pass he props from child to the parent function
-    // closeModal =()=>{
-    //     this.setState({
-    //         isModalVisible: false
-    //     })
-    //
-    // };
     render() {
-       // console.log(this.props.event);
+
         return (
             <Container style={styles.container}>
                 <Content>
-                        {/*we only render this component if  the isModalVisible has been set to true*/}
-                    {this.state.isModalVisible ? <addEventModal data={this.state.event} {...this.state} closeModal={this.closeModal}/>:null}
+
+                    {/*we only render this component if  the isModalVisible has been set to true*/}
+                    {this.state.isModalVisible ? <AddEventCalendar  {...this.props} closeModal={this.closeModal}/>:null}
                     <View style={{paddingRight: 10, paddingLeft: 10}}>
                         <Text>{""}</Text>
                         <Text style={styles.font}>
