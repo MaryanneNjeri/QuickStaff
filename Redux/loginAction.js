@@ -28,7 +28,7 @@ export function login(user) {
             );
     };
 
-    function handleErrors(response) {
+     function handleErrors(response) {
         if (!response.ok) {
             throw Error(response.statusText);
 
@@ -48,7 +48,7 @@ export const loginBegin = () => ({
 
 });
 
-export const loginSuccess =token => ({
+export const loginSuccess = token => ({
 
     type: LOGIN_SUCCESS,
     payload: {token}

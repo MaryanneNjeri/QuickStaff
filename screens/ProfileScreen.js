@@ -16,21 +16,21 @@ import {
     Text,
     Card,
     CardItem,Toast
-} from 'native-base'
+} from 'native-base';
+import {logout} from "../components/logout";
 
 const {width} = Dimensions.get('window');
 let icon = {
     url: "https://images.unsplash.com/photo-1541713970063-ca9613c37dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80"
-}
+};
 let photo = {
     url: "https://img.icons8.com/color/48/000000/facebook.png"
 };
 export default class ProfileScreen extends React.Component {
-    logout = async() => {
-        await AsyncStorage.removeItem('token');
+    logOut =() => {
+        logout();
         Toast.show({
-            text: "Logged out",
-
+            text: "Successfully Logged out",
             position: "top",
             duration: 3000
 
@@ -150,9 +150,9 @@ export default class ProfileScreen extends React.Component {
                                 <Icon active name="arrow-forward"/>
                             </Right>
                         </ListItem>
-                        <ListItem icon>
+                        <ListItem icon onPress={this.logOut}>
                             <Left>
-                                <Icon type="Feather" name="power" onPress={this.logout}/>
+                                <Icon type="Feather" name="power"/>
                             </Left>
                             <Body>
                                 <Text>Logout</Text>

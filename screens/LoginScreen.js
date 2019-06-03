@@ -13,15 +13,11 @@ import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../Redux/loginAction';
-
-
 const _ = require('lodash');
-
 
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             email: '',
             password: '',
@@ -47,9 +43,7 @@ class LoginScreen extends Component {
         }
         return isValid;
     }
-
     signIn = async () => {
-
         const {email, password} = this.state;
         let user = {
             email: email,
@@ -60,16 +54,13 @@ class LoginScreen extends Component {
             this.setState({errors: {}, loading: true});
             this.props.dispatch(login(user));
 
-
             const value = await AsyncStorage.getItem('token');
-
             if (value) {
                 Toast.show({
                     text: " Successfully Log in",
                     type: "success",
                     position: "top",
                     duration: 3000
-
                 });
                 this.props.navigation.navigate('App')
             }
@@ -94,9 +85,7 @@ class LoginScreen extends Component {
 
     render() {
         const {errors} = this.state;
-
         const {loading} = this.props;
-
         if (loading) {
             return (
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
@@ -105,7 +94,6 @@ class LoginScreen extends Component {
                 </View>
             )
         }
-
         return (
             <Container>
                 <LinearGradient

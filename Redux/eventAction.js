@@ -12,7 +12,7 @@ export function fetchEvents() {
 
 
             var bearer = "Bearer " + toke;
-            return fetch(API_URL + "/staff/events/5", {
+            return fetch(API_URL + "/staff/events", {
                 method: "GET",
                 headers: {
                     Authorization: bearer,
