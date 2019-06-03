@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View, Linking, TouchableHighlight, Modal} from 'react-native';
+import {StyleSheet, Dimensions, View, Linking, TouchableHighlight} from 'react-native';
 import {
     Container,
     Content,
@@ -12,12 +12,12 @@ import {
     Body,
     Tabs,
     Tab, TabHeading} from 'native-base';
-import {Row, Grid} from 'react-native-easy-grid';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';
 import Geocoder from 'react-native-geocoding';
-import moment from 'moment';
-import addEventModal from '../components/addEventModal';
+
+import EventDetailsTab from '../components/EventDetailsTab';
+
 const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
@@ -32,7 +32,6 @@ export default class EventDetailsScreen extends React.Component {
             venue: {},
             coords: {},
             detail: {},
-            isModalVisible: false
         };
     }
 
@@ -69,7 +68,7 @@ export default class EventDetailsScreen extends React.Component {
             let found = _.find([task['task']['shift']['event']], ['id', ids]);
 
             if (found) {
-                console.log(moment(found.starts_at).format('LL'));
+
                 Geocoder.from(found['venue'].address).then(json => {
                     var location = json.results[0].geometry.location
                     this.setState({
@@ -88,137 +87,16 @@ export default class EventDetailsScreen extends React.Component {
         }
     };
 
-    setModalVisible = (visible) => {
-        this.setState({
-            isModalVisible: visible
-        })
-    };
-    // we use a call back function to pass he props from child to the parent function
-    closeModal =()=>{
-        this.setState({
-            isModalVisible: false
-        })
 
-    }
     render() {
 
         return (
             <Container style={styles.container}>
                 <Content>
-                    {/*    we only render this component if  the isModalVisible has been set to true */}
-                    {this.state.isModalVisible ? <addEventModal data={this.state.event} {...this.state} closeModal={this.closeModal}/>:null}
-
-
                     <Tabs>
                         <Tab heading={<TabHeading><Text>Event</Text></TabHeading>}>
-                            <View style={{paddingRight: 10, paddingLeft: 10}}>
-                                <Text>{""}</Text>
-                                <Text style={styles.font}>
-                                    {this.state.event.name}
-                                </Text>
 
-                                <Text>{" "}</Text>
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="EvilIcons" name="calendar"/>
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontWeight: '200', fontSize: 12}}>Event date</Text>
-
-                                        <Text style={{
-                                            fontSize: 14,
-                                            fontWeight: '200'
-                                        }}>{Date(this.state.event.starts_at)}</Text>
-                                        <TouchableHighlight onPress={() => {
-                                            this.setModalVisible(true)
-                                        }}>
-                                            <Text style={styles.text}>Add to calendar</Text>
-                                        </TouchableHighlight>
-                                    </Body>
-                                </ListItem>
-                                <Text>{" "}</Text>
-
-
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="EvilIcons" name="comment"/>
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontSize: 12}} note>Staff Invited</Text>
-                                        <Text style={{
-                                            fontSize: 14,
-                                            fontWeight: '200'
-                                        }}>{this.state.event.staff_invited}</Text>
-                                    </Body>
-                                </ListItem>
-                                <Text>{" "}</Text>
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="MaterialIcons" name="event-note"
-                                              style={{color: '#303B43'}}/>
-
-
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontSize: 12}} note>Event Notes</Text>
-                                        <Text style={{
-                                            fontSize: 14,
-                                            fontWeight: '200'
-                                        }}>{this.state.event.event_notes}</Text>
-                                        <Text style={{fontSize: 12, color: '#00adf5'}}>Read More...</Text>
-
-                                    </Body>
-                                </ListItem>
-                                <Text>{" "}</Text>
-                                <Grid>
-                                    <Row style={{paddingRight: 7}}>
-                                        <Card style={styles.call}>
-                                            <Body>
-                                                <Text note>Starts at</Text>
-                                                <Text>{""}</Text>
-                                                <Text style={{fontWeight: '200', fontSize: 15}}>
-                                                    {moment(this.state.event.starts_at).format('LL')}
-                                                </Text>
-                                                <Text note>{moment(this.state.event.starts_at).format('LTS')}</Text>
-
-                                            </Body>
-
-                                        </Card>
-                                        <Card style={styles.call}>
-                                            <Body>
-                                                <Text note>Ends at</Text>
-
-                                                <Text>{""}</Text>
-
-                                                <Text style={{fontWeight: '200', fontSize: 15}}>
-                                                    {moment(this.state.event.ends_at).format('LL')}
-                                                </Text>
-                                                <Text note>{moment(this.state.event.ends_at).format('LTS')}</Text>
-                                            </Body>
-
-                                        </Card>
-
-                                    </Row>
-                                </Grid>
-                                <Text>{" "}</Text>
-
-                                <ListItem icon noBorder>
-                                    <Left>
-                                        <Icon type="MaterialIcons" name="event-note" style={{color: '#303B43'}}/>
-
-
-                                    </Left>
-                                    <Body>
-                                        <Text style={{fontSize: 12}} note>Manager Notes</Text>
-                                        <Text style={{
-                                            fontSize: 13,
-                                            fontWeight: '200'
-                                        }}>{this.state.event.manager_notes}</Text>
-                                        <Text style={{fontSize: 13, color: '#00adf5'}}>Read More...</Text>
-
-                                    </Body>
-                                </ListItem>
-                            </View>
+                            <EventDetailsTab {...this.state}/>
 
                         </Tab>
                         <Tab heading={<TabHeading><Text>Client</Text></TabHeading>}>

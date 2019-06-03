@@ -11,9 +11,7 @@ class AddEventModal extends React.Component {
 
         }
     }
-
     confirm_event = async () => {
-        // console.log(this.state.event_details)
         let marked_dates=[];
         marked_dates.push(this.state.event_details)
         try {
