@@ -64,21 +64,29 @@ const AuthStack = createStackNavigator({
 
 const AppStack = createStackNavigator({
     Event:{ screen:createBottomTabNavigator ({
-        Events:EventScreen, 
+        Events:EventScreen,
         Calendar:ScheduleScreen,
-        Profile:ProfileScreen,
+        Profile:{screen:ProfileScreen,
+            navigationOptions: {
+                header: {
+                    visible: false
+                }
+            }
+        },
     },
-    
+
     {
             defaultNavigationOptions: ({ navigation }) => ({
-              tabBarIcon: ({ focused, horizontal, tintColor }) => {
+              tabBarIcon: ({ tintColor }) => {
                 const { routeName } = navigation.state;
                 let IconComponent = Ionicons;
                 let iconName;
                 if (routeName === 'Events') {
                   iconName = `ios-albums`;
                   } else if (routeName === 'Profile') {
+
                   iconName = `ios-person`;
+
                 } 
                 else if(routeName ==='Calendar') {
                     iconName = `ios-calendar`
@@ -87,6 +95,7 @@ const AppStack = createStackNavigator({
                 return <IconComponent name={iconName} size={25} color={tintColor} />;
               },
             }),
+
             tabBarOptions: {
               activeTintColor: 'tomato',
               inactiveTintColor: 'gray',
@@ -94,30 +103,30 @@ const AppStack = createStackNavigator({
           }
 
 ),
-    navigationOptions:{  
-
+    navigationOptions:{
         title: 'Events',
+        headerMode: 'screen',
         headerBackground:(
         <LinearGradient
-       colors={['#0066ff','#0033cc']} 
+       colors={['#0066ff','#0033cc']}
        style={{flex:1}}
-        /> 
+        />
         ),
         headerTintColor: '#fff',
         headerTitleStyle:{
             fontWeight: '200'
            },
-        
+
         headerRight:(
-            <Icon 
+            <Icon
             name= 'person'
             size={30}
             color='white'
             onPress={()=>this.openActionSheet}
-        /> 
-        )  
-          
-       
+        />
+        )
+
+
     }
     
     },
@@ -141,6 +150,7 @@ const AppStack = createStackNavigator({
                     name= 'options-vertical'
                     size={30}
                     color='white'
+                    fontWeight='200'
                     onPress={()=>this.openAction}
                 /> 
                 )  

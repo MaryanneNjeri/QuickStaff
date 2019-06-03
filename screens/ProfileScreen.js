@@ -1,32 +1,20 @@
 import React from 'react';
-import {StyleSheet, Dimensions,AsyncStorage} from 'react-native';
-import {
-    Container,
-    Header,
-    Icon,
-    Body,
-    ListItem,
-    Content,
-    Left,
-    Right,
-    Thumbnail,
-    Title,
-    Subtitle,
-    List,
-    Text,
-    Card,
-    CardItem,Toast
-} from 'native-base';
+import {StyleSheet,View,Image} from 'react-native';
+import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner} from 'native-base';
 import {logout} from "../components/logout";
+import {fetchProfile} from '../Redux/profileAction';
+import {connect} from 'react-redux';
+import {LinearGradient} from "expo";
 
-const {width} = Dimensions.get('window');
-let icon = {
-    url: "https://images.unsplash.com/photo-1541713970063-ca9613c37dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80"
-};
-let photo = {
-    url: "https://img.icons8.com/color/48/000000/facebook.png"
-};
-export default class ProfileScreen extends React.Component {
+
+class ProfileScreen extends React.Component {
+    static navigationOptions = {
+        headerMode: 'none'
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchProfile())
+    };
     logOut =() => {
         logout();
         Toast.show({
@@ -43,39 +31,44 @@ export default class ProfileScreen extends React.Component {
     };
 
     render() {
+        const {error, loading, profile} = this.props;
+        if (error) {
+
+            return (
+
+                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+                    <Text> An error occurred! {error.message}</Text>
+                </View>
+            )
+        }
+        if (loading) {
+
+            return (
+                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+                    <Spinner style={{height: 80}} size="large" color='tomato'/>
+
+                </View>
+            )
+        }
         return (
             <Container>
                 <Content>
-                    <Header style={styles.header}>
-
-                        <Left/>
-
-                        <Body>
-
-                            <Thumbnail large source={icon}/>
-                            <Title>Domingo Streich</Title>
+                    <View style={styles.header}>
+                        <LinearGradient
+                            colors={['#0066ff','#0033cc']}
+                            style={{flex:1}}
+                        />
+                    </View>
+                    <Image style={styles.avatar} source={{uri: profile.profile_image}}/>
+                    <View style={styles.body}>
+                        <View style={styles.bodyContent}>
+                            <Text>{profile.name}</Text>
+                            <Text note>{profile.email}</Text>
+                            <Text note>{profile.role_name}</Text>
                             <Text>{""}</Text>
-                            <Subtitle>Event Organiser</Subtitle>
-                            <Text>{""}</Text>
+                        </View>
 
-                        </Body>
-                        <Right/>
-                    </Header>
-
-                    <Card style={styles.card}>
-                        <CardItem>
-
-                            <Left>
-                                <Thumbnail small source={photo}/>
-                                <Text style={{fontSize: 14}}>Add Facebook Link</Text>
-                            </Left>
-
-                            <Right>
-                                <Icon name="plus" type="Feather"/>
-                            </Right>
-                        </CardItem>
-                    </Card>
-
+                    </View>
                     <List>
                         <ListItem itemHeader>
                             <Text>Settings</Text>
@@ -130,17 +123,6 @@ export default class ProfileScreen extends React.Component {
                         </ListItem>
                         <ListItem icon>
                             <Left>
-                                <Icon type="Entypo" name="location-pin"/>
-                            </Left>
-                            <Body>
-                                <Text>Location </Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem icon>
-                            <Left>
                                 <Icon name="ios-help-circle-outline"/>
                             </Left>
                             <Body>
@@ -177,34 +159,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    header: {
-
-        height: width / 3,
-        backgroundColor: 'white'
+    header:{
+        backgroundColor: "#00BFFF",
+        height:200,
     },
-    card: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 15,
-        borderRadius: 3,
-        height: width / 6,
-        borderLeftWidth: 70,
-        borderLeftColor: '#0052cc',
-        borderRightWidth: 5,
-        borderRightColor: '#0052cc',
-
+    avatar: {
+        width: 130,
+        height: 130,
+        borderRadius: 63,
+        borderWidth: 4,
+        borderColor: "white",
+        marginBottom:10,
+        alignSelf:'center',
+        position: 'absolute',
+        marginTop:130
     },
-    cardTwo: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 15,
-        borderRadius: 3,
-        height: width / 6,
-        borderRightWidth: 70,
-        borderRightColor: '#0052cc',
-        borderLeftWidth: 5,
-        borderLeftColor: '#0052cc'
-
+    body:{
+        marginTop:40,
+    },
+    bodyContent: {
+        flex: 1,
+        alignItems: 'center',
+        padding:30,
     }
-
 });
+const mapStateToProps = state => ({
+    profile: state.details.user,
+    loading: state.details.loading,
+    error: state.details.error,
+});
+
+
+export default connect(mapStateToProps)(ProfileScreen)
