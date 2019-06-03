@@ -21,9 +21,9 @@ import {connect} from 'react-redux';
 const _ = require('lodash');
 
 class EventScreen extends React.Component {
-async componentDidMount() {
+    async componentDidMount() {
 
-    this.props.dispatch(fetchEvents())
+        this.props.dispatch(fetchEvents())
     }
 
     eventDetails = (id) => {
@@ -149,7 +149,4 @@ const mapStateToProps = state => ({
 });
 
 // the connect is used to connect  to our redux store
-
-//mapStateToProps maps part of the state  into your components remember you cannot alter props that is why
-
 export default connect(mapStateToProps)(EventScreen)

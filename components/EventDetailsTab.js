@@ -6,7 +6,6 @@ import moment from 'moment';
 import {AddEventCalendar}  from './AddEventCalendar';
 
 export default class EventDetailsTab extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -25,9 +24,7 @@ export default class EventDetailsTab extends Component {
         })
 
     };
-
     render() {
-
         return (
             <Container style={styles.container}>
                 <Content>
