@@ -13,7 +13,6 @@ export default class EventDetailsTab extends Component {
             isModalVisible: false
         };
     }
-
     setModalVisible = (visible) => {
         this.setState({
             isModalVisible: visible
@@ -157,28 +156,10 @@ const styles = StyleSheet.create({
             fontWeight: 'bold',
             fontSize: 30,
         },
-    card: {
-        width: 300,
-        height: 100,
-    },
     text: {
         color: '#00adf5',
         fontSize: 13,
 
-    },
-    logo: {
-        width: 20,
-        height: 10,
-        marginRight: 0
-    },
-    row: {
-        alignItems: 'center',
-        flexDirection: 'row',
-
-    },
-    Thumb: {
-        height: 10,
-        width: 20
     },
     call: {
         width: 190,
