@@ -17,7 +17,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {store} from '../Redux/store';
 import Geocoder from 'react-native-geocoding';
 import moment from 'moment';
-import AddEventModal from '../components/AddEventModal';
+import addEventModal from '../components/addEventModal';
 const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
@@ -106,7 +106,7 @@ export default class EventDetailsScreen extends React.Component {
             <Container style={styles.container}>
                 <Content>
                     {/*    we only render this component if  the isModalVisible has been set to true */}
-                    {this.state.isModalVisible ? <AddEventModal data={this.state.event} {...this.state} closeModal={this.closeModal}/>:null}
+                    {this.state.isModalVisible ? <addEventModal data={this.state.event} {...this.state} closeModal={this.closeModal}/>:null}
 
 
                     <Tabs>
