@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {
     Container,
     Content,
@@ -148,38 +147,6 @@ class EventScreen extends React.Component {
 
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    logo: {
-        width: 70,
-        height: 40,
-        marginRight: 0
-    },
-    row: {
-        alignItems: 'center',
-        paddingTop: 5,
-        flexDirection: 'row',
-
-
-    },
-    direction: {
-        flexDirection: 'row',
-        flex: 1,
-        flexWrap: 'wrap',
-
-
-    },
-    centered: {
-        alignItems: 'center'
-    }
-
-});
 // to make the events accessible we use .. it will map the state from our reducer to props in screen.
 const mapStateToProps = state => ({
     events: state.events.items,

@@ -1,30 +1,13 @@
-const event_details = {
-
-    id: 2,
-    event: 'Domingo Streich',
-    event_owner: 'Domingo Streich',
-    venue: ' Bobbie Volkman',
-    address: '163 Cullen Isle Suite 244 South Montanatown, ',
-    client: 'Kozey, Kulas and Botsford',
-    Time: ' April 10th 2019',
-    first_date: 'Wednesday April 10th 2019 at 8:27 am',
-    second_date: 'Saturday April 13th 2019 at 11:27 am',
-    events_notes: 'Sit ad adipisci ab et nihil. Et architecto itaque consequatur eos odio dolorum odit. ',
-    Team_manager_notes: 'Sit sint et doloribus magni sed neque voluptatem excepturi. ',
-    staff: 'Lauren Jaskolski',
-    url: 'https://images.unsplash.com/photo-1554631492-a054feeae929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80'
-};
-
 import React from 'react';
 import {StyleSheet, Dimensions, View, TouchableOpacity, AsyncStorage} from 'react-native';
-import {Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem, Spinner} from 'native-base';
+import {Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem,Header} from 'native-base';
 import {Agenda} from 'react-native-calendars';
-import {connect} from 'react-redux';
+import {LinearGradient} from "expo";
 
-const {width} = Dimensions.get('window');
+const {width,height} = Dimensions.get('window');
 const _ = require('lodash');
-const Details = ({}) => (
 
+const Details = ({}) => (
     <Container>
         <Content>
             <Body>
@@ -76,25 +59,6 @@ const Empty = () => (
 
 
 class ScheduleScreen extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-
-            marked: null,
-            item: null,
-            event: {}
-
-        }
-    }
-
-
-    componentDidMount() {
-        this.retrieveEvent();
-
-        this.getSchedule()
-
-    }
-
     retrieveEvent = async () => {
 
         const event =JSON.parse((await AsyncStorage.getItem('event')));
@@ -151,34 +115,21 @@ class ScheduleScreen extends React.Component {
         this.setState({item: item})
     };
 
-
     render() {
-        const {error, loading} = this.props;
-        if (error) {
-
-            return (
-
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Text> An error occurred! {error.message}</Text>
-                </View>
-            )
-        }
-        if (loading) {
-
-            return (
-
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Spinner style={{height: 80}} size="large" color='tomato'/>
-
-                </View>
-
-            )
-
-        }
-       console.log(this.state.marked);
-
         return (
-
+            <Container style={{flex:1}}>
+            <Content>
+            <LinearGradient
+                colors={['#0066ff', '#0033cc']}
+                style={{flex: 1}}>
+                <Header style={{backgroundColor: '#0066ff'}}>
+                    <Left/>
+                    <Body>
+                        <Text style={{fontWeight:'200',color:'white'}}>Calendar</Text>
+                    </Body>
+                   <Right/>
+                </Header>
+            </LinearGradient>
 
             <Agenda
                 current={Date()}
@@ -214,12 +165,6 @@ class ScheduleScreen extends React.Component {
                 rowHasChanged={(r1, r2) => {
                     return r1.text !== r2.text
                 }}
-
-
-                markedDates={this.state.marked}
-
-
-                items={this.state.item}
                 theme={{
                     backgroundColor: 'white',
                     calendarBackground: 'white',
@@ -238,9 +183,12 @@ class ScheduleScreen extends React.Component {
                     textDayHeaderFontSize: 16
                 }}
                 style={{
-                    height: 350
+                    height: height
                 }}
             />
+            </Content>
+            </Container>
+
 
 
         );
@@ -289,10 +237,5 @@ const styles = StyleSheet.create({
 
     }
 });
-const mapStateToProps = state => ({
-    events: state.events.items,
-    loading: state.events.loading,
-    error: state.events.error,
 
-});
-export default connect(mapStateToProps)(ScheduleScreen)
+export default ScheduleScreen
