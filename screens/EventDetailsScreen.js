@@ -9,7 +9,7 @@ import VenueDetailsTab from '../components/VenueDetailsTab';
 const _ = require('lodash');
 
 
-Geocoder.init('AIzaSyBFZ6UNQGy4pNkPo3RMV1zAl3t5H7oEnrU');
+
 
 export default class EventDetailsScreen extends React.Component {
     constructor() {
@@ -46,17 +46,18 @@ export default class EventDetailsScreen extends React.Component {
     };
     getDetails = (task, i) => {
         if (!task.length) {
+
             let ids = this.props.navigation.state.params.id;
             let found = _.find([task['task']['shift']['event']], ['id', ids]);
-
             if (found) {
 
+                Geocoder.init("AIzaSyBFZ6UNQGy4pNkPo3RMV1zAl3t5H7oEnrU");
+
                 Geocoder.from(found['venue'].address).then(json => {
-                    var location = json.results[0].geometry.location
+                    var location = json.results[0].geometry.location;
                     this.setState({
                         coords: location
                     })
-
                 })
                     .catch(error => console.log(error))
                 this.setState({

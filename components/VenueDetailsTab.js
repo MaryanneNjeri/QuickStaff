@@ -6,7 +6,9 @@ const _ = require('lodash');
 const {width} = Dimensions.get('window');
 
 export default class VenueDetailsTab extends React.Component{
+
     render() {
+
         return (
             <Container>
                 <Content>
