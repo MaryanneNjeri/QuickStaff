@@ -13,13 +13,19 @@ import {
     Tabs,
     TabHeading,
     View,
-    Spinner
+    Spinner, Header, Left, ActionSheet, Toast
 } from 'native-base';
 import {fetchEvents} from '../Redux/eventAction';
 import {connect} from 'react-redux';
-
+import {LinearGradient} from 'expo';
+import {logout} from "../components/logout";
 const _ = require('lodash');
+var buttons = [
 
+    {text:"Logout",icon:"close",iconColor:"red"},
+    {text:"Close",icon:"close",iconColor:"red"}
+];
+var cancel_index = 2;
 class EventScreen extends React.Component {
     async componentDidMount() {
 
@@ -60,8 +66,26 @@ class EventScreen extends React.Component {
             </List>
         }
     };
-
-
+    openActionSheet=()=>{
+        ActionSheet.show(
+            {
+                options: buttons,
+                cancelButtonIndex:cancel_index,
+                title:'User settings'
+            },
+            (buttonIndex) =>{
+                if (buttonIndex == 0) {
+                    logout();
+                    Toast.show({
+                        text: "Successfully Logged out",
+                        position: "top",
+                        duration: 3000
+                    });
+                    this.props.navigation.navigate('Auth')
+                }
+            }
+        )
+    };
     render() {
         const {error, loading, events} = this.props;
         if (error) {
@@ -84,6 +108,21 @@ class EventScreen extends React.Component {
         return (
             <Container>
                 <Content>
+                    <LinearGradient
+                        colors={['#0066ff', '#0033cc']}
+                        style={{flex: 1}}>
+                    <Header style={{backgroundColor: '#0066ff'}}>
+                        <Left/>
+                        <Body>
+                            <Text style={{fontWeight:'200',color:'white'}}>Events</Text>
+                        </Body>
+                        <Right>
+                            <Icon type="Entypo" name="user" style={{color: 'white',fontSize: 25}} onPress={this.openActionSheet}/>
+                        </Right>
+
+                    </Header>
+                    </LinearGradient>
+
                     <Tabs>
                         <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
 

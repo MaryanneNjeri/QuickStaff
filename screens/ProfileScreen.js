@@ -6,13 +6,9 @@ import {fetchProfile} from '../Redux/profileAction';
 import {connect} from 'react-redux';
 import {LinearGradient} from "expo";
 
-
 class ProfileScreen extends React.Component {
-    static navigationOptions = {
-        headerMode: 'none'
-    }
+   componentDidMount() {
 
-    componentDidMount() {
         this.props.dispatch(fetchProfile())
     };
     logOut =() => {
