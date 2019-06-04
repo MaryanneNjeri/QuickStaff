@@ -1,17 +1,19 @@
 import React from 'react';
-import {StyleSheet,View,Image} from 'react-native';
-import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner} from 'native-base';
+import {StyleSheet, View, Image} from 'react-native';
+import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner, Card} from 'native-base';
 import {logout} from "../components/logout";
 import {fetchProfile} from '../Redux/profileAction';
 import {connect} from 'react-redux';
 import {LinearGradient} from "expo";
+import {Row, Grid} from 'react-native-easy-grid';
 
 class ProfileScreen extends React.Component {
-   componentDidMount() {
+    componentDidMount() {
 
         this.props.dispatch(fetchProfile())
     };
-    logOut =() => {
+
+    logOut = () => {
         logout();
         Toast.show({
             text: "Successfully Logged out",
@@ -46,25 +48,65 @@ class ProfileScreen extends React.Component {
                 </View>
             )
         }
+
         return (
             <Container>
                 <Content>
                     <View style={styles.header}>
                         <LinearGradient
-                            colors={['#0066ff','#0033cc']}
-                            style={{flex:1}}
+                            colors={['#0066ff', '#0033cc']}
+                            style={{flex: 1}}
                         />
                     </View>
                     <Image style={styles.avatar} source={{uri: profile.profile_image}}/>
                     <View style={styles.body}>
                         <View style={styles.bodyContent}>
-                            <Text>{profile.name}</Text>
-                            <Text note>{profile.email}</Text>
+                            <Text style={{fontWeight: '200', fontSize: 20}}>{profile.name}</Text>
                             <Text note>{profile.role_name}</Text>
                             <Text>{""}</Text>
+                            <View style={{flexDirection:'row' }}>
+                                <Text note><Icon type="Entypo" name="phone" style={{fontSize: 15, fontWeight: '100',color:'#BDC3C7'}}/>{profile.phone}</Text>
+                                <Text>{""}</Text>
+                                <Text note><Icon type="Entypo" name="mail" style={{fontSize: 15, fontWeight: '100',color:'#BDC3C7'}}/>{profile.email}</Text>
+                            </View>
                         </View>
-
                     </View>
+                    <Grid>
+                        <Row style={{borderColor: '#BDC3C7',borderWidth: 0.3}}>
+                            <Card style={styles.call} transparent>
+                                <Body>
+                                    <Text note style={{fontSize: 10}}> <Icon type="FontAwesome" name="money" style={{fontSize: 10}}/>  pay rate</Text>
+                                    <Text>{" "}</Text>
+                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.pay_rate}</Text>
+                                </Body>
+
+                            </Card>
+                            <Card style={styles.call} transparent>
+                                <Body>
+                                    <Text note style={{fontSize: 10}}> <Icon type="Entypo" name="location-pin" style={{fontSize: 10}}/>  City</Text>
+                                    <Text>{""}</Text>
+                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.city}</Text>
+                                </Body>
+
+                            </Card>
+                            <Card style={styles.call} transparent>
+                                <Body>
+                                    <Text note style={{fontSize: 10}}> <Icon type="MaterialCommunityIcons" name= "map" style={{fontSize: 10}}/>  Province</Text>
+                                    <Text>{""}</Text>
+                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.province}</Text>
+                                </Body>
+
+                            </Card>
+                            <Card style={styles.call} transparent>
+                                <Body>
+                                    <Text note style={{fontSize: 10}}><Icon type="Ionicons" name= "md-time" style={{fontSize: 10}}/> Timezone</Text>
+                                    <Text>{""}</Text>
+                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.timezone}</Text>
+                                </Body>
+
+                            </Card>
+                        </Row>
+                    </Grid>
                     <List>
                         <ListItem itemHeader>
                             <Text>Settings</Text>
@@ -75,18 +117,6 @@ class ProfileScreen extends React.Component {
                             </Left>
                             <Body>
                                 <Text>Notifications</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-
-                        <ListItem icon>
-                            <Left>
-                                <Icon name="person"/>
-                            </Left>
-                            <Body>
-                                <Text>Account</Text>
                             </Body>
                             <Right>
                                 <Icon active name="arrow-forward"/>
@@ -155,9 +185,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    header:{
+    header: {
         backgroundColor: "#00BFFF",
-        height:200,
+        height: 200,
     },
     avatar: {
         width: 130,
@@ -165,18 +195,23 @@ const styles = StyleSheet.create({
         borderRadius: 63,
         borderWidth: 4,
         borderColor: "white",
-        marginBottom:10,
-        alignSelf:'center',
+        marginBottom: 10,
+        alignSelf: 'center',
         position: 'absolute',
-        marginTop:130
+        marginTop: 130
     },
-    body:{
-        marginTop:40,
+    body: {
+        marginTop: 40,
     },
     bodyContent: {
         flex: 1,
         alignItems: 'center',
-        padding:30,
+        padding: 30,
+    },
+    call:{
+        padding: 10,
+        borderRightColor:'#BDC3C7',
+        borderRightWidth:0.3
     }
 });
 const mapStateToProps = state => ({
