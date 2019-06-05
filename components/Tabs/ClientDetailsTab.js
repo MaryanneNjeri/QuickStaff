@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react'
 import {Body, Container, Content, Icon, Left, ListItem, Text} from "native-base";
 import {Linking, View,StyleSheet} from "react-native";
 
-export default class ClientDetailsTab extends React.Component {
+export  class ClientDetailsTab extends React.Component {
     render() {
         return (
             <Container>

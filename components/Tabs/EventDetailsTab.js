@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react'
 import {StyleSheet, TouchableHighlight, View} from "react-native";
 import {Body, Card, Container, Content, Icon, Left, ListItem, Text} from "native-base";
 import {Row, Grid} from 'react-native-easy-grid';
-import moment from 'moment';
-import {AddEventCalendar}  from './AddEventCalendar';
+import moment from 'moment/moment';
+import {AddEventCalendar}  from '../AddEventCalendar';
 
-export default class EventDetailsTab extends Component {
+export  class EventDetailsTab extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

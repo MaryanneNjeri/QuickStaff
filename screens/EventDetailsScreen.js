@@ -1,16 +1,14 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Tabs, Tab, TabHeading} from 'native-base';
 import {store} from '../Redux/store';
 import Geocoder from 'react-native-geocoding';
-import ClientDetailsTab from '../components/ClientDetailsTab';
-import EventDetailsTab from '../components/EventDetailsTab';
-import VenueDetailsTab from '../components/VenueDetailsTab';
+import {ClientDetailsTab} from '../components/Tabs/ClientDetailsTab';
+import {EventDetailsTab} from '../components/Tabs/EventDetailsTab';
+import {VenueDetailsTab} from '../components/Tabs/VenueDetailsTab';
+import {API_KEY} from "../config/config";
+
 const _ = require('lodash');
-
-
-
-
 export default class EventDetailsScreen extends React.Component {
     constructor() {
         super();
@@ -22,9 +20,11 @@ export default class EventDetailsScreen extends React.Component {
             detail: {},
         };
     }
+
     componentDidMount() {
         this.getEventDetails()
     }
+
     getEventDetails = () => {
 
         let events = store.getState().events;
@@ -51,7 +51,7 @@ export default class EventDetailsScreen extends React.Component {
             let found = _.find([task['task']['shift']['event']], ['id', ids]);
             if (found) {
 
-                Geocoder.init("AIzaSyBFZ6UNQGy4pNkPo3RMV1zAl3t5H7oEnrU");
+                Geocoder.init(API_KEY);
 
                 Geocoder.from(found['venue'].address).then(json => {
                     var location = json.results[0].geometry.location;
@@ -59,7 +59,7 @@ export default class EventDetailsScreen extends React.Component {
                         coords: location
                     })
                 })
-                    .catch(error => console.log(error))
+                    .catch(error => console.log(error));
                 this.setState({
                     event: found,
                     client: found['client'],
@@ -69,6 +69,7 @@ export default class EventDetailsScreen extends React.Component {
             }
         }
     };
+
     render() {
 
         return (
@@ -96,7 +97,6 @@ export default class EventDetailsScreen extends React.Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between'

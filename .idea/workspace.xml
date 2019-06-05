@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e0a04b77-79c6-49f2-8567-52e2b9b7a66c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/VenueDetailsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/VenueDetailsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ClientDetailsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tabs/ClientDetailsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EventDetailsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tabs/EventDetailsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/VenueDetailsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tabs/VenueDetailsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/EventDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EventDetailsScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -24,34 +28,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
+            <state relative-caret-position="1716">
               <caret line="85" column="109" selection-start-line="85" selection-start-column="109" selection-end-line="85" selection-end-column="109" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#899#1129#0" />
-                <element signature="e#1151#1392#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/VenueDetailsTab.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/EventDetailsTab.js">
+        <entry file="file://$PROJECT_DIR$/components/Tabs/VenueDetailsTab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="161" column="7" selection-start-line="161" selection-start-column="7" selection-end-line="163" selection-end-column="24" />
+            <state relative-caret-position="22">
+              <caret line="1" column="100" lean-forward="true" selection-start-line="1" selection-start-column="100" selection-end-line="1" selection-end-column="100" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/Tabs/EventDetailsTab.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -86,11 +94,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1188">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="22">
+              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/AddEventCalendar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="30" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Tabs/ClientDetailsTab.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="79" lean-forward="true" selection-start-line="1" selection-start-column="79" selection-end-line="1" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -136,13 +171,17 @@
         <option value="$PROJECT_DIR$/Redux/profileAction.js" />
         <option value="$PROJECT_DIR$/Redux/profileReducer.js" />
         <option value="$PROJECT_DIR$/Redux/rootReducer.js" />
-        <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/AppContainer.js" />
         <option value="$PROJECT_DIR$/screens/EventScreen.js" />
         <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
         <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
-        <option value="$PROJECT_DIR$/screens/EventDetailsScreen.js" />
         <option value="$PROJECT_DIR$/components/VenueDetailsTab.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/config/config.js" />
+        <option value="$PROJECT_DIR$/components/Tabs/ClientDetailsTab.js" />
+        <option value="$PROJECT_DIR$/components/Tabs/VenueDetailsTab.js" />
+        <option value="$PROJECT_DIR$/screens/EventDetailsScreen.js" />
+        <option value="$PROJECT_DIR$/components/Tabs/EventDetailsTab.js" />
       </list>
     </option>
   </component>
@@ -157,7 +196,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -169,6 +207,12 @@
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="staff-app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="staff-app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Tabs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="staff-app" type="b2602c69:ProjectViewProjectNode" />
@@ -189,6 +233,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -200,6 +245,12 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/Tabs" />
+      <recent name="$PROJECT_DIR$/components" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -238,18 +289,20 @@
       <workItem from="1559306927355" duration="21000" />
       <workItem from="1559552682490" duration="22220000" />
       <workItem from="1559636726499" duration="7965000" />
-      <workItem from="1559645357339" duration="8433000" />
+      <workItem from="1559645357339" duration="8474000" />
+      <workItem from="1559724206304" duration="1597000" />
+      <workItem from="1559726620437" duration="4216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156601000" />
+    <option name="totallyTimeSpent" value="162455000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="986" y="27" width="933" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.36158192" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37062147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -264,7 +317,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.312026" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3109426" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -368,23 +421,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/AddEventModal.js" />
-    <entry file="file://$PROJECT_DIR$/components/AddEventCalendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/ClientDetailsTab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Header.js" />
     <entry file="file://$PROJECT_DIR$/Redux/loginAction.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -465,17 +501,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AppContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1716">
+          <caret line="85" column="109" selection-start-line="85" selection-start-column="109" selection-end-line="85" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -499,44 +538,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/EventDetailsTab.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="161" column="7" selection-start-line="161" selection-start-column="7" selection-end-line="163" selection-end-column="24" />
+        <state relative-caret-position="22">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AddEventCalendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="30" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
+    <entry file="file://$PROJECT_DIR$/components/Tabs/ClientDetailsTab.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="85" column="109" selection-start-line="85" selection-start-column="109" selection-end-line="85" selection-end-column="109" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#899#1129#0" />
-            <element signature="e#1151#1392#0" />
-          </folding>
+        <state relative-caret-position="22">
+          <caret line="1" column="79" lean-forward="true" selection-start-line="1" selection-start-column="79" selection-end-line="1" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Tabs/VenueDetailsTab.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="100" lean-forward="true" selection-start-line="1" selection-start-column="100" selection-end-line="1" selection-end-column="100" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/EventDetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="22">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/VenueDetailsTab.js">
+    <entry file="file://$PROJECT_DIR$/components/Tabs/EventDetailsTab.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="154">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
