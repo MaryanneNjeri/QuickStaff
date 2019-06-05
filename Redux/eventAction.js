@@ -32,7 +32,6 @@ export function fetchEvents() {
                 );
         })
     };
-
     function handleErrors(response) {
         console.log(response.status);
         if (!response.ok) {

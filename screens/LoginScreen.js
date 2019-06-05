@@ -56,24 +56,26 @@ class LoginScreen extends Component {
 
             const value = await AsyncStorage.getItem('token');
             if (value) {
-                Toast.show({
-                    text: " Successfully Log in",
-                    type: "success",
-                    position: "top",
-                    duration: 3000
-                });
-                this.props.navigation.navigate('App')
-            }
-            else {
-                Toast.show({
-                    text: "Invalid login credentials",
-                    type: "danger",
-                    position: "top",
-                    duration: 3000
+                    Toast.show({
+                        text: " Successfully Log in",
+                        type: "success",
+                        position: "top",
+                        duration: 3000
+                    });
+                    this.props.navigation.navigate('App')
+                }
+                else {
+                    Toast.show({
+                        text: "Invalid login credentials",
+                        type: "danger",
+                        position: "top",
+                        duration: 3000
 
-                });
-                this.props.navigation.navigate('Auth');
-            }
+                    });
+                    this.props.navigation.navigate('Auth');
+                }
+
+
 
 
 
