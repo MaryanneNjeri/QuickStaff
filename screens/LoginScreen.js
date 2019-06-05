@@ -54,8 +54,8 @@ class LoginScreen extends Component {
             this.setState({errors: {}, loading: true});
             this.props.dispatch(login(user));
 
-            const value = await AsyncStorage.getItem('token');
-            if (value) {
+            AsyncStorage.getItem('token').then((data)=>{
+                if (data) {
                     Toast.show({
                         text: " Successfully Log in",
                         type: "success",
@@ -74,6 +74,8 @@ class LoginScreen extends Component {
                     });
                     this.props.navigation.navigate('Auth');
                 }
+            });
+
 
 
 
