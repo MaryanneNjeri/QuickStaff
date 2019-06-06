@@ -12,10 +12,12 @@ import ProfileScreen from './screens/ProfileScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import EventDetailsScreen from './screens/EventDetailsScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
+import BlockoutScreen from './screens/BlockoutScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import {LinearGradient} from 'expo';
 import {Icon} from 'react-native-elements';
+
 
 /*
 A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
@@ -116,7 +118,14 @@ const AppStack = createStackNavigator({
             title: 'Notification',
 
         }
-    }
+    },
+    Blockouts: {
+        screen: BlockoutScreen,
+        navigationOptions: {
+            title: 'Blockouts',
+
+        }
+    },
 
 })
 

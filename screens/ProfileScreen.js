@@ -24,8 +24,12 @@ class ProfileScreen extends React.Component {
 
         this.props.navigation.navigate('Auth');
     };
-    view_notification = () => {
+    viewNotification = () => {
         this.props.navigation.navigate('Notifications')
+    };
+
+    viewBlockouts=()=>{
+        this.props.navigation.navigate('Blockouts')
     };
 
     render() {
@@ -111,12 +115,23 @@ class ProfileScreen extends React.Component {
                         <ListItem itemHeader>
                             <Text>Settings</Text>
                         </ListItem>
-                        <ListItem icon onPress={this.view_notification}>
+                        <ListItem icon onPress={this.viewNotification}>
                             <Left>
                                 <Icon name="ios-notifications"/>
                             </Left>
                             <Body>
                                 <Text>Notifications</Text>
+                            </Body>
+                            <Right>
+                                <Icon active name="arrow-forward"/>
+                            </Right>
+                        </ListItem>
+                        <ListItem icon onPress={this.viewBlockouts}>
+                            <Left>
+                                <Icon type="Entypo" name="block"/>
+                            </Left>
+                            <Body>
+                                <Text>Blockouts</Text>
                             </Body>
                             <Right>
                                 <Icon active name="arrow-forward"/>
