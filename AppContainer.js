@@ -123,7 +123,16 @@ const AppStack = createStackNavigator({
         screen: BlockoutScreen,
         navigationOptions: {
             title: 'Blockouts',
-
+            headerBackground: (
+                <LinearGradient
+                    colors={['#0066ff', '#0033cc']}
+                    style={{flex: 1}}
+                />
+            ),
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: '200'
+            },
         }
     },
 

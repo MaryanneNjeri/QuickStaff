@@ -88,7 +88,6 @@ class EventScreen extends React.Component {
     render() {
         const {error, loading, events} = this.props;
         if (error) {
-            console.log(error);
             return (
 
                 <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
