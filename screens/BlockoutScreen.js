@@ -2,7 +2,7 @@ import React from 'react';
 import {Body, Container, Content, Left, Right, Spinner, Text, Icon, View, Accordion} from "native-base";
 import {StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchBlockouts} from "../Redux/blockouts/blockoutAction";
+import {fetchBlockouts} from "../redux/blockouts/blockoutAction";
 import moment from 'moment/moment';
 
 const _ = require('lodash');

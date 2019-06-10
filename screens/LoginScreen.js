@@ -12,7 +12,7 @@ import {Content, Container, Form, Input, Item, Toast, Spinner} from "native-base
 import {validateInput} from "../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
-import {login} from '../Redux/loginAction';
+import {login} from '../redux/loginAction';
 const _ = require('lodash');
 
 class LoginScreen extends Component {

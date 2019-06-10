@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Tabs, Tab, TabHeading} from 'native-base';
-import {store} from '../Redux/store';
+import {store} from '../redux/store';
 import Geocoder from 'react-native-geocoding';
 import {ClientDetailsTab} from '../components/Tabs/ClientDetailsTab';
 import {EventDetailsTab} from '../components/Tabs/EventDetailsTab';

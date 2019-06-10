@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner, Card} from 'native-base';
 import {logout} from "../components/logout";
-import {fetchProfile} from '../Redux/profileAction';
+import {fetchProfile} from '../redux/profileAction';
 import {connect} from 'react-redux';
 import {LinearGradient} from "expo";
 import {Row, Grid} from 'react-native-easy-grid';
@@ -76,6 +76,7 @@ class ProfileScreen extends React.Component {
                         </View>
                     </View>
                     <Grid>
+
                         <Row style={{borderColor: '#BDC3C7',borderWidth: 0.3}}>
                             <Card style={styles.call} transparent>
                                 <Body>
