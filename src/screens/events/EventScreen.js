@@ -1,32 +1,20 @@
 import React from 'react';
-import {
-    Container,
-    Content,
-    List,
-    ListItem,
-    Body,
-    Right,
-    Text,
-    Icon,
-    Tab,
-    Tabs,
-    TabHeading,
-    View,
-    Spinner, Header, Left, ActionSheet, Toast
-} from 'native-base';
+import {Container, Content, List, ListItem, Body, Right, Text, Icon, Tab, Tabs, TabHeading, ActionSheet, Toast} from 'native-base';
 import {fetchEvents} from '../../redux/events/action';
 import {connect} from 'react-redux';
-import {LinearGradient} from 'expo';
+import HeaderComponent from '../../components/eventComponents/HeaderComponent';
 import {logout} from "../../components/logout";
 import  Error from '../../components/eventComponents/Error';
 import Loader from '../../components/eventComponents/Loader';
 const _ = require('lodash');
+
 var buttons = [
 
     {text:"Logout",icon:"close",iconColor:"red"},
     {text:"Close",icon:"close",iconColor:"red"}
 ];
 var cancel_index = 2;
+
 class EventScreen extends React.Component {
     async componentDidMount() {
 
@@ -49,9 +37,7 @@ class EventScreen extends React.Component {
 
     };
     getContent = (i, assign) => {
-
         if (!assign.length) {
-
             return <List key={i}>
                 <ListItem key={i} onPress={() => this.eventDetails(assign['task']['shift']['event'].id)}>
 
@@ -102,20 +88,7 @@ class EventScreen extends React.Component {
         return (
             <Container>
                 <Content>
-                    <LinearGradient
-                        colors={['#0066ff', '#0033cc']}
-                        style={{flex: 1}}>
-                    <Header style={{backgroundColor: '#0066ff'}}>
-                        <Left/>
-                        <Body>
-                            <Text style={{fontWeight:'200',color:'white'}}>Events</Text>
-                        </Body>
-                        <Right>
-                            <Icon type="Entypo" name="user" style={{color: 'white',fontSize: 25}} onPress={this.openActionSheet}/>
-                        </Right>
-
-                    </Header>
-                    </LinearGradient>
+                   <HeaderComponent/>
 
                     <Tabs>
                         <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
@@ -142,12 +115,9 @@ class EventScreen extends React.Component {
 
     }
 }
-// to make the events accessible we use .. it will map the state from our reducer to props in screen.
 const mapStateToProps = state => ({
     events: state.events.items,
     loading: state.events.loading,
     error: state.events.Error,
 });
-
-// the connect is used to connect  to our redux store
 export default connect(mapStateToProps)(EventScreen)
