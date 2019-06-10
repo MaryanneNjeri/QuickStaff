@@ -6,7 +6,7 @@ export default function getEvents() {
     getToken().then(token => {
         var toke = token.replace(/^"(.*)"$/, '$1');
         var bearer = "Bearer " + toke;
-        return clie(API_URL + "/staff/events", {
+        return clie(API_URL + "/staff/general", {
             method: "GET",
             headers: {
                 Authorization: bearer,

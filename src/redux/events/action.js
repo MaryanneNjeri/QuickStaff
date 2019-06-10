@@ -23,7 +23,6 @@ export function fetchEvents() {
             .then(body => {
                 dispatch(fetchEventsSuccess(body));
 
-
                 return body;
             })
             .catch(error =>

@@ -3,6 +3,7 @@ import {StyleSheet, Dimensions, View, TouchableOpacity, AsyncStorage} from 'reac
 import {Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem,Header} from 'native-base';
 import {Agenda} from 'react-native-calendars';
 import {LinearGradient} from "expo";
+import {Title} from '../../components/styledComponents/general/general';
 
 const {width,height} = Dimensions.get('window');
 const _ = require('lodash');
@@ -125,7 +126,7 @@ class ScheduleScreen extends React.Component {
                 <Header style={{backgroundColor: '#0066ff'}}>
                     <Left/>
                     <Body>
-                        <Text style={{fontWeight:'200',color:'white'}}>Calendar</Text>
+                        <Title>Calendar</Title>
                     </Body>
                    <Right/>
                 </Header>

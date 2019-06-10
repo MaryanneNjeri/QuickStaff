@@ -74,6 +74,7 @@ class EventScreen extends React.Component {
         )
     };
     render() {
+
         const {error, loading, events} = this.props;
         if (error) {
             return (
@@ -115,9 +116,12 @@ class EventScreen extends React.Component {
 
     }
 }
+// to make the events accessible we use .. it will map the state from our reducer to props in screen.
 const mapStateToProps = state => ({
     events: state.events.items,
     loading: state.events.loading,
     error: state.events.Error,
 });
+
+// the connect is used to connect  to our redux store
 export default connect(mapStateToProps)(EventScreen)

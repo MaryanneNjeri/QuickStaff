@@ -1,6 +1,6 @@
 import { FETCH_EVENTS_BEGIN, FETCH_EVENTS_FAILURE, FETCH_EVENTS_SUCCESS } from "./action";
 /*
-we'll have the reducer save the events in store when
+we'll have the reducer save the general in store when
 when it receives the FETCH_PRODUCTS_SUCCESS
  */
 const initialState = {
@@ -20,8 +20,8 @@ export default function eventsReducer(state = initialState, action) {
                 error: null
             };
         case FETCH_EVENTS_SUCCESS:
-            // the events have been received thus alter the state of loading to false
-            // as we have successfully gotten the events from the server replace
+            // the general have been received thus alter the state of loading to false
+            // as we have successfully gotten the general from the server replace
 
             return {
                 ...state,
