@@ -1,4 +1,4 @@
-import { FETCH_EVENTS_BEGIN, FETCH_EVENTS_FAILURE, FETCH_EVENTS_SUCCESS } from "./eventAction";
+import { FETCH_EVENTS_BEGIN, FETCH_EVENTS_FAILURE, FETCH_EVENTS_SUCCESS } from "./action";
 /*
 we'll have the reducer save the events in store when
 when it receives the FETCH_PRODUCTS_SUCCESS
@@ -10,12 +10,10 @@ const initialState = {
 };
 // remember reducers take two argue  the action and the state and then returns new state or an initial state
 
-// reducers are used to alter the state thus in the screen there is no state to alter..
 export default function eventsReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_EVENTS_BEGIN:
             // set the state loading to true , as we show a spinner
-
             return {
                 ...state,
                 loading: true,
@@ -26,7 +24,6 @@ export default function eventsReducer(state = initialState, action) {
             // as we have successfully gotten the events from the server replace
 
             return {
-
                 ...state,
                 loading: false,
                 items: action.payload.events
@@ -46,6 +43,5 @@ export default function eventsReducer(state = initialState, action) {
 
     }
 }
-// the following are selectors and they are used to get defined parts of a state
 
 

@@ -1,5 +1,5 @@
-import {API_URL} from '../config/config.js';
-import {getToken} from "../components/getAuthConfig";
+import {API_URL} from '../../config/config.js';
+import {getToken} from "../../components/getAuthConfig";
 
 export function fetchEvents() {
     return dispatch => {
