@@ -1,4 +1,4 @@
-import {FETCH_PROFILE_BEGIN,FETCH_PROFILE_FAILURE,FETCH_PROFILE_SUCCESS} from "./profileAction";
+import {FETCH_PROFILE_BEGIN,FETCH_PROFILE_FAILURE,FETCH_PROFILE_SUCCESS} from "./action";
 const initialState = {
     user: {},
     loading: false,
