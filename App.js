@@ -1,7 +1,8 @@
 import React from 'react';
 import AppContainer from './AppContainer';
 import {Provider} from 'react-redux';
-import {store} from './redux/store';import { Root } from "native-base"
+import {store} from './src/redux/store';
+import { Root } from "native-base"
 
 export default class App extends React.Component {
     render() {

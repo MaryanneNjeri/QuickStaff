@@ -14,7 +14,7 @@ import {
     View,
     Spinner, Header, Left, ActionSheet, Toast
 } from 'native-base';
-import {fetchEvents} from '../../../redux/events/action';
+import {fetchEvents} from '../../redux/events/action';
 import {connect} from 'react-redux';
 import {LinearGradient} from 'expo';
 import {logout} from "../../components/logout";

@@ -1,4 +1,4 @@
-import {API_URL} from '../../config/config.js';
+import {API_URL} from '../../../config/config.js';
 import {AsyncStorage} from "react-native";
 
 export function login(user) {
