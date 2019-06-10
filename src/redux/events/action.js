@@ -1,16 +1,13 @@
 import {API_URL} from '../../../config/config.js';
 import {getToken} from "../../components/getAuthConfig";
+import getEvents from "../../api/getEvents";
 
 export function fetchEvents() {
     return dispatch => {
         // first function  which is dispatched then fetch data from the api
         dispatch(fetchEventsBegin());
         getToken().then(token => {
-
-
             var toke = token.replace(/^"(.*)"$/, '$1');
-
-
             var bearer = "Bearer " + toke;
             return fetch(API_URL + "/staff/events", {
                 method: "GET",
@@ -19,19 +16,24 @@ export function fetchEvents() {
 
                 }
             })
-                .then(handleErrors)
-                .then(response => response.json())
-                .then(body => {
 
-                    dispatch(fetchEventsSuccess(body));
+        .then(handleErrors)
+            .then(response => response.json())
 
-                    return body;
-                })
-                .catch(error =>
-                    dispatch(fetchEventsFailure(error))
-                );
-        })
+            .then(body => {
+                dispatch(fetchEventsSuccess(body));
+
+
+                return body;
+            })
+            .catch(error =>
+                dispatch(fetchEventsFailure(error))
+            );
+
+
+        });
     };
+
     function handleErrors(response) {
         console.log(response.status);
         if (!response.ok) {
@@ -65,6 +67,7 @@ export const fetchEventsFailure = error => ({
     payload: {error}
 
 });
+
 // Handle HTTP errors since fetch won't.
 
 

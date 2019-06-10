@@ -18,6 +18,8 @@ import {fetchEvents} from '../../redux/events/action';
 import {connect} from 'react-redux';
 import {LinearGradient} from 'expo';
 import {logout} from "../../components/logout";
+import  Error from '../../components/eventComponents/Error';
+import Loader from '../../components/eventComponents/Loader';
 const _ = require('lodash');
 var buttons = [
 
@@ -89,18 +91,12 @@ class EventScreen extends React.Component {
         const {error, loading, events} = this.props;
         if (error) {
             return (
-
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Text> An error occurred! {error.message}</Text>
-                </View>
+                <Error {...this.props}/>
             )
         }
         if (loading) {
             return (
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Spinner style={{height: 80}} size="large" color='tomato'/>
-
-                </View>
+               <Loader/>
             )
         }
         return (
@@ -150,7 +146,7 @@ class EventScreen extends React.Component {
 const mapStateToProps = state => ({
     events: state.events.items,
     loading: state.events.loading,
-    error: state.events.error,
+    error: state.events.Error,
 });
 
 // the connect is used to connect  to our redux store

@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     profile: state.details.user,
     loading: state.details.loading,
-    error: state.details.error,
+    error: state.details.Error,
 });
 
 

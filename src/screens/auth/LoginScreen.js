@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
 // we define the props
 const mapStateToProps = state => ({
     loading: state.token.loading,
-    error: state.token.error,
+    error: state.token.Error,
 });
 
 

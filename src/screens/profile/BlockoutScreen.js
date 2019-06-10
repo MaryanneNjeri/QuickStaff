@@ -89,7 +89,7 @@ class BlockoutScreen extends React.Component {
 const mapStateToProps = state => ({
     blockouts: state.blockouts.items,
     loading: state.blockouts.loading,
-    error: state.blockouts.error,
+    error: state.blockouts.Error,
 });
 const styles = StyleSheet.create({
     container: {

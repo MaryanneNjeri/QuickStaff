@@ -4,18 +4,14 @@ import {AsyncStorage} from "react-native";
 export function login(user) {
 
     return dispatch => {
-
         dispatch(loginBegin());
         return fetch(API_URL + "/login", {
             method: 'POST', body: JSON.stringify(user), headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-        })
-
-            .then(handleErrors)
+        }).then(handleErrors)
             .then(response => response.json())
-
             .then(body => {
                 dispatch(loginSuccess(body));
 
@@ -28,7 +24,7 @@ export function login(user) {
             );
     };
 
-     function handleErrors(response) {
+    function handleErrors(response) {
         if (!response.ok) {
             throw Error(response.statusText);
 

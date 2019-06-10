@@ -27,7 +27,7 @@ export default function blockoutReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
+                error: action.payload.Error,
                 items: []
             };
         default:
