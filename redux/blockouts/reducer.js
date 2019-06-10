@@ -1,4 +1,4 @@
-import {FETCH_BLOCKOUTS_FAILURE, FETCH_BLOCKOUTS_SUCCESS, FETCH_BLOCKOUTS_BEGIN} from './blockoutAction';
+import {FETCH_BLOCKOUTS_FAILURE, FETCH_BLOCKOUTS_SUCCESS, FETCH_BLOCKOUTS_BEGIN} from './action';
 
 const initialState = {
     items: [],

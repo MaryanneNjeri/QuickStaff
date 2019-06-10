@@ -2,7 +2,7 @@ import React from 'react';
 import {Body, Container, Content, Left, Right, Spinner, Text, Icon, View, Accordion} from "native-base";
 import {StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchBlockouts} from "../redux/blockouts/blockoutAction";
+import {fetchBlockouts} from "../redux/blockouts/action";
 import moment from 'moment/moment';
 
 const _ = require('lodash');
@@ -27,8 +27,8 @@ class BlockoutScreen extends React.Component {
             <View style={styles.header}>
                 <Body>
                     <Text style={{fontWeight: '200'}}>{" "}Blockout</Text>
-                    <Text note style={{fontSize:13}}> Starts at {moment(item.starts_at).format('LL')}</Text>
-                    <Text note style={{fontSize:13}}> Ends  at {moment(item.ends_at).format('LL')}</Text>
+                    <Text note style={{fontSize: 13}}> Starts at {moment(item.starts_at).format('LL')}</Text>
+                    <Text note style={{fontSize: 13}}> Ends at {moment(item.ends_at).format('LL')}</Text>
 
                 </Body>
                 <Right>
@@ -105,10 +105,9 @@ const styles = StyleSheet.create({
         height: width / 4,
         color: '#BDC3C7',
         elevation: 1,
-        margin:10,
+        margin: 10,
         borderLeftWidth: 5,
         borderLeftColor: 'tomato',
-
 
 
     },
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
         borderColor: '#ddd',
         borderBottomWidth: 0,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 1,
