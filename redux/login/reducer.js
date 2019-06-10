@@ -1,4 +1,4 @@
-import {LOGIN_FAILURE, LOGIN_SUCCESS, LOGIN_BEGIN} from "./loginAction";
+import {LOGIN_FAILURE, LOGIN_SUCCESS, LOGIN_BEGIN} from "./action";
 
 const initialState = {
     item: {},

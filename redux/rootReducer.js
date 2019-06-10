@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import events from './events/reducer';
-import token from './loginReducer';
+import token from './login/reducer';
 import details from './profileReducer';
 import blockouts from './blockouts/reducer';
 
