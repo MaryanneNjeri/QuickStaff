@@ -3,7 +3,6 @@ import {Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button} 
 import {StyleSheet, Modal, View, TouchableHighlight, AsyncStorage} from 'react-native';
 
 export class AddEventCalendar extends React.Component {
-
     constructor() {
         super();
         this.state = {

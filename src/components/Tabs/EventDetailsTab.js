@@ -3,7 +3,7 @@ import {StyleSheet, TouchableHighlight, View} from "react-native";
 import {Body, Card, Container, Content, Icon, Left, ListItem, Text} from "native-base";
 import {Row, Grid} from 'react-native-easy-grid';
 import moment from 'moment/moment';
-import {AddEventCalendar}  from '../AddEventCalendar';
+import {AddEventCalendar}  from '../modal/AddEventCalendar';
 
 export  class EventDetailsTab extends React.Component {
     constructor(props) {
