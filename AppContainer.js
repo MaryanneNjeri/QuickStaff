@@ -4,26 +4,20 @@ import {
     createStackNavigator,
     createBottomTabNavigator,
 } from 'react-navigation';
-import EventScreen from './screens/EventScreen';
-import PasswordResetScreen from './screens/PasswordResetScreen';
-import LoginScreen from './screens/LoginScreen';
-import NotificationScreen from './screens/NotificationScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ScheduleScreen from './screens/ScheduleScreen';
-import EventDetailsScreen from './screens/EventDetailsScreen';
-import AuthLoadingScreen from './screens/AuthLoadingScreen';
-import BlockoutScreen from './screens/BlockoutScreen';
+import EventScreen from './src/screens/EventScreen';
+import PasswordResetScreen from './src/screens/PasswordResetScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import NotificationScreen from './src/screens/NotificationScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import ScheduleScreen from './src/screens/ScheduleScreen';
+import EventDetailsScreen from './src/screens/EventDetailsScreen';
+import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
+import BlockoutScreen from './src/screens/BlockoutScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import {LinearGradient} from 'expo';
 import {Icon} from 'react-native-elements';
 
-
-/*
-A stack navigator works like a stacks dishes  each screen we navigate to pushed to the top of 
-the screen  and when we hit the back button 
-the screen pop off the top of the stack.
-*/
 const AuthStack = createStackNavigator({
     Login: {
         screen: LoginScreen,

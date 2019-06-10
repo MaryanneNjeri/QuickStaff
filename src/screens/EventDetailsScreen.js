@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Tabs, Tab, TabHeading} from 'native-base';
-import {store} from '../redux/store';
+import {store} from '../../redux/store';
 import Geocoder from 'react-native-geocoding';
 import {ClientDetailsTab} from '../components/Tabs/ClientDetailsTab';
 import {EventDetailsTab} from '../components/Tabs/EventDetailsTab';
 import {VenueDetailsTab} from '../components/Tabs/VenueDetailsTab';
-import {API_KEY} from "../config/config";
+import {API_KEY} from "../../config/config";
 
 const _ = require('lodash');
 export default class EventDetailsScreen extends React.Component {

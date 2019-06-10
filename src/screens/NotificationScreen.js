@@ -1,4 +1,4 @@
-import React from  'react'; 
+import React from 'react';
 import { StyleSheet,Dimensions } from 'react-native';
 import {Text,Container,Content,Card,CardItem,Body,Right,Left,Thumbnail} from 'native-base';
 

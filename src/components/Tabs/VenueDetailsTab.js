@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Content, Container, Text, ListItem, Left, Icon, Body, Card, CardItem, Tab} from "native-base";
+import {Content, Container, Text, ListItem, Left, Icon, Body, Card, CardItem} from "native-base";
 import {View, StyleSheet, Dimensions} from "react-native";
 import MapView, {PROVIDER_GOOGLE} from "react-native-maps";
 const _ = require('lodash');

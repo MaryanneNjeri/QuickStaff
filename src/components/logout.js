@@ -1,14 +1,14 @@
-import {API_URL} from '../config/config.js';
+import {API_URL} from '../../config/config.js';
 import {AsyncStorage} from "react-native";
-import {getToken} from "../components/getAuthConfig";
+import {getToken} from "./getAuthConfig";
 
-
-export const  logout= async () =>{
+export const logout = async () => {
     getToken().then(token => {
         var toke = token.replace(/^"(.*)"$/, '$1');
         var bearer = "Bearer " + toke;
 
-        fetch(API_URL + "/logout", {method: "GET", headers: {
+        fetch(API_URL + "/logout", {
+            method: "GET", headers: {
                 Authorization: bearer,
 
             }

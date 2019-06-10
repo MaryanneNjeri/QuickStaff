@@ -4,7 +4,6 @@ import { LinearGradient,Font } from 'expo';
 
 const { height, width } = Dimensions.get('window');
 export default class PasswordResetScreen extends React.Component {
- 
     constructor(props) {
         super(props);
         this.state = {oldpassword: ''};
@@ -23,7 +22,7 @@ export default class PasswordResetScreen extends React.Component {
     } 
 
       async componentDidMount(){
-         await Font.loadAsync({'shadows-into-light':require('../assets/fonts/ShadowsIntoLight.ttf')
+         await Font.loadAsync({'shadows-into-light':require('../../assets/fonts/ShadowsIntoLight.ttf')
         })
         this.setState({ fontLoaded: true });
       };
