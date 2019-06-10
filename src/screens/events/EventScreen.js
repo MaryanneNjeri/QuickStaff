@@ -14,10 +14,10 @@ import {
     View,
     Spinner, Header, Left, ActionSheet, Toast
 } from 'native-base';
-import {fetchEvents} from '../../redux/events/action';
+import {fetchEvents} from '../../../redux/events/action';
 import {connect} from 'react-redux';
 import {LinearGradient} from 'expo';
-import {logout} from "../components/logout";
+import {logout} from "../../components/logout";
 const _ = require('lodash');
 var buttons = [
 

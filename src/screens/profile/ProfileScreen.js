@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner, Card} from 'native-base';
-import {logout} from "../components/logout";
-import {fetchProfile} from '../../redux/profile/action';
+import {logout} from "../../components/logout";
+import {fetchProfile} from '../../../redux/profile/action';
 import {connect} from 'react-redux';
 import {LinearGradient} from "expo";
 import {Row, Grid} from 'react-native-easy-grid';
@@ -12,7 +12,6 @@ class ProfileScreen extends React.Component {
 
         this.props.dispatch(fetchProfile())
     };
-
     logOut = () => {
         logout();
         Toast.show({

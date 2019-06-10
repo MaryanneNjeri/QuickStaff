@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 
 import {Content, Container, Form, Input, Item, Toast, Spinner} from "native-base";
-import {validateInput} from "../components/validateInput";
+import {validateInput} from "../../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
-import {login} from '../../redux/login/action';
+import {login} from '../../../redux/login/action';
 const _ = require('lodash');
 
 class LoginScreen extends Component {
@@ -25,11 +25,8 @@ class LoginScreen extends Component {
             errors: {},
             token: '',
             loading: false
-
         }
     }
-
-
     onRedirect = () => {
         this.props.navigation.navigate('PasswordReset')
     };
@@ -112,7 +109,7 @@ class LoginScreen extends Component {
                         <View style={styles.loginContainer}>
 
 
-                            <Image resizeMode="contain" style={styles.logo} source={require('./image.png')}/>
+                            <Image resizeMode="contain" style={styles.logo} source={require('../image.png')}/>
                         </View>
 
                         <Form>

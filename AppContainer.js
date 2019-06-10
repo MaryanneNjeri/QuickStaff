@@ -4,15 +4,15 @@ import {
     createStackNavigator,
     createBottomTabNavigator,
 } from 'react-navigation';
-import EventScreen from './src/screens/EventScreen';
-import PasswordResetScreen from './src/screens/PasswordResetScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import NotificationScreen from './src/screens/NotificationScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import ScheduleScreen from './src/screens/ScheduleScreen';
-import EventDetailsScreen from './src/screens/EventDetailsScreen';
-import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
-import BlockoutScreen from './src/screens/BlockoutScreen';
+import EventScreen from './src/screens/events/EventScreen';
+import PasswordResetScreen from './src/screens/auth/PasswordResetScreen';
+import LoginScreen from './src/screens/auth/LoginScreen';
+import NotificationScreen from './src/screens/profile/NotificationScreen';
+import ProfileScreen from './src/screens/profile/ProfileScreen';
+import ScheduleScreen from './src/screens/events/ScheduleScreen';
+import EventDetailsScreen from './src/screens/events/EventDetailsScreen';
+import AuthLoadingScreen from './src/screens/auth/AuthLoadingScreen';
+import BlockoutScreen from './src/screens/profile/BlockoutScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import {LinearGradient} from 'expo';
