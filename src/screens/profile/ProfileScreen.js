@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner, Card} from 'native-base';
+import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast} from 'native-base';
 import {logout} from "../../components/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
-import {Row, Grid} from 'react-native-easy-grid';
+
 import Loader from '../../components/generalComponents/Loader';
 import Error from '../../components/profileComponents/Error'
-import HeaderComponent from '../../components/profileComponents/HeaderComponent'
+import HeaderComponent from '../../components/profileComponents/HeaderComponent';
+import GridComponent from '../../components/profileComponents/GridComponent'
 class ProfileScreen extends React.Component {
     componentDidMount() {
 
@@ -33,7 +34,7 @@ class ProfileScreen extends React.Component {
     };
 
     render() {
-        const {error, loading, profile} = this.props;
+        const {error, loading} = this.props;
         if (error) {
             return (
                <Error {...this.props}/>
@@ -48,43 +49,7 @@ class ProfileScreen extends React.Component {
             <Container>
                 <Content>
                     <HeaderComponent {...this.props}/>
-
-                    <Grid>
-                        <Row style={{borderColor: '#BDC3C7',borderWidth: 0.3}}>
-                            <Card style={styles.call} transparent>
-                                <Body>
-                                    <Text note style={{fontSize: 10}}> <Icon type="FontAwesome" name="money" style={{fontSize: 10}}/>  pay rate</Text>
-                                    <Text>{" "}</Text>
-                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.pay_rate}</Text>
-                                </Body>
-
-                            </Card>
-                            <Card style={styles.call} transparent>
-                                <Body>
-                                    <Text note style={{fontSize: 10}}> <Icon type="Entypo" name="location-pin" style={{fontSize: 10}}/>  City</Text>
-                                    <Text>{""}</Text>
-                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.city}</Text>
-                                </Body>
-
-                            </Card>
-                            <Card style={styles.call} transparent>
-                                <Body>
-                                    <Text note style={{fontSize: 10}}> <Icon type="MaterialCommunityIcons" name= "map" style={{fontSize: 10}}/>  Province</Text>
-                                    <Text>{""}</Text>
-                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.province}</Text>
-                                </Body>
-
-                            </Card>
-                            <Card style={styles.call} transparent>
-                                <Body>
-                                    <Text note style={{fontSize: 10}}><Icon type="Ionicons" name= "md-time" style={{fontSize: 10}}/> Timezone</Text>
-                                    <Text>{""}</Text>
-                                    <Text style={{fontSize: 12,fontWeight:'200'}}>{profile.timezone}</Text>
-                                </Body>
-
-                            </Card>
-                        </Row>
-                    </Grid>
+                    <GridComponent {...this.props}/>
                     <List>
                         <ListItem itemHeader>
                             <Text>Settings</Text>
@@ -167,19 +132,6 @@ class ProfileScreen extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    call:{
-        padding: 10,
-        borderRightColor:'#BDC3C7',
-        borderRightWidth:0.3
-    }
-});
 const mapStateToProps = state => ({
     profile: state.details.user,
     loading: state.details.loading,
