@@ -1,3 +1,4 @@
+import React from 'react';
 import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
 import EventScreen from "../../src/screens/events/EventScreen";
 import ScheduleScreen from "../../src/screens/events/ScheduleScreen";
@@ -8,7 +9,7 @@ import {Icon} from "react-native-elements";
 import PasswordResetScreen from "../../src/screens/auth/PasswordResetScreen";
 import NotificationScreen from "../../src/screens/profile/NotificationScreen";
 import BlockoutScreen from "../../src/screens/profile/BlockoutScreen";
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export const AppNavigator = createStackNavigator({
     Event: {
         screen:
