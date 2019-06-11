@@ -1,13 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast, Spinner, Card} from 'native-base';
 import {logout} from "../../components/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
-import {LinearGradient} from "expo";
 import {Row, Grid} from 'react-native-easy-grid';
 import Loader from '../../components/generalComponents/Loader';
 import Error from '../../components/profileComponents/Error'
+import HeaderComponent from '../../components/profileComponents/HeaderComponent'
 class ProfileScreen extends React.Component {
     componentDidMount() {
 
@@ -47,25 +47,7 @@ class ProfileScreen extends React.Component {
         return (
             <Container>
                 <Content>
-                    <View style={styles.header}>
-                        <LinearGradient
-                            colors={['#0066ff', '#0033cc']}
-                            style={{flex: 1}}
-                        />
-                    </View>
-                    <Image style={styles.avatar} source={{uri: profile.profile_image}}/>
-                    <View style={styles.body}>
-                        <View style={styles.bodyContent}>
-                            <Text style={{fontWeight: '200', fontSize: 20}}>{profile.name}</Text>
-                            <Text note>{profile.role_name}</Text>
-                            <Text>{""}</Text>
-                            <View style={{flexDirection:'row' }}>
-                                <Text note><Icon type="Entypo" name="phone" style={{fontSize: 15, fontWeight: '100',color:'#BDC3C7'}}/>{profile.phone}</Text>
-                                <Text>{""}</Text>
-                                <Text note><Icon type="Entypo" name="mail" style={{fontSize: 15, fontWeight: '100',color:'#BDC3C7'}}/>{profile.email}</Text>
-                            </View>
-                        </View>
-                    </View>
+                    <HeaderComponent {...this.props}/>
 
                     <Grid>
                         <Row style={{borderColor: '#BDC3C7',borderWidth: 0.3}}>
@@ -192,29 +174,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    header: {
-        backgroundColor: "#00BFFF",
-        height: 200,
-    },
-    avatar: {
-        width: 130,
-        height: 130,
-        borderRadius: 63,
-        borderWidth: 4,
-        borderColor: "white",
-        marginBottom: 10,
-        alignSelf: 'center',
-        position: 'absolute',
-        marginTop: 130
-    },
-    body: {
-        marginTop: 40,
-    },
-    bodyContent: {
-        flex: 1,
-        alignItems: 'center',
-        padding: 30,
-    },
     call:{
         padding: 10,
         borderRightColor:'#BDC3C7',
@@ -226,6 +185,5 @@ const mapStateToProps = state => ({
     loading: state.details.loading,
     error: state.details.Error,
 });
-
 
 export default connect(mapStateToProps)(ProfileScreen)
