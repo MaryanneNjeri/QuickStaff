@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Content, Toast} from 'native-base';
-import {logout} from "../../components/logout";
+import {logout} from "../../components/lib/functions/auth/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
 import Loader from '../../components/general/Loader';

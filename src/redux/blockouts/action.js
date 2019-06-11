@@ -1,5 +1,5 @@
 import {API_URL} from '../../../config/config';
-import {getToken} from "../../components/getAuthConfig";
+import {getToken} from "../../components/lib/functions/auth/getAuthConfig";
 
 export function fetchBlockouts() {
     return dispatch => {

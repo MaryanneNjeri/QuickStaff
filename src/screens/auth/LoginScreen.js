@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View,StyleSheet, Image, AsyncStorage} from 'react-native';
 import {Content, Container,Toast, Spinner} from "native-base";
-import {validateInput} from "../../components/validateInput";
+import {validateInput} from "../../components/lib/functions/auth/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../../redux/login/action';

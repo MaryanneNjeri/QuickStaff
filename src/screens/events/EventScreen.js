@@ -17,7 +17,7 @@ import {
 import {fetchEvents} from '../../redux/events/action';
 import {connect} from 'react-redux';
 import HeaderComponent from '../../components/events/HeaderComponent';
-import {logout} from "../../components/logout";
+import {logout} from "../../components/lib/functions/auth/logout";
 import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
 
