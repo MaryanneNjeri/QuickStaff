@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Content,Toast} from 'native-base';
+import {Container, Content, Toast} from 'native-base';
 import {logout} from "../../components/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
@@ -23,9 +23,9 @@ class ProfileScreen extends React.Component {
             duration: 3000
 
         });
-
         this.props.navigation.navigate('Auth');
     };
+
     viewNotification = () => {
         this.props.navigation.navigate('Notifications')
     };
@@ -65,5 +65,4 @@ const mapStateToProps = state => ({
     loading: state.details.loading,
     error: state.details.Error,
 });
-
 export default connect(mapStateToProps)(ProfileScreen)
