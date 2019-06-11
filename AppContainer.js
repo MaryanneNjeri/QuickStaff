@@ -4,9 +4,9 @@ import {
     createStackNavigator,
     createBottomTabNavigator,
 } from 'react-navigation';
+import {AuthNavigator} from "./navigation/Auth/AuthNavigator";
 import EventScreen from './src/screens/events/EventScreen';
 import PasswordResetScreen from './src/screens/auth/PasswordResetScreen';
-import LoginScreen from './src/screens/auth/LoginScreen';
 import NotificationScreen from './src/screens/profile/NotificationScreen';
 import ProfileScreen from './src/screens/profile/ProfileScreen';
 import ScheduleScreen from './src/screens/events/ScheduleScreen';
@@ -18,13 +18,7 @@ import React from 'react';
 import {LinearGradient} from 'expo';
 import {Icon} from 'react-native-elements';
 
-const AuthStack = createStackNavigator({
-    Login: {
-        screen: LoginScreen,
-        navigationOptions: {header: null}
 
-    },
-});
 const AppStack = createStackNavigator({
     Event: {
         screen:
@@ -136,7 +130,7 @@ const AppStack = createStackNavigator({
 export default createAppContainer(createSwitchNavigator(
     {
         AuthLoading: AuthLoadingScreen,
-        Auth: AuthStack,
+        Auth: AuthNavigator,
         App: AppStack
 
     },

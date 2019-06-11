@@ -41,12 +41,9 @@ export default class EventDetailsScreen extends React.Component {
                 this.getDetails(task, i)
             ))
         }
-
-
     };
     getDetails = (task, i) => {
         if (!task.length) {
-
             let ids = this.props.navigation.state.params.id;
             let found = _.find([task['task']['shift']['event']], ['id', ids]);
             if (found) {
@@ -71,14 +68,12 @@ export default class EventDetailsScreen extends React.Component {
     };
 
     render() {
-
         return (
             <Container style={styles.container}>
                 <Content>
                     <Tabs>
                         <Tab heading={<TabHeading><Text>Event</Text></TabHeading>}>
                             <EventDetailsTab {...this.state}/>
-
                         </Tab>
                         <Tab heading={<TabHeading><Text>Client</Text></TabHeading>}>
                             <ClientDetailsTab {...this.state}/>
