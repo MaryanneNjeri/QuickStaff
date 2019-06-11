@@ -10,6 +10,7 @@ import PasswordResetScreen from "../../src/screens/auth/PasswordResetScreen";
 import NotificationScreen from "../../src/screens/profile/NotificationScreen";
 import BlockoutScreen from "../../src/screens/profile/BlockoutScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 export const AppNavigator = createStackNavigator({
     Event: {
         screen:
@@ -25,7 +26,6 @@ export const AppNavigator = createStackNavigator({
                         }
                     },
                 },
-
                 {
                     defaultNavigationOptions: ({navigation}) => ({
 
@@ -115,4 +115,4 @@ export const AppNavigator = createStackNavigator({
         }
     },
 
-})
+});
