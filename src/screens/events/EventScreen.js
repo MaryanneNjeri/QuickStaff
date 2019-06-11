@@ -16,9 +16,9 @@ import {
 } from 'native-base';
 import {fetchEvents} from '../../redux/events/action';
 import {connect} from 'react-redux';
-import HeaderComponent from '../../components/eventComponents/HeaderComponent';
+import HeaderComponent from '../../components/events/HeaderComponent';
 import {logout} from "../../components/logout";
-import Error from '../../components/eventComponents/Error';
+import Error from '../../components/events/Error';
 import Loader from '../../components/generalComponents/Loader';
 const _ = require('lodash');
 

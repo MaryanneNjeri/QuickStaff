@@ -3,9 +3,9 @@ import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Tabs, Tab, TabHeading} from 'native-base';
 import {store} from '../../redux/store';
 import Geocoder from 'react-native-geocoding';
-import {ClientDetailsTab} from '../../components/eventComponents/eventDetailsComponent/tabs/ClientDetailsTab';
-import {EventDetailsTab} from '../../components/eventComponents/eventDetailsComponent/tabs/EventDetailsTab';
-import {VenueDetailsTab} from '../../components/eventComponents/eventDetailsComponent/tabs/VenueDetailsTab';
+import {ClientDetailsTab} from '../../components/events/eventDetails/tabs/ClientDetailsTab';
+import {EventDetailsTab} from '../../components/events/eventDetails/tabs/EventDetailsTab';
+import {VenueDetailsTab} from '../../components/events/eventDetails/tabs/VenueDetailsTab';
 import {API_KEY} from "../../../config/config";
 
 const _ = require('lodash');
