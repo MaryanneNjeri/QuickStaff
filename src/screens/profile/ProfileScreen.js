@@ -6,7 +6,8 @@ import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
 import {LinearGradient} from "expo";
 import {Row, Grid} from 'react-native-easy-grid';
-
+import Loader from '../../components/generalComponents/Loader';
+import Error from '../../components/profileComponents/Error'
 class ProfileScreen extends React.Component {
     componentDidMount() {
 
@@ -34,24 +35,15 @@ class ProfileScreen extends React.Component {
     render() {
         const {error, loading, profile} = this.props;
         if (error) {
-
             return (
-
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Text> An error occurred! {error.message}</Text>
-                </View>
+               <Error {...this.props}/>
             )
         }
         if (loading) {
-
             return (
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Spinner style={{height: 80}} size="large" color='tomato'/>
-
-                </View>
+               <Loader/>
             )
         }
-
         return (
             <Container>
                 <Content>
@@ -74,8 +66,8 @@ class ProfileScreen extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <Grid>
 
+                    <Grid>
                         <Row style={{borderColor: '#BDC3C7',borderWidth: 0.3}}>
                             <Card style={styles.call} transparent>
                                 <Body>
