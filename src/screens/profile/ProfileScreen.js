@@ -3,11 +3,11 @@ import {Container, Content, Toast} from 'native-base';
 import {logout} from "../../components/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
-import Loader from '../../components/generalComponents/Loader';
-import Error from '../../components/profileComponents/Error';
-import HeaderComponent from '../../components/profileComponents/HeaderComponent';
-import GridComponent from '../../components/profileComponents/GridComponent';
-import ListComponent from '../../components/profileComponents/ListComponent';
+import Loader from '../../components/general/Loader';
+import Error from '../../components/profile/Error';
+import HeaderComponent from '../../components/profile/HeaderComponent';
+import GridComponent from '../../components/profile/GridComponent';
+import ListComponent from '../../components/profile/ListComponent';
 
 class ProfileScreen extends React.Component {
     componentDidMount() {

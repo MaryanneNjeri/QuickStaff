@@ -1,5 +1,5 @@
 import React from 'react';
-import {Content, Form, Input, Item} from "native-base";
+import {Form, Input, Item} from "native-base";
 import {StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from "react-native";
 
 export default class LoginForm extends React.Component {

@@ -5,8 +5,8 @@ import {validateInput} from "../../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../../redux/login/action';
-import LoginForm from '../../components/loginComponent/LoginForm'
-import Loader from '../../components/generalComponents/Loader';
+import LoginForm from '../../components/login/LoginForm'
+import Loader from '../../components/general/Loader';
 const _ = require('lodash');
 
 class LoginScreen extends Component {
