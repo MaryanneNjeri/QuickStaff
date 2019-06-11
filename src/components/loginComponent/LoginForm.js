@@ -10,10 +10,7 @@ export default class LoginForm extends React.Component {
             password: '',
         }
     }
-
-
     render() {
-
         return (
             <View>
                 <Form>
@@ -57,12 +54,6 @@ export default class LoginForm extends React.Component {
     }
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 15
-
-
-    },
     reset: {
         alignItems: 'center',
 
@@ -80,16 +71,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
 
-    },
-    loginContainer: {
-        alignItems: 'center',
-        flexGrow: 0.5,
-        justifyContent: 'center'
-    },
-    logo: {
-        position: 'absolute',
-        width: 300,
-        height: 100
     },
     buttonContainer: {
         height: 45,

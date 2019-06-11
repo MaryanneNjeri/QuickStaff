@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity, AsyncStorage} from 'react-native';
+import {View,StyleSheet, Image, AsyncStorage} from 'react-native';
 import {Content, Container,Toast, Spinner} from "native-base";
 import {validateInput} from "../../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../../redux/login/action';
 import LoginForm from '../../components/loginComponent/LoginForm'
+import Loader from '../../components/generalComponents/Loader';
 const _ = require('lodash');
 
 class LoginScreen extends Component {
@@ -64,10 +65,7 @@ class LoginScreen extends Component {
         const {loading} = this.props;
         if (loading) {
             return (
-                <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-                    <Spinner style={{height: 80}} size="large" color='tomato'/>
-
-                </View>
+               <Loader/>
             )
         }
         return (
@@ -92,26 +90,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 15
-
-
-    },
-    reset: {
-        alignItems: 'center',
-
-    },
-    input: {
-        height: 40,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 20,
-        padding: 5,
-        color: '#fff',
-        borderColor: 'rgba(225,225,225,0.2)'
-    },
-
-    buttonText: {
-        color: '#fff',
-        textAlign: 'center',
-
     },
     loginContainer: {
         alignItems: 'center',
@@ -123,17 +101,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 100
     },
-    buttonContainer: {
-        height: 45,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        borderRadius: 30,
-        marginBottom: 20,
-        backgroundColor: '#9ACD32',
-        paddingVertical: 15,
 
-
-    },
 });
 // we define the props
 const mapStateToProps = state => ({

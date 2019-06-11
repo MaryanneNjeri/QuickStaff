@@ -19,7 +19,7 @@ import {connect} from 'react-redux';
 import HeaderComponent from '../../components/eventComponents/HeaderComponent';
 import {logout} from "../../components/logout";
 import Error from '../../components/eventComponents/Error';
-import Loader from '../../components/eventComponents/Loader';
+import Loader from '../../components/generalComponents/Loader';
 const _ = require('lodash');
 
 var buttons = [
@@ -28,7 +28,6 @@ var buttons = [
     {text: "Close", icon: "close", iconColor: "red"}
 ];
 var cancel_index = 2;
-
 class EventScreen extends React.Component {
     async componentDidMount() {
 
