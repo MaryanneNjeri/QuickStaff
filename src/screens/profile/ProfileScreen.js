@@ -1,19 +1,20 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Container, Icon, Body, ListItem, Content, Left, Right, List, Text, Toast} from 'native-base';
+import {Container,Content,Toast} from 'native-base';
 import {logout} from "../../components/logout";
 import {fetchProfile} from '../../redux/profile/action';
 import {connect} from 'react-redux';
-
 import Loader from '../../components/generalComponents/Loader';
-import Error from '../../components/profileComponents/Error'
+import Error from '../../components/profileComponents/Error';
 import HeaderComponent from '../../components/profileComponents/HeaderComponent';
-import GridComponent from '../../components/profileComponents/GridComponent'
+import GridComponent from '../../components/profileComponents/GridComponent';
+import ListComponent from '../../components/profileComponents/ListComponent';
+
 class ProfileScreen extends React.Component {
     componentDidMount() {
 
         this.props.dispatch(fetchProfile())
     };
+
     logOut = () => {
         logout();
         Toast.show({
@@ -29,7 +30,7 @@ class ProfileScreen extends React.Component {
         this.props.navigation.navigate('Notifications')
     };
 
-    viewBlockouts=()=>{
+    viewBlockouts = () => {
         this.props.navigation.navigate('Blockouts')
     };
 
@@ -37,94 +38,21 @@ class ProfileScreen extends React.Component {
         const {error, loading} = this.props;
         if (error) {
             return (
-               <Error {...this.props}/>
+                <Error {...this.props}/>
             )
         }
         if (loading) {
             return (
-               <Loader/>
+                <Loader/>
             )
         }
         return (
             <Container>
                 <Content>
-                    <HeaderComponent {...this.props}/>
-                    <GridComponent {...this.props}/>
-                    <List>
-                        <ListItem itemHeader>
-                            <Text>Settings</Text>
-                        </ListItem>
-                        <ListItem icon onPress={this.viewNotification}>
-                            <Left>
-                                <Icon name="ios-notifications"/>
-                            </Left>
-                            <Body>
-                                <Text>Notifications</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem icon onPress={this.viewBlockouts}>
-                            <Left>
-                                <Icon type="Entypo" name="block"/>
-                            </Left>
-                            <Body>
-                                <Text>Blockouts</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem icon>
-                            <Left>
-                                <Icon name="ios-paper"/>
-                            </Left>
-                            <Body>
-                                <Text>Edit Info</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem icon>
-                            <Left>
-                                <Icon name="ios-calendar"/>
-                            </Left>
-                            <Body>
-                                <Text>Calendar</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem itemHeader>
-                            <Text>Support</Text>
-                        </ListItem>
-                        <ListItem icon>
-                            <Left>
-                                <Icon name="ios-help-circle-outline"/>
-                            </Left>
-                            <Body>
-                                <Text>Help</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                        <ListItem icon onPress={this.logOut}>
-                            <Left>
-                                <Icon type="Feather" name="power"/>
-                            </Left>
-                            <Body>
-                                <Text>Logout</Text>
-                            </Body>
-                            <Right>
-                                <Icon active name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                    </List>
-
+                    <HeaderComponent profile={this.props.profile}/>
+                    <GridComponent profile={this.props.profile}/>
+                    <ListComponent logOut={this.logOut} viewBlockouts={this.viewBlockouts}
+                                   viewNotification={this.viewNotification}/>
                 </Content>
             </Container>
 

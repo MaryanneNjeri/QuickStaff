@@ -4,6 +4,7 @@ import {StyleSheet} from "react-native";
 import {Row, Grid} from 'react-native-easy-grid';
 
 export default class GridComponent extends  React.Component{
+
     render() {
         return (
             <Grid>
