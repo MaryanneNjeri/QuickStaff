@@ -12,7 +12,9 @@ export default class HeaderComponent extends React.Component {
                 </Body>
                 <Right>
                     <Icon type="Entypo" name="user" style={{color: 'white', fontSize: 25}}
-                          onPress={this.openActionSheet}/>
+                          onPress={() => {
+                              this.props.openActionSheet()
+                          }}/>
                 </Right>
             </Header>
         )

@@ -109,7 +109,7 @@ class LoginScreen extends Component {
                         <View style={styles.loginContainer}>
 
 
-                            <Image resizeMode="contain" style={styles.logo} source={require('../../assets/images/logo.png')}/>
+                            <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')}/>
                         </View>
 
                         <Form>

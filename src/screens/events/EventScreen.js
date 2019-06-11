@@ -89,7 +89,7 @@ class EventScreen extends React.Component {
         return (
             <Container>
                 <Content>
-                   <HeaderComponent/>
+                   <HeaderComponent openActionSheet={this.openActionSheet}/>
 
                     <Tabs>
                         <Tab heading={<TabHeading><Text>All</Text></TabHeading>}>
