@@ -1,27 +1,19 @@
 import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-    TouchableHighlight,
-    AsyncStorage
-} from 'react-native';
-
-import {Content, Container, Form, Input, Item, Toast, Spinner} from "native-base";
+import {View, Text, StyleSheet, Image, TouchableOpacity, AsyncStorage} from 'react-native';
+import {Content, Container,Toast, Spinner} from "native-base";
 import {validateInput} from "../../components/validateInput";
 import {LinearGradient} from 'expo';
 import {connect} from 'react-redux';
 import {login} from '../../redux/login/action';
+import LoginForm from '../../components/loginComponent/LoginForm'
 const _ = require('lodash');
 
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            email:'',
+            password:'',
             errors: {},
             token: '',
             loading: false
@@ -30,29 +22,21 @@ class LoginScreen extends Component {
     onRedirect = () => {
         this.props.navigation.navigate('PasswordReset')
     };
-
-    isValid() {
-        const {errors, isValid} = validateInput(this.state);
-
+    signIn = async (email,password) => {
+        let user = {
+            email: email,
+            password: password
+        };
+        const{ errors, isValid}=validateInput(user);
         if (!isValid) {
             this.setState({
                 errors
             })
         }
-        return isValid;
-    }
-    signIn = async () => {
-        const {email, password} = this.state;
-        let user = {
-            email: email,
-            password: password
-        };
-
-        if (this.isValid()) {
+        else if(isValid) {
             this.setState({errors: {}, loading: true});
             this.props.dispatch(login(user));
-
-            AsyncStorage.getItem('token').then((data)=>{
+            AsyncStorage.getItem('token').then((data) => {
                 if (data) {
                     Toast.show({
                         text: " Successfully Log in",
@@ -61,8 +45,7 @@ class LoginScreen extends Component {
                         duration: 3000
                     });
                     this.props.navigation.navigate('App')
-                }
-                else {
+                } else {
                     Toast.show({
                         text: "Invalid login credentials",
                         type: "danger",
@@ -73,20 +56,11 @@ class LoginScreen extends Component {
                     this.props.navigation.navigate('Auth');
                 }
             });
-
-
-
-
-
-
-
-
         }
-    }
 
+    };
 
     render() {
-        const {errors} = this.state;
         const {loading} = this.props;
         if (loading) {
             return (
@@ -101,57 +75,12 @@ class LoginScreen extends Component {
                 <LinearGradient
                     colors={['#ff6600', '#ff6699']}
                     style={styles.container}>
-
-
                     <Content contentContainerStyle={{justifyContent: 'center', flex: 1}}>
-
-
                         <View style={styles.loginContainer}>
-
-
                             <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')}/>
                         </View>
 
-                        <Form>
-                            {errors ? <Text>{errors.email}</Text> : null
-                            }
-                            <Item rounded style={styles.input}>
-                                <Input
-                                    style={{color: 'white'}}
-                                    placeholder='Email'
-
-                                    placeholderTextColor='rgba(225,225,225,0.7)'
-                                    onChangeText={(email) => this.setState({email})}
-                                />
-
-                            </Item>
-                            {errors ? <Text>{errors.password}</Text> : null
-                            }
-                            <Item rounded style={styles.input}>
-                                <Input
-                                    placeholder='Password'
-                                    style={{color: 'white'}}
-                                    placeholderTextColor='rgba(225,225,225,0.7)'
-                                    onChangeText={(password) => this.setState({password})}
-                                    secureTextEntry/>
-
-                            </Item>
-
-                        </Form>
-                        <TouchableHighlight style={styles.buttonContainer}
-                                            onPress={() => {
-                                                this.signIn(this.state.email, this.state.password)
-                                            }}
-
-                        >
-                            <Text style={styles.buttonText}>Log in</Text>
-                        </TouchableHighlight>
-                        <TouchableOpacity style={styles.reset}
-                                          onPress={this.onRedirect}>
-                            <Text style={{color: 'white'}}>Password Reset </Text>
-                        </TouchableOpacity>
-
-
+                        <LoginForm {...this.state} signIn={this.signIn} onRedirect={this.onRedirect}/>
                     </Content>
                 </LinearGradient>
             </Container>
@@ -205,16 +134,11 @@ const styles = StyleSheet.create({
 
 
     },
-
-
 });
 // we define the props
 const mapStateToProps = state => ({
     loading: state.token.loading,
     error: state.token.Error,
 });
-
-
-// we connect our login form with redux
 export default connect(mapStateToProps)(LoginScreen)
 

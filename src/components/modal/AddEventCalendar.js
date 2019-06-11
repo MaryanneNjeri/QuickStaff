@@ -42,17 +42,14 @@ export class AddEventCalendar extends React.Component {
                 <Modal visible={this.props.isModalVisible}
                        animationType="slide"
                        transparent={false}>
-
                     <Content>
-
                         <View style={{marginTop: 22}}>
                             <TouchableHighlight
                                 style={{alignSelf: "flex-end"}}
 
                                 onPress={() => {
                                     this.props.closeModal(this.props.isModalVisible)
-                                }}
-                            >
+                                }}>
                                 <Text style={{fontWeight: '200', color: '#303B43', fontSize: 13}}> Close<Icon
                                     name="close" type="EvilIcons" style={{fontSize: 20, color: '#303B43'}}/></Text>
                             </TouchableHighlight>
