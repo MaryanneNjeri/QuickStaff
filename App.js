@@ -8,7 +8,6 @@ import { store } from './src/redux/store';
 export default class App extends React.Component {
   render() {
     return (
-    // to use redux  with our app we'll have to wrap around provider tags
       <Root>
         <Provider store={store}>
           <MainAppNavigation />
