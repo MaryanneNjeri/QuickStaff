@@ -14,7 +14,9 @@
 
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "ios.icon": "./assets/images/icon-100x100.png",
+    "android.icon": "./assets/images/icon-200x200.png",
+    "icon": "./assets/images/icon-200x200.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
