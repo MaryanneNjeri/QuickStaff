@@ -1,19 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppContainer from './AppContainer';
+import {Provider} from 'react-redux';
+import {store} from './Redux/store';import { Root } from "native-base"
+
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+    render() {
+
+        return (
+            // to use redux  with our app we'll have to wrap around provider tags
+            <Root>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+            </Root>
+        );
+    }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-}); 
+
