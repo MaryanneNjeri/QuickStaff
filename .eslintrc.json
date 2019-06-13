@@ -10,8 +10,20 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prop-types": ["error", { "ignore": ["navigation"] }],
         "no-use-before-define": ["error", { "variables": false }],
-        "global-require": 0
+        "global-require": 0,
+        "prefer-destructuring": ["error", {
+            "VariableDeclarator": {
+                "array": false,
+                "object": false
 
+            },
+            "AssignmentExpression": {
+                "array": false,
+                "object": false
+            }
+        }, {
+            "enforceForRenamedProperties": false
+        }]
 
     }
 }

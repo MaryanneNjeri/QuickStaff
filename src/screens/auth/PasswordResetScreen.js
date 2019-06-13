@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TextInput, Dimensions, Image, TouchableHighlight,
+  StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
 } from 'react-native';
 import { LinearGradient, Font } from 'expo';
+import { secondaryGradientArray } from '../../../constants/utlis/Colors';
 
-const { height, width } = Dimensions.get('window');
 export default class PasswordResetScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -19,10 +19,6 @@ export default class PasswordResetScreen extends React.Component {
       // reauthenticate = () =>{
 
       // }
-      resetPassword = () => {
-        // this.reauthenticate
-        this.props.navigation.navigate('Event');
-      };
 
       async componentDidMount() {
         await Font.loadAsync({ 'shadows-into-light': require('../../../assets/fonts/ShadowsIntoLight.ttf') });
@@ -35,7 +31,7 @@ export default class PasswordResetScreen extends React.Component {
         };
         return (
           <LinearGradient
-            colors={['#0066ff', '#0033cc']}
+            colors={secondaryGradientArray}
             style={styles.container}
           >
 

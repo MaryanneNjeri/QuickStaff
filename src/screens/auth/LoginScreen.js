@@ -12,7 +12,7 @@ import { validateInput } from '../../components/lib/functions/auth/validateInput
 import { login } from '../../redux/login/action';
 import LoginForm from '../../components/login/LoginForm';
 import Loader from '../../components/general/Loader';
-
+import primaryGradientArray from '../../../constants/utlis/Colors';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class LoginScreen extends Component {
     return (
       <Container>
         <LinearGradient
-          colors={['#ff6600', '#ff6699']}
+          colors={primaryGradientArray}
           style={styles.container}
         >
           <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
 LoginScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  loading: PropTypes.func.isRequired,
+
 };
 // we define the props
 const mapStateToProps = state => ({
