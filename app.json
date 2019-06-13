@@ -5,17 +5,15 @@
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "android": {
-      "package": "quickstaff.com"
+      "package": "quickstaff.com",
+      "icon": "./assets/images/icon-200x200.png"
     },
     "platforms": [
       "ios",
       "android"
     ],
-
     "version": "1.0.0",
     "orientation": "portrait",
-    "ios.icon": "./assets/images/icon-100x100.png",
-    "android.icon": "./assets/images/icon-200x200.png",
     "icon": "./assets/images/icon-200x200.png",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -29,7 +27,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "quickstaff.com"
+      "bundleIdentifier": "quickstaff.com",
+      "icon": "./assets/images/icon-200x200.png"
     }
   }
 }
