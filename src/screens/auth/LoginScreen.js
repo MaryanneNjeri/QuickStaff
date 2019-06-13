@@ -14,6 +14,23 @@ import LoginForm from '../../components/login/LoginForm';
 import Loader from '../../components/general/Loader';
 import primaryGradientArray from '../../../constants/utlis/Colors';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 15,
+  },
+  loginContainer: {
+    alignItems: 'center',
+    flexGrow: 0.5,
+    justifyContent: 'center',
+  },
+  logo: {
+    position: 'absolute',
+    width: 300,
+    height: 100,
+  },
+
+});
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -95,23 +112,6 @@ class LoginScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-  },
-  loginContainer: {
-    alignItems: 'center',
-    flexGrow: 0.5,
-    justifyContent: 'center',
-  },
-  logo: {
-    position: 'absolute',
-    width: 300,
-    height: 100,
-  },
-
-});
 
 LoginScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,

@@ -11,7 +11,44 @@ import { fetchBlockouts } from '../../redux/blockouts/action';
 const _ = require('lodash');
 
 const { width } = Dimensions.get('window');
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-between',
+    borderWidth: 0.3,
+    height: width / 4,
+    color: '#BDC3C7',
+    elevation: 1,
+    margin: 10,
+    borderLeftWidth: 5,
+    borderLeftColor: 'tomato',
 
+
+  },
+  background: {
+    backgroundColor: '#e3f1f1',
+    padding: 10,
+    fontWeight: '200',
+    borderRadius: 2,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+  },
+
+});
 class BlockoutScreen extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchBlockouts());
@@ -102,44 +139,7 @@ const mapStateToProps = state => ({
   loading: state.blockouts.loading,
   error: state.blockouts.Error,
 });
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    flexDirection: 'row',
-    padding: 10,
-    justifyContent: 'space-between',
-    borderWidth: 0.3,
-    height: width / 4,
-    color: '#BDC3C7',
-    elevation: 1,
-    margin: 10,
-    borderLeftWidth: 5,
-    borderLeftColor: 'tomato',
 
-
-  },
-  background: {
-    backgroundColor: '#e3f1f1',
-    padding: 10,
-    fontWeight: '200',
-    borderRadius: 2,
-    borderColor: '#ddd',
-    borderBottomWidth: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
-  },
-
-});
 BlockoutScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,
 

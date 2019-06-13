@@ -5,13 +5,18 @@ import {
 } from 'native-base';
 import Geocoder from 'react-native-geocoding';
 import { store } from '../../redux/store';
-import { ClientDetailsTab } from '../../components/events/eventDetails/tabs/ClientDetailsTab';
-import { EventDetailsTab } from '../../components/events/eventDetails/tabs/EventDetailsTab';
-import { VenueDetailsTab } from '../../components/events/eventDetails/tabs/VenueDetailsTab';
+import ClientDetailsTab from '../../components/events/eventDetails/tabs/ClientDetailsTab';
+import EventDetailsTab from '../../components/events/eventDetails/tabs/EventDetailsTab';
+import VenueDetailsTab from '../../components/events/eventDetails/tabs/VenueDetailsTab';
 import { API_KEY } from '../../../config/config';
 
 const _ = require('lodash');
 
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'space-between',
+  },
+});
 export default class EventDetailsScreen extends React.Component {
   constructor() {
     super();
@@ -93,8 +98,3 @@ export default class EventDetailsScreen extends React.Component {
       );
     }
 }
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-between',
-  },
-});
