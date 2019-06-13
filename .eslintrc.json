@@ -1,16 +1,16 @@
 {
     "env": {
-        "node": true, // this is the best starting point
-        "browser": true, // for react web
-        "es6": true // enables es6 features
+        "node": true,
+        "browser": true,
+        "es6": true
     },
-    "parser": "babel-eslint", // needed to make babel stuff work properly
+    "parser": "babel-eslint",
     "extends": "airbnb",
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prop-types": ["error", { "ignore": ["navigation"] }],
         "no-use-before-define": ["error", { "variables": false }],
-        "global-require": 0,
+        "global-require": 0
 
 
     }
