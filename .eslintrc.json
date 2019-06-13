@@ -7,6 +7,11 @@
     "parser": "babel-eslint", // needed to make babel stuff work properly
     "extends": "airbnb",
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prop-types": ["error", { "ignore": ["navigation"] }],
+        "no-use-before-define": ["error", { "variables": false }],
+        "global-require": 0,
+
+
     }
 }
