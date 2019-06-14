@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator, createStackNavigator } from 'react-navigation/typescript/react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { LinearGradient } from 'expo';
 import { Icon } from 'react-native-elements/src/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
