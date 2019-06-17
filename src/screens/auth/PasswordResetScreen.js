@@ -102,6 +102,7 @@ export default class PasswordResetScreen extends React.Component {
             style={styles.input}
             placeholderTextColor="rgba(225,225,225,0.7)"
             value={userDetails.email}
+            editable={false}
             onChangeText={(e) => {
               const user = userDetails;
               user.email = e;
