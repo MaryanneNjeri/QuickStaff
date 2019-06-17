@@ -2,7 +2,7 @@ import React from 'react';
 import {
   StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
 } from 'react-native';
-import { LinearGradient, Font } from 'expo';
+import { LinearGradient } from 'expo';
 import { secondaryGradientArray } from '../../../constants/utlis/Colors';
 
 const styles = StyleSheet.create({
@@ -14,11 +14,12 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
     fontSize: 20,
-    fontFamily: 'shadows-into-light',
+
   },
   header: {
     alignItems: 'center',
     paddingBottom: 20,
+    fontWeight: '200',
 
   },
   logo: {
@@ -61,80 +62,91 @@ const styles = StyleSheet.create({
 
 });
 export default class PasswordResetScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { oldpassword: '' };
-    this.state = { newpassword: '' };
+  constructor() {
+    super();
+    this.state = {
+      userDetails: {},
+    };
   }
 
-      state = {
-        fontLoaded: false,
-      };
 
-      // reauthenticate = () =>{
+  componentDidMount() {
+    this.setState({
+      userDetails: {
+        email: this.props.navigation.state.params.profile.email,
+        password: '',
+      },
+    });
+  }
 
-      // }
+  render() {
+    const icon = {
+      url: 'https://img.icons8.com/clouds/400/000000/lock-2.png',
+    };
+    const { userDetails } = this.state;
+    return (
+      <LinearGradient
+        colors={secondaryGradientArray}
+        style={styles.container}
+      >
 
-      async componentDidMount() {
-        await Font.loadAsync({ 'shadows-into-light': require('../../../assets/fonts/ShadowsIntoLight.ttf') });
-        this.setState({ fontLoaded: true });
-      }
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <Image resizeMode="contain" source={icon} style={styles.logo} />
+          </View>
+          <View style={styles.header}>
+            <Text style={styles.text}>Reset Your Password ?</Text>
 
-      render() {
-        const icon = {
-          url: 'https://img.icons8.com/clouds/400/000000/lock-2.png',
-        };
-        return (
-          <LinearGradient
-            colors={secondaryGradientArray}
-            style={styles.container}
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            value={userDetails.email}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.email = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+          <TextInput
+            style={styles.input}
+            returnKeyType="done"
+            placeholder="Current Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            secureTextEntry
+            value={userDetails.oldPassword}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.oldPassword = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+
+          <TextInput
+            style={styles.input}
+            returnKeyType="done"
+            placeholder="New Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            secureTextEntry
+            value={userDetails.newPassword}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.newPassword = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+          <TouchableHighlight
+            style={styles.buttonContainer}
+            onPress={() => this.resetPassword}
           >
-
-            <View style={styles.container}>
-              <View style={styles.card}>
-                <Image resizeMode="contain" source={icon} style={styles.logo} />
-              </View>
-
-              {
-            this.state.fontLoaded ? (
-              <View style={styles.header}>
-                <Text style={styles.text}>Reset Your Password ?</Text>
+            <Text style={styles.buttonText}>Reset your password</Text>
+          </TouchableHighlight>
 
 
-              </View>
-            ) : null
-        }
+        </View>
 
 
-              <TextInput
-                style={styles.input}
-                returnKeyType="done"
-                placeholder="Current Password"
-                placeholderTextColor="rgba(225,225,225,0.7)"
-                onChangeText={oldpassword => this.setState({ oldpassword })}
-                secureTextEntry
-              />
-
-              <TextInput
-                style={styles.input}
-                returnKeyType="done"
-                placeholder="New Password"
-                placeholderTextColor="rgba(225,225,225,0.7)"
-                onChangeText={newpassword => this.setState({ newpassword })}
-                secureTextEntry
-              />
-              <TouchableHighlight
-                style={styles.buttonContainer}
-                onPress={() => this.resetPassword(this.state.oldpassword, this.state.newpassword)}
-              >
-                <Text style={styles.buttonText}>Reset your password</Text>
-              </TouchableHighlight>
-
-
-            </View>
-
-
-          </LinearGradient>
-        );
-      }
+      </LinearGradient>
+    );
+  }
 }

@@ -35,7 +35,7 @@ class ProfileScreen extends React.Component {
     };
 
   resetPassword = () => {
-    this.props.navigation.navigate('PasswordReset');
+    this.props.navigation.navigate('PasswordReset', { profile: this.props.profile });
   };
 
   render() {
