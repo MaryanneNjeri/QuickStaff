@@ -8,7 +8,7 @@ import {
 import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { validateInput } from '../../components/lib/functions/auth/validateInput';
+import validate from '../../components/lib/functions/auth/validate';
 import { login } from '../../redux/login/action';
 import LoginForm from '../../components/login/LoginForm';
 import Loader from '../../components/general/Loader';
@@ -49,7 +49,7 @@ class LoginScreen extends Component {
       email,
       password,
     };
-    const { errors, isValid } = validateInput(user);
+    const { errors, isValid } = validate(user);
     if (!isValid) {
       this.setState({
         errors,
