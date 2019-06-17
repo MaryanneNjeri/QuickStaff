@@ -3,9 +3,10 @@ import {
   StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
 } from 'react-native';
 import { LinearGradient } from 'expo';
-import PropTypes from 'prop-types';
 import { secondaryGradientArray } from '../../../constants/utlis/Colors';
 import resetPasswordRequest from '../../api/resetPassword.api';
+import { validatePassword } from '../../components/lib/functions/auth/validate';
+import Loader from '../../components/general/Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,6 +69,8 @@ export default class PasswordResetScreen extends React.Component {
     super();
     this.state = {
       userDetails: {},
+      errors: {},
+      loading: false,
     };
   }
 
@@ -77,6 +80,8 @@ export default class PasswordResetScreen extends React.Component {
       userDetails: {
 
         email: this.props.navigation.state.params.profile.email,
+        oldPassword: '',
+        newPassword: '',
 
       },
     });
@@ -84,14 +89,30 @@ export default class PasswordResetScreen extends React.Component {
 
   resetPassword=() => {
     const { userDetails } = this.state;
-    resetPasswordRequest(userDetails);
+    console.log(userDetails);
+    const { errors, isValid } = validatePassword(userDetails);
+    if (!isValid) {
+      this.setState({
+        errors,
+      });
+    } else if (isValid) {
+      this.setState({ errors: {}, loading: true });
+
+      resetPasswordRequest(userDetails);
+    }
   };
 
   render() {
     const icon = {
       url: 'https://img.icons8.com/clouds/400/000000/lock-2.png',
     };
-    const { userDetails } = this.state;
+    const { userDetails, loading, errors } = this.state;
+    if (loading) {
+      return (
+        <Loader />
+      );
+    }
+
     return (
       <LinearGradient
         colors={secondaryGradientArray}
@@ -106,6 +127,8 @@ export default class PasswordResetScreen extends React.Component {
             <Text style={styles.text}>Reset Your Password ?</Text>
 
           </View>
+
+
           <TextInput
             style={styles.input}
             placeholderTextColor="rgba(225,225,225,0.7)"
@@ -117,6 +140,7 @@ export default class PasswordResetScreen extends React.Component {
               this.setState({ userDetails: user });
             }}
           />
+          {errors ? <Text>{errors.oldPassword}</Text> : null}
           <TextInput
             style={styles.input}
             placeholder="Current Password"
@@ -129,6 +153,7 @@ export default class PasswordResetScreen extends React.Component {
               this.setState({ userDetails: user });
             }}
           />
+          {errors ? <Text>{errors.newPassword}</Text> : null}
 
           <TextInput
             style={styles.input}
@@ -158,4 +183,3 @@ export default class PasswordResetScreen extends React.Component {
     );
   }
 }
-
