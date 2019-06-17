@@ -34,33 +34,39 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Blockouts');
     };
 
-    render() {
-      const { error, loading } = this.props;
-      if (error) {
-        return (
-          <Error {...this.props} />
-        );
-      }
-      if (loading) {
-        return (
-          <Loader />
-        );
-      }
-      return (
-        <Container>
-          <Content>
-            <HeaderComponent profile={this.props.profile} />
-            <GridComponent profile={this.props.profile} />
-            <ListComponent
-              logOut={this.logOut}
-              viewBlockouts={this.viewBlockouts}
-              viewNotification={this.viewNotification}
-            />
-          </Content>
-        </Container>
+  resetPassword = () => {
+    this.props.navigation.navigate('PasswordReset');
+  };
 
+  render() {
+    const { error, loading } = this.props;
+    if (error) {
+      return (
+        <Error {...this.props} />
       );
     }
+    if (loading) {
+      return (
+        <Loader />
+      );
+    }
+    return (
+      <Container>
+        <Content>
+          <HeaderComponent profile={this.props.profile} />
+          <GridComponent profile={this.props.profile} />
+          <ListComponent
+            logOut={this.logOut}
+            viewBlockouts={this.viewBlockouts}
+            viewNotification={this.viewNotification}
+            resetPassword={this.resetPassword}
+
+          />
+        </Content>
+      </Container>
+
+    );
+  }
 }
 ProfileScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Item } from 'native-base';
 import {
-  StyleSheet, Text, TouchableHighlight, TouchableOpacity, View,
+  StyleSheet, Text, TouchableHighlight,View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -46,7 +46,7 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    const { errors, onRedirect, signIn } = this.props;
+    const { errors, signIn } = this.props;
     const { email, password } = this.state;
     return (
       <View>
@@ -84,12 +84,7 @@ export default class LoginForm extends React.Component {
         >
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableHighlight>
-        <TouchableOpacity
-          style={styles.reset}
-          onPress={onRedirect}
-        >
-          <Text style={{ color: 'white' }}>Password Reset </Text>
-        </TouchableOpacity>
+
       </View>
 
     );
@@ -97,6 +92,5 @@ export default class LoginForm extends React.Component {
 }
 LoginForm.propTypes = {
   signIn: PropTypes.func.isRequired,
-  onRedirect: PropTypes.func.isRequired,
 
 };

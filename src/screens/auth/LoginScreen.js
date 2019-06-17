@@ -43,9 +43,6 @@ class LoginScreen extends Component {
     };
   }
 
-    onRedirect = () => {
-      this.props.navigation.navigate('PasswordReset');
-    };
 
   signIn = async (email, password) => {
     const user = {
@@ -104,7 +101,7 @@ class LoginScreen extends Component {
               <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')} />
             </View>
 
-            <LoginForm {...this.state} signIn={this.signIn} onRedirect={this.onRedirect} />
+            <LoginForm {...this.state} signIn={this.signIn} />
           </Content>
         </LinearGradient>
       </Container>
