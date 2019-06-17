@@ -3,7 +3,9 @@ import {
   StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
 } from 'react-native';
 import { LinearGradient } from 'expo';
+import PropTypes from 'prop-types';
 import { secondaryGradientArray } from '../../../constants/utlis/Colors';
+import resetPasswordRequest from '../../api/resetPassword.api';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,11 +75,17 @@ export default class PasswordResetScreen extends React.Component {
   componentDidMount() {
     this.setState({
       userDetails: {
+
         email: this.props.navigation.state.params.profile.email,
-        password: '',
+
       },
     });
   }
+
+  resetPassword=() => {
+    const { userDetails } = this.state;
+    resetPasswordRequest(userDetails);
+  };
 
   render() {
     const icon = {
@@ -111,7 +119,6 @@ export default class PasswordResetScreen extends React.Component {
           />
           <TextInput
             style={styles.input}
-            returnKeyType="done"
             placeholder="Current Password"
             placeholderTextColor="rgba(225,225,225,0.7)"
             secureTextEntry
@@ -138,7 +145,7 @@ export default class PasswordResetScreen extends React.Component {
           />
           <TouchableHighlight
             style={styles.buttonContainer}
-            onPress={() => this.resetPassword}
+            onPress={() => this.resetPassword()}
           >
             <Text style={styles.buttonText}>Reset your password</Text>
           </TouchableHighlight>
@@ -151,3 +158,4 @@ export default class PasswordResetScreen extends React.Component {
     );
   }
 }
+
