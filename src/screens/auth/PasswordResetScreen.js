@@ -96,7 +96,7 @@ export default class PasswordResetScreen extends React.Component {
         errors,
       });
     } else if (isValid) {
-      this.setState({ errors: {}, loading: true });
+      this.setState({ errors: {} });
 
       resetPasswordRequest(userDetails);
     }
