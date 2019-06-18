@@ -12,10 +12,11 @@ import {
   Tabs,
   TabHeading,
   ActionSheet,
-  Toast,
+  Toast, View,
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Notifications } from 'expo';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -39,6 +40,7 @@ class EventScreen extends React.Component {
 
     registerForPushNotificationAsync();
   }
+
 
     eventDetails = (id) => {
       this.props.navigation.navigate('EventDetails', { id });
@@ -95,6 +97,8 @@ class EventScreen extends React.Component {
 
     render() {
       const { error, loading, events } = this.props;
+
+
       if (error) {
         return (
           <Error {...this.props} />
@@ -105,6 +109,7 @@ class EventScreen extends React.Component {
           <Loader />
         );
       }
+
       return (
         <Container>
           <Content>
