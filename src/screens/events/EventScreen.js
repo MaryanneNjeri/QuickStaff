@@ -21,6 +21,7 @@ import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
 import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
+import registerForPushNotificationAsync from '../../api/auth.api';
 
 const _ = require('lodash');
 
@@ -33,7 +34,10 @@ const cancelIndex = 2;
 
 class EventScreen extends React.Component {
   async componentDidMount() {
-    this.props.dispatch(fetchEvents());
+    const { dispatch } = this.props;
+    dispatch(fetchEvents());
+
+    registerForPushNotificationAsync();
   }
 
     eventDetails = (id) => {

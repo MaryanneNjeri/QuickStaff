@@ -38,8 +38,10 @@ class ProfileScreen extends React.Component {
     this.props.navigation.navigate('PasswordReset', { profile: this.props.profile });
   };
 
+
   render() {
-    const { error, loading } = this.props;
+    const { error, loading, profile } = this.props;
+
     if (error) {
       return (
         <Error {...this.props} />
@@ -53,8 +55,8 @@ class ProfileScreen extends React.Component {
     return (
       <Container>
         <Content>
-          <HeaderComponent profile={this.props.profile} />
-          <GridComponent profile={this.props.profile} />
+          <HeaderComponent profile={profile} />
+          <GridComponent profile={profile} />
           <ListComponent
             logOut={this.logOut}
             viewBlockouts={this.viewBlockouts}
