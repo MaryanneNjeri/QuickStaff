@@ -2,6 +2,9 @@ import React from 'react';
 import {
   StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
 } from 'react-native';
+import { store } from '../../redux/store';
+import { validatePassword } from '../lib/functions/auth/validate';
+import resetPasswordRequest from '../../api/resetPassword.api';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,13 +72,16 @@ export default class ResetPasswordForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      userDetails: {},
-
+      userDetails: {
+        email: '',
+        oldPassword: '',
+        newPassword: '',
+      },
     };
   }
 
   componentDidMount() {
-    const { email } = this.props;
+    const email = store.getState().details.user.email;
     this.setState({
       userDetails: {
         email,
@@ -85,70 +91,81 @@ export default class ResetPasswordForm extends React.Component {
     });
   }
 
-  render() {
-    const { userDetails } = this.state;
-    const { errors, resetPassword } = this.props;
+    resetPassword=() => {
+      const { userDetails } = this.state;
 
-    return (
+      const { errors, isValid } = validatePassword(userDetails);
+      if (!isValid) {
+        this.setState({
+          errors,
+        });
+      } else if (isValid) {
+        this.setState({ errors: {} });
 
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <Image resizeMode="contain" source={icon} style={styles.logo} />
+        resetPasswordRequest(userDetails);
+      }
+    };
+
+    render() {
+      const { userDetails, errors } = this.state;
+      return (
+
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <Image resizeMode="contain" source={icon} style={styles.logo} />
+          </View>
+          <View style={styles.header}>
+            <Text style={styles.text}>Reset Your Password ?</Text>
+          </View>
+          <TextInput
+
+            style={styles.input}
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            value={userDetails.email}
+            editable={false}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.email = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+          {errors ? <Text>{errors.oldPassword}</Text> : null}
+          <TextInput
+            style={styles.input}
+            placeholder="Current Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            secureTextEntry
+            value={userDetails.oldPassword}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.oldPassword = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+          {errors ? <Text>{errors.newPassword}</Text> : null}
+
+          <TextInput
+            style={styles.input}
+            returnKeyType="done"
+            placeholder="New Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            secureTextEntry
+            value={userDetails.newPassword}
+            onChangeText={(e) => {
+              const user = userDetails;
+              user.newPassword = e;
+              this.setState({ userDetails: user });
+            }}
+          />
+          <TouchableHighlight
+            style={styles.buttonContainer}
+            onPress={this.resetPassword}
+          >
+            <Text style={styles.buttonText}>Reset your password</Text>
+          </TouchableHighlight>
+
+
         </View>
-        <View style={styles.header}>
-          <Text style={styles.text}>Reset Your Password ?</Text>
-
-        </View>
-
-
-        <TextInput
-          style={styles.input}
-          placeholderTextColor="rgba(225,225,225,0.7)"
-          value={userDetails.email}
-          editable={false}
-          onChangeText={(e) => {
-            const user = userDetails;
-            user.email = e;
-            this.setState({ userDetails: user });
-          }}
-        />
-        {errors ? <Text>{errors.oldPassword}</Text> : null}
-        <TextInput
-          style={styles.input}
-          placeholder="Current Password"
-          placeholderTextColor="rgba(225,225,225,0.7)"
-          secureTextEntry
-          value={userDetails.oldPassword}
-          onChangeText={(e) => {
-            const user = userDetails;
-            user.oldPassword = e;
-            this.setState({ userDetails: user });
-          }}
-        />
-        {errors ? <Text>{errors.newPassword}</Text> : null}
-
-        <TextInput
-          style={styles.input}
-          returnKeyType="done"
-          placeholder="New Password"
-          placeholderTextColor="rgba(225,225,225,0.7)"
-          secureTextEntry
-          value={userDetails.newPassword}
-          onChangeText={(e) => {
-            const user = userDetails;
-            user.newPassword = e;
-            this.setState({ userDetails: user });
-          }}
-        />
-        <TouchableHighlight
-          style={styles.buttonContainer}
-          onPress={resetPassword()}
-        >
-          <Text style={styles.buttonText}>Reset your password</Text>
-        </TouchableHighlight>
-
-
-      </View>
-    );
-  }
+      );
+    }
 }
