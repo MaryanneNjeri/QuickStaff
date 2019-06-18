@@ -14,7 +14,7 @@ export default function resetPasswordRequest(userDetails) {
   getToken().then((token) => {
     const toke = token.replace(/^"(.*)"$/, '$1');
     const bearer = `Bearer ${toke}`;
-    fetch(`${API_URL}/resetPassword`, {
+    fetch('https://8279f0ac.ngrok.io/resetPassword', {
       method: 'POST',
       body: JSON.stringify(userDetails),
       headers: {
