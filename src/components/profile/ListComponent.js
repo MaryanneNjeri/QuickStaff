@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export default class ListComponent extends React.Component {
   render() {
     const {
-      resetPassword, viewBlockouts, viewNotification, logOut,
+      resetPassword, viewBlockouts, viewNotification, logOut, viewProfile,
     } = this.props;
     return (
       <List>
@@ -37,7 +37,7 @@ export default class ListComponent extends React.Component {
             <Icon active name="arrow-forward" />
           </Right>
         </ListItem>
-        <ListItem icon>
+        <ListItem icon onPress={viewProfile}>
           <Left>
             <Icon name="ios-paper" />
           </Left>
@@ -103,6 +103,7 @@ ListComponent.propTypes = {
   resetPassword: PropTypes.func.isRequired,
   viewBlockouts: PropTypes.func.isRequired,
   viewNotification: PropTypes.func.isRequired,
+  viewProfile: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,
 
 
