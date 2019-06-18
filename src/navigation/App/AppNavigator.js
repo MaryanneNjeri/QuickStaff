@@ -10,7 +10,7 @@ import EventDetailsScreen from '../../screens/events/EventDetailsScreen';
 import PasswordResetScreen from '../../screens/auth/PasswordResetScreen';
 import NotificationScreen from '../../screens/profile/NotificationScreen';
 import BlockoutScreen from '../../screens/profile/BlockoutScreen';
-
+import EditScreen from '../../screens/profile/EditScreen';
 
 const AppNavigator = createStackNavigator({
   Event: {
@@ -105,7 +105,24 @@ const AppNavigator = createStackNavigator({
       },
     },
   },
+  Edit: {
+    screen: EditScreen,
+    navigationOptions: {
+      title: 'EditProfile',
+      headerBackground: (
+        <LinearGradient
+          colors={['#0066ff', '#0033cc']}
+          style={{ flex: 1 }}
+        />
+      ),
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: '200',
+      },
+    },
+  },
 
 });
+
 
 export default AppNavigator;
