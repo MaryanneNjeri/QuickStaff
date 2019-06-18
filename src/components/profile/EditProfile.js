@@ -1,8 +1,10 @@
 import React from 'react';
 import {
-  View, Text, Icon, Body, Form, Item, Label, Input, Button,
+  View, Text, Icon, Form, Item, Label, Input, Button,
 } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
+import { store } from '../../redux/store';
+
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -13,21 +15,51 @@ const styles = StyleSheet.create({
 
 
   },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: 'white',
+    alignSelf: 'center',
+    position: 'absolute',
+
+
+  },
 });
 // eslint-disable-next-line react/prefer-stateless-function
 export default class EditProfile extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      profile: {},
+
+    };
+  }
+
+  componentDidMount() {
+    const profile = store.getState().details.user;
+    this.setState({
+      profile: {
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        phone: profile.phone,
+        email: profile.email,
+        profile_image: profile.profile_image,
+      },
+
+    });
+  }
+
   render() {
+    const { profile } = this.state;
     return (
 
       <View style={{ marginTop: 22 }}>
 
 
-        <Icon
-          type="Entypo"
-          name="user"
-          style={{ fontSize: 100, color: '#0052cc', textAlign: 'center' }}
-        />
-        <View style={{ padding: 18 }}>
+        <Image style={styles.avatar} source={{ uri: profile.profile_image }} />
+        <View style={{ padding: 18, paddingTop: 120 }}>
           <Form>
             <Item floatingLabel>
               <Icon
@@ -38,6 +70,7 @@ export default class EditProfile extends React.Component {
               <Label style={{ color: '#303B43', fontSize: 10 }}>First Name</Label>
               <Input
                 style={{ fontSize: 15 }}
+                value={profile.first_name}
               />
             </Item>
             <Item floatingLabel>
@@ -49,6 +82,7 @@ export default class EditProfile extends React.Component {
               <Label style={{ color: '#303B43', fontSize: 10 }}>Last Name</Label>
               <Input
                 style={{ fontSize: 15 }}
+                value={profile.last_name}
               />
             </Item>
 
@@ -62,6 +96,8 @@ export default class EditProfile extends React.Component {
               <Label style={{ color: '#303B43', fontSize: 10 }}>Email</Label>
               <Input
                 style={{ fontSize: 15 }}
+                value={profile.email}
+
               />
             </Item>
 
@@ -74,6 +110,7 @@ export default class EditProfile extends React.Component {
               <Label style={{ color: '#303B43', fontSize: 10 }}>Phone</Label>
               <Input
                 style={{ fontSize: 15 }}
+                value={profile.phone}
               />
             </Item>
 
