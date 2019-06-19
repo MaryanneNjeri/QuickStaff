@@ -3,6 +3,7 @@ import { getToken } from '../components/lib/functions/auth/getAuthConfig';
 
 
 export default function editProfile(profile) {
+  console.log(profile);
   function handleErrors(response) {
     console.log(response.status);
     if (!response.ok) {

@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  View, Text, Icon, Form, Item, Label, Input, Button,
+  View, Text, Icon, Form, Item, Label, Input, Button, Content,
 } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
+import { ImagePicker, Permissions, Constants } from 'expo';
 import { store } from '../../redux/store';
 import editProfile from '../../api/editProfile.api';
 
@@ -56,16 +57,69 @@ export default class EditProfile extends React.Component {
     editProfile(profile);
   };
 
+  getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
+
+  pickImage=async () => {
+    this.getPermissionAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    if (!result.cancelled) {
+      const profile = store.getState().details.user;
+      this.setState({
+        profile: {
+          first_name: profile.first_name,
+          last_name: profile.last_name,
+          phone: profile.phone,
+          email: profile.email,
+          profile_image: result.uri,
+        },
+      });
+    }
+  };
+
+
   render() {
     const { profile } = this.state;
     return (
 
-      <View style={{ marginTop: 22 }}>
+      <Content contentContainerStyle={{ marginTop: 22 }}>
 
 
         <Image style={styles.avatar} source={{ uri: profile.profile_image }} />
+
+
         <View style={{ padding: 18, paddingTop: 120 }}>
           <Form>
+            <Item floatingLabel>
+
+              <Label style={{ color: '#303B43', fontSize: 10 }}>Profile Image</Label>
+              <Input
+                style={{ fontSize: 15 }}
+                value={profile.profile_image}
+                onChangeText={(e) => {
+                  const prof = profile;
+                  profile.profile_image = e;
+                  this.setState({ profile: prof });
+                }}
+              />
+              <Icon
+                type="Feather"
+                name="upload"
+                style={{ fontSize: 15, color: '#303B43' }}
+                onPress={this.pickImage}
+              />
+            </Item>
             <Item floatingLabel>
               <Icon
                 type="Ionicons"
@@ -143,7 +197,7 @@ export default class EditProfile extends React.Component {
           </Form>
 
           <View style={styles.modalButton}>
-            <Button rounded style={styles.button} onPress={this.editProfile}>
+            <Button style={styles.button} onPress={this.editProfile}>
 
               <Text style={{
                 textAlign: 'center',
@@ -161,7 +215,7 @@ Edit Profile
         </View>
 
 
-      </View>
+      </Content>
 
     );
   }
