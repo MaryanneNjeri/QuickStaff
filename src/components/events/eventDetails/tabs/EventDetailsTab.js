@@ -56,7 +56,6 @@ export default class EventDetailsTab extends React.Component {
       return (
         <Container style={styles.container}>
           <Content>
-
             {isModalVisible ? <AddEventCalendar {...this.props} closeModal={this.closeModal} /> : null}
             <View style={{ paddingRight: 10, paddingLeft: 10 }}>
               <Text />
