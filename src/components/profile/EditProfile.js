@@ -4,7 +4,7 @@ import {
 } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import { store } from '../../redux/store';
-
+import editProfile from '../../api/editProfile.api';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -51,6 +51,11 @@ export default class EditProfile extends React.Component {
     });
   }
 
+  editProfile=() => {
+    const { profile } = this.state;
+    editProfile(profile);
+  };
+
   render() {
     const { profile } = this.state;
     return (
@@ -71,6 +76,11 @@ export default class EditProfile extends React.Component {
               <Input
                 style={{ fontSize: 15 }}
                 value={profile.first_name}
+                onChangeText={(e) => {
+                  const prof = profile;
+                  profile.first_name = e;
+                  this.setState({ profile: prof });
+                }}
               />
             </Item>
             <Item floatingLabel>
@@ -83,6 +93,11 @@ export default class EditProfile extends React.Component {
               <Input
                 style={{ fontSize: 15 }}
                 value={profile.last_name}
+                onChangeText={(e) => {
+                  const prof = profile;
+                  profile.last_name = e;
+                  this.setState({ profile: prof });
+                }}
               />
             </Item>
 
@@ -97,6 +112,11 @@ export default class EditProfile extends React.Component {
               <Input
                 style={{ fontSize: 15 }}
                 value={profile.email}
+                onChangeText={(e) => {
+                  const prof = profile;
+                  profile.email = e;
+                  this.setState({ profile: prof });
+                }}
 
               />
             </Item>
@@ -111,6 +131,11 @@ export default class EditProfile extends React.Component {
               <Input
                 style={{ fontSize: 15 }}
                 value={profile.phone}
+                onChangeText={(e) => {
+                  const prof = profile;
+                  profile.phone = e;
+                  this.setState({ profile: prof });
+                }}
               />
             </Item>
 
@@ -118,7 +143,8 @@ export default class EditProfile extends React.Component {
           </Form>
 
           <View style={styles.modalButton}>
-            <Button rounded style={styles.button}>
+            <Button rounded style={styles.button} onPress={this.editProfile}>
+
               <Text style={{
                 textAlign: 'center',
                 fontWeight: '200',
