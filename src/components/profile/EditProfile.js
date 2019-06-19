@@ -94,15 +94,10 @@ export default class EditProfile extends React.Component {
     return (
 
       <Content contentContainerStyle={{ marginTop: 22 }}>
-
-
         <Image style={styles.avatar} source={{ uri: profile.profile_image }} />
-
-
         <View style={{ padding: 18, paddingTop: 120 }}>
           <Form>
             <Item floatingLabel>
-
               <Label style={{ color: '#303B43', fontSize: 10 }}>Profile Image</Label>
               <Input
                 style={{ fontSize: 15 }}
@@ -154,8 +149,6 @@ export default class EditProfile extends React.Component {
                 }}
               />
             </Item>
-
-
             <Item floatingLabel>
               <Icon
                 name="mail"
@@ -192,10 +185,7 @@ export default class EditProfile extends React.Component {
                 }}
               />
             </Item>
-
-
           </Form>
-
           <View style={styles.modalButton}>
             <Button style={styles.button} onPress={this.editProfile}>
 
