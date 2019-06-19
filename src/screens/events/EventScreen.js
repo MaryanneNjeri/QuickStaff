@@ -2,27 +2,22 @@ import React from 'react';
 import {
   Container,
   Content,
-  List,
-  ListItem,
-  Body,
-  Right,
   Text,
-  Icon,
   Tab,
   Tabs,
   TabHeading,
   ActionSheet,
-  Toast, View,
+  Toast,
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Notifications } from 'expo';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
 import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
 import registerForPushNotificationAsync from '../../api/auth.api';
+import EventListView from '../../components/events/EventListView';
 
 const _ = require('lodash');
 
@@ -37,14 +32,13 @@ class EventScreen extends React.Component {
   async componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchEvents());
-
     registerForPushNotificationAsync();
   }
 
 
-    eventDetails = (id) => {
-      this.props.navigation.navigate('EventDetails', { id });
-    };
+  eventDetails = (id) => {
+    this.props.navigation.navigate('EventDetails', { id });
+  };
 
     getTask = (assignment, i) => (
       <Content key={i}>
@@ -59,17 +53,7 @@ class EventScreen extends React.Component {
     getContent = (i, assign) => {
       if (!assign.length) {
         return (
-          <List key={i}>
-            <ListItem key={i} onPress={() => this.eventDetails(assign.task.shift.event.id)}>
-              <Body>
-                <Text style={{ fontWeight: '200' }}>{assign.task.shift.event.name}</Text>
-                <Text note>{Date(assign.task.shift.event.starts_at)}</Text>
-              </Body>
-              <Right>
-                <Icon active name="arrow-forward" />
-              </Right>
-            </ListItem>
-          </List>
+          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
         );
       }
     };
