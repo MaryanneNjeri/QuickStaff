@@ -39,7 +39,7 @@ export default class EventListView extends React.Component {
             <Body>
               <Text style={{ fontWeight: '200' }}>{assign.task.shift.event.name}</Text>
               <Text note>{Date(assign.task.shift.event.starts_at)}</Text>
-              <Text>{' '}</Text>
+              <Text>{''}</Text>
               <TouchableHighlight onPress={this.viewListCard}>
                 <Text note style={{ fontSize: 10 }}>
 view in calendar
