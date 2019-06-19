@@ -2,12 +2,11 @@ import React from 'react';
 import {
   Container,
   Content,
-  Text,
-  Tab,
-  Tabs,
-  TabHeading,
   ActionSheet,
   Toast,
+  Segment,
+  Button,
+  Text,
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,6 +17,7 @@ import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
 import registerForPushNotificationAsync from '../../api/auth.api';
 import EventListView from '../../components/events/EventListView';
+import EventCalendarView from '../../components/events/EventsCalendarView';
 
 const _ = require('lodash');
 
@@ -29,6 +29,13 @@ const buttons = [
 const cancelIndex = 2;
 
 class EventScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mode: true,
+    };
+  }
+
   async componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchEvents());
@@ -39,6 +46,14 @@ class EventScreen extends React.Component {
   eventDetails = (id) => {
     this.props.navigation.navigate('EventDetails', { id });
   };
+
+   calendarView = () => {
+     this.setState({ mode: false });
+   };
+
+   listView = () => {
+     this.setState({ mode: true });
+   };
 
     getTask = (assignment, i) => (
       <Content key={i}>
@@ -53,7 +68,10 @@ class EventScreen extends React.Component {
     getContent = (i, assign) => {
       if (!assign.length) {
         return (
+
           <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
+
+
         );
       }
     };
@@ -81,7 +99,7 @@ class EventScreen extends React.Component {
 
     render() {
       const { error, loading, events } = this.props;
-
+      console.log(this.state.mode);
 
       if (error) {
         return (
@@ -98,19 +116,19 @@ class EventScreen extends React.Component {
         <Container>
           <Content>
             <HeaderComponent openActionSheet={this.openActionSheet} />
-            <Tabs>
-              <Tab heading={<TabHeading><Text>All</Text></TabHeading>} />
-              <Tab heading={<TabHeading><Text>Today</Text></TabHeading>} />
-              <Tab heading={<TabHeading><Text>Tomorrow</Text></TabHeading>} />
-              <Tab heading={<TabHeading><Text>This Week</Text></TabHeading>} />
-            </Tabs>
+            <Segment>
 
-            {
-                        _.map(events, (assignment, i) => (
-                          this.getTask(assignment, i)
+              <Button first onPress={this.listView}><Text>List View</Text></Button>
+              <Button last onPress={this.calendarView}><Text>Calendar View</Text></Button>
+            </Segment>
 
-                        ))
-                    }
+
+            { this.state.mode ? _.map(events, (assignment, i) => (
+              this.getTask(assignment, i)
+
+            ))
+              : <EventCalendarView />}
+
           </Content>
         </Container>
 
