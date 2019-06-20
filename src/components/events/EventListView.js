@@ -3,6 +3,7 @@ import {
   Body, Icon, List, ListItem, Right, Text, View,
 } from 'native-base';
 import { TouchableHighlight } from 'react-native';
+import moment from 'moment/moment';
 import EventListCard from './EventsListCard';
 // eslint-disable-next-line react/prefer-stateless-function
 export default class EventListView extends React.Component {
@@ -38,8 +39,8 @@ export default class EventListView extends React.Component {
           <ListItem key={i} onPress={() => eventDetails(assign.task.shift.event.id)}>
             <Body>
               <Text style={{ fontWeight: '200' }}>{assign.task.shift.event.name}</Text>
-              <Text note>{Date(assign.task.shift.event.starts_at)}</Text>
-              <Text>{''}</Text>
+              <Text note>{moment(assign.task.shift.event.starts_at).format('LLLL')}</Text>
+              <Text />
               <TouchableHighlight onPress={this.viewListCard}>
                 <Text note style={{ fontSize: 10 }}>
 view in calendar

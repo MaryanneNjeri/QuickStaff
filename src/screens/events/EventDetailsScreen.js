@@ -44,11 +44,9 @@ export default class EventDetailsScreen extends React.Component {
     };
 
     getEvents = (assign) => {
-      {
-        _.map(assign, (task, i) => (
-          this.getDetails(task, i)
-        ));
-      }
+      _.map(assign, (task, i) => (
+        this.getDetails(task, i)
+      ));
     };
 
     getDetails = (task) => {

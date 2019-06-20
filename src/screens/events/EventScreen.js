@@ -99,7 +99,8 @@ class EventScreen extends React.Component {
 
     render() {
       const { error, loading, events } = this.props;
-      console.log(this.state.mode);
+      const { mode } = this.state;
+
 
       if (error) {
         return (
@@ -123,7 +124,7 @@ class EventScreen extends React.Component {
             </Segment>
 
 
-            { this.state.mode ? _.map(events, (assignment, i) => (
+            { mode ? _.map(events, (assignment, i) => (
               this.getTask(assignment, i)
 
             ))
