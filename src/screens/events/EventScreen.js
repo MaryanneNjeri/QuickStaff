@@ -12,13 +12,9 @@ import {
   Left,
   Right,
   Header,
-  View, Item, Label, Input, Form, Picker,
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  Modal, StyleSheet, TouchableHighlight, Switch,
-} from 'react-native';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
