@@ -12,11 +12,13 @@ import {
   Left,
   Right,
   Header,
-  View,
+  View, Item, Label, Input, Form, Picker,
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, TouchableHighlight } from 'react-native';
+import {
+  Modal, StyleSheet, TouchableHighlight, Switch,
+} from 'react-native';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -24,6 +26,7 @@ import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
 import registerForPushNotificationAsync from '../../api/auth.api';
 import EventListView from '../../components/events/EventListView';
+import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
 
 const _ = require('lodash');
@@ -41,6 +44,8 @@ class EventScreen extends React.Component {
     this.state = {
       mode: true,
       modalVisible: false,
+
+
     };
   }
 
@@ -113,6 +118,7 @@ class EventScreen extends React.Component {
       this.setState({ modalVisible: false });
     };
 
+
     render() {
       const { error, loading, events } = this.props;
       const { mode, modalVisible } = this.state;
@@ -144,47 +150,13 @@ class EventScreen extends React.Component {
                 </Segment>
               </Body>
               <Left>
-                <Icon name="sort" type="FontAwesome" style={{ fontSize: 15, color: '#303B43' }} onPress={this.setModalVisible} />
+                <Icon name="sort" type="FontAwesome" style={{ fontSize: 18, color: '#303B43' }} onPress={this.setModalVisible} />
               </Left>
             </Header>
-            <Modal
-              animationType="slide"
-              transparent={false}
-              visible={modalVisible}
-              onRequestClose={() => {
-                alert('Modal has been closed.');
-              }}
 
-            >
-              <View style={{ marginTop: 22 }}>
-                <View>
-                  <TouchableHighlight
-                    style={{ alignSelf: 'flex-end' }}
 
-                    onPress={this.closeModal}
-                  >
-                    <Text style={{ fontWeight: '200', color: '#303B43', fontSize: 13 }}>
-                      {' '}
-                            Close
-                      <Icon
-                        name="close"
-                        type="EvilIcons"
-                        style={{ fontSize: 20, color: '#303B43' }}
-                      />
-                    </Text>
-                  </TouchableHighlight>
-                  <Text>Hello World!</Text>
+            {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} /> : null}
 
-                  <TouchableHighlight
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                    }}
-                  >
-                    <Text>Hide Modal</Text>
-                  </TouchableHighlight>
-                </View>
-              </View>
-            </Modal>
             { mode ? _.map(events, (assignment, i) => (
               this.getTask(assignment, i)
 

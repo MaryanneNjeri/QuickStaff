@@ -33,28 +33,28 @@ export default class EventsCalendarView extends React.Component {
   };
 
   getEvents = (assign) => {
-
     _.map(assign, (item, i) => (
       this.getDetails(item, i)
     ));
   };
 
   getDetails = (item) => {
-    const arr = [];
     if (!item.length) {
       const start = item.task.shift.event.starts_at;
       const end = item.task.shift.event.ends_at;
       const title = item.task.shift.event.name;
       const summary = item.task.shift.event.venue.address;
+
       const obj = {
         start, end, title, summary,
       };
-
-      arr.push(obj);
+      const arr = [obj];
+      console.log(arr.flat(2));
     }
   }
 
   render() {
+    console.log(this.state.events);
     return (
       <View style={{ flex: 1, marginTop: 20 }}>
         <View>
