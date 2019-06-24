@@ -115,9 +115,16 @@ class EventScreen extends React.Component {
     };
 
    filterList = (list) => {
+     fetchEvents(list);
 
+     this.closeModal();
+   };
+
+   resetList = (list) => {
+     list = {};
      fetchEvents(list);
      this.closeModal();
+
    }
 
 
@@ -158,7 +165,7 @@ class EventScreen extends React.Component {
            </Header>
 
 
-           {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} /> : null}
+           {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} resetList={this.resetList} /> : null}
 
            { mode ? _.map(events, (assignment, i) => (
              this.getTask(assignment, i)

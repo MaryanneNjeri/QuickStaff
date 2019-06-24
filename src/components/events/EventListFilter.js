@@ -6,7 +6,6 @@ import {
   Button, Form, Icon, Input, Item, Label, Picker, Text, View,
 } from 'native-base';
 import DatepickerRange from 'react-native-range-datepicker';
-import { Row, Grid } from 'react-native-easy-grid';
 import moment from 'moment/moment';
 
 const styles = StyleSheet.create({
@@ -48,11 +47,20 @@ export default class EventListFilter extends React.Component {
     this.setState({
       show: false,
     });
+  };
+
+  reset=() => {
+    const { filterList } = this.props;
+    this.setState({
+      filter: {},
+    });
+    filterList(this.state.filter);
   }
 
   render() {
-    const { isVisible, closeModal, filterList } = this.props;
+    const { isVisible, closeModal, filterList,resetList } = this.props;
     const { filter, show } = this.state;
+
     return (
       <View>
         {show ? (
@@ -224,7 +232,16 @@ export default class EventListFilter extends React.Component {
                     </Text>
 
                   </Button>
-                  <Button rounded style={styles.button1} onPress={closeModal}>
+                  <Button
+                    rounded
+                    style={styles.button1}
+                    onPress={() => {
+                      this.setState({
+                        filter: {},
+                      });
+                      resetList(filter);
+                    }}
+                  >
                     <Text style={{
                       textAlign: 'center',
                       fontWeight: '200',
