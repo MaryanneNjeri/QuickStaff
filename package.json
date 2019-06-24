@@ -8,7 +8,7 @@
     "lint": "eslint *.js **/*.js",
     "lint:fix": "eslint *.js **/*.js --fix",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
-    "storybook": "concurrently --kill-others \"storybook start -p 19001\" \"exp start --http\""
+    "storybook": "start-storybook -p 6006"
   },
   "jest": {
     "preset": "jest-expo"
@@ -42,7 +42,9 @@
   },
   "devDependencies": {
     "@storybook/react-native": "^5.1.9",
+    "@storybook/react-native-server": "^5.1.9",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
     "babel-preset-expo": "^5.0.0",
     "concurrently": "^4.1.0",
     "eslint": "^4.19.1",

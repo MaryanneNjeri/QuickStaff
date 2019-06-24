@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
 
   },
 });
+
 export default class PasswordResetScreen extends React.Component {
   render() {
     return (
