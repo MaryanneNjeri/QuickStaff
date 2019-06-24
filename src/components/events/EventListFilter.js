@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     width: 140,
   },
-  button1:{
+  button1: {
     marginRight: 15,
     marginLeft: 15,
     width: 80,
-  }
+  },
 });
 export default class EventListFilter extends React.Component {
   constructor(props) {
@@ -36,8 +36,7 @@ export default class EventListFilter extends React.Component {
     this.state = {
       filter: {},
       show: false,
-      startDate: '',
-      untilDate: '',
+
     };
   }
 
@@ -52,7 +51,7 @@ export default class EventListFilter extends React.Component {
   }
 
   render() {
-    const { isVisible, closeModal } = this.props;
+    const { isVisible, closeModal, filterList } = this.props;
     const { filter, show } = this.state;
     return (
       <View>
@@ -213,7 +212,7 @@ export default class EventListFilter extends React.Component {
                   </Form>
                 </View>
                 <View style={styles.modalButton}>
-                  <Button rounded style={styles.button1} onPress={this.filterList}>
+                  <Button rounded style={styles.button1} onPress={() => { filterList(filter); }}>
                     <Text style={{
                       textAlign: 'center',
                       fontWeight: '200',

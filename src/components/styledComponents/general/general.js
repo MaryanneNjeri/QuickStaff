@@ -4,4 +4,3 @@ export const Title = styled.Text`
     color: white;
     font-weight: 200
 `;
-

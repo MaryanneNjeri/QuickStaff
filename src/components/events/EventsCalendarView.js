@@ -16,58 +16,72 @@ export default class EventsCalendarView extends React.Component {
     super();
     this.state = {
       events: [],
+
     };
   }
+
 
   componentDidMount() {
     this.getEventDetails();
   }
 
-  getEventDetails = () => {
-    const events = store.getState().events;
+    getEventDetails = () => {
+      const events = store.getState().events;
+      let array1 = [];
 
-    _.map(events.items, (assign, i) => (
+      _.map(events.items, (assign, i) => (
 
-      this.getEvents(assign, i)
-    ));
-  };
+        array1 = this.getEvents(assign, i)
+      ));
+      this.setState({
+        events: array1,
+      });
+    };
 
-  getEvents = (assign) => {
-    _.map(assign, (item, i) => (
-      this.getDetails(item, i)
-    ));
-  };
+    getEvents = (assign) => {
+      const arr = [];
+      _.map(assign, (item, i) => (
+        arr.push(this.getDetails(item, i))
 
-  getDetails = (item) => {
-    if (!item.length) {
-      const start = item.task.shift.event.starts_at;
-      const end = item.task.shift.event.ends_at;
-      const title = item.task.shift.event.name;
-      const summary = item.task.shift.event.venue.address;
+      ));
+      return arr;
+    };
 
-      const obj = {
-        start, end, title, summary,
-      };
-      const arr = [obj];
-      console.log(arr.flat(2));
+    getDetails = (item) => {
+      if (!item.length) {
+        const start = item.task.shift.event.starts_at;
+        const end = item.task.shift.event.ends_at;
+        const title = item.task.shift.event.name;
+        const summary = item.task.shift.event.venue.address;
+
+        const obj = {
+          start, end, title, summary,
+        };
+        return obj;
+      }
     }
-  }
 
-  render() {
-    console.log(this.state.events);
-    return (
-      <View style={{ flex: 1, marginTop: 20 }}>
-        <View>
+    eventDetails = (event) => {
+      alert(JSON.stringify(event));
+    }
+
+    render() {
+      const { events } = this.state;
+      return (
+        <View style={{ flex: 1, marginTop: 20 }}>
+
           <EventCalendar
-
+            events={events}
+            eventTapped={this.eventDetails}
+            keyExtractor={item => `key-${item.id}`}
             width={width}
             initDate="2019-05-21"
             size={60}
             scrollToFirst
           />
-        </View>
-      </View>
 
-    );
-  }
+        </View>
+
+      );
+    }
 }

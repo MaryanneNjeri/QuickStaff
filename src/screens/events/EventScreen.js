@@ -114,56 +114,62 @@ class EventScreen extends React.Component {
       this.setState({ modalVisible: false });
     };
 
-
-    render() {
-      const { error, loading, events } = this.props;
-      const { mode, modalVisible } = this.state;
-
-
-      if (error) {
-        return (
-          <Error {...this.props} />
-        );
-      }
-      if (loading) {
-        return (
-          <Loader />
-        );
-      }
-
-      return (
-        <Container>
-          <Content>
-            <HeaderComponent openActionSheet={this.openActionSheet} />
-            <Header hasSegment transparent>
-              <Right />
-              <Body>
-                <Segment>
-
-                  <Button first onPress={this.listView}><Text>List View</Text></Button>
-                  <Button last onPress={this.calendarView}><Text>Calendar View</Text></Button>
-
-                </Segment>
-              </Body>
-              <Left>
-                <Icon name="sort" type="FontAwesome" style={{ fontSize: 18, color: '#303B43' }} onPress={this.setModalVisible} />
-              </Left>
-            </Header>
+   filterList = (list) => {
+     console.log(list);
+     this.closeModal();
+   }
 
 
-            {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} /> : null}
+   render() {
+     const { error, loading, events } = this.props;
+     const { mode, modalVisible } = this.state;
 
-            { mode ? _.map(events, (assignment, i) => (
-              this.getTask(assignment, i)
 
-            ))
-              : <EventCalendarView />}
+     if (error) {
+       return (
+         <Error {...this.props} />
+       );
+     }
 
-          </Content>
-        </Container>
+     if (loading) {
+       return (
+         <Loader />
+       );
+     }
 
-      );
-    }
+     return (
+       <Container>
+         <Content>
+           <HeaderComponent openActionSheet={this.openActionSheet} />
+           <Header hasSegment transparent>
+             <Right />
+             <Body>
+               <Segment>
+
+                 <Button first onPress={this.listView}><Text>List View</Text></Button>
+                 <Button last onPress={this.calendarView}><Text>Calendar View</Text></Button>
+
+               </Segment>
+             </Body>
+             <Left>
+               <Icon name="sort" type="FontAwesome" style={{ fontSize: 18, color: '#303B43' }} onPress={this.setModalVisible} />
+             </Left>
+           </Header>
+
+
+           {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} /> : null}
+
+           { mode ? _.map(events, (assignment, i) => (
+             this.getTask(assignment, i)
+
+           ))
+             : <EventCalendarView />}
+
+         </Content>
+       </Container>
+
+     );
+   }
 }
 EventScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,
