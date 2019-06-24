@@ -4,13 +4,13 @@ import {
   Container, Content, Text, Tabs, Tab, TabHeading,
 } from 'native-base';
 import Geocoder from 'react-native-geocoding';
+import _ from 'lodash';
 import { store } from '../../redux/store';
 import ClientDetailsTab from '../../components/events/eventDetails/tabs/ClientDetailsTab';
 import EventDetailsTab from '../../components/events/eventDetails/tabs/EventDetailsTab';
 import VenueDetailsTab from '../../components/events/eventDetails/tabs/VenueDetailsTab';
 import { API_KEY } from '../../../config/config';
 
-const _ = require('lodash');
 
 const styles = StyleSheet.create({
   container: {

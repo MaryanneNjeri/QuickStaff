@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "quick-staff",
-    "slug": "quick-staff",
-    "privacy": "public",
+    "name": "quickstaff-staff",
+    "slug": "quickstaff-staff",
+    "privacy": "private",
     "sdkVersion": "32.0.0",
     "android": {
-      "package": "quickstaff.com",
+      "package": ".com.quickstaffpro.staff",
       "icon": "./assets/images/icon-200x200.png"
     },
     "platforms": [

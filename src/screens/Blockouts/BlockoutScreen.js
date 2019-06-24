@@ -6,9 +6,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment/moment';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { fetchBlockouts } from '../../redux/blockouts/action';
-
-const _ = require('lodash');
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({

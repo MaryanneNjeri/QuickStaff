@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo';
 import { Icon, Text } from 'native-base';
 import {secondaryGradientArray} from '../../../constants/utlis/Colors';
 
-
+// eslint-disable-next-line react/prefer-stateless-function
 export default class HeaderComponent extends React.Component {
   render() {
     return (

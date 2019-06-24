@@ -4,8 +4,7 @@ import {
 } from 'native-base';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
-const _ = require('lodash');
+import _ from 'lodash';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({

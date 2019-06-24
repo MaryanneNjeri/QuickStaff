@@ -16,13 +16,12 @@ import {
 } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { fetchEvents } from '../../redux/events/action';
-import HeaderComponent from '../../components/events/HeaderComponent';
+import HeaderComponent from '../../components/layouts/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
 import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
-
-const _ = require('lodash');
 
 const buttons = [
 

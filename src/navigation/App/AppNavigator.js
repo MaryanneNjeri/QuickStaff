@@ -9,7 +9,7 @@ import ProfileScreen from '../../screens/profile/ProfileScreen';
 import EventDetailsScreen from '../../screens/events/EventDetailsScreen';
 import PasswordResetScreen from '../../screens/auth/PasswordResetScreen';
 import NotificationScreen from '../../screens/profile/NotificationScreen';
-import BlockoutScreen from '../../screens/profile/BlockoutScreen';
+import BlockoutScreen from '../../screens/Blockouts/BlockoutScreen';
 
 
 const AppNavigator = createStackNavigator({
