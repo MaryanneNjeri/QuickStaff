@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  Dimensions, View, Text,
+  Dimensions, View, Text, TouchableHighlight,
 } from 'react-native';
 import EventCalendar from 'react-native-events-calendar';
 import { store } from '../../redux/store';
+import EventsCard from './EventsCard';
 
 const _ = require('lodash');
 
@@ -16,6 +17,7 @@ export default class EventsCalendarView extends React.Component {
     super();
     this.state = {
       events: [],
+      isVisible: false,
 
     };
   }
@@ -59,26 +61,33 @@ export default class EventsCalendarView extends React.Component {
         };
         return obj;
       }
+    };
+
+    eventDetails = (events) => {
+      return (<EventsCard events={events} closeCard={closeCard}/>);
     }
 
-    eventDetails = (event) => {
-      alert(JSON.stringify(event));
+    closeCard = () => {
+      this.setState({
+        isVisible: false,
+      });
     }
+
 
     render() {
       const { events } = this.state;
       return (
         <View style={{ flex: 1, marginTop: 20 }}>
-
           <EventCalendar
             events={events}
             eventTapped={this.eventDetails}
-            keyExtractor={item => `key-${item.id}`}
+            keyExtractor={events => `key-${events.id}`}
             width={width}
             initDate="2019-05-21"
             size={60}
             scrollToFirst
           />
+
 
         </View>
 

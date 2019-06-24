@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class EventsListCard extends React.Component {
+export default class EventsCard extends React.Component {
   render() {
     const { closeCard, events } = this.props;
     return (
@@ -52,7 +52,7 @@ export default class EventsListCard extends React.Component {
         >
           <Text style={{ fontWeight: '200', color: '#303B43', fontSize: 13 }}>
             {' '}
-                  Close
+                        Close
             <Icon
               name="close"
               type="EvilIcons"
@@ -65,15 +65,15 @@ export default class EventsListCard extends React.Component {
           <CardItem>
             <Left>
               <Body>
-                <Text style={{ fontWeight: 'bold', fontSize: 24, color: '#0033cc' }}>{moment(events.starts_at).format('D')}</Text>
-                <Text style={{ fontWeight: '200', fontSize: 20, color: '#0033cc' }}>{moment(events.starts_at).format('MMM')}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 24, color: '#0033cc' }}>{moment(events.start).format('D')}</Text>
+                <Text style={{ fontWeight: '200', fontSize: 20, color: '#0033cc' }}>{moment(events.end).format('MMM')}</Text>
               </Body>
             </Left>
             <Body style={styles.left}>
               <Text style={{ fontSize: 15, fontWeight: '200' }}>{events.name}</Text>
               <Text note style={{ fontWeight: '200', fontSize: 12 }}>
-Client
-                {events.client.name}
+                                Title
+                {events.title}
               </Text>
               <Text>{' '}</Text>
               <Text note style={{ fontWeight: '200', fontSize: 12 }}>
@@ -83,14 +83,14 @@ Client
                   style={{ color: '#303B43', fontSize: 10 }}
                 />
                 <Text>{' '}</Text>
-                {events.venue.name}
+                {events.summary}
               </Text>
 
             </Body>
             <Right>
               <Text note style={{ fontSize: 10 }}>
                 {' '}
-                {moment(events.starts_at).fromNow()}
+                {moment(events.start).fromNow()}
               </Text>
             </Right>
           </CardItem>
