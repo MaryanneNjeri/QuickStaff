@@ -25,7 +25,20 @@ export const fetchEventsFailure = error => ({
   payload: { error },
 
 });
-export function fetchEvents() {
+export function fetchEvents(list) {
+  let startDate = '';
+  let endDate = '';
+  let sortBy = '';
+  let switchValue = '';
+  let sortDir = '';
+
+  if (list) {
+    startDate = list.startDate;
+    endDate = list.untilDate;
+    sortBy = list.sort_by;
+    switchValue = list.switchValue;
+    sortDir = list.sort_dir;
+  }
   function handleErrors(response) {
     console.log(response.status);
     if (!response.ok) {
@@ -39,6 +52,8 @@ export function fetchEvents() {
     getToken().then((token) => {
       const toke = token.replace(/^"(.*)"$/, '$1');
       const bearer = `Bearer ${toke}`;
+
+
       return fetch(`${API_URL}/staff/events`, {
         method: 'GET',
         headers: {

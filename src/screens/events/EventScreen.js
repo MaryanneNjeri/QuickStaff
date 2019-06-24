@@ -115,7 +115,8 @@ class EventScreen extends React.Component {
     };
 
    filterList = (list) => {
-     console.log(list);
+
+     fetchEvents(list);
      this.closeModal();
    }
 
