@@ -8,8 +8,17 @@
     "lint": "eslint *.js **/*.js",
     "lint:fix": "eslint *.js **/*.js --fix",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 7007",
+    "prestorybook": "rnstl"
   },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": ["./src/stories"],
+      "pattern": "**/*.stories.js",
+      "outputFile": "./storybook/storyLoader.js"
+    }
+  },
+
   "jest": {
     "preset": "jest-expo"
   },
@@ -41,6 +50,7 @@
     "validator": "^11.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.1.9",
     "@storybook/react-native": "^5.1.9",
     "@storybook/react-native-server": "^5.1.9",
     "babel-eslint": "^10.0.1",
@@ -54,7 +64,8 @@
     "eslint-plugin-react": "^7.13.0",
     "exp": "^57.2.1",
     "jest-expo": "^32.0.0",
-    "react-dom": "^16.0.0-alpha.12"
+    "react-dom": "^16.0.0-alpha.12",
+    "react-native-storybook-loader": "^1.8.0"
   },
   "rnpm": {
     "assets": [
