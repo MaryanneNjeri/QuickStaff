@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Item } from 'native-base';
 import {
-  StyleSheet, Text, TouchableHighlight,View,
+  StyleSheet, Text, TouchableHighlight, View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 

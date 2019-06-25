@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export default class ListComponent extends React.Component {
   render() {
     const {
-      resetPassword, viewBlockouts, viewNotification, logOut, viewProfile,storybook
+      resetPassword, viewBlockouts, viewNotification, logOut, viewProfile, storybook,
     } = this.props;
     return (
       <List>
@@ -72,7 +72,7 @@ export default class ListComponent extends React.Component {
         </ListItem>
         <ListItem icon onPress={storybook}>
           <Left>
-            <Icon type="Feather" name="power" />
+            <Icon name="ios-paper" />
           </Left>
           <Body>
             <Text>Storybook</Text>

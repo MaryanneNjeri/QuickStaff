@@ -1,10 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
-import IconButton from '../components/IconButton';
+import IconButton from '../components/storyComponents/IconButton';
 
 // we specify the name of the component we created
 storiesOf('IconButton', module)
+// here we add the stories of the component
   .add('on', () => (
     <IconButton
       icon="heart"
