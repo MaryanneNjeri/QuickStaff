@@ -11,6 +11,7 @@ import PasswordResetScreen from '../../screens/auth/PasswordResetScreen';
 import NotificationScreen from '../../screens/profile/NotificationScreen';
 import BlockoutScreen from '../../screens/profile/BlockoutScreen';
 import EditScreen from '../../screens/profile/EditScreen';
+import storybook from '../../screens/profile/storybook';
 
 const AppNavigator = createStackNavigator({
   Event: {
@@ -103,6 +104,12 @@ const AppNavigator = createStackNavigator({
       headerTitleStyle: {
         fontWeight: '200',
       },
+    },
+  },
+  storybook: {
+    screen: storybook,
+    navigationOptions: {
+      header: null,
     },
   },
   Edit: {

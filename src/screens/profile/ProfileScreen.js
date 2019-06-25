@@ -40,6 +40,10 @@ class ProfileScreen extends React.Component {
 
   viewProfile = () => {
     this.props.navigation.navigate('Edit', { profile: this.props.profile });
+  };
+
+  storybook = () => {
+    this.props.navigation.navigate('storybook');
   }
 
 
@@ -67,6 +71,7 @@ class ProfileScreen extends React.Component {
             viewNotification={this.viewNotification}
             resetPassword={this.resetPassword}
             viewProfile={this.viewProfile}
+            storybook={this.storybook}
 
           />
         </Content>
