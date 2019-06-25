@@ -6,7 +6,7 @@ const styles = {
   container: {
     flex: 1,
     padding: 15,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   button: {
     height: 45,
