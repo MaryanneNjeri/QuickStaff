@@ -3,7 +3,7 @@ import {
   Icon, Text, View, Card, CardItem, Left, Body, Right,
 } from 'native-base';
 import { TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
-import moment from 'moment/moment';
+import moment from 'moment';
 
 const { width } = Dimensions.get('window');
 // eslint-disable-next-line react/prefer-stateless-function
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
 export default class EventsListCard extends React.Component {
   render() {
     const { closeCard, events } = this.props;
+
+    console.log(events);
     return (
       <View style={styles.background}>
         <TouchableHighlight
