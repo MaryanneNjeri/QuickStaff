@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Dimensions, View } from 'react-native';
+import { action } from '@storybook/addon-actions';
 import Buttons from './Button';
 
 const { width } = Dimensions.get('window');
@@ -16,7 +17,7 @@ storiesOf('button', module)
   ))
   .add('Secondary', () => (
 
-    <Buttons label="Secondary" secondary onPress={() => { pressed; }} />
+    <Buttons label="Secondary" secondary onPress={action('pressed')} />
   ))
   .add('Danger', () => (
     <Buttons color="red" label="Danger" textColor="white" />
