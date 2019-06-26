@@ -5,18 +5,17 @@
 // https://github.com/elderfo/react-native-storybook-loader.git
 
 function loadStories() {
-  require('../src/stories/IconButton.stories');
   require('../src/stories/Button.stories');
-  require('../src/stories/LoginForm.stories');
-  require('../src/stories/view.stories');
+  require('../src/stories/EventsCardList.stories');
+  require('../src/stories/Forms.stories');
+  
 }
 
 const stories = [
-  '../src/stories/IconButton.stories',
-  '../src/stories/LoginButton.stories',
-  '../src/stories/LoginForm.stories',
-  '../src/stories/view.stories',
-
+  '../src/stories/Button.stories',
+  '../src/stories/EventsCardList.stories',
+  '../src/stories/Forms.stories',
+  
 ];
 
 module.exports = {

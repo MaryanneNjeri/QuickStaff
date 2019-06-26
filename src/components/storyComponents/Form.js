@@ -14,7 +14,7 @@ const styles = {
     borderColor: 'rgba(225,225,225,0.2)',
   },
 };
-const LoginForm = ({
+const Forms = ({
   placeholder, placeholderTextColor, onChangeText, errors, errorMessage,
 }) => (
 
@@ -34,7 +34,7 @@ const LoginForm = ({
 
 
 );
-LoginForm.propTypes = {
+Form.propTypes = {
   placeholder: PropTypes.string.isRequired,
   placeholderTextColor: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
@@ -42,4 +42,4 @@ LoginForm.propTypes = {
   errorMessage: PropTypes.string.isRequired,
 
 };
-export default LoginForm;
+export default Forms;

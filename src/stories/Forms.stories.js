@@ -1,18 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
-import { LinearGradient } from 'expo';
-import LoginForm from '../components/storyComponents/LoginForm';
-import primaryGradientArray from '../../constants/utlis/Colors';
+import Forms from '../components/storyComponents/Form';
 
 storiesOf('LoginForm', module)
   .addDecorator(getStory => (
-    <LinearGradient colors={primaryGradientArray} style={{ flex: 1 }}>
-      <View style={{ justifyContent: 'center', padding: 15, flexGrow: 1 }}>{getStory()}</View>
-    </LinearGradient>
+    <View style={{ justifyContent: 'center', padding: 15, flex: 1 }}>{getStory()}</View>
+
   ))
   .add('email', () => (
-    <LoginForm
+    <Forms
       errorMessage="enter valid email"
       onChangeText={() => { console.log('email entered'); }}
       placeholder="Enter email"
@@ -21,7 +18,7 @@ storiesOf('LoginForm', module)
     />
   ))
   .add('password', () => (
-    <LoginForm
+    <Forms
       errorMessage="enter valid password"
       onChangeText={() => { console.log('password entered'); }}
       placeholder="Enter Password"

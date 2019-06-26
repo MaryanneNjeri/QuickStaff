@@ -3,14 +3,14 @@ import {
   Modal, StyleSheet, TouchableHighlight, Switch,
 } from 'react-native';
 import {
-  Button, Form, Icon, Input, Item, Label, Picker, Text, View,
+  Form, Icon, Input, Item, Label, Picker, Text, View,
 } from 'native-base';
 import DatepickerRange from 'react-native-range-datepicker';
 import moment from 'moment/moment';
+import Button from '../storyComponents/Button';
 
 const styles = StyleSheet.create({
   modalButton: {
-
     alignItems: 'center',
     marginTop: 30,
     width: 150,
@@ -18,16 +18,7 @@ const styles = StyleSheet.create({
 
 
   },
-  button: {
-    marginRight: 15,
-    marginLeft: 15,
-    width: 140,
-  },
-  button1: {
-    marginRight: 15,
-    marginLeft: 15,
-    width: 80,
-  },
+
 });
 export default class EventListFilter extends React.Component {
   constructor(props) {
@@ -50,7 +41,9 @@ export default class EventListFilter extends React.Component {
   };
 
   render() {
-    const { isVisible, closeModal, filterList,resetList } = this.props;
+    const {
+      isVisible, closeModal, filterList, resetList,
+    } = this.props;
     const { filter, show } = this.state;
 
     return (
@@ -184,19 +177,8 @@ export default class EventListFilter extends React.Component {
                     </Item>
 
                     <Text>{' '}</Text>
-                    <Button rounded style={styles.button} onPress={this.showCalendar}>
-                      <Text style={{
-                        textAlign: 'center',
-                        fontWeight: '200',
-                        color: 'white',
-                        fontSize: 13,
-                      }}
-                      >
-                      Events Between
-                      </Text>
 
-
-                    </Button>
+                    <Button width={140} borderRadius={30} color="#0052cc" buttonText="Events Between" onPress={this.showCalendar} />
 
                     <Text>{' '}</Text>
                     <Text style={{ fontWeight: '200', fontSize: 13 }}>Show Rejected</Text>
@@ -212,51 +194,24 @@ export default class EventListFilter extends React.Component {
                   </Form>
                 </View>
                 <View style={styles.modalButton}>
-                  <Button rounded style={styles.button1} onPress={() => { filterList(filter); }}>
-                    <Text style={{
-                      textAlign: 'center',
-                      fontWeight: '200',
-                      color: 'white',
-                      fontSize: 13,
-                    }}
-                    >
-                                  Apply
-                    </Text>
 
-                  </Button>
+                  <Button width={80} borderRadius={30} color="#0052cc" buttonText="Apply" onPress={() => { filterList(filter); }} />
+                  <Text>{' '}</Text>
                   <Button
-                    rounded
-                    style={styles.button1}
+                    width={80}
+                    borderRadius={30}
+                    color="#0052cc"
+                    buttonText="Reset"
                     onPress={() => {
                       this.setState({
                         filter: {},
                       });
                       resetList(filter);
                     }}
-                  >
-                    <Text style={{
-                      textAlign: 'center',
-                      fontWeight: '200',
-                      color: 'white',
-                      fontSize: 13,
-                    }}
-                    >
-                      Reset
-                    </Text>
+                  />
+                  <Text>{' '}</Text>
+                  <Button width={80} borderRadius={30} color="#0052cc" buttonText="cancel" onPress={closeModal} />
 
-                  </Button>
-                  <Button rounded style={styles.button1} onPress={closeModal}>
-                    <Text style={{
-                      textAlign: 'center',
-                      fontWeight: '200',
-                      color: 'white',
-                      fontSize: 13,
-                    }}
-                    >
-                                  Cancel
-                    </Text>
-
-                  </Button>
                 </View>
 
               </View>
