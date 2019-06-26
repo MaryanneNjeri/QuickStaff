@@ -6,7 +6,7 @@
 
 function loadStories() {
   require('../src/stories/IconButton.stories');
-  require('../src/stories/LoginButton.stories');
+  require('../src/stories/Button.stories');
   require('../src/stories/LoginForm.stories');
   require('../src/stories/view.stories');
 }

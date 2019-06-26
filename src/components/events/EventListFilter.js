@@ -49,14 +49,6 @@ export default class EventListFilter extends React.Component {
     });
   };
 
-  reset=() => {
-    const { filterList } = this.props;
-    this.setState({
-      filter: {},
-    });
-    filterList(this.state.filter);
-  }
-
   render() {
     const { isVisible, closeModal, filterList,resetList } = this.props;
     const { filter, show } = this.state;

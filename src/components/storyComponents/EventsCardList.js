@@ -4,6 +4,7 @@ import {
 } from 'native-base';
 import { TouchableHighlight } from 'react-native';
 import moment from 'moment';
+
 import PropTypes from 'prop-types';
 
 const styles = {
