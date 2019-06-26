@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Dimensions, View } from 'react-native';
-import Button from '../components/storyComponents/Button';
+import Button from './Button';
 
 const { width } = Dimensions.get('window');
 

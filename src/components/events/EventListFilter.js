@@ -7,7 +7,7 @@ import {
 } from 'native-base';
 import DatepickerRange from 'react-native-range-datepicker';
 import moment from 'moment/moment';
-import Button from '../storyComponents/Button';
+import Button from '../common/buttons/Button';
 
 const styles = StyleSheet.create({
   modalButton: {
