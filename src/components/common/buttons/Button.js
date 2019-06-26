@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Text } from 'react-native';
+import { Text } from 'react-native';
+import { Button } from 'native-base';
 
 
 const styles = {
@@ -15,11 +16,11 @@ const styles = {
     fontWeight: '200',
   },
 };
-const Button = ({
-  onPress, buttonText, height, width, color, borderRadius,
+const Buttons = ({
+  onPress, label, height, width, color, borderRadius,
 }) => (
 
-  <TouchableOpacity
+  <Button
     onPress={onPress}
     style={{
       height,
@@ -29,20 +30,13 @@ const Button = ({
       borderRadius,
       marginBottom: 20,
       backgroundColor: color,
-      paddingVertical: 15,
+      padding: 15,
     }}
   >
-    <Text style={styles.text}>{buttonText}</Text>
-  </TouchableOpacity>
+    <Text style={styles.text}>{label}</Text>
+  </Button>
 
 );
 
-Button.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-  borderRadius: PropTypes.number.isRequired,
 
-};
-export default Button;
+export default Buttons;
