@@ -19,71 +19,141 @@ const styles = {
 const Buttons = ({
   onPress, label,
   height,
-  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, after,
+  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, secondary,
 }) => (
+  <View>
+    {secondary ? (
+      <Button
+        onPress={onPress}
+        style={{
+          height,
+          width,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          borderRadius,
+          marginBottom: 20,
+          backgroundColor: 'white',
+          padding: 15,
+          borderWidth: 3,
+        }}
+      >
 
-  <Button
-    onPress={onPress}
-    style={{
-      height,
-      width,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      borderRadius,
-      marginBottom: 20,
-      backgroundColor: color,
-      padding: 15,
-      borderWidth,
-    }}
-  >
-    {iconOnly
-      ? (
-        <Icon
-          name={icon}
-          color={iconColor}
-          size={size}
-        />
-      ) : null
+        {iconOnly
+          ? (
+            <Icon
+              name={icon}
+              color={iconColor}
+              size={size}
+            />
+          ) : null
+            }
+
+        {before ? (
+          <View style={{ flexDirection: 'row' }}>
+            <Icon
+              name={icon}
+              color={iconColor}
+              size={size}
+            />
+            <Text>{' '}</Text>
+            <Text style={{
+              color: textColor,
+              textAlign: 'center',
+              fontWeight: '200',
+            }}
+            >
+              {label}
+            </Text>
+          </View>
+
+        ) : (
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{
+              color: textColor,
+              textAlign: 'center',
+              fontWeight: '200',
+            }}
+            >
+              {label}
+            </Text>
+            <Text>{' '}</Text>
+            <Icon
+              name={icon}
+              color={iconColor}
+              size={size}
+            />
+          </View>
+        )}
+
+      </Button>
+    )
+
+      : (
+        <Button
+          onPress={onPress}
+          style={{
+            height,
+            width,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            borderRadius,
+            marginBottom: 20,
+            backgroundColor: color,
+            padding: 15,
+            borderWidth,
+          }}
+        >
+
+          {iconOnly
+            ? (
+              <Icon
+                name={icon}
+                color={iconColor}
+                size={size}
+              />
+            ) : null
       }
 
-    {before ? (
-      <View style={{ flexDirection: 'row' }}>
-        <Icon
-          name={icon}
-          color={iconColor}
-          size={size}
-        />
-        <Text>{' '}</Text>
-        <Text style={{
-          color: textColor,
-          textAlign: 'center',
-          fontWeight: '200',
-        }}
-        >
-          {label}
-        </Text>
-      </View>
+          {before ? (
+            <View style={{ flexDirection: 'row' }}>
+              <Icon
+                name={icon}
+                color={iconColor}
+                size={size}
+              />
+              <Text>{' '}</Text>
+              <Text style={{
+                color: textColor,
+                textAlign: 'center',
+                fontWeight: '200',
+              }}
+              >
+                {label}
+              </Text>
+            </View>
 
-    ) : (
-      <View style={{ flexDirection: 'row' }}>
-        <Text style={{
-          color: textColor,
-          textAlign: 'center',
-          fontWeight: '200',
-        }}
-        >
-          {label}
-        </Text>
-        <Text>{' '}</Text>
-        <Icon
-          name={icon}
-          color={iconColor}
-          size={size}
-        />
-      </View>
-    )}
+          ) : (
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{
+                color: textColor,
+                textAlign: 'center',
+                fontWeight: '200',
+              }}
+              >
+                {label}
+              </Text>
+              <Text>{' '}</Text>
+              <Icon
+                name={icon}
+                color={iconColor}
+                size={size}
+              />
+            </View>
+          )}
 
-  </Button>
+        </Button>
+      )}
+  </View>
 
 );
 

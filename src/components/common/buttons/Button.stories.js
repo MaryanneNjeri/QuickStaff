@@ -12,11 +12,11 @@ storiesOf('button', module)
 
   ))
   .add('Standard', () => (
-    <Buttons label="Standard" onPress={() => { console.log('standard'); }} />
+    <Buttons label="Standard" onPress={() => { pressed; }} />
   ))
   .add('Secondary', () => (
 
-    <Buttons label="Secondary" color="white" textColor="black" borderWidth={2} onPress={() => {}} />
+    <Buttons label="Secondary" secondary onPress={() => { pressed; }} />
   ))
   .add('Danger', () => (
     <Buttons color="red" label="Danger" textColor="white" />
