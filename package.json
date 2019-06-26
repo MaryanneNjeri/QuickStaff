@@ -26,6 +26,9 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-ondevice-actions": "^5.1.9",
+    "@storybook/addon-ondevice-knobs": "^5.1.9",
     "expo": "^32.0.0",
     "link": "^0.1.5",
     "lodash": "^4.17.11",
