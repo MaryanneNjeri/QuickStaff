@@ -27,16 +27,6 @@ const Buttons = ({
         }}
       >
 
-        {iconOnly
-          ? (
-            <Icon
-              name={icon}
-              color={iconColor}
-              size={size}
-            />
-          ) : null
-            }
-
         {before ? (
           <View style={{ flexDirection: 'row' }}>
             <Icon
@@ -82,15 +72,6 @@ const Buttons = ({
           }}
         >
 
-          {iconOnly
-            ? (
-              <Icon
-                name={icon}
-                color={iconColor}
-                size={size}
-              />
-            ) : null
-      }
 
           {before ? (
             <View style={{ flexDirection: 'row' }}>
