@@ -4,22 +4,11 @@ import { Text } from 'react-native';
 import { Button, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const styles = {
-  container: {
-    flex: 1,
-    padding: 15,
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: '200',
-  },
-};
+
 const Buttons = ({
-  onPress, label,
+  onPress, children,
   height,
-  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, secondary,
+  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, secondary, label,
 }) => (
   <View>
     {secondary ? (
@@ -56,26 +45,15 @@ const Buttons = ({
               size={size}
             />
             <Text>{' '}</Text>
-            <Text style={{
-              color: textColor,
-              textAlign: 'center',
-              fontWeight: '200',
-            }}
-            >
-              {label}
-            </Text>
+
+            <Text>{children}</Text>
           </View>
 
         ) : (
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{
-              color: textColor,
-              textAlign: 'center',
-              fontWeight: '200',
-            }}
-            >
-              {label}
-            </Text>
+
+            <Text>{children}</Text>
+
             <Text>{' '}</Text>
             <Icon
               name={icon}
