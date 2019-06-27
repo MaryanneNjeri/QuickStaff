@@ -36,13 +36,13 @@ const Buttons = ({
             />
             <Text>{' '}</Text>
 
-            <Text>{children}</Text>
+            <Text style={{ color: textColor, fontWeight: '200' }}>{children}</Text>
           </View>
 
         ) : (
           <View style={{ flexDirection: 'row' }}>
 
-            <Text>{children}</Text>
+            <Text style={{ color: textColor, fontWeight: '200' }}>{children}</Text>
 
             <Text>{' '}</Text>
             <Icon
@@ -81,12 +81,12 @@ const Buttons = ({
                 size={size}
               />
               <Text>{' '}</Text>
-              <Text>{children}</Text>
+              <Text style={{ color: textColor, fontWeight: '200' }}>{children}</Text>
             </View>
 
           ) : (
             <View style={{ flexDirection: 'row' }}>
-              <Text>{children}</Text>
+              <Text style={{ color: textColor, fontWeight: '200' }}>{children}</Text>
               <Text>{' '}</Text>
               <Icon
                 name={icon}
