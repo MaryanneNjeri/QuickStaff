@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { Dimensions, View, Text } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { action } from '@storybook/addon-actions';
 import Buttons from './Button';
 
@@ -19,20 +19,20 @@ storiesOf('button', module)
     <Buttons secondary onPress={action('pressed')}>Secondary</Buttons>
   ))
   .add('Danger', () => (
-    <Buttons color="red" label="Danger" textColor="white" onPress={action('pressed')} />
+    <Buttons color="red" textColor="white" onPress={action('pressed')}> Danger</Buttons>
   ))
   .add('Success', () => (
-    <Buttons color="green" label="Danger" textColor="white" onPress={action('pressed')} />
+    <Buttons color="green" textColor="white" onPress={action('pressed')}>Success</Buttons>
   ))
   .add('Full-width', () => (
-    <Buttons label="full width" width={width - 50} textColor="white" onPress={action('pressed')} />
+    <Buttons width={width - 50} textColor="white" onPress={action('pressed')}>Full width</Buttons>
   ))
   .add('Icon only', () => (
-    <Buttons icon="heart" iconOnly iconColor="red" size={25} onPress={action('pressed')} />
+    <Buttons icon="heart" iconColor="red" size={25} onPress={action('pressed')} />
   ))
   .add('Icon before label', () => (
-    <Buttons before icon="heart" size={20} label="Icon before label" iconColor="red" textColor="white" onPress={action('pressed')} />
+    <Buttons before icon="heart" size={20} iconColor="red" textColor="white" onPress={action('pressed')}>Icon before label</Buttons>
   ))
-  .add('Icon after lable', () => (
-    <Buttons before={false} icon="heart" size={20} label="Icon after label" iconColor="red" textColor="white" onPress={action('pressed')} />
+  .add('Icon after label', () => (
+    <Buttons before={false} icon="heart" size={20} iconColor="red" textColor="white" onPress={action('pressed')}>Icon after label</Buttons>
   ));

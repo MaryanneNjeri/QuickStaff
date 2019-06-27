@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const Buttons = ({
   onPress, children,
   height,
-  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, secondary, label,
+  width, color, borderRadius, borderWidth, textColor, icon, iconColor, before, size, iconOnly, secondary,
 }) => (
   <View>
     {secondary ? (
@@ -100,26 +100,12 @@ const Buttons = ({
                 size={size}
               />
               <Text>{' '}</Text>
-              <Text style={{
-                color: textColor,
-                textAlign: 'center',
-                fontWeight: '200',
-              }}
-              >
-                {label}
-              </Text>
+              <Text>{children}</Text>
             </View>
 
           ) : (
             <View style={{ flexDirection: 'row' }}>
-              <Text style={{
-                color: textColor,
-                textAlign: 'center',
-                fontWeight: '200',
-              }}
-              >
-                {label}
-              </Text>
+              <Text>{children}</Text>
               <Text>{' '}</Text>
               <Icon
                 name={icon}
