@@ -16,7 +16,7 @@ storiesOf('button', module)
     <Buttons label="Standard" onPress={action('pressed')} />
   ))
   .add('Secondary', () => (
-      <Buttons secondary label="Secondary" onPress={action('pressed')}>Secondary</Buttons>
+    <Buttons secondary onPress={action('pressed')}>Secondary</Buttons>
   ))
   .add('Danger', () => (
     <Buttons color="red" label="Danger" textColor="white" onPress={action('pressed')} />
