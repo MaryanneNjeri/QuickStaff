@@ -3,7 +3,6 @@ import { Image, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo';
 import { Icon, Text } from 'native-base';
 import { secondaryGradientArray } from '../../../constants/utlis/Colors';
-
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#00BFFF',

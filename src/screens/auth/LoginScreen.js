@@ -100,7 +100,6 @@ class LoginScreen extends Component {
             <View style={styles.loginContainer}>
               <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')} />
             </View>
-
             <LoginForm {...this.state} signIn={this.signIn} />
           </Content>
         </LinearGradient>

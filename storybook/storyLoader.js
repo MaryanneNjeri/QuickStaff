@@ -6,15 +6,16 @@
 
 function loadStories() {
   require('../src/components/common/buttons/Button.stories');
+  require('../src/components/common/controls/FormInput.stories');
   require('../src/stories/EventsCardList.stories');
-  require('../src/stories/Forms.stories');
+  
 }
 
 const stories = [
   '../src/components/common/buttons/Button.stories',
+  '../src/components/common/controls/FormInput.stories',
   '../src/stories/EventsCardList.stories',
-  '../src/stories/Forms.stories',
-
+  
 ];
 
 module.exports = {

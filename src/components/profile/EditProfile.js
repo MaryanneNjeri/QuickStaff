@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  View, Text, Icon, Form, Item, Label, Input, Button, Content,
+  View, Text, Icon, Form, Item, Label, Input, Content,
 } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import { ImagePicker, Permissions, Constants } from 'expo';
 import { store } from '../../redux/store';
 import editProfile from '../../api/editProfile.api';
+import Button from '../common/buttons/Button';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -164,7 +165,6 @@ export default class EditProfile extends React.Component {
                   profile.email = e;
                   this.setState({ profile: prof });
                 }}
-
               />
             </Item>
 
@@ -187,19 +187,8 @@ export default class EditProfile extends React.Component {
             </Item>
           </Form>
           <View style={styles.modalButton}>
-            <Button style={styles.button} onPress={this.editProfile}>
 
-              <Text style={{
-                textAlign: 'center',
-                fontWeight: '200',
-                color: 'white',
-                fontSize: 13,
-              }}
-              >
-Edit Profile
-              </Text>
-
-            </Button>
+            <Button primary textColor="white" onPress={this.editProfile}>Edit Profile</Button>
           </View>
 
         </View>

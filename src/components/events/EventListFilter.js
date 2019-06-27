@@ -16,9 +16,7 @@ const styles = StyleSheet.create({
     width: 150,
     flexDirection: 'row',
 
-
   },
-
 });
 export default class EventListFilter extends React.Component {
   constructor(props) {
@@ -61,8 +59,6 @@ export default class EventListFilter extends React.Component {
               height: 50,
               borderRadius: 5,
               backgroundColor: '#0052cc',
-
-
             }}
             todayColor="#0052cc"
             selectedBackgroundColor="#0052cc"
@@ -177,9 +173,7 @@ export default class EventListFilter extends React.Component {
                     </Item>
 
                     <Text>{' '}</Text>
-
-                    <Button width={140} borderRadius={30} color="#0052cc" buttonText="Events Between" onPress={this.showCalendar} />
-
+                    <Button medium textColor="white" onPress={this.showCalendar}>Events Between</Button>
                     <Text>{' '}</Text>
                     <Text style={{ fontWeight: '200', fontSize: 13 }}>Show Rejected</Text>
                     <Text>{' '}</Text>
@@ -194,23 +188,23 @@ export default class EventListFilter extends React.Component {
                   </Form>
                 </View>
                 <View style={styles.modalButton}>
-
-                  <Button width={80} borderRadius={30} color="#0052cc" buttonText="Apply" onPress={() => { filterList(filter); }} />
+                  <Button primary textColor="white" onPress={() => { filterList(filter); }}>Apply</Button>
                   <Text>{' '}</Text>
                   <Button
-                    width={80}
-                    borderRadius={30}
-                    color="#0052cc"
-                    buttonText="Reset"
+                    primary
+                    textColor="white"
                     onPress={() => {
                       this.setState({
                         filter: {},
                       });
                       resetList(filter);
                     }}
-                  />
+                  >
+Reset
+                  </Button>
                   <Text>{' '}</Text>
-                  <Button width={80} borderRadius={30} color="#0052cc" buttonText="cancel" onPress={closeModal} />
+
+                  <Button secondary textColor="blue" onPress={closeModal}>Cancel</Button>
 
                 </View>
 

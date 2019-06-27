@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TextInput, Image, TouchableHighlight,
+  StyleSheet, Text, View, TextInput, Image,
 } from 'react-native';
 import { store } from '../../redux/store';
 import { validatePassword } from '../lib/functions/auth/validate';
 import resetPasswordRequest from '../../api/resetPassword.api';
+import Button from '../common/buttons/Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,23 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
 
   },
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderRadius: 30,
-    marginBottom: 20,
-    backgroundColor: '#9ACD32',
-    paddingVertical: 15,
-
-
-  },
-
 });
 
 const icon = {
@@ -157,12 +141,7 @@ export default class ResetPasswordForm extends React.Component {
               this.setState({ userDetails: user });
             }}
           />
-          <TouchableHighlight
-            style={styles.buttonContainer}
-            onPress={this.resetPassword}
-          >
-            <Text style={styles.buttonText}>Reset your password</Text>
-          </TouchableHighlight>
+          <Button fullWidth textColor="white" onPress={this.resetPassword}>Reset Password</Button>
 
 
         </View>

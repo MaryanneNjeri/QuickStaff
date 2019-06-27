@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {
-  Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button,
+  Container, Content, Form, Body, Input, Label, Text, Icon, Item,
 } from 'native-base';
 import {
   StyleSheet, Modal, View, TouchableHighlight, AsyncStorage,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Button from '../../../common/buttons/Button';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -171,18 +172,8 @@ Close
                   </Form>
 
                   <View style={styles.modalButton}>
-                    <Button rounded style={styles.button} onPress={this.confirmEvent}>
-                      <Text style={{
-                        textAlign: 'center',
-                        fontWeight: '200',
-                        color: 'white',
-                        fontSize: 13,
-                      }}
-                      >
-Add Event
-                      </Text>
 
-                    </Button>
+                    <Button primary textColor="white" onPress={this.confirmEvent}>Add Event</Button>
                   </View>
 
                 </View>

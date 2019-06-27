@@ -1,9 +1,8 @@
 import React from 'react';
 import { Form, Input, Item } from 'native-base';
-import {
-  StyleSheet, Text, TouchableHighlight, View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
+import Button from '../common/buttons/Button';
 
 const styles = StyleSheet.create({
   reset: {
@@ -19,22 +18,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(225,225,225,0.2)',
   },
 
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderRadius: 30,
-    marginBottom: 20,
-    backgroundColor: '#9ACD32',
-    paddingVertical: 15,
-
-
-  },
 });
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -76,14 +59,7 @@ export default class LoginForm extends React.Component {
           </Item>
 
         </Form>
-        <TouchableHighlight
-          style={styles.buttonContainer}
-          onPress={() => {
-            signIn(email, password);
-          }}
-        >
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableHighlight>
+        <Button logIn onPress={() => { signIn(email, password); }} textColor="white">Log in</Button>
 
       </View>
 
