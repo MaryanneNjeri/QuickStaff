@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import {
   Text, Container, Content, Card, CardItem, Body, Right, Left, Thumbnail,
 } from 'native-base';
+import Header from '../../components/common/controls/Header/Header';
 
 const { width } = Dimensions.get('window');
 const icon_2 = {
@@ -37,7 +38,6 @@ export default class Friends extends React.Component {
   render() {
     return (
       <Container>
-
         <Content>
           <Card style={styles.card}>
             <CardItem>

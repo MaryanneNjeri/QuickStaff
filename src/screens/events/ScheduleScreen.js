@@ -3,11 +3,10 @@ import {
   StyleSheet, Dimensions, View, TouchableOpacity, AsyncStorage,
 } from 'react-native';
 import {
-  Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem, Header,
+  Card, CardItem, Container, Content, Text, Body, Left, Right, Icon, ListItem
 } from 'native-base';
 import { Agenda } from 'react-native-calendars';
-import { Title } from '../../components/styledComponents/general/general';
-
+import Header from '../../components/common/controls/Header/Header'
 const { width, height } = Dimensions.get('window');
 const _ = require('lodash');
 
@@ -121,14 +120,7 @@ class ScheduleScreen extends React.Component {
       return (
         <Container style={{ flex: 1 }}>
           <Content>
-
-            <Header style={{ backgroundColor: '#0066ff' }}>
-              <Left />
-              <Body>
-                <Title>Calendar</Title>
-              </Body>
-              <Right />
-            </Header>
+            <Header standard textColor="white">Calendar</Header>
             <Agenda
               current={Date()}
               minDate="2019-01-01"

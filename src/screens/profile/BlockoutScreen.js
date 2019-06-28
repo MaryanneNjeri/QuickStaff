@@ -116,7 +116,7 @@ An error occurred!
     }
     return (
       <Container>
-        <Content padder>
+        <Content>
           {!_.isEmpty(blockouts.data) ? (
             <Accordion
               dataArray={blockouts.data}
