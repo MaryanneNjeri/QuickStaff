@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Input, Item, Label,
+  Input, Item, Label, Text,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ export default ({
     <Item floatingLabel={floatingLabel} stackedLabel={stackedLabel} rounded={rounded}>
 
       <Label style={{ color: '#303B43', fontSize: 10 }}>
-        {' '}
+        <Text>{" "}</Text>
         <Icon
           onPress={props.onPress}
           name={props.leftIcon}

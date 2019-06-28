@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  View, Text, Icon, Form, Item, Label, Input, Content,
+  View, Text, Icon, Form, Item, Label, Input, Content, Body,
 } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import { ImagePicker, Permissions, Constants } from 'expo';
 import { store } from '../../redux/store';
 import editProfile from '../../api/editProfile.api';
 import Button from '../common/buttons/Button';
+import FormInput from '../common/controls/Form/FormInput';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -96,6 +97,8 @@ export default class EditProfile extends React.Component {
 
       <Content contentContainerStyle={{ marginTop: 22 }}>
         <Image style={styles.avatar} source={{ uri: profile.profile_image }} />
+
+
         <View style={{ padding: 18, paddingTop: 120 }}>
           <Form>
             <Item floatingLabel>
@@ -116,6 +119,20 @@ export default class EditProfile extends React.Component {
                 onPress={this.pickImage}
               />
             </Item>
+            {/* <FormInput */}
+            {/* label="Profile Image" */}
+            {/* floatingLabel */}
+            {/* value={profile.profile_image} */}
+            {/* onChangeText={(e) => { */}
+            {/* const prof = profile; */}
+            {/* profile.profile_image = e; */}
+            {/* this.setState({ profile: prof }); */}
+            {/* }} */}
+            {/* leftIcon="upload" */}
+            {/* onPress={this.pickImage} */}
+            {/* color="#303B43" */}
+            {/* size={14} */}
+            {/* /> */}
             <Item floatingLabel>
               <Icon
                 type="Ionicons"

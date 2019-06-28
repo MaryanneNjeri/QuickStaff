@@ -3,11 +3,12 @@ import {
   Modal, StyleSheet, TouchableHighlight, Switch,
 } from 'react-native';
 import {
-  Form, Icon, Input, Item, Label, Picker, Text, View,
+  Form, Icon, Item, Picker, Text, View,
 } from 'native-base';
 import DatepickerRange from 'react-native-range-datepicker';
 import moment from 'moment/moment';
 import Button from '../common/buttons/Button';
+import FormInput from '../common/controls/Form/FormInput';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -147,31 +148,22 @@ export default class EventListFilter extends React.Component {
 
                     </Item>
                     <Text>{' '}</Text>
-                    <Item floatingLabel>
-                      <Icon
-                        type="SimpleLineIcons"
-                        name="event"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>From</Label>
-                      <Input
-                        style={{ fontSize: 13 }}
-                        value={moment(filter.startDate).format('LL')}
-                      />
-                    </Item>
-                    <Item floatingLabel>
-                      <Icon
-                        type="SimpleLineIcons"
-                        name="event"
-                        style={{ fontSize: 13, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>To</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={moment(filter.untilDate).format('LL')}
-                      />
-                    </Item>
-
+                    <FormInput
+                      label="From"
+                      floatingLabel
+                      value={moment(filter.startDate).format('LL')}
+                      leftIcon="calendar-o"
+                      size={13}
+                      color="#303B43"
+                    />
+                    <FormInput
+                      label="To"
+                      floatingLabel
+                      value={moment(filter.untilDate).format('LL')}
+                      leftIcon="calendar-o"
+                      size={13}
+                      color="#303B43"
+                    />
                     <Text>{' '}</Text>
                     <Button medium textColor="white" onPress={this.showCalendar}>Events Between</Button>
                     <Text>{' '}</Text>
