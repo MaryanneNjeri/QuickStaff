@@ -1,24 +1,10 @@
 import React from 'react';
-import { Form, Input, Item } from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
+import { Form } from 'native-base';
+import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from '../common/buttons/Button';
+import FormInput from '../common/controls/Form/FormInput';
 
-const styles = StyleSheet.create({
-  reset: {
-    alignItems: 'center',
-
-  },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(225,225,225,0.2)',
-    marginBottom: 20,
-    padding: 5,
-    color: '#fff',
-    borderColor: 'rgba(225,225,225,0.2)',
-  },
-
-});
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -34,31 +20,28 @@ export default class LoginForm extends React.Component {
     return (
       <View>
         <Form>
+
           {errors ? <Text>{errors.email}</Text> : null
-                    }
-          <Item rounded style={styles.input}>
-            <Input
-              style={{ color: 'white' }}
-              placeholder="Email"
-              placeholderTextColor="rgba(225,225,225,0.7)"
-              onChangeText={email => this.setState({ email })}
-            />
-
-          </Item>
+          }
+          <FormInput
+            rounded
+            roundedInput
+            placeholder="Enter Email"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            onChangeText={email => this.setState({ email })}
+          />
           {errors ? <Text>{errors.password}</Text> : null
-                    }
-          <Item rounded style={styles.input}>
-            <Input
-              placeholder="Password"
-              style={{ color: 'white' }}
-              placeholderTextColor="rgba(225,225,225,0.7)"
-              onChangeText={password => this.setState({ password })}
-              secureTextEntry
-            />
-
-          </Item>
-
+          }
+          <FormInput
+            rounded
+            roundedInput
+            secureTextEntry
+            placeholder="Enter Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            onChangeText={password => this.setState({ password })}
+          />
         </Form>
+        <Text>{' '}</Text>
         <Button logIn onPress={() => { signIn(email, password); }} textColor="white">Log in</Button>
 
       </View>
@@ -68,5 +51,6 @@ export default class LoginForm extends React.Component {
 }
 LoginForm.propTypes = {
   signIn: PropTypes.func.isRequired,
+
 
 };

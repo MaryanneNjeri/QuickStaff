@@ -14,6 +14,7 @@ export default ({ onPress, children, ...props }) => {
 
   return (
     <Button onPress={onPress} style={selectedStyle}>
+      <Icon name={props.icon} size={props.size} color={props.iconColor} />
       <Text style={{ color: props.textColor }}>{children}</Text>
     </Button>
   );

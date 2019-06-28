@@ -36,11 +36,6 @@ storiesOf('button', module)
     <Button logIn textColor="white" onPress={action('pressed')}>Login</Button>
   ))
   .add('Icon only', () => (
-    <Button icon="heart" iconColor="red" size={25} onPress={action('pressed')} />
-  ))
-  .add('Icon before label', () => (
-    <Button before icon="heart" size={20} iconColor="red" textColor="white" onPress={action('pressed')}>Icon before label</Button>
-  ))
-  .add('Icon after label', () => (
-    <Button before={false} icon="heart" size={20} iconColor="red" textColor="white" onPress={action('pressed')}>Icon after label</Button>
+    <Button primary icon="heart" iconColor="red" size={25} onPress={action('pressed')} />
   ));
+
