@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import Button from './Button';
 
-const { width } = Dimensions.get('window');
 
 storiesOf('button', module)
   .addDecorator(getStory => (

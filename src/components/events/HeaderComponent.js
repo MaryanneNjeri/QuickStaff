@@ -1,29 +1,17 @@
 import React from 'react';
-import {
-  Body, Header, Icon, Left, Right,
-} from 'native-base';
-import { Title } from '../styledComponents/general/general';
-import { headerBackground } from '../../../constants/utlis/Colors';
+import PropTypes from 'prop-types';
+import Header from '../common/controls/Header/Header';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class HeaderComponent extends React.Component {
   render() {
+    const { openActionSheet } = this.props;
     return (
-      <Header style={{ backgroundColor: headerBackground }}>
-        <Left />
-        <Body>
-          <Title>Events</Title>
-        </Body>
-        <Right>
-          <Icon
-            type="Entypo"
-            name="user"
-            style={{ color: 'white', fontSize: 25 }}
-            onPress={() => {
-              this.props.openActionSheet();
-            }}
-          />
-        </Right>
-      </Header>
+
+      <Header standard textColor="white" icon="user" iconColor="white" size={25} onPress={() => { openActionSheet(); }}>Events</Header>
     );
   }
 }
+HeaderComponent.propTypes = {
+  openActionSheet: PropTypes.func.isRequired,
+};
