@@ -9,8 +9,6 @@ function loadStories() {
   require('../src/components/common/controls/Card/Card.stories');
   require('../src/components/common/controls/Form/FormInput.stories');
   require('../src/components/common/controls/Header/Header.stories');
-  require('../src/stories/EventsCardList.stories');
-  
 }
 
 const stories = [
@@ -18,8 +16,7 @@ const stories = [
   '../src/components/common/controls/Card/Card.stories',
   '../src/components/common/controls/Form/FormInput.stories',
   '../src/components/common/controls/Header/Header.stories',
-  '../src/stories/EventsCardList.stories',
-  
+
 ];
 
 module.exports = {
