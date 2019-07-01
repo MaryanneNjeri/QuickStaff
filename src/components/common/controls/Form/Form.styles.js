@@ -1,5 +1,4 @@
 export default {
-
   roundedInput: {
     padding: 5,
     color: 'white',

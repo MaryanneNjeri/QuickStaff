@@ -6,6 +6,7 @@ import { store } from '../../redux/store';
 import { validatePassword } from '../lib/functions/auth/validate';
 import resetPasswordRequest from '../../api/resetPassword.api';
 import Button from '../common/buttons/Button';
+import FormInput from '../common/controls/Form/FormInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -101,25 +102,27 @@ export default class ResetPasswordForm extends React.Component {
           <View style={styles.header}>
             <Text style={styles.text}>Reset Your Password ?</Text>
           </View>
-          <TextInput
-
-            style={styles.input}
-            placeholderTextColor="rgba(225,225,225,0.7)"
+          <FormInput
+            rounded
+            roundedInput
             value={userDetails.email}
-            editable={false}
+            placeholderTextColor="rgba(225,225,225,0.7)"
             onChangeText={(e) => {
               const user = userDetails;
               user.email = e;
               this.setState({ userDetails: user });
             }}
           />
+          <Text>{' '}</Text>
           {errors ? <Text>{errors.oldPassword}</Text> : null}
-          <TextInput
-            style={styles.input}
+
+          <FormInput
+            rounded
+            roundedInput
+            value={userDetails.oldPassword}
+            secureTextEntry
             placeholder="Current Password"
             placeholderTextColor="rgba(225,225,225,0.7)"
-            secureTextEntry
-            value={userDetails.oldPassword}
             onChangeText={(e) => {
               const user = userDetails;
               user.oldPassword = e;
@@ -127,20 +130,21 @@ export default class ResetPasswordForm extends React.Component {
             }}
           />
           {errors ? <Text>{errors.newPassword}</Text> : null}
-
-          <TextInput
-            style={styles.input}
-            returnKeyType="done"
+          <Text>{' '}</Text>
+          <FormInput
+            rounded
+            roundedInput
+            value={userDetails.newPassword}
+            secureTextEntry
             placeholder="New Password"
             placeholderTextColor="rgba(225,225,225,0.7)"
-            secureTextEntry
-            value={userDetails.newPassword}
             onChangeText={(e) => {
               const user = userDetails;
               user.newPassword = e;
               this.setState({ userDetails: user });
             }}
           />
+          <Text>{' '}</Text>
           <Button fullWidth textColor="white" onPress={this.resetPassword}>Reset Password</Button>
 
 
