@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import Card from './Card';
 
@@ -12,7 +11,7 @@ storiesOf('button', module)
 
   ))
   .addDecorator(withKnobs)
-  .add('Simple Card', () => (
+  .add('Full width', () => (
     <Card standard>This is a standard card</Card>
   ))
   .add('Card with shadow', () => (
@@ -28,5 +27,8 @@ storiesOf('button', module)
     <Card borderShadow>With shadow and border</Card>
   ))
   .add('Mid Width', () => (
-    <Card midWidth>Middle Section</Card>
+    <Card midWidth>Mid Width</Card>
+  ))
+  .add('Card With Sections', () => (
+    <Card sections withShadow leftItem="Left Section" rightItem="Right Section">Middle Sections</Card>
   ));

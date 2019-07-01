@@ -4,9 +4,9 @@ const { width } = Dimensions.get('window');
 
 export default {
   standard: {
-    padding: 5,
-    color: 'white',
-    borderColor: 'rgba(225,225,225,0.2)',
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
   withShadow: {
     shadowColor: '#000',
@@ -17,18 +17,26 @@ export default {
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 6,
-    padding: 10,
     borderRadius: 5,
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
   withLeftBorder: {
     borderLeftWidth: 5,
     borderLeftColor: 'tomato',
     shadowColor: '#000',
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
   withRightBorder: {
     borderRightWidth: 5,
     borderRightColor: 'tomato',
     shadowColor: '#000',
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
   borderShadow: {
     borderLeftWidth: 5,
@@ -41,6 +49,9 @@ export default {
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 6,
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
   midWidth: {
     shadowColor: '#000',
@@ -56,6 +67,9 @@ export default {
     width: width - 230,
     alignItems: 'center',
     justifyContent: 'center',
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'black',
   },
 
 };
