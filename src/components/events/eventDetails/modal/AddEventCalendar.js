@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {
-  Container, Content, Form, Body, Input, Label, Text, Icon, Item,
+  Container, Content, Form, Body, Text, Icon,
 } from 'native-base';
 import {
   StyleSheet, Modal, View, TouchableHighlight, AsyncStorage,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import FormInput from '../../../common/controls/Form/FormInput';
 import Button from '../../../common/buttons/Button';
 
 const styles = StyleSheet.create({
@@ -14,8 +15,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     width: 100,
-
-
   },
 });
 export default class AddEventCalendar extends React.Component {
@@ -26,7 +25,6 @@ export default class AddEventCalendar extends React.Component {
 
     };
   }
-
 
   componentDidMount() {
     const { event, client, venue } = this.props;
@@ -95,94 +93,66 @@ Close
                 </Body>
                 <View style={{ padding: 18 }}>
                   <Form>
-                    <Item floatingLabel>
-                      <Icon
-                        type="SimpleLineIcons"
-                        name="event"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Event Name</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.event_name}
-
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.event_name = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-                    <Item floatingLabel>
-                      <Icon
-                        type="Ionicons"
-                        name="md-people"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Client</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.client_name}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.client_name = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-
-                    <Item floatingLabel>
-                      <Icon
-                        name="clock"
-                        type="EvilIcons"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Starts at </Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.starts_at}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.starts_at = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-                    <Item floatingLabel>
-                      <Icon
-                        type="Entypo"
-                        name="location-pin"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Venue</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.address}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.address = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-
+                    <FormInput
+                      label="Event Name"
+                      floatingLabel
+                      value={eventDetails.event_name}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.event_name = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="calendar-plus-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Client"
+                      floatingLabel
+                      value={eventDetails.client_name}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.client_name = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="user"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Starts at"
+                      floatingLabel
+                      value={eventDetails.starts_at}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.starts_at = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="clock-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Venue"
+                      floatingLabel
+                      value={eventDetails.address}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.address = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="map-marker"
+                      color="#303B43"
+                      size={13}
+                    />
                   </Form>
-
                   <View style={styles.modalButton}>
-
                     <Button primary textColor="white" onPress={this.confirmEvent}>Add Event</Button>
                   </View>
 
                 </View>
-
-
               </View>
-
             </Content>
-
           </Modal>
         </Container>
       );
