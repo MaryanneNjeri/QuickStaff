@@ -13,7 +13,6 @@ storiesOf('button', module)
 
   ))
   .addDecorator(withKnobs)
-
   .add('Standard', () => (
     <Button base onPress={action('pressed')}>Standard</Button>
   ))
@@ -37,5 +36,7 @@ storiesOf('button', module)
   ))
   .add('Icon only', () => (
     <Button primary icon="heart" iconColor="red" size={25} onPress={action('pressed')} />
+  ))
+  .add('With rounded border', () => (
+    <Button withBorder textColor="white" onPress={action('pressed')}>Border Radius</Button>
   ));
-

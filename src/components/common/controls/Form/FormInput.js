@@ -16,13 +16,13 @@ export default ({
     <Item floatingLabel={floatingLabel} stackedLabel={stackedLabel} rounded={rounded}>
 
       <Label style={{ color: '#303B43', fontSize: 10 }}>
-        <Text>{" "}</Text>
         <Icon
           onPress={props.onPress}
           name={props.leftIcon}
           size={props.size}
           color={props.color}
         />
+        <Text>{' '}</Text>
         {label}
       </Label>
 

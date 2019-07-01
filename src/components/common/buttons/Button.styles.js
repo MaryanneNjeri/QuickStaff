@@ -57,5 +57,13 @@ export default {
     width: 140,
     backgroundColor: '#0052cc',
   },
+  withBorder: {
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    backgroundColor: '#0052cc',
+
+  },
 
 };
