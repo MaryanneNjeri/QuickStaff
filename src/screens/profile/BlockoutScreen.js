@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import moment from 'moment/moment';
 import PropTypes from 'prop-types';
 import { fetchBlockouts } from '../../redux/blockouts/action';
+import Card from '../../components/common/controls/Card/Card';
 
 const _ = require('lodash');
 
@@ -31,23 +32,6 @@ const styles = StyleSheet.create({
 
 
   },
-  background: {
-    backgroundColor: '#e3f1f1',
-    padding: 10,
-    fontWeight: '200',
-    borderRadius: 2,
-    borderColor: '#ddd',
-    borderBottomWidth: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
-  },
-
 });
 class BlockoutScreen extends React.Component {
   componentDidMount() {
@@ -84,9 +68,11 @@ Ends at
 
   renderContent(item) {
     return (
-      <Text style={styles.background}>
-        {item.reason}
-      </Text>
+      <View style={{ padding: 15 }}>
+        <Card withShadow>
+          {item.reason}
+        </Card>
+      </View>
 
 
     );
