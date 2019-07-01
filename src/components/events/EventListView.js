@@ -25,13 +25,9 @@ export default class EventListView extends React.Component {
       isVisible: false,
     });
   };
-
-
   render() {
     const { assign, i, eventDetails } = this.props;
     const { isVisible } = this.state;
-
-
     return (
       <View>
 

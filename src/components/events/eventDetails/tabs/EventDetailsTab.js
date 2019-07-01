@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import {
-  Body, Card, Container, Content, Icon, Left, ListItem, Text,
+  Body, Container, Content, Icon, Left, ListItem, Text,
 } from 'native-base';
-import { Row, Grid } from 'react-native-easy-grid';
 import moment from 'moment/moment';
 import AddEventCalendar from '../modal/AddEventCalendar';
+import Card from '../../../common/controls/Card/Card';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,13 +21,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
 
   },
-  call: {
-    width: 190,
-    padding: 10,
-    borderRadius: 5,
-  },
-
-
 });
 export default class EventDetailsTab extends React.Component {
   constructor(props) {
@@ -129,36 +122,28 @@ export default class EventDetailsTab extends React.Component {
                 </Body>
               </ListItem>
               <Text>{' '}</Text>
-              <Grid>
-                <Row style={{ paddingRight: 7 }}>
-                  <Card style={styles.call}>
-                    <Body>
-                      <Text note>Starts at</Text>
-                      <Text />
-                      <Text style={{ fontWeight: '200', fontSize: 15 }}>
-                        {moment(event.starts_at).format('LL')}
-                      </Text>
-                      <Text note>{moment(event.starts_at).format('LTS')}</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Card midWidth>
+                  Starts at
+                  {' '}
+                  {'\n'}
+                  {moment(event.starts_at).format('LL')}
+                  {' '}
+                  {'\n'}
+                  {moment(event.starts_at).format('LTS')}
+                </Card>
+                <Text>{' '}</Text>
+                <Card midWidth>
+                    Ends at
+                  {' '}
+                  {'\n'}
+                  {moment(event.ends_at).format('LL')}
+                  {' '}
+                  {'\n'}
+                  {moment(event.ends_at).format('LTS')}
+                </Card>
+              </View>
 
-                    </Body>
-
-                  </Card>
-                  <Card style={styles.call}>
-                    <Body>
-                      <Text note>Ends at</Text>
-
-                      <Text />
-
-                      <Text style={{ fontWeight: '200', fontSize: 15 }}>
-                        {moment(event.ends_at).format('LL')}
-                      </Text>
-                      <Text note>{moment(event.ends_at).format('LTS')}</Text>
-                    </Body>
-
-                  </Card>
-
-                </Row>
-              </Grid>
               <Text>{' '}</Text>
 
               <ListItem icon noBorder>
