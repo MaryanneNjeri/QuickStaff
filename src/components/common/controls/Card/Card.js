@@ -37,11 +37,10 @@ export default ({
       </Card>
     ) : (
       <Card style={selectedStyle}>
-        <CardItem>
+        <CardItem cardBody>
           <Text style={{ fontWeight: '200', fontSize: 13 }}>
             {children}
           </Text>
-
         </CardItem>
       </Card>
     )

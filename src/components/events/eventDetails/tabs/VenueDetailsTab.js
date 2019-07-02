@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         },
 
 });
+// eslint-disable-next-line react/prefer-stateless-function
 export default class VenueDetailsTab extends React.Component {
   render() {
     const { venue, coords } = this.props;

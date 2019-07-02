@@ -6,7 +6,6 @@ export default {
   standard: {
     fontWeight: '200',
     fontSize: 13,
-    color: 'black',
   },
   withShadow: {
     shadowColor: '#000',
