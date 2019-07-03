@@ -14,7 +14,7 @@ export default ({ onPress, children, ...props }) => {
 
   return (
 
-    <Header style={selectedStyle}>
+    <Header style={selectedStyle.header}>
       <Left>
         <Icon
           name={props.leftIcon}
@@ -24,7 +24,7 @@ export default ({ onPress, children, ...props }) => {
         />
       </Left>
       <Body>
-        <Text style={{ fontSize: 20, fontWeight: '200', color: props.textColor }}>{children}</Text>
+        <Text style={selectedStyle.text}>{children}</Text>
       </Body>
       <Right>
         <Icon

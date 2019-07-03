@@ -8,7 +8,7 @@ export default class HeaderComponent extends React.Component {
     const { openActionSheet } = this.props;
     return (
 
-      <Header standard textColor="white" icon="user" iconColor="white" size={25} onPress={() => { openActionSheet(); }}>Events</Header>
+      <Header standard icon="user" iconColor="white" size={25} onPress={() => { openActionSheet(); }}>Events</Header>
     );
   }
 }

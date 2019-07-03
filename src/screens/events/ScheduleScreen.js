@@ -120,7 +120,7 @@ class ScheduleScreen extends React.Component {
       return (
         <Container style={{ flex: 1 }}>
           <Content>
-            <Header standard textColor="white">Calendar</Header>
+            <Header standard >Calendar</Header>
             <Agenda
               current={Date()}
               minDate="2019-01-01"

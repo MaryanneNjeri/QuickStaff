@@ -15,20 +15,20 @@ export default ({
 
   return (sections
     ? (
-      <Card style={selectedStyle}>
+      <Card style={selectedStyle.card}>
         <CardItem>
           <Left>
             <Body>
-              <Text>{props.leftItem}</Text>
+              <Text style={selectedStyle.text}>{props.leftItem}</Text>
             </Body>
           </Left>
           <Body>
-            <Text style={selectedStyle}>
+            <Text style={selectedStyle.text}>
               {children}
             </Text>
           </Body>
           <Right>
-            <Text style={selectedStyle}>
+            <Text style={selectedStyle.text}>
               {' '}
               {props.rightItem}
             </Text>
@@ -36,9 +36,9 @@ export default ({
         </CardItem>
       </Card>
     ) : (
-      <Card style={selectedStyle}>
-        <CardItem cardBody>
-          <Text style={{ fontWeight: '200', fontSize: 13 }}>
+      <Card style={selectedStyle.card}>
+        <CardItem>
+          <Text style={selectedStyle.text}>
             {children}
           </Text>
         </CardItem>

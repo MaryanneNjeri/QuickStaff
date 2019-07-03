@@ -11,92 +11,132 @@ export default {
 
   },
   primary: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-    backgroundColor: '#0052cc',
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 100,
+      color: '#ffffff',
+      backgroundColor: '#0052cc',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
   },
+
   secondary: {
-    backgroundColor: '#33ccff',
-    width: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      backgroundColor: 'white',
+      width: 100,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 2,
+      borderColor: '#33ccff',
+    },
+    text: {
+      color: '#33ccff',
+      fontWeight: '200',
+    },
+
   },
   danger: {
-    textAlign: 'center',
-    width: 100,
-    backgroundColor: 'red',
-    color: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      width: 100,
+      backgroundColor: 'red',
+      color: 'white',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
 
   },
   success: {
-    textAlign: 'center',
-    width: 100,
-    backgroundColor: '#9ACD32',
-    color: 'white',
-    fontWeight: '200',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      width: 100,
+      backgroundColor: '#9ACD32',
+      color: 'white',
+      fontWeight: '200',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
+
 
   },
   fullWidth: {
-    textAlign: 'center',
-    width: width - 100,
-    backgroundColor: '#9ACD32',
-    borderRadius: 30,
-    color: 'white',
-    fontWeight: '200',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      textAlign: 'center',
+      width: width - 100,
+      backgroundColor: '#9ACD32',
+      borderRadius: 30,
+      color: 'white',
+      fontWeight: '200',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
 
 
   },
   logIn: {
-    width: width - 30,
-    backgroundColor: '#9ACD32',
-    textAlign: 'center',
-    borderRadius: 30,
-    color: 'white',
-    fontWeight: '200',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      width: width - 30,
+      backgroundColor: '#9ACD32',
+      textAlign: 'center',
+      borderRadius: 30,
+      color: 'white',
+      fontWeight: '200',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
+
 
   },
   medium: {
-    textAlign: 'center',
-    width: 140,
-    backgroundColor: '#0052cc',
-    fontWeight: '200',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      textAlign: 'center',
+      width: 140,
+      backgroundColor: '#0052cc',
+      fontWeight: '200',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
+
 
   },
   withBorder: {
-    borderRadius: 30,
-    textAlign: 'center',
-    width: 120,
-    backgroundColor: '#0052cc',
-    color: 'white',
-    fontWeight: '200',
-    alignItems: 'center',
-    justifyContent: 'center',
+    button: {
+      borderRadius: 30,
+      width: 120,
+      backgroundColor: '#0052cc',
+      color: 'white',
+      fontWeight: '200',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      color: '#ffffff',
+      fontWeight: '200',
+    },
 
   },
-  text: {
-    color: 'black',
-    fontWeight: '200',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textPrimary: {
-    color: 'white',
-    fontWeight: '200',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 
 };
