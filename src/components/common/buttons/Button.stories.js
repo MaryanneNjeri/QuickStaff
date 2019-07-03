@@ -17,7 +17,7 @@ storiesOf('button', module)
     <Button base onPress={action('pressed')}>Standard</Button>
   ))
   .add('Primary', () => (
-    <Button primary textColor="white" onPress={action('pressed')}>Primary</Button>
+    <Button primary onPress={action('pressed')}>Primary</Button>
   ))
   .add('Secondary', () => (
     <Button secondary onPress={action('pressed')}>Secondary</Button>
@@ -26,17 +26,17 @@ storiesOf('button', module)
     <Button fullWidth onPress={action('pressed')}>Full Width Button</Button>
   ))
   .add('Danger', () => (
-    <Button danger textColor="white" onPress={action('pressed')}> Danger</Button>
+    <Button danger onPress={action('pressed')}> Danger</Button>
   ))
   .add('Success', () => (
-    <Button success textColor="white" onPress={action('pressed')}>Success</Button>
+    <Button success onPress={action('pressed')}>Success</Button>
   ))
   .add('Login example', () => (
-    <Button logIn textColor="white" onPress={action('pressed')}>Login</Button>
+    <Button logIn onPress={action('pressed')}>Login</Button>
   ))
   .add('Icon only', () => (
     <Button primary icon="heart" iconColor="red" size={25} onPress={action('pressed')} />
   ))
   .add('With rounded border', () => (
-    <Button withBorder textColor="white" onPress={action('pressed')}>Border Radius</Button>
+    <Button withBorder onPress={action('pressed')}>Border Radius</Button>
   ));

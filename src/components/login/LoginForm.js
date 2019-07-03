@@ -42,7 +42,7 @@ export default class LoginForm extends React.Component {
           />
         </Form>
         <Text>{' '}</Text>
-        <Button logIn onPress={() => { signIn(email, password); }} textColor="white">Log in</Button>
+        <Button logIn onPress={() => { signIn(email, password); }}>Log in</Button>
 
       </View>
 

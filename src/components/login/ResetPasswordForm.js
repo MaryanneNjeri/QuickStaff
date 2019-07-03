@@ -145,7 +145,7 @@ export default class ResetPasswordForm extends React.Component {
             }}
           />
           <Text>{' '}</Text>
-          <Button fullWidth textColor="white" onPress={this.resetPassword}>Reset Password</Button>
+          <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
 
 
         </View>

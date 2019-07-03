@@ -165,7 +165,7 @@ export default class EventListFilter extends React.Component {
                       color="#303B43"
                     />
                     <Text>{' '}</Text>
-                    <Button medium textColor="white" onPress={this.showCalendar}>Events Between</Button>
+                    <Button medium onPress={this.showCalendar}>Events Between</Button>
                     <Text>{' '}</Text>
                     <Text style={{ fontWeight: '200', fontSize: 13 }}>Show Rejected</Text>
                     <Text>{' '}</Text>
@@ -180,11 +180,10 @@ export default class EventListFilter extends React.Component {
                   </Form>
                 </View>
                 <View style={styles.modalButton}>
-                  <Button primary textColor="white" onPress={() => { filterList(filter); }}>Apply</Button>
+                  <Button primary onPress={() => { filterList(filter); }}>Apply</Button>
                   <Text>{' '}</Text>
                   <Button
                     primary
-                    textColor="white"
                     onPress={() => {
                       this.setState({
                         filter: {},
@@ -196,7 +195,7 @@ Reset
                   </Button>
                   <Text>{' '}</Text>
 
-                  <Button secondary textColor="blue" onPress={closeModal}>Cancel</Button>
+                  <Button secondary onPress={closeModal}>Cancel</Button>
 
                 </View>
 

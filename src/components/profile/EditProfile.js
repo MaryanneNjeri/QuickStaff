@@ -169,7 +169,7 @@ export default class EditProfile extends React.Component {
             />
           </Form>
           <View style={styles.modalButton}>
-            <Button primary textColor="white" onPress={this.editProfile}>Edit Profile</Button>
+            <Button primary  onPress={this.editProfile}>Edit Profile</Button>
           </View>
 
         </View>

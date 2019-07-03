@@ -147,7 +147,7 @@ Close
                     />
                   </Form>
                   <View style={styles.modalButton}>
-                    <Button primary textColor="white" onPress={this.confirmEvent}>Add Event</Button>
+                    <Button primary onPress={this.confirmEvent}>Add Event</Button>
                   </View>
 
                 </View>
