@@ -38,8 +38,9 @@ class EventScreen extends React.Component {
     this.state = {
       mode: true,
       modalVisible: false,
-      active: true,
+      filtered: [],
       visible: false,
+      events: [],
 
     };
   }
@@ -50,6 +51,11 @@ class EventScreen extends React.Component {
     registerForPushNotificationAsync();
   }
 
+  // handleChange=(e) => {
+  //   if (e.target.value !== '') {
+  //     // assign original list to current list
+  //   }
+  // }
 
   eventDetails = (id) => {
     this.props.navigation.navigate('EventDetails', { id });
@@ -84,7 +90,7 @@ class EventScreen extends React.Component {
     getContent = (i, assign) => {
       if (!assign.length) {
         return (
-          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
+          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} visible={this.state.visible} closeSearch={this.closeSearch} />
         );
       }
     };
@@ -132,7 +138,7 @@ class EventScreen extends React.Component {
 
    render() {
      const { error, loading, events } = this.props;
-     const { mode, modalVisible, visible } = this.state;
+     const { mode, modalVisible } = this.state;
 
      if (error) {
        return (
@@ -144,6 +150,7 @@ class EventScreen extends React.Component {
          <Loader />
        );
      }
+
      return (
        <Container>
          <Content>
@@ -162,26 +169,7 @@ class EventScreen extends React.Component {
              <Text>{'   '}</Text>
              <Icon name="search" onPress={this.searchEvent} type="Feather" style={{ fontSize: 20, color: '#0052cc' }} />
            </Body>
-           {visible ? (
-             <View style={{ padding: 15 }}>
-               <TouchableOpacity onPress={this.closeSearch} style={{ alignSelf: 'flex-end' }}>
-                 <Text style={{ fontSize: 12, fontWeight: '200' }}>
-                         Close
-                   <Icon
-                     name="close"
-                     type="EvilIcons"
-                     style={{ fontSize: 20, color: '#303B43' }}
-                   />
-                 </Text>
-               </TouchableOpacity>
-               <FormInput
-                 standard
-                 label="Search for events"
-                 floatingLabel
-                 onChangeText={action('clicked')}
-               />
-             </View>
-           ) : null}
+
            {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} resetList={this.resetList} /> : null}
 
            { mode ? _.map(events, (assignment, i) => (
