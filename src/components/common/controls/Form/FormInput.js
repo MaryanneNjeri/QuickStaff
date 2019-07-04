@@ -15,7 +15,7 @@ export default ({
   return (
     <Item floatingLabel={floatingLabel} stackedLabel={stackedLabel} rounded={rounded}>
 
-      <Label style={{ color: '#303B43', fontSize: 10 }}>
+      <Label style={selectedStyle.label}>
         <Icon
           onPress={props.onPress}
           name={props.leftIcon}
@@ -32,7 +32,7 @@ export default ({
         onChangeText={onChangeText}
         value={props.value}
         secureTextEntry={props.secureTextEntry}
-        style={selectedStyle}
+        style={selectedStyle.input}
       />
       <Icon
         name={props.rightIcon}

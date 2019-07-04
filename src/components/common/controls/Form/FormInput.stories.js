@@ -11,16 +11,17 @@ storiesOf('button', module)
 
   ))
   .add('Simple Input', () => (
-    <FormInput onChangeText={action('change')} />
+    <FormInput standard onChangeText={action('change')} />
   ))
   .add('Input With Stacked Label', () => (
-    <FormInput onChangeText={action('change')} label="Enter Name" stackedLabel />
+    <FormInput standard onChangeText={action('change')} label="Enter Name" stackedLabel />
   ))
   .add('Input With Floating Label', () => (
-    <FormInput onChangeText={action('change')} label="Enter Name" floatingLabel />
+    <FormInput standard onChangeText={action('change')} label="Enter Name" floatingLabel />
   ))
   .add('Input With Left Icon', () => (
     <FormInput
+      standard
       label="With left Icon"
       onChangeText={action('change')}
       leftIcon="edit"
@@ -31,6 +32,7 @@ storiesOf('button', module)
 
   .add('Input With Right Icon', () => (
     <FormInput
+      standard
       label="With right Icon"
       onChangeText={action('change')}
       rightIcon="edit"
@@ -40,6 +42,7 @@ storiesOf('button', module)
   ))
   .add('Input with stacked label and Icon', () => (
     <FormInput
+      standard
       label="with icon and label"
       value="hello world"
       floatingLabel
@@ -52,6 +55,7 @@ storiesOf('button', module)
   ))
   .add('Input with floating label and Icon', () => (
     <FormInput
+      standard
       label="with icon and label"
       floatingLabel
       onChangeText={action('clicked')}
@@ -61,9 +65,18 @@ storiesOf('button', module)
     />
   ))
   .add('Rounded input', () => (
-    <FormInput rounded placeholder="Enter email" roundedInput />
+    <FormInput
+      rounded
+      placeholder="Enter email"
+      roundedInput
+    />
   ))
   .add('Password input', () => (
-    <FormInput rounded placeholder="Enter Password" roundedInput secureTextEntry />
+    <FormInput
+      rounded
+      placeholder="Enter Password"
+      roundedInput
+      secureTextEntry
+    />
 
   ));

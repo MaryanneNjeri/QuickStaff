@@ -27,14 +27,14 @@ export default {
   secondary: {
     button: {
       backgroundColor: 'white',
-      width: 100,
+      width: 120,
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 2,
-      borderColor: '#33ccff',
+      borderColor: '#1883CB',
     },
     text: {
-      color: '#33ccff',
+      color: '#1883CB',
       fontWeight: '200',
     },
 

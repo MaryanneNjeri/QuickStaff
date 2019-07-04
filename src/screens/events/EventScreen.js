@@ -5,16 +5,12 @@ import {
   ActionSheet,
   Toast,
   Segment,
-  Button,
-  Text,
-  Icon,
-  Body,
-  Left,
-  Right,
-  Header,
+  Icon, Text, Body, View,
 } from 'native-base';
+import { TouchableOpacity, TouchableOPacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { action } from '@storybook/addon-actions';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -24,6 +20,8 @@ import registerForPushNotificationAsync from '../../api/auth.api';
 import EventListView from '../../components/events/EventListView';
 import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
+import Button from '../../components/common/buttons/Button';
+import FormInput from '../../components/common/controls/Form/FormInput';
 
 const _ = require('lodash');
 
@@ -40,7 +38,8 @@ class EventScreen extends React.Component {
     this.state = {
       mode: true,
       modalVisible: false,
-
+      active: true,
+      visible: false,
 
     };
   }
@@ -64,6 +63,14 @@ class EventScreen extends React.Component {
      this.setState({ mode: true });
    };
 
+   searchEvent = () => {
+     this.setState({ visible: true });
+   };
+
+   closeSearch = () => {
+     this.setState({ visible: false });
+   };
+
     getTask = (assignment, i) => (
       <Content key={i}>
         {
@@ -77,10 +84,7 @@ class EventScreen extends React.Component {
     getContent = (i, assign) => {
       if (!assign.length) {
         return (
-
           <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
-
-
         );
       }
     };
@@ -116,7 +120,6 @@ class EventScreen extends React.Component {
 
    filterList = (list) => {
      fetchEvents(list);
-
      this.closeModal();
    };
 
@@ -124,47 +127,61 @@ class EventScreen extends React.Component {
      list = {};
      fetchEvents(list);
      this.closeModal();
-
    }
 
 
    render() {
      const { error, loading, events } = this.props;
-     const { mode, modalVisible } = this.state;
-
+     const { mode, modalVisible, visible } = this.state;
 
      if (error) {
        return (
          <Error {...this.props} />
        );
      }
-
      if (loading) {
        return (
          <Loader />
        );
      }
-
      return (
        <Container>
          <Content>
            <HeaderComponent openActionSheet={this.openActionSheet} />
-           <Header hasSegment transparent>
-             <Right />
-             <Body>
-               <Segment>
 
-                 <Button first onPress={this.listView}><Text>List View</Text></Button>
-                 <Button last onPress={this.calendarView}><Text>Calendar View</Text></Button>
+           <Body style={{ flexDirection: 'row' }}>
+             <Icon name="sort" type="MaterialIcons" style={{ fontSize: 23, color: '#303B43', fontWeight: 'bold' }} onPress={this.setModalVisible} />
 
-               </Segment>
-             </Body>
-             <Left>
-               <Icon name="sort" type="FontAwesome" style={{ fontSize: 18, color: '#303B43' }} onPress={this.setModalVisible} />
-             </Left>
-           </Header>
-
-
+             <Text>{'   '}</Text>
+             <Text>{'   '}</Text>
+             <Segment>
+               <Button secondary onPress={this.listView} first>list view</Button>
+               <Button secondary onPress={this.calendarView} last>calendar view</Button>
+             </Segment>
+             <Text>{'   '}</Text>
+             <Text>{'   '}</Text>
+             <Icon name="search" onPress={this.searchEvent} type="Feather" style={{ fontSize: 20, color: '#0052cc' }} />
+           </Body>
+           {visible ? (
+             <View style={{ padding: 15 }}>
+               <TouchableOpacity onPress={this.closeSearch} style={{ alignSelf: 'flex-end' }}>
+                 <Text style={{ fontSize: 12, fontWeight: '200' }}>
+                         Close
+                   <Icon
+                     name="close"
+                     type="EvilIcons"
+                     style={{ fontSize: 20, color: '#303B43' }}
+                   />
+                 </Text>
+               </TouchableOpacity>
+               <FormInput
+                 standard
+                 label="Search for events"
+                 floatingLabel
+                 onChangeText={action('clicked')}
+               />
+             </View>
+           ) : null}
            {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} resetList={this.resetList} /> : null}
 
            { mode ? _.map(events, (assignment, i) => (
