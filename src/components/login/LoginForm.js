@@ -51,6 +51,4 @@ export default class LoginForm extends React.Component {
 }
 LoginForm.propTypes = {
   signIn: PropTypes.func.isRequired,
-
-
 };

@@ -13,6 +13,7 @@ export default {
       padding: 5,
       borderColor: 'rgba(225,225,225,0.2)',
       height: 40,
+      color: 'white',
     },
   },
 

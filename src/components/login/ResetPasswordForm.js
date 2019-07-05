@@ -1,18 +1,17 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, Image,
+  StyleSheet, Text, View, Image, Toast,
 } from 'react-native';
-
 import { validatePassword } from '../lib/functions/auth/validate';
 import resetPasswordRequest from '../../api/resetPassword.api';
 import Button from '../common/buttons/Button';
 import FormInput from '../common/controls/Form/FormInput';
+import UpdatePasswordForm from './Modal/UpdatePasswordForm';
+import WhiteLoader from '../general/WhiteLoader';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-
   },
   text: {
     color: '#fff',
@@ -38,15 +37,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
 
   },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(225,225,225,0.2)',
-    marginBottom: 20,
-    padding: 10,
-    color: '#fff',
-    borderRadius: 30,
-
-  },
 });
 
 const icon = {
@@ -58,50 +48,89 @@ export default class ResetPasswordForm extends React.Component {
     super();
     this.state = {
       email: '',
+      modalVisible: false,
+      loading: false,
     };
   }
 
+  setModalVisible=() => {
+    this.setState({
+      modalVisible: true,
+    });
+  };
 
-    resetPassword=() => {
-      const { email } = this.state;
+  resetPassword=() => {
+    const { email } = this.state;
 
-      const { errors, isValid } = validatePassword(email);
-      if (!isValid) {
-        this.setState({
-          errors,
-        });
-      } else if (isValid) {
-        this.setState({ errors: {} });
+    const { errors, isValid } = validatePassword(email);
+    if (!isValid) {
+      this.setState({
+        errors,
+      });
+    } else if (isValid) {
+      this.setState({ errors: {}, loading: true });
+      resetPasswordRequest(email).then((response) => {
+        if (response.status_code === 200) {
+          alert(response.message);
 
-        resetPasswordRequest(email);
-      }
-    };
+          this.setState({
+            loading: false,
+          });
+          this.setModalVisible();
+        } else if (response.status_code === 404) {
+          alert(response.message);
+          this.setState({
+            loading: false,
+          });
+        }
+      });
+    }
+  };
 
-    render() {
-      const { errors } = this.state;
+  closeModal=() => {
+    this.setState({
+      modalVisible: false,
+    });
+  };
+
+  render() {
+    const { errors, modalVisible, loading } = this.state;
+    if (loading) {
       return (
+        <WhiteLoader />
 
-        <View style={styles.container}>
-          <View style={styles.card}>
-            <Image resizeMode="contain" source={icon} style={styles.logo} />
-          </View>
-          <View style={styles.header}>
-            <Text style={styles.text}>Reset Your Password ?</Text>
-          </View>
-          {errors ? <Text>{errors.email}</Text> : null}
-          <FormInput
-            rounded
-            roundedInput
-            placeholderTextColor="rgba(225,225,225,0.7)"
-            onChangeText={email => this.setState({ email })}
-          />
-          <Text>{' '}</Text>
-
-
-          <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
-
-
-        </View>
       );
     }
+    return (
+
+      <View style={styles.container}>
+        {modalVisible ? <UpdatePasswordForm isVisible={modalVisible} closeModal={this.closeModal} />
+          : (
+            <View style={styles.container}>
+              <View style={styles.card}>
+                <Image resizeMode="contain" source={icon} style={styles.logo} />
+              </View>
+              <View style={styles.header}>
+                <Text style={styles.text}>Reset Your Password ?</Text>
+              </View>
+              {errors ? <Text>{errors.email}</Text> : null}
+              <FormInput
+                rounded
+                roundedInput
+                placeholder="Enter Email"
+                placeholderTextColor="rgba(225,225,225,0.7)"
+                onChangeText={email => this.setState({ email })}
+              />
+              <Text>{' '}</Text>
+
+              <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
+
+            </View>
+          )
+         }
+
+      </View>
+
+    );
+  }
 }
