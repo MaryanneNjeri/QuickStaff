@@ -7,7 +7,7 @@ import {
   Segment,
   Icon, Text, Body, View,
 } from 'native-base';
-import { TouchableOpacity, TouchableOPacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { action } from '@storybook/addon-actions';
@@ -31,6 +31,7 @@ const buttons = [
   { text: 'Close', icon: 'close', iconColor: 'red' },
 ];
 const cancelIndex = 2;
+const eventsName = [];
 
 class EventScreen extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class EventScreen extends React.Component {
       modalVisible: false,
       filtered: [],
       visible: false,
-      events: [],
+
 
     };
   }
@@ -50,12 +51,6 @@ class EventScreen extends React.Component {
     dispatch(fetchEvents());
     registerForPushNotificationAsync();
   }
-
-  // handleChange=(e) => {
-  //   if (e.target.value !== '') {
-  //     // assign original list to current list
-  //   }
-  // }
 
   eventDetails = (id) => {
     this.props.navigation.navigate('EventDetails', { id });
@@ -80,17 +75,19 @@ class EventScreen extends React.Component {
     getTask = (assignment, i) => (
       <Content key={i}>
         {
-                    _.map(assignment, (assign, i) => (
-                      this.getContent(i, assign)
-                    ))
-                }
+            _.map(assignment, (assign, i) => (
+              this.getContent(i, assign)
+            ))
+        }
       </Content>
     );
 
     getContent = (i, assign) => {
+      console.log(eventsName);
       if (!assign.length) {
+        eventsName.push(assign.task.shift.event.name);
         return (
-          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} visible={this.state.visible} closeSearch={this.closeSearch} />
+          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
         );
       }
     };
@@ -133,12 +130,16 @@ class EventScreen extends React.Component {
      list = {};
      fetchEvents(list);
      this.closeModal();
+   };
+
+   searchFilterFunction=(text) => {
+
    }
 
 
    render() {
      const { error, loading, events } = this.props;
-     const { mode, modalVisible } = this.state;
+     const { mode, modalVisible, visible } = this.state;
 
      if (error) {
        return (
@@ -150,7 +151,6 @@ class EventScreen extends React.Component {
          <Loader />
        );
      }
-
      return (
        <Container>
          <Content>
@@ -169,7 +169,26 @@ class EventScreen extends React.Component {
              <Text>{'   '}</Text>
              <Icon name="search" onPress={this.searchEvent} type="Feather" style={{ fontSize: 20, color: '#0052cc' }} />
            </Body>
-
+           {visible ? (
+             <View style={{ padding: 15 }}>
+               <TouchableOpacity onPress={this.closeSearch} style={{ alignSelf: 'flex-end' }}>
+                 <Text style={{ fontSize: 15, fontWeight: '200', color: '#0052cc' }}>
+                         Close
+                   <Icon
+                     name="close"
+                     type="EvilIcons"
+                     style={{ fontSize: 15, color: '#0052cc' }}
+                   />
+                 </Text>
+               </TouchableOpacity>
+               <FormInput
+                 standard
+                 label="Search for events"
+                 floatingLabel
+                 onChangeText={text => this.searchFilterFunction(text)}
+               />
+             </View>
+           ) : null}
            {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} resetList={this.resetList} /> : null}
 
            { mode ? _.map(events, (assignment, i) => (

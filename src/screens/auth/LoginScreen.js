@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image, AsyncStorage,
+  View, StyleSheet, Image, AsyncStorage, TouchableOpacity,
 } from 'react-native';
 import {
-  Content, Container, Toast,
+  Content, Container, Toast, Text, Body,
 } from 'native-base';
 import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
@@ -83,6 +83,11 @@ class LoginScreen extends Component {
     }
   };
 
+  resetPassword=() => {
+    this.props.navigation.navigate('PasswordReset');
+  }
+
+
   render() {
     const { loading } = this.props;
     if (loading) {
@@ -101,6 +106,12 @@ class LoginScreen extends Component {
               <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')} />
             </View>
             <LoginForm {...this.state} signIn={this.signIn} />
+            <Text>{' '}</Text>
+
+            <TouchableOpacity onPress={this.resetPassword}>
+              <Text style={{ textAlign: 'center', color: 'white' }}>Reset Password</Text>
+            </TouchableOpacity>
+
           </Content>
         </LinearGradient>
       </Container>

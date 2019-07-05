@@ -7,7 +7,6 @@ import EventScreen from '../../screens/events/EventScreen';
 import ScheduleScreen from '../../screens/events/ScheduleScreen';
 import ProfileScreen from '../../screens/profile/ProfileScreen';
 import EventDetailsScreen from '../../screens/events/EventDetailsScreen';
-import PasswordResetScreen from '../../screens/auth/PasswordResetScreen';
 import NotificationScreen from '../../screens/profile/NotificationScreen';
 import BlockoutScreen from '../../screens/profile/BlockoutScreen';
 import EditScreen from '../../screens/profile/EditScreen';
@@ -77,12 +76,7 @@ const AppNavigator = createStackNavigator({
       ),
     },
   },
-  PasswordReset: {
-    screen: PasswordResetScreen,
-    navigationOptions: {
-      title: 'Password Reset',
-    },
-  },
+
   Notifications: {
     screen: NotificationScreen,
     navigationOptions: {

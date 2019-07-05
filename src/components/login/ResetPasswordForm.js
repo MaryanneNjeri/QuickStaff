@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TextInput, Image,
+  StyleSheet, Text, View, Image,
 } from 'react-native';
-import { store } from '../../redux/store';
+
 import { validatePassword } from '../lib/functions/auth/validate';
 import resetPasswordRequest from '../../api/resetPassword.api';
 import Button from '../common/buttons/Button';
@@ -57,29 +57,15 @@ export default class ResetPasswordForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      userDetails: {
-        email: '',
-        oldPassword: '',
-        newPassword: '',
-      },
+      email: '',
     };
   }
 
-  componentDidMount() {
-    const email = store.getState().details.user.email;
-    this.setState({
-      userDetails: {
-        email,
-        oldPassword: '',
-        newPassword: '',
-      },
-    });
-  }
 
     resetPassword=() => {
-      const { userDetails } = this.state;
+      const { email } = this.state;
 
-      const { errors, isValid } = validatePassword(userDetails);
+      const { errors, isValid } = validatePassword(email);
       if (!isValid) {
         this.setState({
           errors,
@@ -87,12 +73,12 @@ export default class ResetPasswordForm extends React.Component {
       } else if (isValid) {
         this.setState({ errors: {} });
 
-        resetPasswordRequest(userDetails);
+        resetPasswordRequest(email);
       }
     };
 
     render() {
-      const { userDetails, errors } = this.state;
+      const { errors } = this.state;
       return (
 
         <View style={styles.container}>
@@ -102,49 +88,16 @@ export default class ResetPasswordForm extends React.Component {
           <View style={styles.header}>
             <Text style={styles.text}>Reset Your Password ?</Text>
           </View>
+          {errors ? <Text>{errors.email}</Text> : null}
           <FormInput
             rounded
             roundedInput
-            value={userDetails.email}
             placeholderTextColor="rgba(225,225,225,0.7)"
-            onChangeText={(e) => {
-              const user = userDetails;
-              user.email = e;
-              this.setState({ userDetails: user });
-            }}
+            onChangeText={email => this.setState({ email })}
           />
           <Text>{' '}</Text>
-          {errors ? <Text>{errors.oldPassword}</Text> : null}
 
-          <FormInput
-            rounded
-            roundedInput
-            value={userDetails.oldPassword}
-            secureTextEntry
-            placeholder="Current Password"
-            placeholderTextColor="rgba(225,225,225,0.7)"
-            onChangeText={(e) => {
-              const user = userDetails;
-              user.oldPassword = e;
-              this.setState({ userDetails: user });
-            }}
-          />
-          {errors ? <Text>{errors.newPassword}</Text> : null}
-          <Text>{' '}</Text>
-          <FormInput
-            rounded
-            roundedInput
-            value={userDetails.newPassword}
-            secureTextEntry
-            placeholder="New Password"
-            placeholderTextColor="rgba(225,225,225,0.7)"
-            onChangeText={(e) => {
-              const user = userDetails;
-              user.newPassword = e;
-              this.setState({ userDetails: user });
-            }}
-          />
-          <Text>{' '}</Text>
+
           <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
 
 

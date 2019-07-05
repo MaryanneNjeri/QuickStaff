@@ -16,13 +16,10 @@ export default function validate(data) {
   };
 }
 
-export function validatePassword(password) {
+export function validatePassword(email) {
   const errors = {};
-  if (validator.isEmpty(password.oldPassword)) {
-    errors.oldPassword = 'the current password field is required';
-  }
-  if (validator.isEmpty(password.newPassword)) {
-    errors.newPassword = 'the new password field is required';
+  if (validator.isEmpty(email)) {
+    errors.email = 'Email field is required';
   }
   return {
     errors,

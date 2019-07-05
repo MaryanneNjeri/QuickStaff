@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Body, Icon, List, ListItem, Right, Text, View,
 } from 'native-base';
-import { TouchableHighlight, TouchableOpacity } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 import moment from 'moment/moment';
-import { action } from '@storybook/addon-actions';
+
 import EventListCard from './EventsListCard';
-import FormInput from '../common/controls/Form/FormInput';
+
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class EventListView extends React.Component {
@@ -14,6 +14,8 @@ export default class EventListView extends React.Component {
     super();
     this.state = {
       isVisible: false,
+      filtered: [],
+      events: [],
     };
   }
 
@@ -31,31 +33,12 @@ export default class EventListView extends React.Component {
 
   render() {
     const {
-      assign, i, eventDetails, visible, closeSearch,
+      assign, i, eventDetails,
     } = this.props;
     const { isVisible } = this.state;
     return (
       <View>
-        {visible ? (
-          <View style={{ padding: 15 }}>
-            <TouchableOpacity onPress={closeSearch} style={{ alignSelf: 'flex-end' }}>
-              <Text style={{ fontSize: 15, fontWeight: '200', color: '#0052cc' }}>
-                          Close
-                <Icon
-                  name="close"
-                  type="EvilIcons"
-                  style={{ fontSize: 15, color: '#0052cc' }}
-                />
-              </Text>
-            </TouchableOpacity>
-            <FormInput
-              standard
-              label="Search for events"
-              floatingLabel
-              onChangeText={action('clicked')}
-            />
-          </View>
-        ) : null}
+
         <List key={i}>
           <ListItem key={i} onPress={() => eventDetails(assign.task.shift.event.id)}>
             <Body>

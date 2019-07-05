@@ -34,13 +34,9 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Blockouts');
     };
 
-  resetPassword = () => {
-    this.props.navigation.navigate('PasswordReset', { profile: this.props.profile });
-  };
-
-  viewProfile = () => {
-    this.props.navigation.navigate('Edit', { profile: this.props.profile });
-  };
+    viewProfile = () => {
+      this.props.navigation.navigate('Edit', { profile: this.props.profile });
+    };
 
   storybook = () => {
     this.props.navigation.navigate('storybook');
@@ -69,10 +65,8 @@ class ProfileScreen extends React.Component {
             logOut={this.logOut}
             viewBlockouts={this.viewBlockouts}
             viewNotification={this.viewNotification}
-            resetPassword={this.resetPassword}
             viewProfile={this.viewProfile}
             storybook={this.storybook}
-
           />
         </Content>
       </Container>

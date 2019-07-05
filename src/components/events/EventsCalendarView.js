@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Dimensions, View, Text, TouchableHighlight,
+  Dimensions, View,
 } from 'react-native';
 import EventCalendar from 'react-native-events-calendar';
 import { store } from '../../redux/store';
