@@ -83,9 +83,7 @@ class EventScreen extends React.Component {
     );
 
     getContent = (i, assign) => {
-      console.log(eventsName);
       if (!assign.length) {
-        eventsName.push(assign.task.shift.event.name);
         return (
           <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
         );

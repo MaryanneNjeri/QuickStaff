@@ -57,9 +57,8 @@ class LoginScreen extends Component {
     } else if (isValid) {
       this.setState({ errors: {}, loading: true });
       const { dispatch } = this.props;
-      dispatch(login(user));
-      AsyncStorage.getItem('token').then((data) => {
-        if (data) {
+      dispatch(login(user)).then((response) => {
+        if (response.token) {
           Toast.show({
             text: ' Successfully Log in',
             type: 'success',

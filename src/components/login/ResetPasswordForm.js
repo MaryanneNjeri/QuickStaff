@@ -70,18 +70,17 @@ export default class ResetPasswordForm extends React.Component {
     } else if (isValid) {
       this.setState({ errors: {}, loading: true });
       resetPasswordRequest(email).then((response) => {
-        if (response.status_code === 200) {
+        if (response.status_code === 404) {
           alert(response.message);
-
           this.setState({
             loading: false,
+          });
+        } else {
+          this.setState({
+            loading: false,
+            email: '',
           });
           this.setModalVisible();
-        } else if (response.status_code === 404) {
-          alert(response.message);
-          this.setState({
-            loading: false,
-          });
         }
       });
     }
@@ -101,33 +100,36 @@ export default class ResetPasswordForm extends React.Component {
 
       );
     }
+    if (modalVisible) {
+      return (
+        <UpdatePasswordForm isVisible={modalVisible} closeModal={this.closeModal} />
+      );
+    }
     return (
 
       <View style={styles.container}>
-        {modalVisible ? <UpdatePasswordForm isVisible={modalVisible} closeModal={this.closeModal} />
-          : (
-            <View style={styles.container}>
-              <View style={styles.card}>
-                <Image resizeMode="contain" source={icon} style={styles.logo} />
-              </View>
-              <View style={styles.header}>
-                <Text style={styles.text}>Reset Your Password ?</Text>
-              </View>
-              {errors ? <Text>{errors.email}</Text> : null}
-              <FormInput
-                rounded
-                roundedInput
-                placeholder="Enter Email"
-                placeholderTextColor="rgba(225,225,225,0.7)"
-                onChangeText={email => this.setState({ email })}
-              />
-              <Text>{' '}</Text>
 
-              <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <Image resizeMode="contain" source={icon} style={styles.logo} />
+          </View>
+          <View style={styles.header}>
+            <Text style={styles.text}>Reset Your Password ?</Text>
+          </View>
+          {errors ? <Text>{errors.email}</Text> : null}
+          <FormInput
+            rounded
+            roundedInput
+            placeholder="Enter Email"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            onChangeText={email => this.setState({ email })}
+          />
+          <Text>{' '}</Text>
 
-            </View>
-          )
-         }
+          <Button fullWidth onPress={this.resetPassword}>Reset Password</Button>
+
+        </View>
+
 
       </View>
 
