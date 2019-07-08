@@ -24,7 +24,6 @@ export default async function registerForPushNotificationAsync() {
   const token1 = {
     device_token: push,
   };
-
   getToken().then((token) => {
     const toke = token.replace(/^"(.*)"$/, '$1');
     const bearer = `Bearer ${toke}`;

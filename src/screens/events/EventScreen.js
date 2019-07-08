@@ -21,7 +21,6 @@ import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
 import Button from '../../components/common/buttons/Button';
 import FormInput from '../../components/common/controls/Form/FormInput';
-import { store } from '../../redux/store';
 import { fetchProfile } from '../../redux/profile/action';
 
 const _ = require('lodash');
@@ -44,12 +43,11 @@ class EventScreen extends React.Component {
 
     };
   }
-
   componentDidMount() {
     const { dispatch, profile } = this.props;
     dispatch(fetchEvents());
     dispatch(fetchProfile());
-    if (profile.user_notification_token == null) {
+    if (profile.user_notification_token === null) {
       registerForPushNotificationAsync();
     }
   }
