@@ -3,7 +3,7 @@ import {
   Modal, StyleSheet, TouchableHighlight,
 } from 'react-native';
 import {
-  Form, Icon, Text, View, Toast,
+  Form, Icon, Text, View,
 } from 'native-base';
 import { BarPasswordStrengthDisplay } from 'react-native-password-strength-meter';
 import Button from '../../common/buttons/Button';

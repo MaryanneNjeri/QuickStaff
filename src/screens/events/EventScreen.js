@@ -10,7 +10,6 @@ import {
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { action } from '@storybook/addon-actions';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -22,6 +21,8 @@ import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
 import Button from '../../components/common/buttons/Button';
 import FormInput from '../../components/common/controls/Form/FormInput';
+import { store } from '../../redux/store';
+import { fetchProfile } from '../../redux/profile/action';
 
 const _ = require('lodash');
 
@@ -31,7 +32,6 @@ const buttons = [
   { text: 'Close', icon: 'close', iconColor: 'red' },
 ];
 const cancelIndex = 2;
-const eventsName = [];
 
 class EventScreen extends React.Component {
   constructor(props) {
@@ -39,17 +39,19 @@ class EventScreen extends React.Component {
     this.state = {
       mode: true,
       modalVisible: false,
-      filtered: [],
       visible: false,
 
 
     };
   }
 
-  async componentDidMount() {
-    const { dispatch } = this.props;
+  componentDidMount() {
+    const { dispatch, profile } = this.props;
     dispatch(fetchEvents());
-    registerForPushNotificationAsync();
+    dispatch(fetchProfile());
+    if (profile.user_notification_token == null) {
+      registerForPushNotificationAsync();
+    }
   }
 
   eventDetails = (id) => {
@@ -136,7 +138,9 @@ class EventScreen extends React.Component {
 
 
    render() {
-     const { error, loading, events } = this.props;
+     const {
+       error, loading, events,
+     } = this.props;
      const { mode, modalVisible, visible } = this.state;
 
      if (error) {
@@ -149,6 +153,7 @@ class EventScreen extends React.Component {
          <Loader />
        );
      }
+
      return (
        <Container>
          <Content>
@@ -209,5 +214,6 @@ const mapStateToProps = state => ({
   events: state.events.items,
   loading: state.events.loading,
   error: state.events.Error,
+  profile: state.details.user,
 });
 export default connect(mapStateToProps)(EventScreen);

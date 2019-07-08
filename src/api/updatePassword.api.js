@@ -1,7 +1,6 @@
 import { API_URL } from '../../config/config';
 
 export default function updatePassword(object) {
-  console.log(JSON.stringify(object));
   return fetch(`${API_URL}/update/password`, {
     method: 'POST',
     body: JSON.stringify(object),

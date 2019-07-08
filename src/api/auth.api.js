@@ -1,4 +1,6 @@
 import { Permissions, Notifications } from 'expo';
+import { API_URL } from '../../config/config';
+import { getToken } from '../components/lib/functions/auth/getAuthConfig';
 
 
 export default async function registerForPushNotificationAsync() {
@@ -18,17 +20,26 @@ export default async function registerForPushNotificationAsync() {
     return;
   }
   // get the token that uniquely identifies this device
-  const token = await Notifications.getExpoPushTokenAsync();
-  // post the token to the backend server and user details
-  return fetch('https://8279f0ac.ngrok.io/user/682', {
-    method: 'PATCH',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  const push = await Notifications.getExpoPushTokenAsync();
+  const token1 = {
+    device_token: push,
+  };
 
-    body: JSON.stringify({
-      push_token: token,
-    }),
+  getToken().then((token) => {
+    const toke = token.replace(/^"(.*)"$/, '$1');
+    const bearer = `Bearer ${toke}`;
+    return fetch(`${API_URL}/notification/token`, {
+      method: 'POST',
+      headers: {
+        Authorization: bearer,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(token1),
+    }).then(response => response.json())
+      .then((response) => { console.log(response); }).catch((error) => {
+        console.log(error);
+      });
   });
 }
