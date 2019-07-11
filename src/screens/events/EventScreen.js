@@ -43,6 +43,7 @@ class EventScreen extends React.Component {
 
     };
   }
+
   componentDidMount() {
     const { dispatch, profile } = this.props;
     dispatch(fetchEvents());

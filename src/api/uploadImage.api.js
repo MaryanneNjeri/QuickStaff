@@ -2,7 +2,8 @@ import { getToken } from '../components/lib/functions/auth/getAuthConfig';
 import { API_URL } from '../../config/config';
 
 
-export default function editProfile(formData) {
+export default function uploadImage(photo) {
+  console.log(photo);
   function handleErrors(response) {
     if (!response.ok) {
       alert(response.status);
@@ -16,11 +17,11 @@ export default function editProfile(formData) {
     const bearer = `Bearer ${toke}`;
     fetch(`${API_URL}/update/profile`, {
       method: 'POST',
-      body: formData,
+      body: photo,
       headers: {
         Authorization: bearer,
         Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
       },
 
     }).then(handleErrors)

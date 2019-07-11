@@ -4,10 +4,12 @@ import {
 } from 'native-base';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { ImagePicker, Permissions, Constants } from 'expo';
+import _ from 'lodash';
 import { store } from '../../redux/store';
 import editProfile from '../../api/editProfile.api';
 import Button from '../common/buttons/Button';
 import FormInput from '../common/controls/Form/FormInput';
+
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -15,8 +17,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     width: 100,
-
-
   },
   avatar: {
     width: 130,
@@ -26,10 +26,9 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     alignSelf: 'center',
     position: 'absolute',
-
-
   },
 });
+const formData = new FormData();
 // eslint-disable-next-line react/prefer-stateless-function
 export default class EditProfile extends React.Component {
   constructor() {
@@ -56,7 +55,10 @@ export default class EditProfile extends React.Component {
 
   editProfile=() => {
     const { profile } = this.state;
-    editProfile(profile);
+    _.forOwn(profile, (value, key) => {
+      formData.append(key, value);
+    });
+    editProfile(formData);
   };
 
   getPermissionAsync = async () => {
@@ -78,13 +80,18 @@ export default class EditProfile extends React.Component {
 
     if (!result.cancelled) {
       const profile = store.getState().details.user;
+      const filename = result.uri.split('/').pop();
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : 'image';
+
+      formData.append('profile_image', { uri: result.uri, name: filename, type });
+
       this.setState({
         profile: {
           first_name: profile.first_name,
           last_name: profile.last_name,
           phone: profile.phone,
           email: profile.email,
-          profile_image: result.uri,
         },
       });
     }
@@ -100,19 +107,6 @@ export default class EditProfile extends React.Component {
             <Text style={{ fontWeight: '200', color: '#0099ff' }}>Upload Photo</Text>
           </TouchableOpacity>
           <Form>
-            <FormInput
-              label="Profile Image"
-              floatingLabel
-              value={profile.profile_image}
-              onChangeText={(e) => {
-                const prof = profile;
-                profile.profile_image = e;
-                this.setState({ profile: prof });
-              }}
-              leftIcon="camera-retro"
-              color="#303B43"
-              size={13}
-            />
 
             <FormInput
               label="First Name"
@@ -169,7 +163,7 @@ export default class EditProfile extends React.Component {
             />
           </Form>
           <View style={styles.modalButton}>
-            <Button primary  onPress={this.editProfile}>Edit Profile</Button>
+            <Button primary onPress={this.editProfile}>Edit Profile</Button>
           </View>
 
         </View>
