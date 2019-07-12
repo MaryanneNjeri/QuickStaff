@@ -1,24 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AppContainer from './AppContainer';
-import { SafeAreaView } from "react-navigation";
+import { Provider } from 'react-redux';
+import { Root } from 'native-base';
+import MainAppNavigation from './src/navigation/MainAppNavigation';
+import { store } from './src/redux/store';
 
-
+// eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {
   render() {
-
     return (
-
-     <AppContainer/>
+      <Root>
+        <Provider store={store}>
+          <MainAppNavigation />
+        </Provider>
+      </Root>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
