@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Dimensions, View,
 } from 'react-native';
-import EventCalendar from 'react-native-events-calendar';
+import EventCalendar from 'react-native-event-calendar-customized';
 import { store } from '../../redux/store';
 import EventsCard from './EventsCard';
 

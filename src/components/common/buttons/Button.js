@@ -13,7 +13,13 @@ export default ({
     ? { ...aggregate, ...styles[prop] } : aggregate),
   styles.standard);
   return (
-    <Button onPress={onPress} style={selectedStyle.button} active={active} first={props.first} last={props.last}>
+    <Button
+      onPress={onPress}
+      style={selectedStyle.button}
+      active={active}
+      first={props.first}
+      last={props.last}
+    >
       <Icon name={props.icon} size={props.size} color={props.iconColor} iconStyle={{ justifyContent: 'center', alignItems: 'center' }} />
       <Text style={selectedStyle.text}>
         {children}

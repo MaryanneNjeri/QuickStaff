@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Body, Container, Content, Spinner, Text, View, List, ListItem, Icon,
+  Body, Container, Content, Spinner, Text, View, List, ListItem, Icon, Segment,
 } from 'native-base';
 import { TouchableHighlight, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
@@ -9,6 +9,8 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { fetchBlockouts } from '../../redux/blockouts/action';
 import FormInput from '../../components/common/controls/Form/FormInput';
+import Button from '../../components/common/buttons/Button';
+import CalendarView from '../../components/Blockouts/CalendarView';
 
 class BlockoutScreen extends React.Component {
   constructor() {
@@ -16,6 +18,7 @@ class BlockoutScreen extends React.Component {
     this.state = {
       visible: false,
       filtered: [],
+      mode: true,
     };
   }
 
@@ -62,11 +65,23 @@ class BlockoutScreen extends React.Component {
      this.setState({
        filtered: newList,
      });
+   };
+
+   listView =() => {
+     this.setState({
+       mode: true,
+     });
+   };
+
+   calendarView = () => {
+     this.setState({
+       mode: false,
+     });
    }
 
    render() {
      const { error, loading } = this.props;
-     const { visible, filtered } = this.state;
+     const { visible, filtered, mode } = this.state;
 
      if (error) {
        return (
@@ -91,8 +106,15 @@ An error occurred!
      return (
        <Container>
          <Content contentContainerStyle={{ padding: 15 }}>
-           <Icon name="search" onPress={this.searchEvent} type="Feather" style={{ fontSize: 20, color: '#0052cc' }} />
-
+           <Body style={{ flexDirection: 'row' }}>
+             <Segment>
+               <Button secondary active onPress={this.listView} first>list view</Button>
+               <Button secondary onPress={this.calendarView} last>calendar view</Button>
+             </Segment>
+             <Text>{'   '}</Text>
+             <Text>{'   '}</Text>
+             <Icon name="search" onPress={this.searchEvent} type="Feather" style={{ fontSize: 20, color: '#0052cc' }} />
+           </Body>
            {visible ? (
              <View style={{ padding: 15 }}>
                <TouchableOpacity onPress={this.closeSearch} style={{ alignSelf: 'flex-end' }}>
@@ -113,37 +135,42 @@ An error occurred!
                />
              </View>
            ) : null}
-           {
-                _.map(filtered, (blockout, i) => (
 
-                  <List key={i}>
-                    <ListItem>
-                      <Body>
-                        <Text style={{ fontWeight: '200', fontSize: 16 }}>{blockout.recurrence_text}</Text>
-                        <Text style={{ fontWeight: '200', fontSize: 14 }} note>
+
+           { mode
+
+             ? _.map(filtered, (blockout, i) => (
+
+               <List key={i}>
+                 <ListItem>
+                   <Body>
+                     <Text style={{ fontWeight: '200', fontSize: 16 }}>{blockout.recurrence_text}</Text>
+                     <Text style={{ fontWeight: '200', fontSize: 14 }} note>
                       Starts at:
-                          {' '}
-                          {' '}
-                          {moment(blockout.starts_at).format('LLL')}
-                        </Text>
-                        <Text style={{ fontWeight: '200', fontSize: 14 }} note>
+                       {' '}
+                       {' '}
+                       {moment(blockout.starts_at).format('LLL')}
+                     </Text>
+                     <Text style={{ fontWeight: '200', fontSize: 14 }} note>
                       Ends at:
-                          {' '}
-                          {' '}
-                          {moment(blockout.ends_at).format('LLL')}
-                        </Text>
-                        <TouchableHighlight onPress={this.viewDetails}>
-                          <Text note style={{ fontSize: 13 }}>
+                       {' '}
+                       {' '}
+                       {moment(blockout.ends_at).format('LLL')}
+                     </Text>
+                     <TouchableHighlight onPress={this.viewDetails}>
+                       <Text note style={{ fontSize: 13 }}>
                           Reason :
 
-                            {blockout.reason}
-                          </Text>
-                        </TouchableHighlight>
-                      </Body>
-                    </ListItem>
-                  </List>
+                         {blockout.reason}
+                       </Text>
+                     </TouchableHighlight>
+                   </Body>
+                 </ListItem>
+               </List>
 
-                ))}
+
+             )) : <CalendarView data={filtered} />}
+
 
          </Content>
        </Container>
