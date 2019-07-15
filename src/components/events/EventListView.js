@@ -56,7 +56,12 @@ view in calendar
             </Right>
           </ListItem>
         </List>
-        { isVisible ? <EventListCard closeCard={this.closeCard} events={assign.task.shift.event} /> : null}
+        { isVisible ? (
+          <EventListCard
+            closeCard={this.closeCard}
+            events={assign.task.shift.event}
+          />
+        ) : null}
 
       </View>
     );

@@ -152,7 +152,6 @@ class EventScreen extends React.Component {
          <Loader />
        );
      }
-
      return (
        <Container>
          <Content>
@@ -191,7 +190,14 @@ class EventScreen extends React.Component {
                />
              </View>
            ) : null}
-           {modalVisible ? <EventListFilter isVisible={modalVisible} closeModal={this.closeModal} filterList={this.filterList} resetList={this.resetList} /> : null}
+           {modalVisible ? (
+             <EventListFilter
+               isVisible={modalVisible}
+               closeModal={this.closeModal}
+               filterList={this.filterList}
+               resetList={this.resetList}
+             />
+           ) : null}
 
            { mode ? _.map(events, (assignment, i) => (
              this.getTask(assignment, i)

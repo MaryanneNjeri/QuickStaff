@@ -1,85 +1,23 @@
 import React from 'react';
 import {
-  Body, Container, Content, Right, Spinner, Text, Icon, View, Accordion,
+  Body, Container, Content, Spinner, Text, View, List, ListItem,
 } from 'native-base';
-import { StyleSheet, Dimensions } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment/moment';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { fetchBlockouts } from '../../redux/blockouts/action';
-import Card from '../../components/common/controls/Card/Card';
 
-const _ = require('lodash');
-
-const { width } = Dimensions.get('window');
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    flexDirection: 'row',
-    padding: 10,
-    justifyContent: 'space-between',
-    borderWidth: 0.3,
-    height: width / 4,
-    color: '#BDC3C7',
-    elevation: 1,
-    margin: 10,
-    borderLeftWidth: 5,
-    borderLeftColor: 'tomato',
-
-
-  },
-});
 class BlockoutScreen extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchBlockouts());
   }
 
-  renderHeader(item, expanded) {
-    return (
-      <View style={styles.header}>
-        <Body>
-          <Text style={{ fontWeight: '200' }}>
-            {' '}
-Blockout
-          </Text>
-          <Text note style={{ fontSize: 13 }}>
-            {' '}
-Starts at
-            {moment(item.starts_at).format('LL')}
-          </Text>
-          <Text note style={{ fontSize: 13 }}>
-            {' '}
-Ends at
-            {moment(item.ends_at).format('LL')}
-          </Text>
-
-        </Body>
-        <Right>
-          {expanded ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-            : <Icon style={{ fontSize: 18 }} name="add-circle" />}
-        </Right>
-      </View>
-    );
-  }
-
-  renderContent(item) {
-    return (
-      <View style={{ padding: 15 }}>
-        <Card withShadow>
-          {item.reason}
-        </Card>
-      </View>
-
-
-    );
-  }
-
   render() {
     const { error, loading, blockouts } = this.props;
+
+
     if (error) {
       return (
 
@@ -103,16 +41,36 @@ An error occurred!
     return (
       <Container>
         <Content>
-          {!_.isEmpty(blockouts.data) ? (
-            <Accordion
-              dataArray={blockouts.data}
-              animation
-              expanded
-              renderHeader={this.renderHeader}
-              renderContent={this.renderContent}
-            />
-          ) : null}
+          {_.map(blockouts.data, (blockout, i) => (
 
+            <List key={i}>
+              <ListItem>
+                <Body>
+                  <Text style={{ fontWeight: '200', fontSize: 16 }}>{blockout.recurrence_text}</Text>
+                  <Text style={{ fontWeight: '200', fontSize: 14 }} note>
+                      Starts at:
+                    {' '}
+                    {' '}
+                    {moment(blockout.starts_at).format('LLL')}
+                  </Text>
+                  <Text style={{ fontWeight: '200', fontSize: 14 }} note>
+                      Ends at:
+                    {' '}
+                    {' '}
+                    {moment(blockout.ends_at).format('LLL')}
+                  </Text>
+                  <TouchableHighlight onPress={this.viewDetails}>
+                    <Text note style={{ fontSize: 13 }}>
+                          Reason :
+
+                      {blockout.reason}
+                    </Text>
+                  </TouchableHighlight>
+                </Body>
+              </ListItem>
+            </List>
+
+          ))}
 
         </Content>
       </Container>
