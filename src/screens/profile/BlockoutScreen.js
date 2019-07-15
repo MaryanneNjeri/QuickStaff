@@ -17,6 +17,7 @@ class BlockoutScreen extends React.Component {
     super();
     this.state = {
       visible: false,
+      filter: false,
       filtered: [],
       mode: true,
     };
@@ -77,11 +78,47 @@ class BlockoutScreen extends React.Component {
      this.setState({
        mode: false,
      });
-   }
+   };
+
+   closeFilter = () => {
+     this.setState({
+       filter: false,
+     });
+   };
+
+   filterByDate=() => {
+     this.setState({
+       filter: true,
+     });
+   };
+
+   filter=(e) => {
+     const { blockouts } = this.props;
+     let currentList = [];
+     let newList = [];
+
+     if (e !== '') {
+       currentList = blockouts.data;
+       newList = currentList.filter((block) => {
+         const lc = moment(block.starts_at).format(' LLL').toLowerCase();
+
+         const filter = e.toLowerCase();
+         return lc.includes(filter);
+       });
+     } else {
+       newList = blockouts.data;
+     }
+     this.setState({
+       filtered: newList,
+     });
+   };
+
 
    render() {
      const { error, loading } = this.props;
-     const { visible, filtered, mode } = this.state;
+     const {
+       visible, filtered, mode, filter,
+     } = this.state;
 
      if (error) {
        return (
@@ -107,6 +144,14 @@ An error occurred!
        <Container>
          <Content contentContainerStyle={{ padding: 15 }}>
            <Body style={{ flexDirection: 'row' }}>
+             <Icon
+               name="sort"
+               type="MaterialIcons"
+               style={{ fontSize: 23, color: '#303B43', fontWeight: 'bold' }}
+               onPress={this.filterByDate}
+             />
+             <Text>{'   '}</Text>
+             <Text>{'   '}</Text>
              <Segment>
                <Button secondary active onPress={this.listView} first>list view</Button>
                <Button secondary onPress={this.calendarView} last>calendar view</Button>
@@ -132,6 +177,26 @@ An error occurred!
                  label="Search for blockouts reasons"
                  floatingLabel
                  onChangeText={e => this.handleChange(e)}
+               />
+             </View>
+           ) : null}
+           {filter ? (
+             <View style={{ padding: 15 }}>
+               <TouchableOpacity onPress={this.closeFilter} style={{ alignSelf: 'flex-end' }}>
+                 <Text style={{ fontSize: 15, fontWeight: '200', color: '#0052cc' }}>
+                             Close
+                   <Icon
+                     name="close"
+                     type="EvilIcons"
+                     style={{ fontSize: 15, color: '#0052cc' }}
+                   />
+                 </Text>
+               </TouchableOpacity>
+               <FormInput
+                 standard
+                 label="Filter by date"
+                 floatingLabel
+                 onChangeText={e => this.filter(e)}
                />
              </View>
            ) : null}
