@@ -45,6 +45,7 @@
     "react-native-maps": "^0.23.0",
     "react-native-modal": "^11.0.1",
     "react-native-navigation": "^2.21.0",
+    "react-native-open-maps": "^0.3.3",
     "react-native-password-strength-meter": "0.0.2",
     "react-native-range-datepicker": "^1.8.2",
     "react-native-vector-icons": "^6.5.0",

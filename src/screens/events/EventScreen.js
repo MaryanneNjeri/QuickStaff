@@ -39,6 +39,7 @@ class EventScreen extends React.Component {
       mode: true,
       modalVisible: false,
       visible: false,
+      filtered: [],
 
 
     };
@@ -141,7 +142,6 @@ class EventScreen extends React.Component {
        error, loading, events,
      } = this.props;
      const { mode, modalVisible, visible } = this.state;
-
      if (error) {
        return (
          <Error {...this.props} />
