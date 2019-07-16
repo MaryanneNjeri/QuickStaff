@@ -27,9 +27,9 @@ export default class VenueDetailsTab extends React.Component {
   render() {
     const { venue, coords } = this.props;
 
-    const location = { latitude: coords.latitude, longitude: coords.longitude };
-    console.log(venue);
-    const mapZoom = createOpenLink({ ...location, zoom: 30 });
+    const location = { latitude: coords.lat, longitude: coords.lng };
+
+    const mapZoom = createOpenLink(location);
     return (
       <Container>
         <Content>

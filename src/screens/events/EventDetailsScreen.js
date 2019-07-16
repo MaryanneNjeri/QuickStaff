@@ -72,7 +72,6 @@ export default class EventDetailsScreen extends React.Component {
     };
 
     render() {
-      console.log(this.state.coords)
       return (
         <Container style={styles.container}>
           <Content>
