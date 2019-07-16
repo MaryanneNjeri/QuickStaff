@@ -14,10 +14,10 @@ storiesOf('Header', module)
     <Header standard>Standard</Header>
   ))
   .add('With Text Color', () => (
-    <Header standard textColor="white">Standard with Text</Header>
+    <Header standard>Standard with Text</Header>
   ))
   .add('With Right Icon', () => (
-    <Header standard textColor="white" icon="user" iconColor="white" size={25} onPress={action('clicked')}>Right Icon</Header>
+    <Header standard icon="user" iconColor="white" size={25} onPress={action('clicked')}>Right Icon</Header>
   ))
   .add('With Left Icon', () => (
     <Header standard leftIcon="search" iconColor="white" size={20}>Left Icon</Header>

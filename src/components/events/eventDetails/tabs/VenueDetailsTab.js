@@ -99,6 +99,7 @@ export default class VenueDetailsTab extends React.Component {
 
               ) : null
                         }
+            <Text>{' '}</Text>
             <TouchableOpacity onPress={mapZoom}>
               <Text style={{ fontWeight: '200', color: '#1883CB' }}>Click here to view venue Location</Text>
             </TouchableOpacity>

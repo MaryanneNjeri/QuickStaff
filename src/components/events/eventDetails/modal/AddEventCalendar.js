@@ -3,8 +3,10 @@ import {
   Container, Content, Form, Body, Text, Icon,
 } from 'native-base';
 import {
-  StyleSheet, Modal, View, TouchableHighlight, AsyncStorage,
+  StyleSheet, Modal, View, TouchableHighlight,
 } from 'react-native';
+import moment from 'moment';
+import { Calendar, Permissions, Constants } from 'expo';
 import PropTypes from 'prop-types';
 import FormInput from '../../../common/controls/Form/FormInput';
 import Button from '../../../common/buttons/Button';
@@ -22,6 +24,7 @@ export default class AddEventCalendar extends React.Component {
     super();
     this.state = {
       eventDetails: {},
+      results: [],
 
     };
   }
@@ -34,23 +37,42 @@ export default class AddEventCalendar extends React.Component {
         event_name: event.name,
         client_name: client.name,
         starts_at: event.starts_at,
+        ends_at: event.ends_at,
         address: venue.address,
 
       },
     });
+    this.getCalendarPermission();
   }
+
+   getCalendarPermission = async () => {
+     if (Constants.platform.ios) {
+       const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+       if (status !== 'granted') {
+         alert('Sorry we need calendar permission to make this work..');
+       }
+     }
+   };
 
     confirmEvent = async () => {
       const { eventDetails } = this.state;
-      const markedDates = [];
-      markedDates.push(eventDetails);
-      try {
-        await AsyncStorage.setItem('event', JSON.stringify(markedDates));
-        alert('Event has been saved');
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      let details = await Expo.Calendar.createEventAsync(Expo.Calendar.DEFAULT, {
+        title: eventDetails.event_name,
+        startDate: new Date(moment(eventDetails.starts_at).format('YYYY-MM-DD')),
+        endDate: new Date(moment(eventDetails.ends_at).format('YYYY-MM-DD')),
+        location: eventDetails.address,
+        timeZone: 'GMT',
+      })
+        .then((event) => {
+          alert('Event successfully saved to calendar');
+          console.log('success', event);
+        })
+        .catch((error) => {
+          alert('An error seemed to have occurred');
+          console.log('failure', error);
+        });
+    }
+
 
     render() {
       const { isModalVisible, closeModal } = this.props;
@@ -126,6 +148,19 @@ Close
                       onChangeText={(e) => {
                         const eve = eventDetails;
                         eve.starts_at = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="clock-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Ends at"
+                      floatingLabel
+                      value={eventDetails.ends_at}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.ends_at = e;
                         this.setState({ eventDetails: eve });
                       }}
                       leftIcon="clock-o"
