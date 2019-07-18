@@ -35,44 +35,41 @@ export default class EventDetailsScreen extends React.Component {
   getEventDetails = () => {
     const events = store.getState().events;
 
-    _.map(events.items, (assign, i) => (
+
+    _.map(events.items.data, (assign, i) => (
 
       this.getEvents(assign, i)
     ));
   };
 
     getEvents = (assign) => {
-      _.map(assign, (task, i) => (
-        this.getDetails(task, i)
-      ));
-    };
+      const ids = this.props.navigation.state.params.id;
 
-    getDetails = (task) => {
-      if (!task.length) {
-        const ids = this.props.navigation.state.params.id;
-        const found = _.find([task.task.shift.event], ['id', ids]);
-        if (found) {
-          Geocoder.init(API_KEY);
+      const found = _.find([assign.task.data.shift.data.event.data], ['id', ids]);
 
-          Geocoder.from(found.venue.address).then((json) => {
-            const location = json.results[0].geometry.location;
-            this.setState({
-              coords: location,
-            });
-          })
-            .catch(error => console.log(error));
+      if (found) {
+        Geocoder.init(API_KEY);
+
+        Geocoder.from(found.venue.data.address).then((json) => {
+          const location = json.results[0].geometry.location;
           this.setState({
-            event: found,
-            client: found.client,
-            venue: found.venue,
-
+            coords: location,
           });
-        }
+        })
+          .catch(error => console.log(error));
+        this.setState({
+          event: found,
+          client: found.client.data,
+          venue: found.venue.data,
+
+        });
       }
     };
 
+
     render() {
       return (
+
         <Container style={styles.container}>
           <Content>
             <Tabs>

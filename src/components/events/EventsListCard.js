@@ -11,6 +11,7 @@ import Card from '../common/controls/Card/Card';
 export default class EventsListCard extends React.Component {
   render() {
     const { closeCard, events } = this.props;
+
     return (
       <View style={{ backgroundColor: '#F8F8F8', padding: 15 }}>
         <TouchableOpacity onPress={closeCard} style={{ alignSelf: 'flex-end' }}>
@@ -45,16 +46,16 @@ Close
           {'   '}
           {'\n'}
           <Text note style={{ fontSize: 12 }}>
-            Client:
+           Client:
           </Text>
-          {events.client.name}
+          {events.client.data.name}
 
           {'   '}
           {'\n'}
           <Text note style={{ fontSize: 12 }}>
             Venue:
           </Text>
-          {events.venue.name}
+          {events.venue_name}
           {'    '}
           {'\n'}
         </Card>

@@ -49,7 +49,12 @@ export default class EventDetailsTab extends React.Component {
       return (
         <Container style={styles.container}>
           <Content>
-            {isModalVisible ? <AddEventCalendar {...this.props} closeModal={this.closeModal} /> : null}
+            {isModalVisible ? (
+              <AddEventCalendar
+                {...this.props}
+                closeModal={this.closeModal}
+              />
+            ) : null}
             <View style={{ paddingRight: 10, paddingLeft: 10 }}>
               <Text />
               <Text style={styles.font}>
@@ -69,7 +74,7 @@ export default class EventDetailsTab extends React.Component {
                     fontWeight: '200',
                   }}
                   >
-                    {Date(event.starts_at)}
+                    {moment(event.starts_at).format(' LLLL')}
                   </Text>
                   <TouchableHighlight onPress={() => {
                     this.setModalVisible(true);
@@ -87,13 +92,13 @@ export default class EventDetailsTab extends React.Component {
                   <Icon type="EvilIcons" name="comment" />
                 </Left>
                 <Body>
-                  <Text style={{ fontSize: 12 }} note>Staff Invited</Text>
+                  <Text style={{ fontSize: 12 }} note>Positions Available</Text>
                   <Text style={{
                     fontSize: 14,
                     fontWeight: '200',
                   }}
                   >
-                    {event.staff_invited}
+                    {event.positions_available}
                   </Text>
                 </Body>
               </ListItem>

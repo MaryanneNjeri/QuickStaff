@@ -64,7 +64,7 @@ export default class AddEventCalendar extends React.Component {
         timeZone: 'GMT',
       })
         .then((event) => {
-          alert('Event successfully saved to calendar');
+          alert('Event successfully saved to phone calendar');
           console.log('success', event);
         })
         .catch((error) => {
