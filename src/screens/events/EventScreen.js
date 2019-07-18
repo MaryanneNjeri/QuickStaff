@@ -40,57 +40,57 @@ class EventScreen extends React.Component {
       modalVisible: false,
       visible: false,
       filtered: [],
-
-
     };
   }
 
   componentDidMount() {
-    const { dispatch, profile } = this.props;
+    const { dispatch, profile, events } = this.props;
     dispatch(fetchEvents());
-    dispatch(fetchProfile());
-    if (profile.user_notification_token === null) {
-      registerForPushNotificationAsync();
-    }
+    // dispatch(fetchProfile());
+    // if (profile.user_notification_token === null) {
+    //   registerForPushNotificationAsync();
+    // }
+    this.setState({
+      filtered: events.data,
+    });
   }
 
-  eventDetails = (id) => {
-    this.props.navigation.navigate('EventDetails', { id });
-  };
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({
+      filtered: nextProps.events.data,
+    });
+  }
 
-   calendarView = () => {
-     this.setState({ mode: false });
-   };
+    eventDetails = (id) => {
+      this.props.navigation.navigate('EventDetails', { id });
+    };
 
-   listView = () => {
-     this.setState({ mode: true });
-   };
+    calendarView = () => {
+      this.setState({ mode: false });
+    };
 
-   searchEvent = () => {
-     this.setState({ visible: true });
-   };
+    listView = () => {
+      this.setState({ mode: true });
+    };
 
-   closeSearch = () => {
-     this.setState({ visible: false });
-   };
+    searchEvent = () => {
+      this.setState({ visible: true });
+    };
+
+    closeSearch = () => {
+      this.setState({ visible: false });
+    };
 
     getTask = (assignment, i) => (
-      <Content key={i}>
-        {
-            _.map(assignment, (assign, i) => (
-              this.getContent(i, assign)
-            ))
-        }
-      </Content>
-    );
+      <EventListView
+        key={i}
+        i={i}
+        assign={assignment.task.data.shift.data.event.data}
+        eventDetails={this.eventDetails}
+      />
 
-    getContent = (i, assign) => {
-      if (!assign.length) {
-        return (
-          <EventListView key={i} i={i} assign={assign} eventDetails={this.eventDetails} />
-        );
-      }
-    };
+
+    );
 
     openActionSheet = () => {
       ActionSheet.show(
@@ -132,16 +132,31 @@ class EventScreen extends React.Component {
      this.closeModal();
    };
 
-   searchFilterFunction=(text) => {
-
+   filterEvents = (e) => {
+     const { events } = this.props;
+     let currentList = [];
+     let newList = [];
+     if (e !== '') {
+       currentList = events.data;
+       newList = currentList.filter((event) => {
+         const lc = event.task.data.shift.data.event.data.name.toLowerCase();
+         const filter = e.toLowerCase();
+         return lc.includes(filter);
+       });
+     } else {
+       newList = events.data;
+     }
+     this.setState({
+       filtered: newList,
+     });
    }
 
-
    render() {
+     const { error, loading } = this.props;
      const {
-       error, loading, events,
-     } = this.props;
-     const { mode, modalVisible, visible } = this.state;
+       mode, modalVisible, visible, filtered,
+     } = this.state;
+
      if (error) {
        return (
          <Error {...this.props} />
@@ -186,7 +201,7 @@ class EventScreen extends React.Component {
                  standard
                  label="Search for events"
                  floatingLabel
-                 onChangeText={text => this.searchFilterFunction(text)}
+                 onChangeText={e => this.filterEvents(e)}
                />
              </View>
            ) : null}
@@ -199,7 +214,7 @@ class EventScreen extends React.Component {
              />
            ) : null}
 
-           { mode ? _.map(events, (assignment, i) => (
+           { mode ? _.map(filtered, (assignment, i) => (
              this.getTask(assignment, i)
 
            ))
@@ -218,7 +233,7 @@ EventScreen.propTypes = {
 const mapStateToProps = state => ({
   events: state.events.items,
   loading: state.events.loading,
-  error: state.events.Error,
+  error: state.events.error,
   profile: state.details.user,
 });
 export default connect(mapStateToProps)(EventScreen);

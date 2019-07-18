@@ -54,7 +54,7 @@ export function fetchEvents(list) {
       const bearer = `Bearer ${toke}`;
 
 
-      return fetch(`${API_URL}/staff/events`, {
+      return fetch(`${API_URL}/staff/events?include=task.shift.event`, {
         method: 'GET',
         headers: {
           Authorization: bearer,

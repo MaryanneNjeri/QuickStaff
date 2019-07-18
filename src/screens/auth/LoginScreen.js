@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image, AsyncStorage, TouchableOpacity,
+  View, StyleSheet, Image, TouchableOpacity,
 } from 'react-native';
 import {
   Content, Container, Toast, Text, Body,
@@ -48,6 +48,7 @@ class LoginScreen extends Component {
     const user = {
       email,
       password,
+      token_name: 'token'
     };
     const { errors, isValid } = validate(user);
     if (!isValid) {

@@ -14,8 +14,7 @@ export default class EventListView extends React.Component {
     super();
     this.state = {
       isVisible: false,
-      filtered: [],
-      events: [],
+
     };
   }
 
@@ -40,14 +39,14 @@ export default class EventListView extends React.Component {
       <View>
 
         <List key={i}>
-          <ListItem key={i} onPress={() => eventDetails(assign.task.shift.event.id)}>
+          <ListItem key={i} onPress={() => eventDetails(assign.id)}>
             <Body>
-              <Text style={{ fontWeight: '200' }}>{assign.task.shift.event.name}</Text>
-              <Text note>{moment(assign.task.shift.event.starts_at).format('LLLL')}</Text>
+              <Text style={{ fontWeight: '200' }}>{assign.name}</Text>
+              <Text note>{moment(assign.starts_at).format('LLLL')}</Text>
               <Text />
               <TouchableHighlight onPress={this.viewListCard}>
                 <Text note style={{ fontSize: 10 }}>
-view in calendar
+         view in calendar
                 </Text>
               </TouchableHighlight>
             </Body>
@@ -59,7 +58,7 @@ view in calendar
         { isVisible ? (
           <EventListCard
             closeCard={this.closeCard}
-            events={assign.task.shift.event}
+            events={assign}
           />
         ) : null}
 

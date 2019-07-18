@@ -11,6 +11,7 @@ import NotificationScreen from '../../screens/profile/NotificationScreen';
 import BlockoutScreen from '../../screens/profile/BlockoutScreen';
 import EditScreen from '../../screens/profile/EditScreen';
 import storybook from '../../screens/profile/storybook';
+import UpdatePasswordScreen from '../../screens/profile/UpdatePasswordScreen';
 
 const AppNavigator = createStackNavigator({
   Event: {
@@ -110,6 +111,22 @@ const AppNavigator = createStackNavigator({
     screen: EditScreen,
     navigationOptions: {
       title: 'EditProfile',
+      headerBackground: (
+        <LinearGradient
+          colors={['#0066ff', '#0033cc']}
+          style={{ flex: 1 }}
+        />
+      ),
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: '200',
+      },
+    },
+  },
+  UpdatePassword: {
+    screen: UpdatePasswordScreen,
+    navigationOptions: {
+      title: 'Update Password',
       headerBackground: (
         <LinearGradient
           colors={['#0066ff', '#0033cc']}

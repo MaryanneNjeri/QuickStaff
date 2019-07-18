@@ -26,6 +26,7 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Auth');
     };
 
+
     viewNotification = () => {
       this.props.navigation.navigate('Notifications');
     };
@@ -38,9 +39,13 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Edit', { profile: this.props.profile });
     };
 
+    updatePassword = () => {
+      this.props.navigation.navigate('UpdatePassword');
+    };
+
   storybook = () => {
     this.props.navigation.navigate('storybook');
-  }
+  };
 
 
   render() {
@@ -56,6 +61,7 @@ class ProfileScreen extends React.Component {
         <Loader />
       );
     }
+
     return (
       <Container>
         <Content>
@@ -67,6 +73,7 @@ class ProfileScreen extends React.Component {
             viewNotification={this.viewNotification}
             viewProfile={this.viewProfile}
             storybook={this.storybook}
+            updatePassword={this.updatePassword}
           />
         </Content>
       </Container>
@@ -81,6 +88,6 @@ ProfileScreen.propTypes = {
 const mapStateToProps = state => ({
   profile: state.details.user,
   loading: state.details.loading,
-  error: state.details.Error,
+  error: state.details.error,
 });
 export default connect(mapStateToProps)(ProfileScreen);

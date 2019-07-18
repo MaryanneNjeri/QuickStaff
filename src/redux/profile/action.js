@@ -26,7 +26,7 @@ export const fetchProfileFailure = error => ({
 });
 export function fetchProfile() {
   function handleErrors(response) {
-    console.log(response.status);
+    // console.log(response.status);
     if (!response.ok) {
       throw Error(response.statusText);
     }

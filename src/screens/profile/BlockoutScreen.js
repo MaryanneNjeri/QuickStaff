@@ -59,7 +59,7 @@ class BlockoutScreen extends React.Component {
          const filter = e.toLowerCase();
          return lc.includes(filter);
        });
-       console.log(newList);
+
      } else {
        newList = blockouts.data;
      }
