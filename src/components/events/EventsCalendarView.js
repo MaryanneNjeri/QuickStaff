@@ -3,10 +3,9 @@ import {
   Dimensions, View,
 } from 'react-native';
 import EventCalendar from 'react-native-event-calendar-customized';
+import _ from 'lodash';
 import { store } from '../../redux/store';
-import EventsCard from './EventsCard';
 
-const _ = require('lodash');
 
 const { width } = Dimensions.get('window');
 
@@ -17,8 +16,6 @@ export default class EventsCalendarView extends React.Component {
     super();
     this.state = {
       events: [],
-      isVisible: false,
-
     };
   }
 
@@ -29,11 +26,11 @@ export default class EventsCalendarView extends React.Component {
 
     getEventDetails = () => {
       const events = store.getState().events;
-      let array1 = [];
+      const array1 = [];
 
-      _.map(events.items, (assign, i) => (
+      _.map(events.items.data, (assign, i) => (
 
-        array1 = this.getEvents(assign, i)
+        array1.push(this.getEvents(assign))
       ));
       this.setState({
         events: array1,
@@ -41,49 +38,27 @@ export default class EventsCalendarView extends React.Component {
     };
 
     getEvents = (assign) => {
-      const arr = [];
-      _.map(assign, (item, i) => (
-        arr.push(this.getDetails(item, i))
+      const start = assign.task.data.shift.data.event.data.starts_at;
+      const end = assign.task.data.shift.data.event.data.ends_at;
+      const title = assign.task.data.shift.data.event.data.name;
+      const summary = assign.task.data.shift.data.event.data.venue.data.address;
 
-      ));
-      return arr;
+      const obj = {
+        start, end, title, summary,
+      };
+      return obj;
     };
-
-    getDetails = (item) => {
-      if (!item.length) {
-        const start = item.task.shift.event.starts_at;
-        const end = item.task.shift.event.ends_at;
-        const title = item.task.shift.event.name;
-        const summary = item.task.shift.event.venue.address;
-
-        const obj = {
-          start, end, title, summary,
-        };
-        return obj;
-      }
-    };
-
-    eventDetails = (events) => {
-      return (<EventsCard events={events} closeCard={closeCard}/>);
-    }
-
-    closeCard = () => {
-      this.setState({
-        isVisible: false,
-      });
-    }
 
 
     render() {
       const { events } = this.state;
+
       return (
         <View style={{ flex: 1, marginTop: 20 }}>
           <EventCalendar
             events={events}
-            eventTapped={this.eventDetails}
-            keyExtractor={events => `key-${events.id}`}
             width={width}
-            initDate="2019-05-21"
+            initDate="2019-07-22"
             size={60}
             scrollToFirst
           />
