@@ -1,4 +1,4 @@
-import { API_URL } from '../../../config/config.js';
+import { API_URL } from '../../../config/config';
 import { getToken } from '../../components/lib/functions/auth/getAuthConfig';
 
 export const FETCH_PROFILE_BEGIN = 'FETCH_PROFILE_BEGIN';
@@ -26,7 +26,7 @@ export const fetchProfileFailure = error => ({
 });
 export function fetchProfile() {
   function handleErrors(response) {
-    // console.log(response.status);
+    console.log(response.status);
     if (!response.ok) {
       throw Error(response.statusText);
     }
@@ -37,7 +37,7 @@ export function fetchProfile() {
     getToken().then((token) => {
       const toke = token.replace(/^"(.*)"$/, '$1');
       const bearer = `Bearer ${toke}`;
-      return fetch(`${API_URL}/user`, {
+      return fetch(`${API_URL}/profile`, {
         method: 'GET',
         headers: {
           Authorization: bearer,

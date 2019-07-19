@@ -12,7 +12,8 @@ import ListComponent from '../../components/profile/ListComponent';
 
 class ProfileScreen extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchProfile());
+    const { dispatch } = this.props;
+    dispatch(fetchProfile());
   }
 
     logOut = () => {
@@ -50,7 +51,6 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { error, loading, profile } = this.props;
-
     if (error) {
       return (
         <Error {...this.props} />
@@ -66,7 +66,7 @@ class ProfileScreen extends React.Component {
       <Container>
         <Content>
           <HeaderComponent profile={profile} />
-          <GridComponent profile={profile} />
+          {/* <GridComponent profile={profile} /> */}
           <ListComponent
             logOut={this.logOut}
             viewBlockouts={this.viewBlockouts}
