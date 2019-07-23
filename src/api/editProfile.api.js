@@ -1,8 +1,8 @@
 import { getToken } from '../components/lib/functions/auth/getAuthConfig';
-import { API_URL } from '../../config/config';
+import getEnvVars from '../../environment';
 
-
-export default function editProfile(formData) {
+const { API_URL } = getEnvVars();
+export default function editProfile(formData, id) {
   function handleErrors(response) {
     if (!response.ok) {
       alert(response.status);
@@ -11,15 +11,17 @@ export default function editProfile(formData) {
     }
     return response;
   }
+
+
   getToken().then((token) => {
     const toke = token.replace(/^"(.*)"$/, '$1');
     const bearer = `Bearer ${toke}`;
-    fetch(`${API_URL}/update/profile`, {
+    fetch(`${API_URL}/profile/${id}`, {
       method: 'POST',
       body: formData,
       headers: {
         Authorization: bearer,
-        Accept: 'application/json',
+        // Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
       },
 

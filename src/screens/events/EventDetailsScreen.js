@@ -9,8 +9,9 @@ import { store } from '../../redux/store';
 import ClientDetailsTab from '../../components/events/eventDetails/tabs/ClientDetailsTab';
 import EventDetailsTab from '../../components/events/eventDetails/tabs/EventDetailsTab';
 import VenueDetailsTab from '../../components/events/eventDetails/tabs/VenueDetailsTab';
-import { API_KEY } from '../../../config/config';
+import getEnvVars from '../../../environment';
 
+const { API_KEY } = getEnvVars();
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',

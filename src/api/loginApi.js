@@ -1,4 +1,6 @@
-import { API_URL } from '../../../config/config.js';
+import getEnvVars from '../../environment';
+
+const { API_URL } = getEnvVars();
 
 export function loginApi() {
 

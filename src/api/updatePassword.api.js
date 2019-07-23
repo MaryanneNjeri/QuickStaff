@@ -1,4 +1,6 @@
-import { API_URL } from '../../config/config';
+import getEnvVars from '../../environment';
+
+const { API_URL } = getEnvVars();
 
 export default function updatePassword(object) {
   return fetch(`${API_URL}/update/password`, {

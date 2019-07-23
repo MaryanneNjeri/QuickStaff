@@ -1,5 +1,7 @@
-import { API_URL } from '../../../config/config';
 import { getToken } from '../../components/lib/functions/auth/getAuthConfig';
+import getEnvVars from '../../../environment';
+
+const { API_URL } = getEnvVars();
 
 export const FETCH_PROFILE_BEGIN = 'FETCH_PROFILE_BEGIN';
 export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS';

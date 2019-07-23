@@ -1,7 +1,8 @@
 import { Permissions, Notifications } from 'expo';
-import { API_URL } from '../../config/config';
 import { getToken } from '../components/lib/functions/auth/getAuthConfig';
+import getEnvVars from '../../environment';
 
+const { API_URL } = getEnvVars();
 
 export default async function registerForPushNotificationAsync() {
   const { status: exstingStatus } = await Permissions.getAsync(

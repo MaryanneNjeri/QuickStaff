@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
-import { API_URL } from '../../../config/config.js';
+import getEnvVars from '../../../environment';
 
+const { API_URL } = getEnvVars();
 export const LOGIN_BEGIN = 'LOGIN_BEGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

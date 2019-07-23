@@ -51,6 +51,7 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { error, loading, profile } = this.props;
+
     if (error) {
       return (
         <Error {...this.props} />

@@ -56,6 +56,7 @@ export default class EventsCalendarView extends React.Component {
       return (
         <View style={{ flex: 1, marginTop: 20 }}>
           <EventCalendar
+            eventTapped={() => { console.log('Event tapped'); }}
             events={events}
             width={width}
             initDate="2019-07-22"

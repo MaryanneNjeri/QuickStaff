@@ -1,6 +1,8 @@
 import { AsyncStorage } from 'react-native';
-import { API_URL } from '../../../../../config/config';
 import { getToken } from './getAuthConfig';
+import getEnvVars from '../../../../../environment';
+
+const { API_URL } = getEnvVars();
 
 export const logout = async () => {
   getToken().then((token) => {

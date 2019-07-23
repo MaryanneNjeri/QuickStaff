@@ -1,10 +1,12 @@
-import { API_URL } from '../../../config/config.js';
+import getEnvVars from '../../../environment';
 import { getToken } from '../../components/lib/functions/auth/getAuthConfig';
-import getEvents from '../../api/getEvents';
+// import getEvents from '../../api/getEvents';
 
+const { API_URL } = getEnvVars();
 export const FETCH_EVENTS_BEGIN = 'FETCH_EVENTS_BEGIN';
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
 export const FETCH_EVENTS_FAILURE = 'FETCH_EVENTS_FAILURE';
+
 
 export const fetchEventsBegin = () => ({
 

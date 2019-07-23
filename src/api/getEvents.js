@@ -1,6 +1,7 @@
-import { API_URL } from '../../config/config';
 import { getToken } from '../components/lib/functions/auth/getAuthConfig';
+import getEnvVars from '../../environment';
 
+const { API_URL } = getEnvVars();
 export default function getEvents() {
   getToken().then((token) => {
     const toke = token.replace(/^"(.*)"$/, '$1');

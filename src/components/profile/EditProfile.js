@@ -41,13 +41,17 @@ export default class EditProfile extends React.Component {
 
   componentDidMount() {
     const profile = store.getState().details.user;
+
     this.setState({
       profile: {
-        first_name: profile.first_name,
-        last_name: profile.last_name,
-        phone: profile.phone,
-        email: profile.email,
-        profile_image: profile.profile_image,
+        id: profile.data.id,
+        first_name: profile.data.first_name,
+        last_name: profile.data.last_name,
+        phone: profile.data.phone,
+        email: profile.data.email,
+        profile_image: profile.data.profile_image,
+        _method: 'PUT'
+
       },
 
     });
@@ -58,7 +62,7 @@ export default class EditProfile extends React.Component {
     _.forOwn(profile, (value, key) => {
       formData.append(key, value);
     });
-    editProfile(formData);
+    editProfile(formData, profile.id);
   };
 
   getPermissionAsync = async () => {
@@ -85,13 +89,14 @@ export default class EditProfile extends React.Component {
       const type = match ? `image/${match[1]}` : 'image';
 
       formData.append('profile_image', { uri: result.uri, name: filename, type });
-
+      console.log(formData);
       this.setState({
         profile: {
-          first_name: profile.first_name,
-          last_name: profile.last_name,
-          phone: profile.phone,
-          email: profile.email,
+          first_name: profile.data.first_name,
+          last_name: profile.data.last_name,
+          phone: profile.data.phone,
+          email: profile.data.email,
+          _method: 'PUT',
         },
       });
     }
