@@ -72,7 +72,7 @@ class EventScreen extends React.Component {
     };
 
     searchEvent = () => {
-      this.setState({ visible: true });
+      this.setState({ visible: true, mode: true });
     };
 
     closeSearch = () => {
