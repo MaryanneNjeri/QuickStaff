@@ -50,7 +50,7 @@ export default class EditProfile extends React.Component {
         phone: profile.data.phone,
         email: profile.data.email,
         profile_image: profile.data.profile_image,
-        _method: 'PUT'
+
 
       },
 
@@ -96,7 +96,7 @@ export default class EditProfile extends React.Component {
           last_name: profile.data.last_name,
           phone: profile.data.phone,
           email: profile.data.email,
-          _method: 'PUT',
+
         },
       });
     }

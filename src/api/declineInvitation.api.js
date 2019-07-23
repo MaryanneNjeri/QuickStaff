@@ -2,12 +2,12 @@ import { getToken } from '../components/lib/functions/auth/getAuthConfig';
 import getEnvVars from '../../environment';
 
 const { API_URL } = getEnvVars();
-export default function editProfile(formData) {
+export default function declineInvitation(id) {
   function handleErrors(response) {
     if (!response.ok) {
       alert(response.status);
     } else if (response.ok) {
-      alert('Profile updated');
+      alert('Status Updated');
     }
     return response;
   }
@@ -16,13 +16,11 @@ export default function editProfile(formData) {
   getToken().then((token) => {
     const toke = token.replace(/^"(.*)"$/, '$1');
     const bearer = `Bearer ${toke}`;
-    fetch(`${API_URL}/profile`, {
-      method: 'POST',
-      body: formData,
+    fetch(`${API_URL}/staff/${id}/decline`, {
+      method: 'GET',
       headers: {
         Authorization: bearer,
-        // Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
+
       },
 
     }).then(handleErrors)

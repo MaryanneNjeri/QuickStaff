@@ -83,6 +83,7 @@ class EventScreen extends React.Component {
       <EventListView
         key={i}
         i={i}
+        status={assignment}
         assign={assignment.task.data.shift.data.event.data}
         eventDetails={this.eventDetails}
       />
