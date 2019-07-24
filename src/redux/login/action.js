@@ -1,5 +1,7 @@
 import { AsyncStorage } from 'react-native';
+import _ from 'lodash';
 import getEnvVars from '../../../environment';
+import registerForPushNotificationAsync from '../../api/auth.api';
 
 const { API_URL } = getEnvVars();
 export const LOGIN_BEGIN = 'LOGIN_BEGIN';
@@ -46,8 +48,14 @@ export function login(user) {
     }).then(handleErrors)
       .then(response => response.json())
       .then((body) => {
-        dispatch(loginSuccess(body));
+        if (_.isEmpty(body.user.user_notification_token)) {
+          console.log('hello');
+          registerForPushNotificationAsync();
+        } else if (body.user_notification_token !== null) {
+          console.log('saved');
+        }
 
+        dispatch(loginSuccess(body));
         AsyncStorage.setItem('token', JSON.stringify(body.token));
 
         return body;

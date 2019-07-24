@@ -21,7 +21,7 @@ export default function editProfile(formData) {
       body: formData,
       headers: {
         Authorization: bearer,
-        // Accept: 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
       },
 

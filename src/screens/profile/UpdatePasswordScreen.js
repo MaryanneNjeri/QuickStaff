@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Content, Text } from 'native-base';
+import { Container, Content, View } from 'native-base';
+import UpdatePassword from '../../components/profile/UpdatePassword';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class updatePasswordScreen extends React.Component {
@@ -7,7 +8,9 @@ export default class updatePasswordScreen extends React.Component {
     return (
       <Container>
         <Content>
-          <Text>Update password</Text>
+          <View style={{ padding: 5 }}>
+            <UpdatePassword />
+          </View>
         </Content>
       </Container>
     );

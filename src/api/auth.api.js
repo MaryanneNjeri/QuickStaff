@@ -38,7 +38,7 @@ export default async function registerForPushNotificationAsync() {
 
       body: JSON.stringify(token1),
     }).then(response => response.json())
-      .then((response) => { console.log(response); }).catch((error) => {
+      .then((response) => { console.log('yes', response); }).catch((error) => {
         console.log(error);
       });
   });

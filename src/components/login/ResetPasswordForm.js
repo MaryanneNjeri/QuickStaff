@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, Image, Toast,
+  StyleSheet, Text, View, Image,
 } from 'react-native';
-import { validatePassword } from '../lib/functions/auth/validate';
+import { validateEmail } from '../lib/functions/auth/validate';
 import resetPasswordRequest from '../../api/resetPassword.api';
 import Button from '../common/buttons/Button';
 import FormInput from '../common/controls/Form/FormInput';
-import UpdatePasswordForm from './Modal/UpdatePasswordForm';
 import WhiteLoader from '../general/WhiteLoader';
 
 const styles = StyleSheet.create({
@@ -48,21 +47,15 @@ export default class ResetPasswordForm extends React.Component {
     super();
     this.state = {
       email: '',
-      modalVisible: false,
       loading: false,
     };
   }
 
-  setModalVisible=() => {
-    this.setState({
-      modalVisible: true,
-    });
-  };
 
   resetPassword=() => {
     const { email } = this.state;
 
-    const { errors, isValid } = validatePassword(email);
+    const { errors, isValid } = validateEmail(email);
     if (!isValid) {
       this.setState({
         errors,
@@ -80,29 +73,17 @@ export default class ResetPasswordForm extends React.Component {
             loading: false,
             email: '',
           });
-          this.setModalVisible();
         }
       });
     }
   };
 
-  closeModal=() => {
-    this.setState({
-      modalVisible: false,
-    });
-  };
-
   render() {
-    const { errors, modalVisible, loading } = this.state;
+    const { errors, loading } = this.state;
     if (loading) {
       return (
         <WhiteLoader />
 
-      );
-    }
-    if (modalVisible) {
-      return (
-        <UpdatePasswordForm isVisible={modalVisible} closeModal={this.closeModal} />
       );
     }
     return (

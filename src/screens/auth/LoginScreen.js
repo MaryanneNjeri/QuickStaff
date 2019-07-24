@@ -48,7 +48,7 @@ class LoginScreen extends Component {
     const user = {
       email,
       password,
-      token_name: 'token'
+      token_name: 'token',
     };
     const { errors, isValid } = validate(user);
     if (!isValid) {

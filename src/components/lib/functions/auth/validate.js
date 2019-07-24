@@ -16,7 +16,7 @@ export default function validate(data) {
   };
 }
 
-export function validatePassword(email) {
+export function validateEmail(email) {
   const errors = {};
   if (validator.isEmpty(email)) {
     errors.email = 'Email field is required';

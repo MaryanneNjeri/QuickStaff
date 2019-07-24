@@ -15,12 +15,12 @@ import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
 import Error from '../../components/events/Error';
 import Loader from '../../components/general/Loader';
-import registerForPushNotificationAsync from '../../api/auth.api';
 import EventListView from '../../components/events/EventListView';
 import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
 import Button from '../../components/common/buttons/Button';
 import FormInput from '../../components/common/controls/Form/FormInput';
+
 
 const _ = require('lodash');
 
@@ -45,8 +45,6 @@ class EventScreen extends React.Component {
   componentDidMount() {
     const { dispatch, events } = this.props;
     dispatch(fetchEvents());
-
-    //   registerForPushNotificationAsync();
 
     this.setState({
       filtered: events.data,

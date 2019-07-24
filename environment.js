@@ -3,7 +3,7 @@ import { Constants } from 'expo';
 
 const ENV = {
   dev: {
-    API_URL: 'https://7162a85e.ngrok.io/api',
+    API_URL: 'https://8f49b4c3.ngrok.io/api',
     amplitudeApiKey: null,
     API_KEY: 'AIzaSyA6ianjxY34CEjlAqq0pDsWbncN1e7TQ78',
   },
