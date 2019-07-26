@@ -65,8 +65,8 @@ export default class EventListFilter extends React.Component {
             selectedBackgroundColor="#0052cc"
             onConfirm={(start, until) => {
               const eve = filter;
-              filter.startDate = start;
-              filter.untilDate = until;
+              filter.starts_at = moment(start).format('YYYY-MM-DD');
+              filter.ends_at = moment(until).format('YYYY-MM-DD');
               this.setState({ filter: eve });
             }}
             onClose={this.closeCalendar}
@@ -141,8 +141,8 @@ export default class EventListFilter extends React.Component {
                           this.setState({ filter: eve });
                         }}
                       >
-                        <Picker.Item label="Ascending" value="ascending" />
-                        <Picker.Item label="Descending" value="descending" />
+                        <Picker.Item label="Ascending" value="asc" />
+                        <Picker.Item label="Descending" value="desc" />
                       </Picker>
 
 
@@ -151,7 +151,7 @@ export default class EventListFilter extends React.Component {
                     <FormInput
                       label="From"
                       floatingLabel
-                      value={moment(filter.startDate).format('LL')}
+                      value={moment(filter.starts_at).format('LL')}
                       leftIcon="calendar-o"
                       size={13}
                       color="#303B43"
@@ -159,7 +159,7 @@ export default class EventListFilter extends React.Component {
                     <FormInput
                       label="To"
                       floatingLabel
-                      value={moment(filter.untilDate).format('LL')}
+                      value={moment(filter.ends_at).format('LL')}
                       leftIcon="calendar-o"
                       size={13}
                       color="#303B43"

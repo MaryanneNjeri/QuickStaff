@@ -44,7 +44,7 @@ class EventScreen extends React.Component {
 
   componentDidMount() {
     const { dispatch, events } = this.props;
-    dispatch(fetchEvents());
+    dispatch(fetchEvents({}));
 
     this.setState({
       filtered: events.data,
@@ -118,14 +118,17 @@ class EventScreen extends React.Component {
       this.setState({ modalVisible: false });
     };
 
-   filterList = (list) => {
-     fetchEvents(list);
-     this.closeModal();
-   };
+    filterList = (list) => {
+      const { dispatch } = this.props;
+      dispatch(fetchEvents(list));
+      // console.log(list);
+      this.closeModal();
+    };
 
    resetList = (list) => {
+     const { dispatch } = this.props;
      list = {};
-     fetchEvents(list);
+     dispatch(fetchEvents(list));
      this.closeModal();
    };
 
