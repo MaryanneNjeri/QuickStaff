@@ -4,6 +4,7 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  meta: {},
 };
 
 export default function eventsReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ export default function eventsReducer(state = initialState, action) {
         ...state,
         loading: false,
         items: action.payload.events,
+        meta: action.payload.events.meta,
       };
     case FETCH_EVENTS_FAILURE:
       // save the error so that it can be displayed
@@ -31,6 +33,7 @@ export default function eventsReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         items: [],
+        meta: {},
       };
     default:
       // in case of the three fail then return initial state

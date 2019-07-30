@@ -28,6 +28,7 @@ export const fetchEventsFailure = error => ({
 
 });
 export function fetchEvents(list) {
+  console.log(list);
   function handleErrors(response) {
     console.log(response.status);
     if (!response.ok) {
@@ -41,7 +42,7 @@ export function fetchEvents(list) {
     getToken().then((token) => {
       const toke = token.replace(/^"(.*)"$/, '$1');
       const bearer = `Bearer ${toke}`;
-      return fetch(`${API_URL}/staff/events?include=task.shift.event.client,task.shift.event.venue&starts_at=${list.starts_at || ''}&sort_dir=${list.sort_dir || ''}&sort=${list.sort || ''}&status=${list.status || ''}&name=${list.search || ''}`, {
+      return fetch(`${API_URL}/staff/events?include=task.shift.event.client,task.shift.event.venue&starts_at=${list.starts_at || ''}&sort_dir=${list.sort_dir || ''}&sort=${list.sort || ''}&status=${list.status || ''}&name=${list.search || ''}&per_page=1&page=${list.offset}`, {
         method: 'GET',
         headers: {
           Authorization: bearer,
@@ -54,7 +55,6 @@ export function fetchEvents(list) {
 
         .then((body) => {
           dispatch(fetchEventsSuccess(body));
-
           return body;
         })
         .catch(error => dispatch(fetchEventsFailure(error)));

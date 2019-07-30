@@ -10,7 +10,6 @@ import {
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { action } from '@storybook/addon-actions';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -21,7 +20,7 @@ import EventListFilter from '../../components/events/EventListFilter';
 import EventCalendarView from '../../components/events/EventsCalendarView';
 import Button from '../../components/common/buttons/Button';
 import FormInput from '../../components/common/controls/Form/FormInput';
-
+import PaginatorComponent from '../../components/events/PaginatorComponent';
 
 const _ = require('lodash');
 
@@ -40,12 +39,23 @@ class EventScreen extends React.Component {
       modalVisible: false,
       visible: false,
       searchValue: '',
+      events: [],
     };
+    this.offset = 1;
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchEvents({}));
+    const { dispatch, events } = this.props;
+    dispatch(fetchEvents({ offset: this.offset }));
+    this.setState({
+      events: events.data,
+    });
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({
+      events: nextProps.events.data,
+    });
   }
 
     eventDetails = (id) => {
@@ -69,6 +79,7 @@ class EventScreen extends React.Component {
     };
 
     getTask = (assignment, i) => (
+
       <EventListView
         key={i}
         i={i}
@@ -127,12 +138,17 @@ class EventScreen extends React.Component {
      const { dispatch } = this.props;
      const { searchValue } = this.state;
      dispatch(fetchEvents({ search: searchValue }));
+   };
+
+   loadMore=() => {
+     const { dispatch } = this.props;
+     dispatch(fetchEvents({ offset: ++this.offset }));
    }
 
    render() {
-     const { error, loading, events } = this.props;
+     const { error, loading } = this.props;
      const {
-       mode, modalVisible, visible, searchValue,
+       mode, modalVisible, visible, searchValue, events,
      } = this.state;
 
      if (error) {
@@ -195,11 +211,14 @@ class EventScreen extends React.Component {
              />
            ) : null}
 
-           { mode ? _.map(events.data, (assignment, i) => (
+           { mode ? _.map(events, (assignment, i) => (
              this.getTask(assignment, i)
 
+
            ))
+
              : <EventCalendarView />}
+           <PaginatorComponent loadMore={this.loadMore} />
 
          </Content>
        </Container>
@@ -213,6 +232,7 @@ EventScreen.propTypes = {
 };
 const mapStateToProps = state => ({
   events: state.events.items,
+  meta: state.events.meta,
   loading: state.events.loading,
   error: state.events.error,
   profile: state.details.user,

@@ -84,8 +84,20 @@ export default {
       color: '#ffffff',
       fontWeight: '200',
     },
-
-
+  },
+  bottom: {
+    button: {
+      backgroundColor: 'white',
+      width: width - 100,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 2,
+      borderColor: '#1883CB',
+    },
+    text: {
+      color: '#1883CB',
+      fontWeight: '200',
+    },
   },
   logIn: {
     button: {
