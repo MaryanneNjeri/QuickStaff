@@ -27,6 +27,7 @@ storiesOf('button', module)
       leftIcon="edit"
       onPress={action('icon pressed')}
       size={20}
+      color="blue"
     />
   ))
 

@@ -41,8 +41,7 @@ export function fetchEvents(list) {
     getToken().then((token) => {
       const toke = token.replace(/^"(.*)"$/, '$1');
       const bearer = `Bearer ${toke}`;
-      console.log('the',list);
-      return fetch(`${API_URL}/staff/events?include=task.shift.event.client,task.shift.event.venue&starts_at=${list.starts_at || ''}&sort_dir=${list.sort_dir || ''}`, {
+      return fetch(`${API_URL}/staff/events?include=task.shift.event.client,task.shift.event.venue&starts_at=${list.starts_at || ''}&sort_dir=${list.sort_dir || ''}&sort=${list.sort || ''}&status=${list.status || ''}&name=${list.search || ''}`, {
         method: 'GET',
         headers: {
           Authorization: bearer,

@@ -7,7 +7,7 @@ import _ from 'lodash';
 import styles from './Form.styles';
 
 export default ({
-  floatingLabel, onChangeText, stackedLabel, rounded, label, ...props
+  floatingLabel, onChangeText, stackedLabel, rounded, label, onPress, ...props
 }) => {
   const selectedStyle = _.reduce(props, (aggregate, value, prop) => (value && styles[prop]
     ? { ...aggregate, ...styles[prop] } : aggregate),
@@ -17,7 +17,8 @@ export default ({
 
       <Label style={selectedStyle.label}>
         <Icon
-          onPress={props.onPress}
+
+          onPress={onPress}
           name={props.leftIcon}
           size={props.size}
           color={props.color}
@@ -38,6 +39,7 @@ export default ({
         name={props.rightIcon}
         size={props.size}
         color={props.color}
+        onPress={onPress}
       />
     </Item>
   );

@@ -10,6 +10,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { action } from '@storybook/addon-actions';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -38,23 +39,13 @@ class EventScreen extends React.Component {
       mode: true,
       modalVisible: false,
       visible: false,
-      filtered: [],
+      searchValue: '',
     };
   }
 
   componentDidMount() {
-    const { dispatch, events } = this.props;
+    const { dispatch } = this.props;
     dispatch(fetchEvents({}));
-
-    this.setState({
-      filtered: events.data,
-    });
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      filtered: nextProps.events.data,
-    });
   }
 
     eventDetails = (id) => {
@@ -132,29 +123,16 @@ class EventScreen extends React.Component {
      this.closeModal();
    };
 
-   filterEvents = (e) => {
-     const { events } = this.props;
-     let currentList = [];
-     let newList = [];
-     if (e !== '') {
-       currentList = events.data;
-       newList = currentList.filter((event) => {
-         const lc = event.task.data.shift.data.event.data.name.toLowerCase();
-         const filter = e.toLowerCase();
-         return lc.includes(filter);
-       });
-     } else {
-       newList = events.data;
-     }
-     this.setState({
-       filtered: newList,
-     });
+   filterEvents = () => {
+     const { dispatch } = this.props;
+     const { searchValue } = this.state;
+     dispatch(fetchEvents({ search: searchValue }));
    }
 
    render() {
-     const { error, loading } = this.props;
+     const { error, loading, events } = this.props;
      const {
-       mode, modalVisible, visible, filtered,
+       mode, modalVisible, visible, searchValue,
      } = this.state;
 
      if (error) {
@@ -200,8 +178,11 @@ class EventScreen extends React.Component {
                <FormInput
                  standard
                  label="Search for events"
-                 floatingLabel
-                 onChangeText={e => this.filterEvents(e)}
+                 value={searchValue}
+                 onChangeText={searchValue => this.setState({ searchValue })}
+                 rightIcon="search"
+                 onPress={this.filterEvents}
+                 size={20}
                />
              </View>
            ) : null}
@@ -214,7 +195,7 @@ class EventScreen extends React.Component {
              />
            ) : null}
 
-           { mode ? _.map(filtered, (assignment, i) => (
+           { mode ? _.map(events.data, (assignment, i) => (
              this.getTask(assignment, i)
 
            ))

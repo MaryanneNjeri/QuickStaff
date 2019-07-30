@@ -115,15 +115,15 @@ export default class EventListFilter extends React.Component {
                         placeholder="Sort by name or date"
                         placeholderStyle={{ fontSize: 13 }}
                         placeholderIconColor="#007aff"
-                        selectedValue={filter.sort_by}
+                        selectedValue={filter.sort}
                         onValueChange={(e) => {
                           const eve = filter;
-                          filter.sort_by = e;
+                          filter.sort = e;
                           this.setState({ filter: eve });
                         }}
                       >
-                        <Picker.Item label="Event name" value="event_name" />
-                        <Picker.Item label="date" value="date" />
+                        <Picker.Item label="Event name" value="name" />
+                        <Picker.Item label="Date" value="starts_at" />
                       </Picker>
 
                     </Item>
@@ -173,6 +173,8 @@ export default class EventListFilter extends React.Component {
                       onValueChange={(e) => {
                         const eve = filter;
                         filter.switchValue = e;
+                        filter.switchValue === true ? filter.status = 'declined'
+                          : filter.status = '';
                         this.setState({ filter: eve });
                       }}
                       value={filter.switchValue}
