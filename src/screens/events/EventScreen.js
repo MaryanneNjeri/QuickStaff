@@ -10,6 +10,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { fetchEvents } from '../../redux/events/action';
 import HeaderComponent from '../../components/events/HeaderComponent';
 import { logout } from '../../components/lib/functions/auth/logout';
@@ -22,10 +23,7 @@ import Button from '../../components/common/buttons/Button';
 import FormInput from '../../components/common/controls/Form/FormInput';
 import PaginatorComponent from '../../components/events/PaginatorComponent';
 
-const _ = require('lodash');
-
 const buttons = [
-
   { text: 'Logout', icon: 'close', iconColor: 'red' },
   { text: 'Close', icon: 'close', iconColor: 'red' },
 ];
@@ -40,21 +38,25 @@ class EventScreen extends React.Component {
       visible: false,
       searchValue: '',
       events: [],
+      meta: {},
+      offset: 1,
     };
-    this.offset = 1;
   }
 
-  componentDidMount() {
-    const { dispatch, events } = this.props;
+  componentWillMount() {
+    const { dispatch, events, meta } = this.props;
     dispatch(fetchEvents({ offset: this.offset }));
     this.setState({
       events: events.data,
+      meta,
+
     });
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState({
       events: nextProps.events.data,
+      meta: nextProps.meta,
     });
   }
 
@@ -123,7 +125,6 @@ class EventScreen extends React.Component {
     filterList = (list) => {
       const { dispatch } = this.props;
       dispatch(fetchEvents(list));
-      // console.log(list);
       this.closeModal();
     };
 
@@ -142,13 +143,30 @@ class EventScreen extends React.Component {
 
    loadMore=() => {
      const { dispatch } = this.props;
-     dispatch(fetchEvents({ offset: ++this.offset }));
+     const { offset } = this.state;
+
+     this.setState({
+       offset: offset + 1,
+     });
+
+     dispatch(fetchEvents({ offset: offset + 1 }));
+   };
+
+   back=() => {
+     const { dispatch } = this.props;
+     const { offset } = this.state;
+
+     this.setState({
+       offset: offset - 1,
+     });
+
+     dispatch(fetchEvents({ offset: offset - 1 }));
    }
 
    render() {
      const { error, loading } = this.props;
      const {
-       mode, modalVisible, visible, searchValue, events,
+       mode, modalVisible, visible, searchValue, events, meta, offset,
      } = this.state;
 
      if (error) {
@@ -213,12 +231,11 @@ class EventScreen extends React.Component {
 
            { mode ? _.map(events, (assignment, i) => (
              this.getTask(assignment, i)
-
-
            ))
 
              : <EventCalendarView />}
-           <PaginatorComponent loadMore={this.loadMore} />
+           <PaginatorComponent loadMore={this.loadMore} meta={meta} offset={offset} back={this.back} />
+
 
          </Content>
        </Container>
@@ -235,6 +252,5 @@ const mapStateToProps = state => ({
   meta: state.events.meta,
   loading: state.events.loading,
   error: state.events.error,
-  profile: state.details.user,
 });
 export default connect(mapStateToProps)(EventScreen);

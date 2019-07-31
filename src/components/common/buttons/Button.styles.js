@@ -99,6 +99,20 @@ export default {
       fontWeight: '200',
     },
   },
+  disabled: {
+    button: {
+      backgroundColor: 'white',
+      width: width - 100,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 2,
+      borderColor: '#D9E3E8',
+    },
+    text: {
+      color: '#D9E3E8',
+
+    },
+  },
   logIn: {
     button: {
       width: width - 30,

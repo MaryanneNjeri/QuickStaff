@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import Button from './Button';
-import styles from './Button.styles'
+import styles from './Button.styles';
 
 
 storiesOf('button', module)
@@ -18,7 +18,7 @@ storiesOf('button', module)
     <Button base onPress={action('pressed')}>Standard</Button>
   ))
   .add('Primary', () => (
-    <Button primary primaryText={ styles.primaryText } onPress={action('pressed')}>Primary</Button>
+    <Button primary primaryText={styles.primaryText} onPress={action('pressed')}>Primary</Button>
   ))
   .add('Secondary', () => (
     <Button secondary onPress={action('pressed')}>Secondary</Button>
@@ -31,6 +31,9 @@ storiesOf('button', module)
   ))
   .add('Success', () => (
     <Button success onPress={action('pressed')}>Success</Button>
+  ))
+  .add('Disabled button', () => (
+    <Button disabled onPress={action('pressed')}>Load More</Button>
   ))
   .add('Login example', () => (
     <Button logIn onPress={action('pressed')}>Login</Button>

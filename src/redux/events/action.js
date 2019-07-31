@@ -28,7 +28,7 @@ export const fetchEventsFailure = error => ({
 
 });
 export function fetchEvents(list) {
-  console.log(list);
+  // console.log(list);
   function handleErrors(response) {
     console.log(response.status);
     if (!response.ok) {
