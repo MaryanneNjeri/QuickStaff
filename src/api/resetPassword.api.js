@@ -14,9 +14,7 @@ export default function resetPasswordRequest(userEmail) {
     },
   })
     .then(response => response.json())
-    .then((response) => {
-      return response;
-    }).catch((error) => {
+    .then(response => response).catch((error) => {
       console.log(error);
     });
 }

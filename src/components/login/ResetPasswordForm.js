@@ -51,7 +51,6 @@ export default class ResetPasswordForm extends React.Component {
     };
   }
 
-
   resetPassword=() => {
     const { email } = this.state;
 
@@ -63,17 +62,11 @@ export default class ResetPasswordForm extends React.Component {
     } else if (isValid) {
       this.setState({ errors: {}, loading: true });
       resetPasswordRequest(email).then((response) => {
-        if (response.status_code === 404) {
-          alert(response.message);
-          this.setState({
-            loading: false,
-          });
-        } else {
-          this.setState({
-            loading: false,
-            email: '',
-          });
-        }
+        alert(response.message);
+        this.setState({
+          loading: false,
+          email: '',
+        });
       });
     }
   };
