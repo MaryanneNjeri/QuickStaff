@@ -38,7 +38,7 @@ export default class CalendarView extends React.Component {
     return (
       <View>
         <EventCalendar
-          initDate="2019-05-02"
+          initDate="2019-06-21"
           width={width}
           events={events}
           size={60}

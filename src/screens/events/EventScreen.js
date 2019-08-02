@@ -45,7 +45,8 @@ class EventScreen extends React.Component {
 
   componentWillMount() {
     const { dispatch, events, meta } = this.props;
-    dispatch(fetchEvents({ offset: this.offset }));
+    const { offset } = this.state;
+    dispatch(fetchEvents({ offset }));
     this.setState({
       events: events.data,
       meta,
@@ -161,6 +162,18 @@ class EventScreen extends React.Component {
      });
 
      dispatch(fetchEvents({ offset: offset - 1 }));
+   };
+
+   getAllEvents=() => {
+     const { dispatch, events, meta } = this.props;
+     const { offset } = this.state;
+
+     dispatch(fetchEvents({ offset }));
+     this.setState({
+       events: events.data,
+       meta,
+
+     });
    }
 
    render() {
@@ -185,8 +198,16 @@ class EventScreen extends React.Component {
            <HeaderComponent openActionSheet={this.openActionSheet} />
 
            <Body style={{ flexDirection: 'row' }}>
-             <Icon name="sort" type="MaterialIcons" style={{ fontSize: 23, color: '#303B43', fontWeight: 'bold' }} onPress={this.setModalVisible} />
-
+             {visible
+               ? (
+                 <TouchableOpacity onPress={this.getAllEvents}>
+                   <Text style={{ color: '#0052cc' }}>
+                     <Icon name="left" type="AntDesign" style={{ fontSize: 17, color: '#0052cc' }} />
+Back
+                   </Text>
+                 </TouchableOpacity>
+               )
+               : <Icon name="sort" type="MaterialIcons" style={{ fontSize: 23, color: '#303B43', fontWeight: 'bold' }} onPress={this.setModalVisible} />}
              <Text>{'   '}</Text>
              <Text>{'   '}</Text>
              <Segment>
@@ -234,7 +255,15 @@ class EventScreen extends React.Component {
            ))
 
              : <EventCalendarView />}
-           <PaginatorComponent loadMore={this.loadMore} meta={meta} offset={offset} back={this.back} />
+           { mode
+             ? (
+               <PaginatorComponent
+                 loadMore={this.loadMore}
+                 meta={meta}
+                 offset={offset}
+                 back={this.back}
+               />
+             ) : null}
 
 
          </Content>

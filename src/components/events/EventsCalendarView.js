@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  Dimensions, View,
+  Dimensions,
 } from 'react-native';
 import EventCalendar from 'react-native-event-calendar-customized';
 import _ from 'lodash';
+import CalendarComponent from './CalendarComponent';
 import { store } from '../../redux/store';
 
 
@@ -54,18 +55,17 @@ export default class EventsCalendarView extends React.Component {
       const { events } = this.state;
 
       return (
-        <View style={{ flex: 1, marginTop: 20 }}>
-          <EventCalendar
-            eventTapped={() => { console.log('Event tapped'); }}
-            events={events}
-            width={width}
-            initDate="2019-07-22"
-            size={60}
-            scrollToFirst
-          />
 
+        <EventCalendar
+          eventTapped={() => { console.log('Event tapped'); }}
+          events={events}
+          renderEvent={events => <CalendarComponent event={events} />}
+          width={width}
+          initDate="2019-07-22"
+          size={60}
+          scrollable="true"
+        />
 
-        </View>
 
       );
     }
