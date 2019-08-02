@@ -52,7 +52,7 @@ export default class PaginatorComponent extends React.Component {
                   </Text>
 
                 </View>
-                {offset !== meta.pagination.total
+                {offset !== meta.pagination.total && meta.pagination.count !== meta.pagination.total
 
                   ? <Button bottom onPress={loadMore}>Load More</Button>
                   : <DisabledButton />}
