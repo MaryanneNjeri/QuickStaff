@@ -7,10 +7,11 @@ import EventScreen from '../../screens/events/EventScreen';
 import ScheduleScreen from '../../screens/events/ScheduleScreen';
 import ProfileScreen from '../../screens/profile/ProfileScreen';
 import EventDetailsScreen from '../../screens/events/EventDetailsScreen';
-import PasswordResetScreen from '../../screens/auth/PasswordResetScreen';
 import NotificationScreen from '../../screens/profile/NotificationScreen';
-import BlockoutScreen from '../../screens/Blockouts/BlockoutScreen';
-
+import BlockoutScreen from '../../screens/profile/BlockoutScreen';
+import EditScreen from '../../screens/profile/EditScreen';
+import storybook from '../../screens/profile/storybook';
+import UpdatePasswordScreen from '../../screens/profile/UpdatePasswordScreen';
 
 const AppNavigator = createStackNavigator({
   Event: {
@@ -76,12 +77,7 @@ const AppNavigator = createStackNavigator({
       ),
     },
   },
-  PasswordReset: {
-    screen: PasswordResetScreen,
-    navigationOptions: {
-      title: 'Password Reset',
-    },
-  },
+
   Notifications: {
     screen: NotificationScreen,
     navigationOptions: {
@@ -105,7 +101,46 @@ const AppNavigator = createStackNavigator({
       },
     },
   },
+  storybook: {
+    screen: storybook,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Edit: {
+    screen: EditScreen,
+    navigationOptions: {
+      title: 'EditProfile',
+      headerBackground: (
+        <LinearGradient
+          colors={['#0066ff', '#0033cc']}
+          style={{ flex: 1 }}
+        />
+      ),
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: '200',
+      },
+    },
+  },
+  UpdatePassword: {
+    screen: UpdatePasswordScreen,
+    navigationOptions: {
+      title: 'Update Password',
+      headerBackground: (
+        <LinearGradient
+          colors={['#0066ff', '#0033cc']}
+          style={{ flex: 1 }}
+        />
+      ),
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: '200',
+      },
+    },
+  },
 
 });
+
 
 export default AppNavigator;

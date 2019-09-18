@@ -1,41 +1,10 @@
 import React from 'react';
-import { Form, Input, Item } from 'native-base';
-import {
-  StyleSheet, Text, TouchableHighlight, TouchableOpacity, View,
-} from 'react-native';
+import { Form } from 'native-base';
+import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
+import Button from '../common/buttons/Button';
+import FormInput from '../common/controls/Form/FormInput';
 
-const styles = StyleSheet.create({
-  reset: {
-    alignItems: 'center',
-
-  },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(225,225,225,0.2)',
-    marginBottom: 20,
-    padding: 5,
-    color: '#fff',
-    borderColor: 'rgba(225,225,225,0.2)',
-  },
-
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderRadius: 30,
-    marginBottom: 20,
-    backgroundColor: '#9ACD32',
-    paddingVertical: 15,
-
-
-  },
-});
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -46,50 +15,35 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    const { errors, onRedirect, signIn } = this.props;
+    const { errors, signIn } = this.props;
     const { email, password } = this.state;
     return (
       <View>
         <Form>
+
           {errors ? <Text>{errors.email}</Text> : null
-                    }
-          <Item rounded style={styles.input}>
-            <Input
-              style={{ color: 'white' }}
-              placeholder="Email"
-              placeholderTextColor="rgba(225,225,225,0.7)"
-              onChangeText={email => this.setState({ email })}
-            />
-
-          </Item>
+          }
+          <FormInput
+            rounded
+            roundedInput
+            placeholder="Enter Email"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            onChangeText={email => this.setState({ email })}
+          />
           {errors ? <Text>{errors.password}</Text> : null
-                    }
-          <Item rounded style={styles.input}>
-            <Input
-              placeholder="Password"
-              style={{ color: 'white' }}
-              placeholderTextColor="rgba(225,225,225,0.7)"
-              onChangeText={password => this.setState({ password })}
-              secureTextEntry
-            />
-
-          </Item>
-
+          }
+          <FormInput
+            rounded
+            roundedInput
+            secureTextEntry
+            placeholder="Enter Password"
+            placeholderTextColor="rgba(225,225,225,0.7)"
+            onChangeText={password => this.setState({ password })}
+          />
         </Form>
-        <TouchableHighlight
-          style={styles.buttonContainer}
-          onPress={() => {
-            signIn(email, password);
-          }}
-        >
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableHighlight>
-        <TouchableOpacity
-          style={styles.reset}
-          onPress={onRedirect}
-        >
-          <Text style={{ color: 'white' }}>Password Reset </Text>
-        </TouchableOpacity>
+        <Text>{' '}</Text>
+        <Button logIn onPress={() => { signIn(email, password); }}>Log in</Button>
+
       </View>
 
     );
@@ -97,6 +51,4 @@ export default class LoginForm extends React.Component {
 }
 LoginForm.propTypes = {
   signIn: PropTypes.func.isRequired,
-  onRedirect: PropTypes.func.isRequired,
-
 };

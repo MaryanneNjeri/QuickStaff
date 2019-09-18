@@ -7,13 +7,27 @@
     "eject": "expo eject",
     "lint": "eslint *.js **/*.js",
     "lint:fix": "eslint *.js **/*.js --fix",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "storybook": "start-storybook -p 7007",
+    "prestorybook": "rnstl"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src/*"
+      ],
+      "pattern": "**/*.stories.js",
+      "outputFile": "./storybook/storyLoader.js"
+    }
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-ondevice-actions": "^5.1.9",
+    "@storybook/addon-ondevice-knobs": "^5.1.9",
     "expo": "^32.0.0",
     "link": "^0.1.5",
     "lodash": "^4.17.11",
@@ -23,29 +37,44 @@
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-action-sheet": "^2.2.0",
+    "react-native-add-calendar-event": "^2.3.1",
     "react-native-calendars": "^1.27.0",
     "react-native-elements": "^1.1.0",
+    "react-native-event-calendar-customized": "^1.0.13",
+    "react-native-events-calendar": "^1.0.8",
     "react-native-geocoding": "^0.3.0",
     "react-native-maps": "^0.23.0",
     "react-native-modal": "^11.0.1",
     "react-native-navigation": "^2.21.0",
+    "react-native-open-maps": "^0.3.3",
+    "react-native-password-strength-meter": "0.0.2",
+    "react-native-range-datepicker": "^1.8.2",
     "react-native-vector-icons": "^6.5.0",
     "react-navigation": "^3.5.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.1",
+    "uuid": "^3.3.2",
     "validator": "^11.0.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/react-native": "^5.1.9",
+    "@storybook/react-native-server": "^5.1.9",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "babel-preset-expo": "^5.0.0",
+    "concurrently": "^4.1.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "jest-expo": "^32.0.0"
+    "exp": "^57.2.1",
+    "jest-expo": "^32.0.0",
+    "react-dom": "^16.0.0-alpha.12",
+    "react-native-storybook-loader": "^1.8.0"
   },
   "rnpm": {
     "assets": [

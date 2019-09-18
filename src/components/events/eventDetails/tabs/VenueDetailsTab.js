@@ -1,9 +1,12 @@
 import * as React from 'react';
 import {
-  Content, Container, Text, ListItem, Left, Icon, Body, Card, CardItem,
+  Content, Container, Text, ListItem, Left, Icon, Body, Card, CardItem, Button,
 } from 'native-base';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import {
+  View, StyleSheet, Dimensions, TouchableOpacity,
+} from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { createOpenLink } from 'react-native-open-maps';
 import _ from 'lodash';
 
 const { width } = Dimensions.get('window');
@@ -18,10 +21,15 @@ const styles = StyleSheet.create({
         },
 
 });
+
+// eslint-disable-next-line react/prefer-stateless-function
 export default class VenueDetailsTab extends React.Component {
   render() {
     const { venue, coords } = this.props;
 
+    const location = { latitude: coords.lat, longitude: coords.lng };
+
+    const mapZoom = createOpenLink(location);
     return (
       <Container>
         <Content>
@@ -88,8 +96,14 @@ export default class VenueDetailsTab extends React.Component {
                     </MapView>
                   </CardItem>
                 </Card>
+
               ) : null
                         }
+            <Text>{' '}</Text>
+            <TouchableOpacity onPress={mapZoom}>
+              <Text style={{ fontWeight: '200', color: '#1883CB' }}>Click here to view venue Location</Text>
+            </TouchableOpacity>
+
             <Text>{' '}</Text>
             <ListItem icon noBorder>
               <Left>

@@ -1,11 +1,15 @@
 import * as React from 'react';
 import {
-  Container, Content, Form, Body, Input, Label, Text, Icon, Item, Button,
+  Container, Content, Form, Body, Text, Icon,
 } from 'native-base';
 import {
-  StyleSheet, Modal, View, TouchableHighlight, AsyncStorage,
+  StyleSheet, Modal, View, TouchableHighlight,
 } from 'react-native';
+import moment from 'moment';
+import { Calendar, Permissions, Constants } from 'expo';
 import PropTypes from 'prop-types';
+import FormInput from '../../../common/controls/Form/FormInput';
+import Button from '../../../common/buttons/Button';
 
 const styles = StyleSheet.create({
   modalButton: {
@@ -13,8 +17,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     width: 100,
-
-
   },
 });
 export default class AddEventCalendar extends React.Component {
@@ -22,10 +24,10 @@ export default class AddEventCalendar extends React.Component {
     super();
     this.state = {
       eventDetails: {},
+      results: [],
 
     };
   }
-
 
   componentDidMount() {
     const { event, client, venue } = this.props;
@@ -35,23 +37,42 @@ export default class AddEventCalendar extends React.Component {
         event_name: event.name,
         client_name: client.name,
         starts_at: event.starts_at,
+        ends_at: event.ends_at,
         address: venue.address,
 
       },
     });
+    this.getCalendarPermission();
   }
+
+   getCalendarPermission = async () => {
+     if (Constants.platform.ios) {
+       const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+       if (status !== 'granted') {
+         alert('Sorry we need calendar permission to make this work..');
+       }
+     }
+   };
 
     confirmEvent = async () => {
       const { eventDetails } = this.state;
-      const markedDates = [];
-      markedDates.push(eventDetails);
-      try {
-        await AsyncStorage.setItem('event', JSON.stringify(markedDates));
-        alert('Event has been saved');
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      let details = await Expo.Calendar.createEventAsync(Expo.Calendar.DEFAULT, {
+        title: eventDetails.event_name,
+        startDate: new Date(moment(eventDetails.starts_at).format('YYYY-MM-DD')),
+        endDate: new Date(moment(eventDetails.ends_at).format('YYYY-MM-DD')),
+        location: eventDetails.address,
+        timeZone: 'GMT',
+      })
+        .then((event) => {
+          alert('Event successfully saved to phone calendar');
+          console.log('success', event);
+        })
+        .catch((error) => {
+          alert('An error seemed to have occurred');
+          console.log('failure', error);
+        });
+    }
+
 
     render() {
       const { isModalVisible, closeModal } = this.props;
@@ -94,104 +115,79 @@ Close
                 </Body>
                 <View style={{ padding: 18 }}>
                   <Form>
-                    <Item floatingLabel>
-                      <Icon
-                        type="SimpleLineIcons"
-                        name="event"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Event Name</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.event_name}
-
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.event_name = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-                    <Item floatingLabel>
-                      <Icon
-                        type="Ionicons"
-                        name="md-people"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Client</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.client_name}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.client_name = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-
-                    <Item floatingLabel>
-                      <Icon
-                        name="clock"
-                        type="EvilIcons"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Starts at </Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.starts_at}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.starts_at = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-                    <Item floatingLabel>
-                      <Icon
-                        type="Entypo"
-                        name="location-pin"
-                        style={{ fontSize: 15, color: '#303B43' }}
-                      />
-                      <Label style={{ color: '#303B43', fontSize: 10 }}>Venue</Label>
-                      <Input
-                        style={{ fontSize: 15 }}
-                        value={eventDetails.address}
-                        onChangeText={(e) => {
-                          const eve = eventDetails;
-                          eve.address = e;
-                          this.setState({ eventDetails: eve });
-                        }}
-                      />
-                    </Item>
-
-
-                  </Form>
-
-                  <View style={styles.modalButton}>
-                    <Button rounded style={styles.button} onPress={this.confirmEvent}>
-                      <Text style={{
-                        textAlign: 'center',
-                        fontWeight: '200',
-                        color: 'white',
-                        fontSize: 13,
+                    <FormInput
+                      label="Event Name"
+                      floatingLabel
+                      value={eventDetails.event_name}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.event_name = e;
+                        this.setState({ eventDetails: eve });
                       }}
-                      >
-Add Event
-                      </Text>
-
-                    </Button>
+                      leftIcon="calendar-plus-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Client"
+                      floatingLabel
+                      value={eventDetails.client_name}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.client_name = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="user"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Starts at"
+                      floatingLabel
+                      value={eventDetails.starts_at}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.starts_at = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="clock-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Ends at"
+                      floatingLabel
+                      value={eventDetails.ends_at}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.ends_at = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="clock-o"
+                      color="#303B43"
+                      size={13}
+                    />
+                    <FormInput
+                      label="Venue"
+                      floatingLabel
+                      value={eventDetails.address}
+                      onChangeText={(e) => {
+                        const eve = eventDetails;
+                        eve.address = e;
+                        this.setState({ eventDetails: eve });
+                      }}
+                      leftIcon="map-marker"
+                      color="#303B43"
+                      size={13}
+                    />
+                  </Form>
+                  <View style={styles.modalButton}>
+                    <Button primary onPress={this.confirmEvent}>Add Event</Button>
                   </View>
 
                 </View>
-
-
               </View>
-
             </Content>
-
           </Modal>
         </Container>
       );

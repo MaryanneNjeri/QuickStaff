@@ -5,6 +5,14 @@ import {
 import { StyleSheet } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 
+const styles = StyleSheet.create({
+  call: {
+    padding: 10,
+    borderRightColor: '#BDC3C7',
+    borderRightWidth: 0.3,
+  },
+});
+// eslint-disable-next-line react/prefer-stateless-function
 export default class GridComponent extends React.Component {
   render() {
     return (
@@ -66,10 +74,3 @@ Timezone
     );
   }
 }
-const styles = StyleSheet.create({
-  call: {
-    padding: 10,
-    borderRightColor: '#BDC3C7',
-    borderRightWidth: 0.3,
-  },
-});

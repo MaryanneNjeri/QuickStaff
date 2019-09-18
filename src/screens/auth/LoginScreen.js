@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image, AsyncStorage,
+  View, StyleSheet, Image, TouchableOpacity,
 } from 'react-native';
 import {
-  Content, Container, Toast,
+  Content, Container, Toast, Text, Body,
 } from 'native-base';
 import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { validateInput } from '../../components/lib/functions/auth/validateInput';
+import validate from '../../components/lib/functions/auth/validate';
 import { login } from '../../redux/login/action';
 import LoginForm from '../../components/login/LoginForm';
 import Loader from '../../components/general/Loader';
@@ -43,16 +43,14 @@ class LoginScreen extends Component {
     };
   }
 
-    onRedirect = () => {
-      this.props.navigation.navigate('PasswordReset');
-    };
 
   signIn = async (email, password) => {
     const user = {
       email,
       password,
+      token_name: 'token',
     };
-    const { errors, isValid } = validateInput(user);
+    const { errors, isValid } = validate(user);
     if (!isValid) {
       this.setState({
         errors,
@@ -60,9 +58,8 @@ class LoginScreen extends Component {
     } else if (isValid) {
       this.setState({ errors: {}, loading: true });
       const { dispatch } = this.props;
-      dispatch(login(user));
-      AsyncStorage.getItem('token').then((data) => {
-        if (data) {
+      dispatch(login(user)).then((response) => {
+        if (response.token) {
           Toast.show({
             text: ' Successfully Log in',
             type: 'success',
@@ -86,6 +83,11 @@ class LoginScreen extends Component {
     }
   };
 
+  resetPassword=() => {
+    this.props.navigation.navigate('PasswordReset');
+  }
+
+
   render() {
     const { loading } = this.props;
     if (loading) {
@@ -103,8 +105,13 @@ class LoginScreen extends Component {
             <View style={styles.loginContainer}>
               <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/images/logo.png')} />
             </View>
+            <LoginForm {...this.state} signIn={this.signIn} />
+            <Text>{' '}</Text>
 
-            <LoginForm {...this.state} signIn={this.signIn} onRedirect={this.onRedirect} />
+            <TouchableOpacity onPress={this.resetPassword}>
+              <Text style={{ textAlign: 'center', color: 'white' }}>Reset Password</Text>
+            </TouchableOpacity>
+
           </Content>
         </LinearGradient>
       </Container>

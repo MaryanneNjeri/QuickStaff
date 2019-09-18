@@ -12,7 +12,8 @@ import ListComponent from '../../components/profile/ListComponent';
 
 class ProfileScreen extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchProfile());
+    const { dispatch } = this.props;
+    dispatch(fetchProfile());
   }
 
     logOut = () => {
@@ -26,6 +27,7 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Auth');
     };
 
+
     viewNotification = () => {
       this.props.navigation.navigate('Notifications');
     };
@@ -34,33 +36,51 @@ class ProfileScreen extends React.Component {
       this.props.navigation.navigate('Blockouts');
     };
 
-    render() {
-      const { error, loading } = this.props;
-      if (error) {
-        return (
-          <Error {...this.props} />
-        );
-      }
-      if (loading) {
-        return (
-          <Loader />
-        );
-      }
-      return (
-        <Container>
-          <Content>
-            <HeaderComponent profile={this.props.profile} />
-            <GridComponent profile={this.props.profile} />
-            <ListComponent
-              logOut={this.logOut}
-              viewBlockouts={this.viewBlockouts}
-              viewNotification={this.viewNotification}
-            />
-          </Content>
-        </Container>
+    viewProfile = () => {
+      this.props.navigation.navigate('Edit', { profile: this.props.profile });
+    };
 
+    updatePassword = () => {
+      this.props.navigation.navigate('UpdatePassword');
+    };
+
+  storybook = () => {
+    this.props.navigation.navigate('storybook');
+  };
+
+
+  render() {
+    const { error, loading, profile } = this.props;
+
+    if (error) {
+      return (
+        <Error {...this.props} />
       );
     }
+    if (loading) {
+      return (
+        <Loader />
+      );
+    }
+
+    return (
+      <Container>
+        <Content>
+          <HeaderComponent profile={profile} />
+          {/* <GridComponent profile={profile} /> */}
+          <ListComponent
+            logOut={this.logOut}
+            viewBlockouts={this.viewBlockouts}
+            viewNotification={this.viewNotification}
+            viewProfile={this.viewProfile}
+            storybook={this.storybook}
+            updatePassword={this.updatePassword}
+          />
+        </Content>
+      </Container>
+
+    );
+  }
 }
 ProfileScreen.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -69,6 +89,6 @@ ProfileScreen.propTypes = {
 const mapStateToProps = state => ({
   profile: state.details.user,
   loading: state.details.loading,
-  error: state.details.Error,
+  error: state.details.error,
 });
 export default connect(mapStateToProps)(ProfileScreen);

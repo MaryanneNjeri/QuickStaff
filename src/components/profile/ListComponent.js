@@ -2,15 +2,20 @@ import React from 'react';
 import {
   Body, Icon, Left, List, ListItem, Right, Text,
 } from 'native-base';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class ListComponent extends React.Component {
   render() {
+    const {
+      viewBlockouts, viewNotification, logOut, viewProfile, storybook, updatePassword,
+    } = this.props;
     return (
       <List>
         <ListItem itemHeader>
           <Text>Settings</Text>
         </ListItem>
-        <ListItem icon onPress={this.props.viewNotification}>
+        <ListItem icon onPress={viewNotification}>
           <Left>
             <Icon name="ios-notifications" />
           </Left>
@@ -21,9 +26,9 @@ export default class ListComponent extends React.Component {
             <Icon active name="arrow-forward" />
           </Right>
         </ListItem>
-        <ListItem icon onPress={this.props.viewBlockouts}>
+        <ListItem icon onPress={viewBlockouts}>
           <Left>
-            <Icon type="Entypo" name="block" />
+            <Icon type="Entypo" name="block" style={{ fontSize: 20 }} />
           </Left>
           <Body>
             <Text>Blockouts</Text>
@@ -32,7 +37,7 @@ export default class ListComponent extends React.Component {
             <Icon active name="arrow-forward" />
           </Right>
         </ListItem>
-        <ListItem icon>
+        <ListItem icon onPress={viewProfile}>
           <Left>
             <Icon name="ios-paper" />
           </Left>
@@ -43,12 +48,24 @@ export default class ListComponent extends React.Component {
             <Icon active name="arrow-forward" />
           </Right>
         </ListItem>
-        <ListItem icon>
+        <ListItem icon onPress={updatePassword}>
           <Left>
-            <Icon name="ios-calendar" />
+            <Icon name="ios-unlock" />
           </Left>
           <Body>
-            <Text>Calendar</Text>
+            <Text>Update Password</Text>
+          </Body>
+          <Right>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+
+        <ListItem icon onPress={storybook}>
+          <Left>
+            <Icon name="ios-paper" />
+          </Left>
+          <Body>
+            <Text>Storybook</Text>
           </Body>
           <Right>
             <Icon active name="arrow-forward" />
@@ -68,7 +85,7 @@ export default class ListComponent extends React.Component {
             <Icon active name="arrow-forward" />
           </Right>
         </ListItem>
-        <ListItem icon onPress={this.props.logOut}>
+        <ListItem icon onPress={logOut}>
           <Left>
             <Icon type="Feather" name="power" />
           </Left>
@@ -83,3 +100,13 @@ export default class ListComponent extends React.Component {
     );
   }
 }
+ListComponent.propTypes = {
+  viewBlockouts: PropTypes.func.isRequired,
+  viewNotification: PropTypes.func.isRequired,
+  viewProfile: PropTypes.func.isRequired,
+  storybook: PropTypes.func.isRequired,
+  updatePassword: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+
+
+};
