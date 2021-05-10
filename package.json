@@ -30,7 +30,7 @@
     "@storybook/addon-ondevice-knobs": "^5.1.9",
     "expo": "^32.0.0",
     "link": "^0.1.5",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "native-base": "^2.12.1",
     "prop-types": "^15.7.2",
