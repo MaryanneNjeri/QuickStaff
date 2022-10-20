@@ -28,7 +28,7 @@
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/addon-ondevice-actions": "^5.1.9",
     "@storybook/addon-ondevice-knobs": "^5.1.9",
-    "expo": "^32.0.0",
+    "expo": "^46.0.16",
     "link": "^0.1.5",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
